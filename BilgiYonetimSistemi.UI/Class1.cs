@@ -7,5 +7,6 @@ namespace BilgiYonetimSistemi.UI
 {
     public class Class1
     {
+        //asdasdasd
     }
 }
