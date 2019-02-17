@@ -41,11 +41,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Ders.cs" />
-    <Compile Include="OgrenciBilgi.cs" />
-    <Compile Include="Ogrenci.cs" />
-    <Compile Include="Ogretmen.cs" />
-    <Compile Include="OgretmenBilgi.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
