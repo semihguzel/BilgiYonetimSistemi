@@ -9,7 +9,7 @@ namespace BilgiYonetimSistemi.BLL
   public class Talha
     {
 
-
+       //selam millet.
 
         //bu bir yorum satiridir.
 
