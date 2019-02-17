@@ -8,5 +8,9 @@ namespace BilgiYonetimSistemi.DAL
 {
     class Class2
     {
+        public void class2deneme()
+        {
+            //yorum satırlı metod.
+        }
     }
 }

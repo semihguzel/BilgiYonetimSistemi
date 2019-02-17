@@ -8,6 +8,9 @@ namespace BilgiYonetimSistemi.BLL
 {
   public class Talha
     {
+
+
+
         //bu bir yorum satiridir.
 
 
