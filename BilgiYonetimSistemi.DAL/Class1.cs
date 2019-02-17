@@ -10,7 +10,7 @@ namespace BilgiYonetimSistemi.DAL
     {
         public void Temp()
         {
-
+            //rastgele bir seyler yazildi.
         }
 
         public void Temp2()
