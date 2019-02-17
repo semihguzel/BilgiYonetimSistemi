@@ -15,7 +15,7 @@ namespace BilgiYonetimSistemi.DAL
 
         public void Temp2()
         {
-
+            //merhaba deneme 
         }
     }
 }
