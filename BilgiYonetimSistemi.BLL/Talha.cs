@@ -8,6 +8,14 @@ namespace BilgiYonetimSistemi.BLL
 {
   public class Talha
     {
+        public void Deneme()
+        {
+
+        }
+
         //bu bir yorum satiridir.
+
+
+
     }
 }
