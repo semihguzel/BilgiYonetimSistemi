@@ -26,6 +26,6 @@ namespace BilgiYonetimSistemi.DATA
 
         public int BolumID { get; set; }
 
-        public virtual OgrenciBilgi OgrencininBilgisi { get; set; }
+        public virtual OgrenciBilgi OgrencininBilgisi { get; set; }  
     }
 }
