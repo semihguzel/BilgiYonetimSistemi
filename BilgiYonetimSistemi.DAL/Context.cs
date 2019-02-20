@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace BilgiYonetimSistemi.DAL
 {
-    class Context:DbContext
+    public class Context:DbContext
     {
         public Context() : base(@"server = .; database = VeriTabaniDeneme; uid = sa; pwd = 123")
         {
