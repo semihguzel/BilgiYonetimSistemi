@@ -14,10 +14,8 @@ namespace BilgiYonetimSistemi.DATA
 
         public DateTime DonemYili { get; set; }
 
-        public int OgrencilerDerslerID { get; set; } 
-
         public virtual List<OgrencilerDerslerDonemler> DoneminOgrencilerDersleri { get; set; }
-        
+
         public virtual List<OgretmenlerDerslerDonemler> DoneminOgretmenlerDersleri { get; set; }
     }
 }
