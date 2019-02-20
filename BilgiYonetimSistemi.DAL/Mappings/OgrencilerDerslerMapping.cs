@@ -6,8 +6,7 @@ using System.Threading.Tasks;
 
 namespace BilgiYonetimSistemi.DAL
 {
-    class Class126
+    class OgrencilerDerslerMapping
     {
-
     }
 }

@@ -31,7 +31,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -41,13 +48,39 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Mappings\BolumlerDerslerMapping.cs" />
+    <Compile Include="Mappings\BolumlerMapping.cs" />
+    <Compile Include="Context.cs" />
+    <Compile Include="Mappings\DerslerMapping.cs" />
+    <Compile Include="Mappings\DonemlerMapping.cs" />
+    <Compile Include="Mappings\EgitimDuzeyiMapping.cs" />
+    <Compile Include="Mappings\FakulteBolumlerMapping.cs" />
+    <Compile Include="Mappings\FakulteMapping.cs" />
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Mappings\NotlarMapping.cs" />
+    <Compile Include="Mappings\OgrenciBilgileriMapping.cs" />
+    <Compile Include="Mappings\OgrencilerBolumlerMapping.cs" />
+    <Compile Include="Mappings\OgrencilerDerslerDonemlerMapping.cs" />
+    <Compile Include="Mappings\OgrencilerDerslerMapping.cs" />
+    <Compile Include="Mappings\OgrencilerMapping.cs" />
+    <Compile Include="Mappings\OgrenimSekliMapping.cs" />
+    <Compile Include="Mappings\OgretmenBilgileriMapping.cs" />
+    <Compile Include="Mappings\OgretmenlerBolumlerMapping.cs" />
+    <Compile Include="Mappings\OgretmenlerDerslerDonemlerMapping.cs" />
+    <Compile Include="Mappings\OgretmenlerDerslerMapping.cs" />
+    <Compile Include="Mappings\OgretmenlerMapping.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Mappings\SinavlarMapping.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BilgiYonetimSistemi.DATA\BilgiYonetimSistemi.DATA.csproj">
       <Project>{5c507fca-9d18-4202-9701-67b206b0e96b}</Project>
       <Name>BilgiYonetimSistemi.DATA</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
