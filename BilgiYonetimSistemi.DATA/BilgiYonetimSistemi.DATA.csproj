@@ -52,13 +52,11 @@
     <Compile Include="Entities\Ogrenci.cs" />
     <Compile Include="Entities\OgrenciBilgileri.cs" />
     <Compile Include="Entities\OgrencilerBolumler.cs" />
-    <Compile Include="Entities\OgrencilerDersler.cs" />
     <Compile Include="Entities\OgrencilerDerslerDonemler.cs" />
     <Compile Include="Entities\OgrenimSekli.cs" />
     <Compile Include="Entities\Ogretmen.cs" />
     <Compile Include="Entities\OgretmenBilgileri.cs" />
     <Compile Include="Entities\OgretmenlerBolumler.cs" />
-    <Compile Include="Entities\OgretmenlerDersler.cs" />
     <Compile Include="Entities\OgretmenlerDerslerDonemler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Entities\Sinav.cs" />
