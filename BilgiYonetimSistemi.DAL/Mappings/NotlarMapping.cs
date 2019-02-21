@@ -15,9 +15,11 @@ namespace BilgiYonetimSistemi.DAL
         {
             HasKey(x => x.NotID);
 
-            Property(x => x.Puan).HasColumnType("nvarchar").IsRequired().HasMaxLength(2);
+            Property(x => x.Puan).IsRequired();
 
-        
+            HasRequired(x => x.NotunOgrenciDersDonemi).WithMany(x => x.OgrenciDerslerDonemlerinNotlari).HasForeignKey(x => x.OgrenciDerslerDonemlerID);
+
+            HasRequired(x => x.NotunSinavi).WithMany(x => x.SinavinNotlari).HasForeignKey(x => x.SinavID);
         }
     }
 }

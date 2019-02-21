@@ -11,9 +11,7 @@ namespace BilgiYonetimSistemi.DATA
         public int SinavID { get; set; }
 
         public string SinavTipi { get; set; } //vize, final, büt.
-
-        public int NotID { get; set; }
-
-        public virtual Not SinavinNotu { get; set; }
+        
+        public virtual List<Not> SinavinNotlari { get; set; }
     }
 }

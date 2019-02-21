@@ -15,8 +15,6 @@ namespace BilgiYonetimSistemi.DAL
             ToTable("Sınavlar");
             HasKey(x => x.SinavID);
             Property(x => x.SinavTipi).IsRequired().HasColumnType("nvarchar").HasMaxLength(10);
-
-            HasRequired(x => x.SinavinNotu).WithMany(x => x.NotunSinavlari).HasForeignKey(x => x.NotID);
         }
     }
 }

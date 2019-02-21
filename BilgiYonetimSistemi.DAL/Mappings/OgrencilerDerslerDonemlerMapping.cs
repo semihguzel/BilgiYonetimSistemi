@@ -12,15 +12,13 @@ namespace BilgiYonetimSistemi.DAL
     {
         public OgrencilerDerslerDonemlerMapping()
         {
-            HasKey(x => x.OgrencilerDerslerID);
+            HasKey(x => x.OgrenciDerslerDonemler);
 
             HasRequired(x => x.OgrencininDersi).WithMany(x => x.DersinOgrencileri).HasForeignKey(x => x.OgrenciID);
 
             HasRequired(x => x.DersinOgrencisi).WithMany(x => x.OgrencininDersleri).HasForeignKey(x => x.DersID);
 
             HasRequired(x => x.OgrenciDersinDonemi).WithMany(x => x.DoneminOgrencilerDersleri).HasForeignKey(x => x.DonemID);
-
-            HasRequired(x => x.OgrenciDersinNotu).WithMany(x => x.NotunOgrenciDersleri).HasForeignKey(x => x.NotID);
         }
     }
 }

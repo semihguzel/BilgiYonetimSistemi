@@ -10,14 +10,15 @@ namespace BilgiYonetimSistemi.DATA
     {
         public int NotID { get; set; }
 
+        public Int16 Puan { get; set; }
+
         public int SinavID { get; set; }
 
-        public string Puan { get; set; }
+        public int OgrenciDerslerDonemlerID { get; set; }
 
-        public int OgrencilerDerslerID { get; set; } 
+        public OgrencilerDerslerDonemler NotunOgrenciDersDonemi { get; set; }
 
-        public virtual List<OgrencilerDerslerDonemler> NotunOgrenciDersleri { get; set; }
-
-        public virtual List<Sinav> NotunSinavlari { get; set; }
+        public Sinav NotunSinavi { get; set; }
+        
     }
 }

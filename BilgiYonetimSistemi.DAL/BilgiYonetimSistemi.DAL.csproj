@@ -56,7 +56,6 @@
     <Compile Include="Mappings\EgitimDuzeyiMapping.cs" />
     <Compile Include="Mappings\FakulteBolumlerMapping.cs" />
     <Compile Include="Mappings\FakulteMapping.cs" />
-    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Mappings\NotlarMapping.cs" />
     <Compile Include="Mappings\OgrenciBilgileriMapping.cs" />
     <Compile Include="Mappings\OgrencilerBolumlerMapping.cs" />
@@ -69,6 +68,7 @@
     <Compile Include="Mappings\OgretmenlerDerslerDonemlerMapping.cs" />
     <Compile Include="Mappings\OgretmenlerDerslerMapping.cs" />
     <Compile Include="Mappings\OgretmenlerMapping.cs" />
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Mappings\SinavlarMapping.cs" />
   </ItemGroup>
