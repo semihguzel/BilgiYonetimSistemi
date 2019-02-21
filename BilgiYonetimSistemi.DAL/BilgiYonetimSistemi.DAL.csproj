@@ -60,13 +60,11 @@
     <Compile Include="Mappings\OgrenciBilgileriMapping.cs" />
     <Compile Include="Mappings\OgrencilerBolumlerMapping.cs" />
     <Compile Include="Mappings\OgrencilerDerslerDonemlerMapping.cs" />
-    <Compile Include="Mappings\OgrencilerDerslerMapping.cs" />
     <Compile Include="Mappings\OgrencilerMapping.cs" />
     <Compile Include="Mappings\OgrenimSekliMapping.cs" />
     <Compile Include="Mappings\OgretmenBilgileriMapping.cs" />
     <Compile Include="Mappings\OgretmenlerBolumlerMapping.cs" />
     <Compile Include="Mappings\OgretmenlerDerslerDonemlerMapping.cs" />
-    <Compile Include="Mappings\OgretmenlerDerslerMapping.cs" />
     <Compile Include="Mappings\OgretmenlerMapping.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
