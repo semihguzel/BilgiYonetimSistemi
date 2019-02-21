@@ -12,7 +12,7 @@ namespace BilgiYonetimSistemi.DATA
     {
         public int DonemID { get; set; }
 
-        public DateTime DonemYili { get; set; }
+        public string DonemYili { get; set; }
 
         public virtual List<OgrencilerDerslerDonemler> DoneminOgrencilerDersleri { get; set; }
 
