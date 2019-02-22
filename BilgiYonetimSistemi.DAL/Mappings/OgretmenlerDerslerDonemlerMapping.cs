@@ -15,9 +15,9 @@ namespace BilgiYonetimSistemi.DAL
         {
             HasKey(x => x.OgretmenlerDerslerID);
 
-            HasRequired(x => x.DersinOgretmeni).WithMany(x => x.OgretmeninDersleri).HasForeignKey(x=>x.DersID);
+            HasRequired(x => x.DersinOgretmeni).WithMany(x => x.OgretmeninDersleri).HasForeignKey(x=>x.OgretmenID);
 
-            HasRequired(x => x.OgretmeninDersi).WithMany(x => x.DersinOgretmenleri).HasForeignKey(x=>x.OgretmenID);
+            HasRequired(x => x.OgretmeninDersi).WithMany(x => x.DersinOgretmenleri).HasForeignKey(x=>x.DersID);
 
             HasRequired(x => x.OgretmenDersinDonemi).WithMany(x =>x.DoneminOgretmenlerDersleri).HasForeignKey(x => x.DonemID);
         }
