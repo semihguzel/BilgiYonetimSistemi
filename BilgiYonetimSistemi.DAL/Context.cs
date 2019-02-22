@@ -1,4 +1,6 @@
-﻿using BilgiYonetimSistemi.DATA;
+﻿using BilgiYonetimSistemi.DAL.Mappings;
+using BilgiYonetimSistemi.DATA;
+using BilgiYonetimSistemi.DATA.Entities;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -11,7 +13,7 @@ namespace BilgiYonetimSistemi.DAL
 {
     public class Context:DbContext
     {
-        public Context() : base(@"server = .; database = VeriTabaniDeneme; uid = sa; pwd = 123")
+        public Context() : base(@"server = .; database = BilgiYonetimSistemiDb; uid = sa; pwd = 123")
         {
 
         }
@@ -34,7 +36,7 @@ namespace BilgiYonetimSistemi.DAL
         public DbSet<OgretmenlerBolumler> OgretmenlerBolumler { get; set; }
         public DbSet<OgretmenlerDerslerDonemler> OgretmenlerDersler { get; set; }
         public DbSet<Sinav> Sinavlar { get; set; }
-
+        public DbSet<Yonetici> Yoneticiler { get; set; }
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Configurations.Add(new BolumlerDerslerMapping());
@@ -55,6 +57,7 @@ namespace BilgiYonetimSistemi.DAL
             modelBuilder.Configurations.Add(new OgretmenlerDerslerDonemlerMapping());
             modelBuilder.Configurations.Add(new OgretmenlerMapping());
             modelBuilder.Configurations.Add(new SinavlarMapping());
+            modelBuilder.Configurations.Add(new YoneticiMapping());
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
             base.OnModelCreating(modelBuilder);
         }

@@ -66,6 +66,7 @@
     <Compile Include="Mappings\OgretmenlerBolumlerMapping.cs" />
     <Compile Include="Mappings\OgretmenlerDerslerDonemlerMapping.cs" />
     <Compile Include="Mappings\OgretmenlerMapping.cs" />
+    <Compile Include="Mappings\YoneticiMapping.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Mappings\SinavlarMapping.cs" />
