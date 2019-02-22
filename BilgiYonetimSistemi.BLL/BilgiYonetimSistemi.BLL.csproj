@@ -69,6 +69,7 @@
     <Compile Include="Repository\Abstract\IRepository.cs" />
     <Compile Include="Repository\Abstract\ISinav.cs" />
     <Compile Include="Repository\Abstract\IUnitOfWork.cs" />
+    <Compile Include="Repository\Abstract\IYonetici.cs" />
     <Compile Include="Repository\Concrete\BolumConcrete.cs" />
     <Compile Include="Repository\Concrete\BolumDerslerConcrete.cs" />
     <Compile Include="Repository\Concrete\DersConcrete.cs" />
@@ -89,6 +90,7 @@
     <Compile Include="Repository\Concrete\OgretmenlerBolumlerConcrete.cs" />
     <Compile Include="Repository\Concrete\OgretmenlerDerslerDonemlerConcrete.cs" />
     <Compile Include="Repository\Concrete\SinavConcrete.cs" />
+    <Compile Include="Repository\Concrete\YoneticiConcrete.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BilgiYonetimSistemi.DAL\BilgiYonetimSistemi.DAL.csproj">
