@@ -1,0 +1,433 @@
+﻿
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>&#214;ĞRENCİ BİLGİ SİSTEMİ</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Sakarya &#220;niversitesi">
+    <meta name="author" content="Sakarya &#220;niversitesi">
+    <meta name="theme-color" content="#313338" />
+    <link rel="manifest" href="/manifest.json">
+
+    <!-- <link href="assets/less/styles.less" rel="stylesheet/less" media="all">  -->
+    <link rel='stylesheet' type='text/css' href='https://cdn0.sabis.sakarya.edu.tr/ogr//assets/css/styles.css'>
+    <link rel='stylesheet' type='text/css' href='https://cdn0.sabis.sakarya.edu.tr/ogr//Template/css/master_styles.css'>
+    <style>
+        #atlwdg-trigger {
+            margin-right: 60px;
+        }
+    </style>
+    <style>
+        .service-header {
+            color: white;
+            text-align: center;
+        }
+    </style>
+    <link href="https://cdn0.sabis.sakarya.edu.tr/kendo/2016.1.412/styles/kendo.common.min.css" rel="stylesheet" />
+    <link href="https://cdn0.sabis.sakarya.edu.tr/kendo/2016.1.412/styles/kendo.silver.min.css" rel="stylesheet" />
+    <link href="https://cdn0.sabis.sakarya.edu.tr/kendo/2016.1.412/styles/kendo.silver.mobile.min.css" rel="stylesheet" />
+    <link href="https://cdn0.sabis.sakarya.edu.tr/kendo/2016.1.412/styles/kendo.dataviz.min.css" rel="stylesheet" />
+    <link href="https://cdn0.sabis.sakarya.edu.tr/kendo/2016.1.412/styles/kendo.dataviz.silver.min.css" rel="stylesheet" />
+    <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+    <link rel='stylesheet' type='text/css' href='https://cdn0.sabis.sakarya.edu.tr/ogr/assets/plugins/pines-notify/jquery.pnotify.default.css'>
+    <link rel='stylesheet' type='text/css' href='https://cdn0.sabis.sakarya.edu.tr/ogr/assets/js/jqueryui.min.css'>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" />
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries. Placeholdr.js enables the placeholder attribute -->
+    <!--[if lt IE 9]>
+        <link rel='stylesheet' type='text/css' href='https://cdn0.sabis.sakarya.edu.tr/ogr//assets/css/ie8.css'>
+        <script type="text/javascript" src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/respond.js/1.1.0/respond.min.js"></script>
+        <script src='https://cdn0.sabis.sakarya.edu.tr/ogr//assets/plugins/charts-flot/excanvas.min.js'></script>
+    <![endif]-->
+    <!-- The following CSS are included as plugins and can be removed if unused-->
+    <!-- Plugin Css dosyaları Başla -->
+    <!-- assets/plugins/ klasöründeki eklentilerin css dosyaları burada yüklenecek -->
+    <!-- Plugin Css dosyaları Bit -->
+
+
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+
+
+
+
+
+
+
+    <script src="https://cdn0.sabis.sakarya.edu.tr/kendo/2016.1.412/js/jszip.min.js"></script>
+    <script src="https://cdn0.sabis.sakarya.edu.tr/kendo/2016.1.412/js/kendo.all.min.js"></script>
+    <script src="https://cdn0.sabis.sakarya.edu.tr/kendo/2016.1.412/js/kendo.aspnetmvc.min.js"></script>
+    <script src="https://cdn0.sabis.sakarya.edu.tr/kendo/2016.1.412/js/kendo.timezones.min.js"></script>
+    <script src="https://cdn0.sabis.sakarya.edu.tr/kendo/2016.1.412/js/cultures/kendo.culture.tr-TR.min.js"></script>
+    <script>
+        kendo.culture("tr-TR");
+    </script>
+
+
+
+    <script>
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date(); a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+        ga('create', 'UA-29424182-4', 'auto');
+        ga('send', 'pageview');
+
+    </script>
+</head>
+
+<body class=" ">
+
+
+    <div id="headerbar">
+        <div class="container">
+
+
+            <h3 class="service-header">Kişisel Servisler</h3>
+            <div class="row">
+
+                <div class="col-xs-6 col-sm-1">
+                    <a href="#" class="shortcut-tiles tiles-info">
+                        <div class="tiles-body">
+                            <div class="pull-left"><i class="fa fa-user"></i></div>
+                        </div>
+                        <div class="tiles-footer">
+                            Personel
+                        </div>
+                    </a>
+                </div>
+                <div class="col-xs-6 col-sm-1">
+                    <a href="#" class="shortcut-tiles tiles-orange">
+                        <div class="tiles-body">
+                            <div class="pull-left"><i class="fa fa-group"></i></div>
+                        </div>
+                        <div class="tiles-footer">
+                            ABİS
+                        </div>
+                    </a>
+                </div>
+                <div class="col-xs-6 col-sm-1">
+                    <a href="#" class="shortcut-tiles tiles-success">
+                        <div class="tiles-body">
+                            <div class="pull-left"><i class="fa fa-briefcase"></i></div>
+                        </div>
+                        <div class="tiles-footer">
+                            AF
+                        </div>
+                    </a>
+                </div>
+                <div class="col-xs-6 col-sm-1">
+                    <a href="#" class="shortcut-tiles tiles-magenta">
+                        <div class="tiles-body">
+                            <div class="pull-left"><i class="fa fa-thumbs-up"></i></div>
+                        </div>
+                        <div class="tiles-footer">
+                            ABP
+                        </div>
+                    </a>
+                </div>
+                <div class="col-xs-6 col-sm-1">
+                    <a href="#" class="shortcut-tiles tiles-indigo">
+                        <div class="tiles-body">
+                            <div class="pull-left"><i class="fa fa-plus-square"></i></div>
+                        </div>
+                        <div class="tiles-footer">
+                            Ekders
+                        </div>
+                    </a>
+                </div>
+                <div class="col-xs-6 col-sm-1">
+                    <a href="#" class="shortcut-tiles tiles-inverse">
+                        <div class="tiles-body">
+                            <div class="pull-left"><i class="fa fa-globe"></i></div>
+                        </div>
+                        <div class="tiles-footer">
+                            WSY
+                        </div>
+                    </a>
+                </div>
+
+                <div class="col-xs-6 col-sm-1">
+                    <a href="#" class="shortcut-tiles tiles-midnightblue">
+                        <div class="tiles-body">
+                            <div class="pull-left"><i class="fa fa-star-half-o"></i></div>
+                        </div>
+                        <div class="tiles-footer">
+                            PD
+                        </div>
+                    </a>
+                </div>
+                <div class="col-xs-6 col-sm-1">
+                    <a href="#" class="shortcut-tiles tiles-green">
+                        <div class="tiles-body">
+                            <div class="pull-left"><i class="fa fa-tasks"></i></div>
+                        </div>
+                        <div class="tiles-footer">
+                            DPP
+                        </div>
+                    </a>
+                </div>
+                <div class="col-xs-6 col-sm-1">
+                    <a href="#" class="shortcut-tiles tiles-brown">
+                        <div class="tiles-body">
+                            <div class="pull-left"><i class="fa fa-archive"></i></div>
+                        </div>
+                        <div class="tiles-footer">
+                            OGRİS
+                        </div>
+                    </a>
+                </div>
+                <div class="col-xs-6 col-sm-1">
+                    <a href="#" class="shortcut-tiles tiles-primary">
+                        <div class="tiles-body">
+                            <div class="pull-left"><i class="fa fa-bar-chart-o"></i></div>
+                        </div>
+                        <div class="tiles-footer">
+                            DYİ
+                        </div>
+                    </a>
+                </div>
+
+
+
+            </div>
+
+            <h3 class="service-header">Genel Servisler</h3>
+            <div class="row">
+
+            </div>
+
+
+
+
+
+        </div>
+    </div>
+
+    <header class="navbar navbar-inverse navbar-fixed-top" role="banner">
+        <a id="leftmenu-trigger" class="tooltips" data-toggle="tooltip" data-placement="right" title="" data-original-title="Men&#252; A&#231;/Kapat"></a>
+
+        <div class="navbar-header pull-left">
+            <a class="navbar-brand" href="https://sabis.sakarya.edu.tr">Avant</a>
+        </div>
+        <div class="pull-left logo-yani-yazisi">
+            &#214;ĞRENCİ BİLGİ SİSTEMİ
+        </div>
+
+        <ul class="nav navbar-nav pull-right toolbar">
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle username" data-toggle="dropdown">
+                    <span>
+                        g110100060
+                        <i class="fa fa-caret-down"></i>
+                    </span><img src="https://fotograf.sabis.sakarya.edu.tr/Fotograf/850428dc117d9b6af917b07af243dbad" alt="Dangerfield" />
+                </a>
+                <ul class="dropdown-menu userinfo arrow" style="padding:0 15px;">
+                    <li class="userlinks">
+                        <ul class="dropdown-menu">
+                            <li class="text-center">
+                                <a href="https://sabis.sakarya.edu.tr/tr/Hesap/?t=6">
+                                    <img src="https://fotograf.sabis.sakarya.edu.tr/Fotograf/850428dc117d9b6af917b07af243dbad" alt="Kullanıcı Resmi" style="padding:0 10px 10px; width:150px; border-radius:20px;" />
+                                </a>
+                            </li>
+                            <li class="divider"></li>
+                            <li><a href="https://sabis.sakarya.edu.tr/tr/Hesap/?t=6">Profil<i class="pull-right fa fa-user"></i></a></li>
+                            <li><a href="https://sabis.sakarya.edu.tr/tr/Hesap">Hesap Ayarları<i class="pull-right fa fa-cog"></i></a></li>
+
+                            <li class="divider"></li>
+
+                            <li><a href="https://sabis.sakarya.edu.tr/Logout.aspx">Oturum Kapat <i class="pull-right fa   fa-sign-out"></i></a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+
+            <li class="tooltips" data-toggle="tooltip" data-trigger="hover" data-placement="bottom" title="SA&#220; Posta">
+                <a target="_blank" href="http://posta.sakarya.edu.tr/"><i class="fa fa-envelope"></i></a>
+            </li>
+            <li class="dropdown tooltips hidden" data-toggle="tooltip" data-trigger="hover" data-placement="bottom" title="Dil">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-flag"></i></a>
+                <ul class="dropdown-menu language-select arrow">
+                    <li class="languages-link">
+                        <ul class="dropdown-menu">
+                            <li><a href="/?language=tr">Türkçe</a></li>
+                            <li><a href="/?language=en">English</a></li>
+
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+
+        </ul>
+
+
+
+    </header>
+
+    <div id="page-container">
+        <!-- Menu Partial Buraya Gelecek -->
+        <!-- BEGIN SIDEBAR -->
+        <nav id="page-leftbar" role="navigation">
+            <!-- BEGIN SIDEBAR MENU -->
+
+
+            <ul class="acc-menu" id="sidebar">
+                <li><a href="/"><i class="fa fa-home"></i>Ana Sayfa</a></li>
+                <li class="divider"></li>
+
+                <li>
+                    <a href="/tr/Ders"><i class="fa fa-book"></i><span>Se&#231;ilen Dersler</span> </a>
+                </li>
+                <li>
+                    <a href="/tr/Ders/Program"><i class="fa fa-calendar"></i><span>Ders Programı</span> </a>
+                </li>
+                <li>
+                    <a href="/tr/Ders/Yazilma"><i class="fa fa-pencil-square-o"></i><span>Derse Yazılma</span> </a>
+                </li>
+                <li>
+                    <a href="/tr/Danisman"><i class="fa fa-info"></i><span>Danışmanlık</span> </a>
+                </li>
+                <li>
+                    <a href="/tr/Transkript"><i class="fa fa-tasks"></i><span>Transkript</span> </a>
+                </li>
+                <li>
+                    <a href="/tr/Anket/Liste"><i class="fa fa-bar-chart-o"></i><span>Anketler</span> </a>
+                </li>
+                <li>
+                    <a href="/tr/Home/Basvuru"><i class="fa fa-file-text-o"></i><span>Başvuru İşlemleri</span> </a>
+                </li>
+                <li>
+                    <a href="/tr/Home/Diger"><i class="fa fa-external-link"></i><span>Diğer İşlemler</span> </a>
+                </li>
+                <li>
+                    <a href="/tr/AzamiSure"><i class="fa fa-bolt"></i><span>Azami S&#252;re İşlemleri</span> </a>
+                </li>
+            </ul>
+
+            <!-- END SIDEBAR MENU -->
+        </nav>
+
+        <div id="page-content">
+            <div id='wrap'>
+
+
+                <div id="page-heading">
+
+
+                    <h1 class="hidden"></h1>
+                </div>
+                <div class="container">
+                    <!-- Sayfa İçeriğinin Başla -->
+                    <!-- Pines Notify Gelecek -->
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="panel panel-midnightblue">
+                                <div class="panel-body">
+                                    <div class="row">
+                                        @RenderBody()
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <!-- Sayfa İçeriğinin Bit -->
+                </div> <!-- container -->
+            </div> <!--wrap -->
+        </div> <!-- page-content -->
+        <!--Model Box Başla-->
+        <div id="GlobalModalBox" class="modal fade">
+            <div class="modal-dialog" style="width: auto !important">
+                <div class="modal-content col-sm-8 col-sm-offset-2 col-xs-12">
+                    <div class="modal-header">
+                        <button type="button" class="close GlobalModalBoxClose" data-dismiss="modal" aria-hidden="true" style="font-size: 36px; color:red;">×</button>
+                        <h4 class="modal-title" id="GlobalModalBoxTitle">Başlık</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p id="GlobalModalBoxBody">One fine body…</p>
+                    </div>
+                    <div class="modal-footer" id="GlobalModalBoxFooterYesNo">
+                        <button type="button" class="btn btn-primary" data-dismiss="modal" id="GlobalModalBoxYes">Evet</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal" id="GlobalModalBoxNo">Hayır</button>
+                    </div>
+
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+        <!--Model Box Bit-->
+        <!--Loading Box-->
+        <!--Loading Box-->
+
+        <footer role="contentinfo">
+            <div class="clearfix">
+                <ul class="list-unstyled list-inline">
+                    <li>SAKARYA ÜNİVERSİTESİ &copy; 2019</li>
+                    <li>Version: 1.0.0.29140 - Dated: 19.2.2019 16:11:20</li>
+                    <li>151</li>
+                    <button class="pull-right btn btn-inverse-alt btn-xs hidden-print" id="back-to-top"><i class="fa fa-arrow-up"></i></button>
+                </ul>
+            </div>
+        </footer>
+
+    </div> <!-- page-container -->
+    <!--
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+
+    <script>!window.jQuery && document.write(unescape('%3Cscript src="assets/js/jquery-1.10.2.min.js"%3E%3C/script%3E'))</script>
+    <script type="text/javascript">!window.jQuery.ui && document.write(unescape('%3Cscript src="assets/js/jqueryui-1.10.3.min.js'))</script>
+    -->
+
+
+    <script src="/Template/js/master_core.js"></script>
+    <script src='https://cdn0.sabis.sakarya.edu.tr/ogr/Content/js/uys.js'></script>
+
+    <script src='https://cdn0.sabis.sakarya.edu.tr/ogr/Template/js/showLoading.js'></script>
+
+    <script src='https://cdn0.sabis.sakarya.edu.tr/ogr/assets/js/enquire.js'></script>
+    <script src='https://cdn0.sabis.sakarya.edu.tr/ogr/assets/js/jquery.cookie.js'></script>
+    <script src='https://cdn0.sabis.sakarya.edu.tr/ogr/assets/js/jquery.nicescroll.min.js'></script>
+
+    <script src='https://cdn0.sabis.sakarya.edu.tr/ogr/assets/js/placeholdr.js'></script>
+    <script src='https://cdn0.sabis.sakarya.edu.tr/ogr/assets/js/application.js'></script>
+
+    <script src='https://cdn0.sabis.sakarya.edu.tr/ogr/assets/plugins/pines-notify/jquery.pnotify.min.js'></script>
+    <script src='https://cdn0.sabis.sakarya.edu.tr/ogr/assets/plugins/form-parsley/parsley.min.js'></script>
+
+    <!-- Plugin javascript dosyaları Başla -->
+    <!-- assets/plugins/ klasöründeki eklentilerin javascript dosyaları burada yüklenecek -->
+    <!-- Plugin javascript dosyaları Bit -->
+
+
+
+
+    <script type="text/javascript" src="https://jira.sabis.sakarya.edu.tr/s/d41d8cd98f00b204e9800998ecf8427e/en_US-yz8tbg-1988229788/6160/18/1.4.3/_/download/batch/com.atlassian.jira.collector.plugin.jira-issue-collector-plugin:issuecollector/com.atlassian.jira.collector.plugin.jira-issue-collector-plugin:issuecollector.js?collectorId=19a85d55"></script>
+
+
+
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var universityId = '1426';
+
+            $("a.navbar-brand").css("background", 'url("/Content/img/logo_' + universityId + '.png")  no-repeat center center');
+            $("a.navbar-brand").css("background-size", 'auto 20px');
+            //$("div.navbar-header").css("width", '100px');
+            //$("div.navbar-header").css("height", '20px');
+        });
+    </script>
+
+</body>
+</html>
