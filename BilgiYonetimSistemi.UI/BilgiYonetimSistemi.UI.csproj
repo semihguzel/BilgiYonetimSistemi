@@ -94,7 +94,52 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\bootstrap-theme.css" />
+    <Content Include="Content\bootstrap-theme.min.css" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+    <Content Include="lib\css\font-awesome.min.css" />
+    <Content Include="lib\css\google_font.css" />
+    <Content Include="lib\css\jquery.pnotify.default.css" />
+    <Content Include="lib\css\jqueryui.min.css" />
+    <Content Include="lib\css\kendo.common.min.css" />
+    <Content Include="lib\css\kendo.mobile.min.css" />
+    <Content Include="lib\css\kendo.silver.min.css" />
+    <Content Include="lib\css\master_styles.css" />
+    <Content Include="lib\css\style.css" />
+    <Content Include="lib\js\application.js" />
+    <Content Include="lib\js\enquire.js" />
+    <Content Include="lib\js\jira.collector.plugin.js" />
+    <Content Include="lib\js\jquery-ui.min.js" />
+    <Content Include="lib\js\jquery.cookie.js" />
+    <Content Include="lib\js\jquery.min.js" />
+    <Content Include="lib\js\jquery.nicescroll.min.js" />
+    <Content Include="lib\js\jquery.pnotify.min.js" />
+    <Content Include="lib\js\jszip.min.js" />
+    <Content Include="lib\js\kendo.all.min.js" />
+    <Content Include="lib\js\kendo.aspnetmvc.min.js" />
+    <Content Include="lib\js\kendo.culture.tr-TR.min.js" />
+    <Content Include="lib\js\kendo.timezones.min.js" />
+    <Content Include="lib\js\master_core.js" />
+    <Content Include="lib\js\parsley.min.js" />
+    <Content Include="lib\js\placeholdr.js" />
+    <Content Include="lib\js\showLoading.js" />
+    <Content Include="lib\js\uys.js" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\bootstrap.min.css.map" />
+    <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Content\bootstrap-theme.min.css.map" />
+    <Content Include="Content\bootstrap-theme.css.map" />
+    <None Include="Scripts\jquery-1.9.1.intellisense.js" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\jquery-1.9.1.js" />
+    <Content Include="Scripts\jquery-1.9.1.min.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -110,6 +155,7 @@
     <None Include="packages.config" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Scripts\jquery-1.9.1.min.map" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -119,6 +165,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="lib\img\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
