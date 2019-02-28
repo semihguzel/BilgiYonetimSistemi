@@ -1,0 +1,76 @@
+﻿@model IEnumerable<BilgiYonetimSistemi.DATA.OgrenciBilgileri>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.BilgininOgrencisi.OgrenciAdi)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Adres)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Telefon)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TCNo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OgrenciMail)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MezunMu)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Fotograf)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Sifre)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.BilgininOgrencisi.OgrenciAdi)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Adres)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Telefon)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TCNo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.OgrenciMail)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MezunMu)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Fotograf)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Sifre)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.OgrenciID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.OgrenciID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.OgrenciID })
+        </td>
+    </tr>
+}
+
+</table>

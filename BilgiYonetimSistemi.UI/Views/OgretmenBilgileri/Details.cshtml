@@ -1,0 +1,51 @@
+﻿@model BilgiYonetimSistemi.DATA.OgretmenBilgileri
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>OgretmenBilgileri</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.BilgininOgretmeni.OgretmenAdi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BilgininOgretmeni.OgretmenAdi)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TCNo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TCNo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OgretmenMail)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OgretmenMail)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Fotograf)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Fotograf)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.OgretmenID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,8 +1,413 @@
 ﻿
 @{
     ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = null;
 }
 
-<h2>Index</h2>
 
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>SABİS - Sakarya &#220;niversitesi Bilgi Sistemi</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Sakarya Üniversitesi">
+    <meta name="author" content="Sakarya Üniversitesi">
+
+    <!-- <link href="assets/less/styles.less" rel="stylesheet/less" media="all">  -->
+    <link href="~/lib/css/style.css" rel="stylesheet" /> bak isimleri aynı 
+
+    Fatmanur onları şöyle düşündük
+    Mesela Ogrenciler Dersler Donemler tablosu için ekleme yapılacak sonuçta
+    onun scaffolding yapısını ayrı controller da mı yapsak bilemedim aslında bunu konusmadık ben konusalım diye yazdım unuttum
+    muhtemelen hepsine scaffolding yapılması gerekiyor
+    hayır atama işlemi o ara tabloda oluyor sonucta
+
+    <link rel='stylesheet' type='text/css' href='https://cdn0.sabis.sakarya.edu.tr/sabismaster/assets/css/styles.css'>
+    <link rel='stylesheet' type='text/css' href='https://cdn0.sabis.sakarya.edu.tr/sabismaster/assets/demo/variations/header-blue.css'>
+    <link rel='stylesheet' type='text/css' href='https://cdn0.sabis.sakarya.edu.tr/sabismaster/Template/css/master_styles.css'>
+    <link rel='stylesheet' type='text/css' href='https://cdn0.sabis.sakarya.edu.tr/sabismaster/assets/js/jqueryui.css'>
+    <link rel='stylesheet' type='text/css' href='https://cdn0.sabis.sakarya.edu.tr/sabismaster/assets/plugins/pines-notify/jquery.pnotify.default.css'>
+
+    <link href="/Content/css/fonts.css" rel="stylesheet" />
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries. Placeholdr.js enables the placeholder attribute -->
+    <!--[if lt IE 9]>
+        <link rel='stylesheet' type='text/css' href='https://cdn0.sabis.sakarya.edu.tr/sabismaster/assets/css/ie8.css'>
+        <script type="text/javascript" src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/respond.js/1.1.0/respond.min.js"></script>
+        <script src='https://cdn0.sabis.sakarya.edu.tr/sabismaster/assets/plugins/charts-flot/excanvas.min.js'></script>
+    <![endif]-->
+    <link rel='stylesheet' type='text/css' href='https://cdn0.sabis.sakarya.edu.tr/sabismaster/assets/plugins/pines-notify/jquery.pnotify.default.css'>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+</head>
+
+<body class="focusedform">
+    <script>
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date(); a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+        ga('create', 'UA-29424182-2', 'auto');
+        ga('send', 'pageview');
+
+    </script>
+    <div class="verticalcenter">
+
+        <a href="/tr/Login"><img src="/Template/img/img_saulogo.png" alt="Logo" class="brand" style="width:227px;" /></a>
+
+        <!--Hata Basla-->
+        <!--Hata Bit-->
+        <form action="/tr/Login" id="LoginForm" method="post">
+            <div class="panel panel-primary">
+                <div class="panel-body">
+                    <h4 class="text-center" style="margin-bottom: 25px;">Sakarya &#220;niversitesi Bilgi Sistemi</h4>
+
+
+                    <div class="form-group">
+                        <div class="col-sm-12">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                                <input class="form-control" data-val="true" data-val-required="The Kullanıcı Adı field is required." id="UserName" name="UserName" placeholder="Kullanıcı Adı" type="text" value="" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-12">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+                                <input class="form-control" data-val="true" data-val-required="The Şifre field is required." id="Password" name="Password" placeholder="Şifre" type="password" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearfix">
+                        <div class="pull-right"><label style="margin-right:12px;"><input class="" data-val="true" data-val-required="The Beni Hatırla field is required." id="RememberMe" name="RememberMe" placeholder="Beni Hatırla" type="checkbox" value="true" /><input name="RememberMe" type="hidden" value="false" /> &nbsp;Beni Hatırla</label></div>
+                    </div>
+
+
+                </div>
+                <div class="panel-footer">
+                    <div class="pull-left">
+                        <a data-toggle="modal" href="#SifreModalBox" class="btn btn-link" style="padding-left:0; padding-top:0;">Şifremi Unuttum</a><br />
+                        <a data-toggle="modal" href="#KullaniciModalBox" class="btn btn-link" style="padding-left:0; padding-bottom:0;">Kullanıcı Adımı Unuttum</a>
+                    </div>
+
+                    <div class="pull-right">
+
+                        <input type="submit" value=Giriş id="btnLogin" class="btn btn-success" />
+                        <input id="ReturnURL" name="ReturnURL" type="hidden" value="http://sabis.sakarya.edu.tr/" />
+                        <input name="__RequestVerificationToken" type="hidden" value="6_3JXr3lFMXegrHGjVSEkSxsng7BOa4IKgiIt5yR538NkrG6Qop6gj1JxJET9FxFG4Ves9piHeVHdPeubK1-TffuzAY1" />
+
+                    </div>
+                </div>
+            </div>
+        </form>
+
+
+        <div class="panel">
+            <div class="panel-body" style="background-color:#fff;">
+                <div class="row">
+                    <div class="col-md-6 hidden-xs">
+                        <div class="col-md-4">
+                            <a href="https://itunes.apple.com/us/app/sabis-mobil/id783070993" target="_blank"><img src="/Content/img/apple.png" height="40" /></a>
+                        </div>
+                        <div class="col-md-4">
+                            <a href="https://play.google.com/store/apps/details?id=com.sakaryauniversitesi.sabis" target="_blank"> <img src="/Content/img/android.png" height="40" /></a>
+                        </div>
+                        <div class="col-md-4">
+
+                        </div>
+
+                    </div>
+                    <div class="col-md-6 text-center hidden-lg hidden-md hidden-sm">
+                        <a href="https://itunes.apple.com/us/app/sabis-mobil/id783070993" target="_blank"><img src="/Content/img/apple.png" height="40" /></a>
+                        <a href="https://play.google.com/store/apps/details?id=com.sakaryauniversitesi.sabis" target="_blank"> <img src="/Content/img/android.png" height="40" /></a>
+
+                    </div>
+
+                    <div class="col-md-3 text-center">
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-default-alt dropdown-toggle alt-border" data-toggle="dropdown">
+                                Dil <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu" role="menu">
+
+                                <li><a href="/tr/Login">Türkçe</a></li>
+                                <li><a href="/en/Login">English</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-3 text-center ">
+                        <a data-toggle="modal" href="#YardimModal" data-title="Yardım" class="btn btn-link hidden">Yardım<i class="fa fa-question-circle"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row text-center" style="font-size: 11px;">
+            <span style="color: #aeafb1;">&copy; 2017</span> &raquo; <a style="color: #aeafb1;" href="http://sakarya.edu.tr">Sakarya &#220;niversitesi</a> &raquo; <a style="color: #aeafb1;" href="http://baum.sakarya.edu.tr">Bilgisayar Araştırma ve Uygulama Merkezi</a>
+        </div>
+    </div>
+    <!-- Kullanıcı Adı Model Box Başla-->
+    <div id="KullaniciModalBox" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close GlobalModalBoxClose" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h4 class="modal-title">Kullanıcı Adı Sorgula</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-horizontal">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <div class="col-md-12">
+                                        <input type="text" class="form-control" id="tcno" placeholder=TC No />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-12">
+                                        <input type="text" class="form-control mask" data-inputmask="'alias': 'date'" id="dogumtarihi" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" id="resultKullaniciAdi">
+
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer" style="margin-top:0;">
+                    <button type="button" class="btn btn-primary" id="btnKullaniciAdiSorgula">Sorgula</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal Kullanıcı Adı -->
+    <!-- Şifremi Unuttum Model Box Başla-->
+    <div id="SifreModalBox" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close GlobalModalBoxClose" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h4 class="modal-title">Şifremi Unuttum</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-horizontal">
+                        <div class="row" id="panel1">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <div class="col-md-12">
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" placeholder="Kullanıcı Adınız" id="kullaniciadi" />
+                                            <div class="input-group-btn">
+                                                <button type="button" class="btn btn-success" id="btnKullaniciAdi">Devam Et</button>
+                                            </div>
+                                        </div>
+                                        <p class="help-block">Kullanıcı adları nokta i&#231;ermez</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" id="panel2" style="display:none;">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <div class="col-md-12 text-center">
+                                        <button type="button" class="btn btn-brown-alt" id="btnKullaniciAdiGeri"><i class="fa fa-arrow-left"></i>Geri</button>
+                                        <button type="button" class="btn btn-success" id="btnMaileGonder">İkincil EPosta Adresime G&#246;nder</button>
+                                        <a href="#" id="btnKisiselBilgiler" class="btn btn-info">Kişisel Bilgilerimle Sıfırla</a>
+                                    </div>
+                                </div>
+                                <div class="form-group" style="margin-bottom:0;">
+                                    <div class="col-md-12 text-center">
+
+                                    </div>
+                                </div>
+                                <div id="panelKisisel" style="display:none;">
+                                    <div class="form-group">
+                                        <div class="col-md-12">
+                                            <input type="text" class="form-control" id="tcnosifre" placeholder=TC No />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-md-12">
+                                            <input type="text" class="form-control mask" data-inputmask="'alias': 'date'" id="dogumtarihisifre" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-md-12">
+                                            <select class="form-control" id="GizliSoru" name="GizliSoru">
+                                                <option value="0">Se&#231;iniz</option>
+                                                <option value="1">Annemin kızlık soyadı</option>
+                                                <option value="2">En sevdiğim hayvan</option>
+                                                <option value="3">En sevdiğim m&#252;zik</option>
+                                                <option value="4">En sevdiğim &#246;ğretmenim</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-md-12">
+                                            <input type="text" class="form-control" id="gizlsorucevap" placeholder=Gizli sorunuzun cevabını giriniz />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-md-12">
+                                            <input type="password" class="form-control" id="yenisifre" placeholder=Yeni şifrenizi giriniz />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-md-12">
+                                            <input type="password" class="form-control" id="yenisifretekrar" placeholder=Yeni şifrenizi tekrar giriniz />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-md-12 text-right">
+                                            <button type="button" class="btn btn-primary" id="btnSifreSifirla">Sıfırla</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal Şifremi Unuttum -->
+    <!-- Yardım Modal Box Başla-->
+    <div id="YardimModal" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close GlobalModalBoxClose" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h4 class="modal-title">Yardım</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-horizontal">
+                        <div class="row">
+                            <div class="col-md-12">
+
+                                <div class="form-group">
+                                    <div class="col-md-12">
+
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+    </div><!-- /.modal Yardım -->
+    <!-- page-container -->
+    <script src='https://cdn0.sabis.sakarya.edu.tr/sabismaster/assets/js/enquire.js'></script>
+    <script src='https://cdn0.sabis.sakarya.edu.tr/sabismaster/assets/js/jquery.cookie.js'></script>
+    <script src='https://cdn0.sabis.sakarya.edu.tr/sabismaster/assets/js/jquery.nicescroll.min.js'></script>
+
+    <script src='https://cdn0.sabis.sakarya.edu.tr/sabismaster/assets/js/placeholdr.js'></script>
+    <script src='https://cdn0.sabis.sakarya.edu.tr/sabismaster/assets/js/application.js'></script>
+
+
+    <script src='https://cdn0.sabis.sakarya.edu.tr/sabismaster/Template/js/master_core.js'></script>
+
+    <script src='https://cdn0.sabis.sakarya.edu.tr/sabismaster/Content/js/messages.tr.js'></script>
+
+    <script src='https://cdn0.sabis.sakarya.edu.tr/sabismaster/assets/plugins/form-inputmask/jquery.inputmask.bundle.min.js'></script>
+    <script src='https://cdn0.sabis.sakarya.edu.tr/sabismaster/assets/plugins/pines-notify/jquery.pnotify.min.js'></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('.mask').inputmask();
+
+            $("#btnKullaniciAdiSorgula").click(function () {
+
+                var token = document.getElementsByName("__RequestVerificationToken")[0];
+                $("#resultKullaniciAdi").load('/tr/Login/KullaniciAdiSorgula', { tcKimlik: $("#tcno").val(), DogumTarihi: $("#dogumtarihi").val(), __RequestVerificationToken: $(token).val() });
+            });
+
+            $("#btnKisiselBilgiler").click(function () {
+                $("#panelKisisel").toggle("fast");
+            });
+
+            $("#UserName").keyup(function (event) {
+                var str = $("#UserName").val();
+                $("#UserName").val(str.replace(/[^a-zA-Z0-9]+/g, '').toLowerCase());
+            })
+
+            $("#btnSifreSifirla").click(function () {
+                var token = document.getElementsByName("__RequestVerificationToken")[0];
+                var params = {
+                    KullaniciAdi: $("#kullaniciadi").val(),
+                    TCKimlik: $("#tcnosifre").val(),
+                    DogumTarihi: $("#dogumtarihisifre").val(),
+                    EnumGizliSoru: $("#GizliSoru").val(),
+                    GizliSoruCevap: $("#gizlsorucevap").val(),
+                    YeniSifre: $("#yenisifre").val(),
+                    YeniSifreTekrar: $("#yenisifretekrar").val(),
+                    __RequestVerificationToken: $(token).val()
+                }
+
+                var sifirla = $.post('/tr/Login/SifreSifirlaBilgiler', params);
+                sifirla.success(function (data) {
+                    uys_show_notifyv2(data);
+                });
+                sifirla.error(function (data) {
+                    uys_show_notifyv2(data);
+                });
+            });
+
+            $("#btnKullaniciAdi").click(function (e) {
+                if ($("#kullaniciadi").val() != "") {
+                    $("#panel1").slideUp();//.hide('slide', { direction: 'right' }, 1000);
+                    $("#panel2").slideDown(); //show('slide', { direction: 'right' }, 1000);
+                } else {
+
+                }
+
+            });
+
+            $("#btnMaileGonder").click(function () {
+                var token = document.getElementsByName("__RequestVerificationToken")[0];
+                var params = {
+                    KullaniciAdi: $("#kullaniciadi").val(),
+                    __RequestVerificationToken: $(token).val()
+                }
+
+                var sifirla = $.post('/tr/Login/SifreSifirlaEposta', params);
+                sifirla.success(function (data) {
+                    uys_show_notifyv2(data);
+                });
+                sifirla.error(function (data) {
+                    uys_show_notifyv2(data);
+                });
+            });
+
+            $("#btnKullaniciAdiGeri").click(function () {
+                $("#panel2").slideUp();//.hide('slide', { direction: 'left' }, 1000);
+                $("#panel1").slideDown(); //show('slide', { direction: 'right' }, 1000);
+            });
+
+            $("#btnLogin").click(function () {
+                $(this).attr('disabled', 'disabled');
+                $("#LoginForm").submit();
+            });
+
+            $("#yenisifretekrar").focusout(function () {
+                if ($("#yenisifretekrar").val() != $("#yenisifre").val()) {
+                    $(this).parent().parent().addClass("has-error");
+                } else {
+                    $(this).parent().parent().removeClass("has-error");
+                }
+            });
+        });
+    </script>
+
+</body>
+
+</html>

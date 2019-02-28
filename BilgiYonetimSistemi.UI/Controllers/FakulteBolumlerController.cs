@@ -11,107 +11,116 @@ using BilgiYonetimSistemi.DATA;
 
 namespace BilgiYonetimSistemi.UI.Controllers
 {
-    public class EgitimDuzeyiController : Controller
+    public class FakulteBolumlerController : Controller
     {
         private Context db = new Context();
-        //Hata suydu. UI katmanı DAL katmanına baglı olmadıgı için context i goremiyordu
-        // GET: EgitimDuzeyi
+
+        // GET: FakulteBolumler
         public ActionResult Index()
         {
-            return View(db.EgitimDuzeyleri.ToList());
+            var fakulteBolumler = db.FakulteBolumler.Include(f => f.BolumunFakultesi).Include(f => f.FakulteninBolumu);
+            return View(fakulteBolumler.ToList());
         }
 
-        // GET: EgitimDuzeyi/Details/5
+        // GET: FakulteBolumler/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            EgitimDuzeyi egitimDuzeyi = db.EgitimDuzeyleri.Find(id);
-            if (egitimDuzeyi == null)
+            FakulteBolumler fakulteBolumler = db.FakulteBolumler.Find(id);
+            if (fakulteBolumler == null)
             {
                 return HttpNotFound();
             }
-            return View(egitimDuzeyi);
+            return View(fakulteBolumler);
         }
 
-        // GET: EgitimDuzeyi/Create
+        // GET: FakulteBolumler/Create
         public ActionResult Create()
         {
+            ViewBag.FakulteID = new SelectList(db.Fakulteler, "FakulteID", "FakulteAdi");
+            ViewBag.BolumID = new SelectList(db.Bolumler, "BolumID", "BolumAdi");
             return View();
         }
 
-        // POST: EgitimDuzeyi/Create
+        // POST: FakulteBolumler/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "EgitimDuzeyiID,EgitimDuzeyTipi")] EgitimDuzeyi egitimDuzeyi)
+        public ActionResult Create([Bind(Include = "FakulteBolumlerID,FakulteID,BolumID")] FakulteBolumler fakulteBolumler)
         {
             if (ModelState.IsValid)
             {
-                db.EgitimDuzeyleri.Add(egitimDuzeyi);
+                db.FakulteBolumler.Add(fakulteBolumler);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(egitimDuzeyi);
+            ViewBag.FakulteID = new SelectList(db.Fakulteler, "FakulteID", "FakulteAdi", fakulteBolumler.FakulteID);
+            ViewBag.BolumID = new SelectList(db.Bolumler, "BolumID", "BolumAdi", fakulteBolumler.BolumID);
+            return View(fakulteBolumler);
         }
 
-        // GET: EgitimDuzeyi/Edit/5
+        // GET: FakulteBolumler/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            EgitimDuzeyi egitimDuzeyi = db.EgitimDuzeyleri.Find(id);
-            if (egitimDuzeyi == null)
+            FakulteBolumler fakulteBolumler = db.FakulteBolumler.Find(id);
+            if (fakulteBolumler == null)
             {
                 return HttpNotFound();
             }
-            return View(egitimDuzeyi);
+            ViewBag.FakulteID = new SelectList(db.Fakulteler, "FakulteID", "FakulteAdi", fakulteBolumler.FakulteID);
+            ViewBag.BolumID = new SelectList(db.Bolumler, "BolumID", "BolumAdi", fakulteBolumler.BolumID);
+            return View(fakulteBolumler);
         }
 
-        // POST: EgitimDuzeyi/Edit/5
+        // POST: FakulteBolumler/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "EgitimDuzeyiID,EgitimDuzeyTipi")] EgitimDuzeyi egitimDuzeyi)
+        public ActionResult Edit([Bind(Include = "FakulteBolumlerID,FakulteID,BolumID")] FakulteBolumler fakulteBolumler)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(egitimDuzeyi).State = EntityState.Modified;
+                db.Entry(fakulteBolumler).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(egitimDuzeyi);
+            ViewBag.FakulteID = new SelectList(db.Fakulteler, "FakulteID", "FakulteAdi", fakulteBolumler.FakulteID);
+            ViewBag.BolumID = new SelectList(db.Bolumler, "BolumID", "BolumAdi", fakulteBolumler.BolumID);
+            return View(fakulteBolumler);
         }
 
-        // GET: EgitimDuzeyi/Delete/5
+        // GET: FakulteBolumler/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            EgitimDuzeyi egitimDuzeyi = db.EgitimDuzeyleri.Find(id);
-            if (egitimDuzeyi == null)
+            FakulteBolumler fakulteBolumler = db.FakulteBolumler.Find(id);
+            if (fakulteBolumler == null)
             {
                 return HttpNotFound();
             }
-            return View(egitimDuzeyi);
+            return View(fakulteBolumler);
         }
 
-        // POST: EgitimDuzeyi/Delete/5
+        // POST: FakulteBolumler/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            EgitimDuzeyi egitimDuzeyi = db.EgitimDuzeyleri.Find(id);
-            db.EgitimDuzeyleri.Remove(egitimDuzeyi);
+            FakulteBolumler fakulteBolumler = db.FakulteBolumler.Find(id);
+            db.FakulteBolumler.Remove(fakulteBolumler);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

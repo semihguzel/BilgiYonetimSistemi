@@ -149,11 +149,19 @@
     <Compile Include="Controllers\DersController.cs" />
     <Compile Include="Controllers\DonemController.cs" />
     <Compile Include="Controllers\EgitimDuzeyiController.cs" />
+    <Compile Include="Controllers\FakulteBolumlerController.cs" />
     <Compile Include="Controllers\FakulteController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\NotController.cs" />
+    <Compile Include="Controllers\OgrenciBilgileriController.cs" />
     <Compile Include="Controllers\OgrenciController.cs" />
+    <Compile Include="Controllers\OgrencilerBolumlerController.cs" />
+    <Compile Include="Controllers\OgrencilerDerslerDonemlerController.cs" />
     <Compile Include="Controllers\OgrenimSekliController.cs" />
+    <Compile Include="Controllers\OgretmenBilgileriController.cs" />
     <Compile Include="Controllers\OgretmenController.cs" />
+    <Compile Include="Controllers\OgretmenlerBolumlerController.cs" />
+    <Compile Include="Controllers\OgretmenlerDerslerDonemlerController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -215,6 +223,41 @@
     <Content Include="Views\Sinav\Details.cshtml" />
     <Content Include="Views\Sinav\Edit.cshtml" />
     <Content Include="Views\Sinav\Index.cshtml" />
+    <Content Include="Views\OgrencilerDerslerDonemler\Create.cshtml" />
+    <Content Include="Views\OgrencilerDerslerDonemler\Delete.cshtml" />
+    <Content Include="Views\OgrencilerDerslerDonemler\Details.cshtml" />
+    <Content Include="Views\OgrencilerDerslerDonemler\Edit.cshtml" />
+    <Content Include="Views\OgrencilerDerslerDonemler\Index.cshtml" />
+    <Content Include="Views\FakulteBolumler\Create.cshtml" />
+    <Content Include="Views\FakulteBolumler\Delete.cshtml" />
+    <Content Include="Views\FakulteBolumler\Details.cshtml" />
+    <Content Include="Views\FakulteBolumler\Edit.cshtml" />
+    <Content Include="Views\FakulteBolumler\Index.cshtml" />
+    <Content Include="Views\OgrencilerBolumler\Create.cshtml" />
+    <Content Include="Views\OgrencilerBolumler\Delete.cshtml" />
+    <Content Include="Views\OgrencilerBolumler\Details.cshtml" />
+    <Content Include="Views\OgrencilerBolumler\Edit.cshtml" />
+    <Content Include="Views\OgrencilerBolumler\Index.cshtml" />
+    <Content Include="Views\OgretmenlerBolumler\Create.cshtml" />
+    <Content Include="Views\OgretmenlerBolumler\Delete.cshtml" />
+    <Content Include="Views\OgretmenlerBolumler\Details.cshtml" />
+    <Content Include="Views\OgretmenlerBolumler\Edit.cshtml" />
+    <Content Include="Views\OgretmenlerBolumler\Index.cshtml" />
+    <Content Include="Views\OgretmenlerDerslerDonemler\Create.cshtml" />
+    <Content Include="Views\OgretmenlerDerslerDonemler\Delete.cshtml" />
+    <Content Include="Views\OgretmenlerDerslerDonemler\Details.cshtml" />
+    <Content Include="Views\OgretmenlerDerslerDonemler\Edit.cshtml" />
+    <Content Include="Views\OgretmenlerDerslerDonemler\Index.cshtml" />
+    <Content Include="Views\OgrenciBilgileri\Create.cshtml" />
+    <Content Include="Views\OgrenciBilgileri\Delete.cshtml" />
+    <Content Include="Views\OgrenciBilgileri\Details.cshtml" />
+    <Content Include="Views\OgrenciBilgileri\Edit.cshtml" />
+    <Content Include="Views\OgrenciBilgileri\Index.cshtml" />
+    <Content Include="Views\OgretmenBilgileri\Create.cshtml" />
+    <Content Include="Views\OgretmenBilgileri\Delete.cshtml" />
+    <Content Include="Views\OgretmenBilgileri\Details.cshtml" />
+    <Content Include="Views\OgretmenBilgileri\Edit.cshtml" />
+    <Content Include="Views\OgretmenBilgileri\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -1,0 +1,35 @@
+﻿@model BilgiYonetimSistemi.DATA.OgretmenlerBolumler
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>OgretmenlerBolumler</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.BolumunOgretmeni.OgretmenAdi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BolumunOgretmeni.OgretmenAdi)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OgretmeninBolumu.BolumAdi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OgretmeninBolumu.BolumAdi)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.OgretmenlerBolumlerID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

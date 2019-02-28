@@ -1,0 +1,40 @@
+﻿@model IEnumerable<BilgiYonetimSistemi.DATA.OgrencilerBolumler>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.BolumunOgrencisi.OgrenciAdi)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OgrencininBolumu.BolumAdi)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.BolumunOgrencisi.OgrenciAdi)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.OgrencininBolumu.BolumAdi)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.OgrencilerBolumlerID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.OgrencilerBolumlerID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.OgrencilerBolumlerID })
+        </td>
+    </tr>
+}
+
+</table>

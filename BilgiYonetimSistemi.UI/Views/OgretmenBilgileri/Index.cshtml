@@ -1,0 +1,52 @@
+﻿@model IEnumerable<BilgiYonetimSistemi.DATA.OgretmenBilgileri>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.BilgininOgretmeni.OgretmenAdi)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TCNo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OgretmenMail)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Fotograf)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.BilgininOgretmeni.OgretmenAdi)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TCNo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.OgretmenMail)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Fotograf)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.OgretmenID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.OgretmenID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.OgretmenID })
+        </td>
+    </tr>
+}
+
+</table>

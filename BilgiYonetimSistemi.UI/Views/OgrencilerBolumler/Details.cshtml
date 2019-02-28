@@ -1,0 +1,35 @@
+﻿@model BilgiYonetimSistemi.DATA.OgrencilerBolumler
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>OgrencilerBolumler</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.BolumunOgrencisi.OgrenciAdi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BolumunOgrencisi.OgrenciAdi)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OgrencininBolumu.BolumAdi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OgrencininBolumu.BolumAdi)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.OgrencilerBolumlerID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

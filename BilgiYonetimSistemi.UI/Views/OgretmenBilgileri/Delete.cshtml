@@ -1,0 +1,57 @@
+﻿@model BilgiYonetimSistemi.DATA.OgretmenBilgileri
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>OgretmenBilgileri</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.BilgininOgretmeni.OgretmenAdi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BilgininOgretmeni.OgretmenAdi)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TCNo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TCNo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OgretmenMail)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OgretmenMail)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Fotograf)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Fotograf)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

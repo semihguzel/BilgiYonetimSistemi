@@ -11,107 +11,112 @@ using BilgiYonetimSistemi.DATA;
 
 namespace BilgiYonetimSistemi.UI.Controllers
 {
-    public class EgitimDuzeyiController : Controller
+    public class OgretmenBilgileriController : Controller
     {
         private Context db = new Context();
-        //Hata suydu. UI katmanı DAL katmanına baglı olmadıgı için context i goremiyordu
-        // GET: EgitimDuzeyi
+
+        // GET: OgretmenBilgileri
         public ActionResult Index()
         {
-            return View(db.EgitimDuzeyleri.ToList());
+            var ogretmenBilgileri = db.OgretmenBilgileri.Include(o => o.BilgininOgretmeni);
+            return View(ogretmenBilgileri.ToList());
         }
 
-        // GET: EgitimDuzeyi/Details/5
+        // GET: OgretmenBilgileri/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            EgitimDuzeyi egitimDuzeyi = db.EgitimDuzeyleri.Find(id);
-            if (egitimDuzeyi == null)
+            OgretmenBilgileri ogretmenBilgileri = db.OgretmenBilgileri.Find(id);
+            if (ogretmenBilgileri == null)
             {
                 return HttpNotFound();
             }
-            return View(egitimDuzeyi);
+            return View(ogretmenBilgileri);
         }
 
-        // GET: EgitimDuzeyi/Create
+        // GET: OgretmenBilgileri/Create
         public ActionResult Create()
         {
+            ViewBag.OgretmenID = new SelectList(db.Ogretmenler, "OgretmenID", "OgretmenAdi");
             return View();
         }
 
-        // POST: EgitimDuzeyi/Create
+        // POST: OgretmenBilgileri/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "EgitimDuzeyiID,EgitimDuzeyTipi")] EgitimDuzeyi egitimDuzeyi)
+        public ActionResult Create([Bind(Include = "OgretmenID,TCNo,OgretmenMail,Fotograf")] OgretmenBilgileri ogretmenBilgileri)
         {
             if (ModelState.IsValid)
             {
-                db.EgitimDuzeyleri.Add(egitimDuzeyi);
+                db.OgretmenBilgileri.Add(ogretmenBilgileri);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(egitimDuzeyi);
+            ViewBag.OgretmenID = new SelectList(db.Ogretmenler, "OgretmenID", "OgretmenAdi", ogretmenBilgileri.OgretmenID);
+            return View(ogretmenBilgileri);
         }
 
-        // GET: EgitimDuzeyi/Edit/5
+        // GET: OgretmenBilgileri/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            EgitimDuzeyi egitimDuzeyi = db.EgitimDuzeyleri.Find(id);
-            if (egitimDuzeyi == null)
+            OgretmenBilgileri ogretmenBilgileri = db.OgretmenBilgileri.Find(id);
+            if (ogretmenBilgileri == null)
             {
                 return HttpNotFound();
             }
-            return View(egitimDuzeyi);
+            ViewBag.OgretmenID = new SelectList(db.Ogretmenler, "OgretmenID", "OgretmenAdi", ogretmenBilgileri.OgretmenID);
+            return View(ogretmenBilgileri);
         }
 
-        // POST: EgitimDuzeyi/Edit/5
+        // POST: OgretmenBilgileri/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "EgitimDuzeyiID,EgitimDuzeyTipi")] EgitimDuzeyi egitimDuzeyi)
+        public ActionResult Edit([Bind(Include = "OgretmenID,TCNo,OgretmenMail,Fotograf")] OgretmenBilgileri ogretmenBilgileri)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(egitimDuzeyi).State = EntityState.Modified;
+                db.Entry(ogretmenBilgileri).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(egitimDuzeyi);
+            ViewBag.OgretmenID = new SelectList(db.Ogretmenler, "OgretmenID", "OgretmenAdi", ogretmenBilgileri.OgretmenID);
+            return View(ogretmenBilgileri);
         }
 
-        // GET: EgitimDuzeyi/Delete/5
+        // GET: OgretmenBilgileri/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            EgitimDuzeyi egitimDuzeyi = db.EgitimDuzeyleri.Find(id);
-            if (egitimDuzeyi == null)
+            OgretmenBilgileri ogretmenBilgileri = db.OgretmenBilgileri.Find(id);
+            if (ogretmenBilgileri == null)
             {
                 return HttpNotFound();
             }
-            return View(egitimDuzeyi);
+            return View(ogretmenBilgileri);
         }
 
-        // POST: EgitimDuzeyi/Delete/5
+        // POST: OgretmenBilgileri/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            EgitimDuzeyi egitimDuzeyi = db.EgitimDuzeyleri.Find(id);
-            db.EgitimDuzeyleri.Remove(egitimDuzeyi);
+            OgretmenBilgileri ogretmenBilgileri = db.OgretmenBilgileri.Find(id);
+            db.OgretmenBilgileri.Remove(ogretmenBilgileri);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
