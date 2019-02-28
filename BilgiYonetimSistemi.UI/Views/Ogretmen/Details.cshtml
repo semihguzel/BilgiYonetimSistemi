@@ -1,0 +1,75 @@
+﻿@model BilgiYonetimSistemi.DATA.Ogretmen
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Ogretmen</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.OgretmenAdi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OgretmenAdi)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OgretmenSoyadi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OgretmenSoyadi)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Unvan)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Unvan)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BaslangicTarihi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BaslangicTarihi)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AyrilisTarihi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AyrilisTarihi)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PersonelNumarasi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PersonelNumarasi)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Sifre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Sifre)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.OgretmenID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

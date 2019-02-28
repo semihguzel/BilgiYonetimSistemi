@@ -1,0 +1,76 @@
+﻿@model IEnumerable<BilgiYonetimSistemi.DATA.Ogrenci>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.OgrencininEgitimDuzeyi.EgitimDuzeyTipi)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OgrencininOgrenimSekli.OgrenimTipi)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OgrenciAdi)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OgrenciSoyadi)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OgrenciNumarasi)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.KayitTarihi)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MezuniyetTarihi)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BolumID)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.OgrencininEgitimDuzeyi.EgitimDuzeyTipi)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.OgrencininOgrenimSekli.OgrenimTipi)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.OgrenciAdi)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.OgrenciSoyadi)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.OgrenciNumarasi)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.KayitTarihi)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MezuniyetTarihi)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BolumID)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.OgrenciID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.OgrenciID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.OgrenciID })
+        </td>
+    </tr>
+}
+
+</table>

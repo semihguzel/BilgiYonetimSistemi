@@ -1,0 +1,83 @@
+﻿@model BilgiYonetimSistemi.DATA.Ogrenci
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Ogrenci</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.OgrencininEgitimDuzeyi.EgitimDuzeyTipi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OgrencininEgitimDuzeyi.EgitimDuzeyTipi)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OgrencininOgrenimSekli.OgrenimTipi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OgrencininOgrenimSekli.OgrenimTipi)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OgrenciAdi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OgrenciAdi)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OgrenciSoyadi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OgrenciSoyadi)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OgrenciNumarasi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OgrenciNumarasi)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.KayitTarihi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.KayitTarihi)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MezuniyetTarihi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MezuniyetTarihi)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BolumID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BolumID)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.OgrenciID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

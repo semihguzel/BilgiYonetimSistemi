@@ -1,0 +1,43 @@
+﻿@model BilgiYonetimSistemi.DATA.Not
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Not</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.NotunOgrenciDersDonemi.OgrenciDerslerDonemler)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NotunOgrenciDersDonemi.OgrenciDerslerDonemler)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NotunSinavi.SinavTipi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NotunSinavi.SinavTipi)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Puan)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Puan)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.NotID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -107,6 +107,7 @@
     <Content Include="lib\css\kendo.common.min.css" />
     <Content Include="lib\css\kendo.mobile.min.css" />
     <Content Include="lib\css\kendo.silver.min.css" />
+    <Content Include="lib\css\kendo.silver.mobile.min.css" />
     <Content Include="lib\css\master_styles.css" />
     <Content Include="lib\css\style.css" />
     <Content Include="lib\js\application.js" />
@@ -144,7 +145,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\BolumController.cs" />
+    <Compile Include="Controllers\DersController.cs" />
+    <Compile Include="Controllers\DonemController.cs" />
+    <Compile Include="Controllers\EgitimDuzeyiController.cs" />
+    <Compile Include="Controllers\FakulteController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\NotController.cs" />
+    <Compile Include="Controllers\OgrenciController.cs" />
+    <Compile Include="Controllers\OgrenimSekliController.cs" />
+    <Compile Include="Controllers\OgretmenController.cs" />
+    <Compile Include="Controllers\SinavController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -156,6 +167,56 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Scripts\jquery-1.9.1.min.map" />
+    <Content Include="Views\Fakulte\Create.cshtml" />
+    <Content Include="Views\Fakulte\Delete.cshtml" />
+    <Content Include="Views\Fakulte\Details.cshtml" />
+    <Content Include="Views\Fakulte\Edit.cshtml" />
+    <Content Include="Views\Fakulte\Index.cshtml" />
+    <Content Include="Views\Bolum\Create.cshtml" />
+    <Content Include="Views\Bolum\Delete.cshtml" />
+    <Content Include="Views\Bolum\Details.cshtml" />
+    <Content Include="Views\Bolum\Edit.cshtml" />
+    <Content Include="Views\Bolum\Index.cshtml" />
+    <Content Include="Views\Ders\Create.cshtml" />
+    <Content Include="Views\Ders\Delete.cshtml" />
+    <Content Include="Views\Ders\Details.cshtml" />
+    <Content Include="Views\Ders\Edit.cshtml" />
+    <Content Include="Views\Ders\Index.cshtml" />
+    <Content Include="Views\Donem\Create.cshtml" />
+    <Content Include="Views\Donem\Delete.cshtml" />
+    <Content Include="Views\Donem\Details.cshtml" />
+    <Content Include="Views\Donem\Edit.cshtml" />
+    <Content Include="Views\Donem\Index.cshtml" />
+    <Content Include="Views\EgitimDuzeyi\Create.cshtml" />
+    <Content Include="Views\EgitimDuzeyi\Delete.cshtml" />
+    <Content Include="Views\EgitimDuzeyi\Details.cshtml" />
+    <Content Include="Views\EgitimDuzeyi\Edit.cshtml" />
+    <Content Include="Views\EgitimDuzeyi\Index.cshtml" />
+    <Content Include="Views\Not\Create.cshtml" />
+    <Content Include="Views\Not\Delete.cshtml" />
+    <Content Include="Views\Not\Details.cshtml" />
+    <Content Include="Views\Not\Edit.cshtml" />
+    <Content Include="Views\Not\Index.cshtml" />
+    <Content Include="Views\Ogrenci\Create.cshtml" />
+    <Content Include="Views\Ogrenci\Delete.cshtml" />
+    <Content Include="Views\Ogrenci\Details.cshtml" />
+    <Content Include="Views\Ogrenci\Edit.cshtml" />
+    <Content Include="Views\Ogrenci\Index.cshtml" />
+    <Content Include="Views\OgrenimSekli\Create.cshtml" />
+    <Content Include="Views\OgrenimSekli\Delete.cshtml" />
+    <Content Include="Views\OgrenimSekli\Details.cshtml" />
+    <Content Include="Views\OgrenimSekli\Edit.cshtml" />
+    <Content Include="Views\OgrenimSekli\Index.cshtml" />
+    <Content Include="Views\Ogretmen\Create.cshtml" />
+    <Content Include="Views\Ogretmen\Delete.cshtml" />
+    <Content Include="Views\Ogretmen\Details.cshtml" />
+    <Content Include="Views\Ogretmen\Edit.cshtml" />
+    <Content Include="Views\Ogretmen\Index.cshtml" />
+    <Content Include="Views\Sinav\Create.cshtml" />
+    <Content Include="Views\Sinav\Delete.cshtml" />
+    <Content Include="Views\Sinav\Details.cshtml" />
+    <Content Include="Views\Sinav\Edit.cshtml" />
+    <Content Include="Views\Sinav\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -172,6 +233,10 @@
     <ProjectReference Include="..\BilgiYonetimSistemi.BLL\BilgiYonetimSistemi.BLL.csproj">
       <Project>{1028aefb-bf00-47c3-8251-151633ab97f1}</Project>
       <Name>BilgiYonetimSistemi.BLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BilgiYonetimSistemi.DAL\BilgiYonetimSistemi.DAL.csproj">
+      <Project>{140FB249-1E3D-441F-A245-B411CF23B805}</Project>
+      <Name>BilgiYonetimSistemi.DAL</Name>
     </ProjectReference>
     <ProjectReference Include="..\BilgiYonetimSistemi.DATA\BilgiYonetimSistemi.DATA.csproj">
       <Project>{5c507fca-9d18-4202-9701-67b206b0e96b}</Project>

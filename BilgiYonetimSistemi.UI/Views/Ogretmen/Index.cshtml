@@ -1,0 +1,70 @@
+﻿@model IEnumerable<BilgiYonetimSistemi.DATA.Ogretmen>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.OgretmenAdi)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OgretmenSoyadi)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Unvan)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BaslangicTarihi)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AyrilisTarihi)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PersonelNumarasi)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Sifre)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.OgretmenAdi)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.OgretmenSoyadi)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Unvan)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BaslangicTarihi)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AyrilisTarihi)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PersonelNumarasi)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Sifre)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.OgretmenID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.OgretmenID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.OgretmenID })
+        </td>
+    </tr>
+}
+
+</table>

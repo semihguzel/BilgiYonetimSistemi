@@ -1,0 +1,46 @@
+﻿@model IEnumerable<BilgiYonetimSistemi.DATA.Not>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.NotunOgrenciDersDonemi.OgrenciDerslerDonemler)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NotunSinavi.SinavTipi)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Puan)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.NotunOgrenciDersDonemi.OgrenciDerslerDonemler)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NotunSinavi.SinavTipi)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Puan)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.NotID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.NotID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.NotID })
+        </td>
+    </tr>
+}
+
+</table>
