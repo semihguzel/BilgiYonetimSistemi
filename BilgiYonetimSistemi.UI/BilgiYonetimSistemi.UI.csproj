@@ -151,11 +151,9 @@
     <Compile Include="Controllers\EgitimDuzeyiController.cs" />
     <Compile Include="Controllers\FakulteController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\NotController.cs" />
     <Compile Include="Controllers\OgrenciController.cs" />
     <Compile Include="Controllers\OgrenimSekliController.cs" />
     <Compile Include="Controllers\OgretmenController.cs" />
-    <Compile Include="Controllers\SinavController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
