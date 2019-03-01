@@ -8,9 +8,9 @@
 <h2>Index</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("YENİ KAYIT", "Create", null, new { @class = "btn btn-info " })
 </p>
-<table class="table">
+<table class="table table-striped">
     <tr>
         <th style="text-align:right">
             <h2><strong> Fakülteler </strong></h2>
@@ -18,17 +18,19 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.FakulteAdi)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.FakulteID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.FakulteID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.FakulteID })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.FakulteAdi)
+            </td>
+            <td style="text-align:right">
+                @Html.ActionLink("DÜZENLE", "Edit", new { id = item.FakulteID }, new { @class = "btn btn-warning" })
+
+                @Html.ActionLink("DETAY", "Details", new { id = item.FakulteID }, new { @class = "btn btn-primary" })
+                @Html.ActionLink("SİL", "Delete", new { id = item.FakulteID }, new { @class = "btn btn-danger" })
+            </td>
+        </tr>
+    }
 
 </table>

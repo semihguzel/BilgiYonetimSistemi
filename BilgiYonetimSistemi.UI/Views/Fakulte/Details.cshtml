@@ -6,22 +6,36 @@
 }
 
 <h2>Details</h2>
+<div class="container">
+    <div class="row" style="margin-top:50px">
+        <div class="panel panel-default ">
+            <div class="col-md-8 col-md-offset-2 ">
+                <div class="panel-body center-block">
+                    <div>
+                        <h4>Fakulte</h4>
+                        <hr />
+                        <dl class="dl-horizontal">
+                            <dt>
+                                @Html.DisplayNameFor(model => model.FakulteAdi)
+                            </dt>
 
-<div>
-    <h4>Fakulte</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.FakulteAdi)
-        </dt>
+                            <dd>
+                                @Html.DisplayFor(model => model.FakulteAdi)
+                            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.FakulteAdi)
-        </dd>
+                        </dl>
+                    </div>
+                    <p>
+                        @Html.ActionLink("GÜNCELLE", "Edit", new { id = Model.FakulteID }, new { @class = "btn btn-primary  " })
 
-    </dl>
+                        @Html.ActionLink("Listeye Dön", "Index", null, new
+                   {
+                       @class = "btn btn-default  ",
+                       @style = "float:right"
+                   })
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.FakulteID }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>

@@ -6,28 +6,44 @@
 }
 
 <h2>Delete</h2>
+<div class="container">
+    <div class="row" style="margin-top:50px">
+        <div class="panel panel-default ">
+            <div class="col-md-8 col-md-offset-2 ">
+                <div class="panel-body center-block">
+                    <div class="alert alert-danger">
+                        <h4>@Model.FakulteAdi Fakultesini Silmek İstediğinize Emin misiniz?</h4>
+                    </div>
+                    <div>
+                        <h4>Fakulte</h4>
+                        <hr />
+                        <dl class="dl-horizontal">
+                            <dt>
+                                @Html.DisplayNameFor(model => model.FakulteAdi)
+                            </dt>
 
-<h3>Are you sure you want to delete this?</h3>
-<div>
-    <h4>Fakulte</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.FakulteAdi)
-        </dt>
+                            <dd>
+                                @Html.DisplayFor(model => model.FakulteAdi)
+                            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.FakulteAdi)
-        </dd>
+                        </dl>
 
-    </dl>
+                        @using (Html.BeginForm())
+                        {
+                            @Html.AntiForgeryToken()
 
-    @using (Html.BeginForm()) {
-        @Html.AntiForgeryToken()
-
-        <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
+                            <div class="form-actions no-color">
+                                <input type="submit" value="SİL" class="btn btn-danger" />
+                                @Html.ActionLink("Listeye Dön", "Index", null, new
+                           {
+                               @class = "btn btn-default  ",
+                               @style = "float:right"
+                           })
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
         </div>
-    }
+    </div>
 </div>
