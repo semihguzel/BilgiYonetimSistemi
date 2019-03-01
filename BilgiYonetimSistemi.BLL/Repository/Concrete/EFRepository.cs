@@ -42,7 +42,7 @@ namespace RepositoryPattern.BLL.Repository.Concrete
             return _dbSet.ToList();
         }
 
-        public T GetById(int id)
+        public T GetById(int? id)
         {
             return _dbSet.Find(id);
         }

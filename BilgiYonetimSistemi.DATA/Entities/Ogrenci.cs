@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BilgiYonetimSistemi.DATA.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -33,5 +34,8 @@ namespace BilgiYonetimSistemi.DATA
 
         public int EgitimDuzeyiID { get; set; }
         public virtual EgitimDuzeyi OgrencininEgitimDuzeyi { get; set; }
+
+        public string UserID { get; set; }
+        public virtual Kullanici Kullanici { get; set; }
     }
 }

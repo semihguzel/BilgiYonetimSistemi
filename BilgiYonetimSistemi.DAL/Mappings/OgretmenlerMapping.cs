@@ -24,6 +24,11 @@ namespace BilgiYonetimSistemi.DAL
             Property(x => x.Unvan).HasColumnType("nvarchar").HasMaxLength(20).IsRequired();
 
             HasRequired(x => x.OgretmeninBilgisi).WithRequiredPrincipal(x => x.BilgininOgretmeni);
+
+            //Rol bilgisi için kullanıcı tablosu ile olan bağlantı
+
+            HasRequired(x => x.Kullanici).WithMany(x => x.Ogretmenler).HasForeignKey(x => x.UserID);
+
         }
     }
 }

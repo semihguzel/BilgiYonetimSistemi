@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BilgiYonetimSistemi.DATA.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -30,5 +31,8 @@ namespace BilgiYonetimSistemi.DATA
         public virtual List<OgretmenlerBolumler> OgretmeninBolumleri { get; set; } //öğretmen bölüm ilişkisi kuruldu.
 
         public virtual OgretmenBilgileri OgretmeninBilgisi { get; set; }
+
+        public string UserID { get; set; }
+        public virtual Kullanici Kullanici { get; set; }
     }
 }

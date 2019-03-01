@@ -1,6 +1,7 @@
 ﻿using BilgiYonetimSistemi.DAL.Mappings;
 using BilgiYonetimSistemi.DATA;
 using BilgiYonetimSistemi.DATA.Entities;
+using Microsoft.AspNet.Identity.EntityFramework;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -11,11 +12,15 @@ using System.Threading.Tasks;
 
 namespace BilgiYonetimSistemi.DAL
 {
-    public class Context:DbContext
+    public class Context : IdentityDbContext<Kullanici>
     {
+        public static Context Create()
+        {
+            return new Context();
+        }
+
         public Context() : base(@"server = .; database = BilgiYonetimSistemiDb; uid = sa; pwd = 123")
         {
-
         }
         //aşağıda çoğullaştırma işlemleri doğaçlama yapıldı.
         public DbSet<Bolum> Bolumler { get; set; }
@@ -29,9 +34,9 @@ namespace BilgiYonetimSistemi.DAL
         public DbSet<Ogrenci> Ogrenciler { get; set; }
         public DbSet<OgrenciBilgileri> OgrenciBilgileri { get; set; }
         public DbSet<OgrencilerBolumler> OgrencilerBolumler { get; set; }
-        public DbSet<OgrencilerDerslerDonemler> OgrencilerDersler{ get; set; }
-        public DbSet<OgrenimSekli> OgrenimSekilleri{ get; set; }
-        public DbSet<Ogretmen> Ogretmenler{ get; set; }
+        public DbSet<OgrencilerDerslerDonemler> OgrencilerDersler { get; set; }
+        public DbSet<OgrenimSekli> OgrenimSekilleri { get; set; }
+        public DbSet<Ogretmen> Ogretmenler { get; set; }
         public DbSet<OgretmenBilgileri> OgretmenBilgileri { get; set; }
         public DbSet<OgretmenlerBolumler> OgretmenlerBolumler { get; set; }
         public DbSet<OgretmenlerDerslerDonemler> OgretmenlerDersler { get; set; }

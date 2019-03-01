@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using BilgiYonetimSistemi.BLL.Repository.Concrete;
 using BilgiYonetimSistemi.DAL;
 using BilgiYonetimSistemi.DATA;
 
@@ -13,12 +14,17 @@ namespace BilgiYonetimSistemi.UI.Controllers
 {
     public class BolumController : Controller
     {
-        private Context db = new Context();
+        BolumConcrete bolumConcrete;
+        public BolumController()
+        {
+            bolumConcrete = new BolumConcrete();
+        }
+
 
         // GET: Bolum
         public ActionResult Index()
         {
-            return View(db.Bolumler.ToList());
+            return View(bolumConcrete._bolumRepository.GetAll());
         }
 
         // GET: Bolum/Details/5
@@ -28,7 +34,7 @@ namespace BilgiYonetimSistemi.UI.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Bolum bolum = db.Bolumler.Find(id);
+            Bolum bolum = bolumConcrete._bolumRepository.GetById(id);
             if (bolum == null)
             {
                 return HttpNotFound();
@@ -51,8 +57,9 @@ namespace BilgiYonetimSistemi.UI.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Bolumler.Add(bolum);
-                db.SaveChanges();
+                bolumConcrete._bolumRepository.Insert(bolum);
+                bolumConcrete._bolumUnitOfWork.SaveChanges();
+                bolumConcrete._bolumUnitOfWork.Dispose();
                 return RedirectToAction("Index");
             }
 
@@ -66,7 +73,7 @@ namespace BilgiYonetimSistemi.UI.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Bolum bolum = db.Bolumler.Find(id);
+            Bolum bolum = bolumConcrete._bolumRepository.GetById(id);
             if (bolum == null)
             {
                 return HttpNotFound();
@@ -83,8 +90,9 @@ namespace BilgiYonetimSistemi.UI.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(bolum).State = EntityState.Modified;
-                db.SaveChanges();
+                bolumConcrete._bolumRepository.Update(bolum);
+                bolumConcrete._bolumUnitOfWork.SaveChanges();
+                bolumConcrete._bolumUnitOfWork.Dispose();
                 return RedirectToAction("Index");
             }
             return View(bolum);
@@ -97,7 +105,7 @@ namespace BilgiYonetimSistemi.UI.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Bolum bolum = db.Bolumler.Find(id);
+            Bolum bolum = bolumConcrete._bolumRepository.GetById(id);
             if (bolum == null)
             {
                 return HttpNotFound();
@@ -110,9 +118,10 @@ namespace BilgiYonetimSistemi.UI.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Bolum bolum = db.Bolumler.Find(id);
-            db.Bolumler.Remove(bolum);
-            db.SaveChanges();
+            
+            bolumConcrete._bolumRepository.Delete(id);
+            bolumConcrete._bolumUnitOfWork.SaveChanges();
+            bolumConcrete._bolumUnitOfWork.Dispose();
             return RedirectToAction("Index");
         }
 
@@ -120,7 +129,7 @@ namespace BilgiYonetimSistemi.UI.Controllers
         {
             if (disposing)
             {
-                db.Dispose();
+                bolumConcrete._bolumUnitOfWork.Dispose();
             }
             base.Dispose(disposing);
         }

@@ -286,7 +286,7 @@
             <ul class="acc-menu" id="sidebar">
                 <li><a href="/"><i class="fa fa-home"></i>Ana Sayfa</a></li>
                 <li class="divider"></li>
-                
+
                 <li>
                     <a href="/tr/Ders"><i class="fa fa-book"></i><span>Se&#231;ilen Dersler</span> </a>
                 </li>
@@ -408,8 +408,6 @@
     <!-- Plugin javascript dosyaları Başla -->
     <!-- assets/plugins/ klasöründeki eklentilerin javascript dosyaları burada yüklenecek -->
     <!-- Plugin javascript dosyaları Bit -->
-
-
     bunun ismi uzun diye bir sey yazmistim ama hatirlamiyorum
 
     <script src="~/lib/js/jira.collector.plugin.js"></script>
@@ -426,6 +424,8 @@
             //$("div.navbar-header").css("height", '20px');
         });
     </script>
-
+    @*@Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)*@
 </body>
 </html>

@@ -18,6 +18,11 @@ namespace BilgiYonetimSistemi.DAL.Mappings
             Property(x => x.Ad).HasMaxLength(40);
             Property(x => x.Soyad).HasMaxLength(40);
             Property(x => x.TC).HasMaxLength(11);
+
+
+            //Rol bilgisi için kullanıcı tablosu ile olan bağlantı
+
+            HasRequired(x => x.Kullanici).WithMany(x => x.Yoneticiler).HasForeignKey(x => x.UserID);
         }
     }
 }

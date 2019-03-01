@@ -11,7 +11,7 @@ namespace RepositoryPattern.BLL.Repository.Abstract
         //Generic olarak kullanılacak olan metodlar, soyut bir biçimde ve generic yapıda tanımlanır.
         IQueryable<T> GetEntity();
         ICollection<T> GetAll();
-        T GetById(int id);
+        T GetById(int? id);
         void Insert(T entity);
         void Update(T entity);
         void Delete(T entity);
