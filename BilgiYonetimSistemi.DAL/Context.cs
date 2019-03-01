@@ -42,7 +42,6 @@ namespace BilgiYonetimSistemi.DAL
         public DbSet<OgretmenlerDerslerDonemler> OgretmenlerDersler { get; set; }
         public DbSet<Sinav> Sinavlar { get; set; }
         public DbSet<Yonetici> Yoneticiler { get; set; }
-        public DbSet<Kullanici> Kullanicilar { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
