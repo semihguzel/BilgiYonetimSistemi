@@ -28,7 +28,7 @@ namespace BilgiYonetimSistemi.DAL.Migrations
 
             var userStore = new UserStore<Kullanici>(db);
             var userManager = new UserManager<Kullanici>(userStore);
-
+            //Olusmuyor!!!
             var adminUser = userManager.FindByName("admin@admin.com");
             if (adminUser == null)
             {

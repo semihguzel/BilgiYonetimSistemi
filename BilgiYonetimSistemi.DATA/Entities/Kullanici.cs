@@ -16,7 +16,6 @@ namespace BilgiYonetimSistemi.DATA.Entities
         public virtual List<Yonetici> Yoneticiler { get; set; }
 
 
-
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<Kullanici> manager)
         {
             // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType
