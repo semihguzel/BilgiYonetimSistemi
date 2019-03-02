@@ -1,6 +1,7 @@
 ﻿using BilgiYonetimSistemi.DATA.Entities;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,7 +11,8 @@ namespace BilgiYonetimSistemi.DATA
 
   public  class Ogretmen
     {
-        public int OgretmenID { get; set; }
+        [ForeignKey("Kullanici")]
+        public string OgretmenID { get; set; }
 
         public string OgretmenAdi { get; set; }
 
@@ -32,7 +34,6 @@ namespace BilgiYonetimSistemi.DATA
 
         public virtual OgretmenBilgileri OgretmeninBilgisi { get; set; }
 
-        public string UserID { get; set; }
         public virtual Kullanici Kullanici { get; set; }
     }
 }

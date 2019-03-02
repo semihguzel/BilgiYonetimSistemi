@@ -25,10 +25,6 @@ namespace BilgiYonetimSistemi.DAL
 
             HasRequired(x => x.OgretmeninBilgisi).WithRequiredPrincipal(x => x.BilgininOgretmeni);
 
-            //Rol bilgisi için kullanıcı tablosu ile olan bağlantı
-
-            HasRequired(x => x.Kullanici).WithMany(x => x.Ogretmenler).HasForeignKey(x => x.UserID);
-
         }
     }
 }

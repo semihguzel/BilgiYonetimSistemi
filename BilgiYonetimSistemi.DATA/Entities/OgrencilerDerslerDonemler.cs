@@ -10,7 +10,7 @@ namespace BilgiYonetimSistemi.DATA
     {
         public int OgrenciDerslerDonemler { get; set; }
 
-        public int OgrenciID { get; set; }
+        public string OgrenciID { get; set; }
 
         public int DersID { get; set; }
 

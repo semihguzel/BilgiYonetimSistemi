@@ -1,15 +1,17 @@
 ﻿using BilgiYonetimSistemi.DATA.Entities;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace BilgiYonetimSistemi.DATA
 {
-  public  class Ogrenci
+    public class Ogrenci
     {
-        public int OgrenciID { get; set; }
+        [ForeignKey("Kullanici")]
+        public string OgrenciID { get; set; }
 
         public string OgrenciAdi { get; set; }
 
@@ -35,7 +37,6 @@ namespace BilgiYonetimSistemi.DATA
         public int EgitimDuzeyiID { get; set; }
         public virtual EgitimDuzeyi OgrencininEgitimDuzeyi { get; set; }
 
-        public string UserID { get; set; }
         public virtual Kullanici Kullanici { get; set; }
     }
 }

@@ -11,10 +11,9 @@ namespace BilgiYonetimSistemi.DATA.Entities
 {
     public class Kullanici : IdentityUser
     {
-        public virtual List<Ogrenci> Ogrenciler { get; set; }
-        public virtual List<Ogretmen> Ogretmenler { get; set; }
-        public virtual List<Yonetici> Yoneticiler { get; set; }
-
+        public virtual Ogretmen Ogretmen { get; set; }
+        public virtual Yonetici Yonetici { get; set; }
+        public virtual Ogrenci Ogrenci { get; set; }
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<Kullanici> manager)
         {

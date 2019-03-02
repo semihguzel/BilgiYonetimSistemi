@@ -21,9 +21,9 @@ namespace BilgiYonetimSistemi.DAL.Migrations
             var roleManager = new RoleManager<IdentityRole>(roleStore);
             if (!roleManager.RoleExists("admin"))
                 roleManager.Create(new IdentityRole() { Name = "admin" });
-            if (!roleManager.RoleExists("premium"))
+            if (!roleManager.RoleExists("ogrenci"))
                 roleManager.Create(new IdentityRole() { Name = "ogrenci" });
-            if (!roleManager.RoleExists("normal"))
+            if (!roleManager.RoleExists("ogretmen"))
                 roleManager.Create(new IdentityRole() { Name = "ogretmen" });
 
             var userStore = new UserStore<Kullanici>(db);

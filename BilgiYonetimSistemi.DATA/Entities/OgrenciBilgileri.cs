@@ -8,7 +8,7 @@ namespace BilgiYonetimSistemi.DATA
 {
    public class OgrenciBilgileri
     {
-        public int OgrenciID { get; set; }
+        public string OgrenciID { get; set; }
 
         public string Adres { get; set; }
 
