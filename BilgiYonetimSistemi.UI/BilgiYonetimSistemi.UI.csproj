@@ -145,6 +145,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+    <Content Include="images\kapi5.png" />
     <Content Include="lib\css\font-awesome.min.css" />
     <Content Include="lib\css\google_font.css" />
     <Content Include="lib\css\jquery.pnotify.default.css" />
@@ -154,7 +155,7 @@
     <Content Include="lib\css\kendo.silver.min.css" />
     <Content Include="lib\css\kendo.silver.mobile.min.css" />
     <Content Include="lib\css\master_styles.css" />
-    <Content Include="lib\css\style.css" />
+    <Content Include="lib\css\styles.css" />
     <Content Include="lib\js\application.js" />
     <Content Include="lib\js\enquire.js" />
     <Content Include="lib\js\jira.collector.plugin.js" />
@@ -213,6 +214,7 @@
     <Compile Include="Controllers\OgretmenController.cs" />
     <Compile Include="Controllers\OgretmenlerBolumlerController.cs" />
     <Compile Include="Controllers\OgretmenlerDerslerDonemlerController.cs" />
+    <Compile Include="Controllers\YoneticiController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -333,6 +335,7 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Yonetici\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
