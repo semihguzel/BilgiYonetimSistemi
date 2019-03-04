@@ -1,8 +1,5 @@
 namespace BilgiYonetimSistemi.DAL.Migrations
 {
-    using BilgiYonetimSistemi.DATA.Entities;
-    using Microsoft.AspNet.Identity;
-    using Microsoft.AspNet.Identity.EntityFramework;
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
@@ -15,32 +12,12 @@ namespace BilgiYonetimSistemi.DAL.Migrations
             AutomaticMigrationsEnabled = true;
         }
 
-        protected override void Seed(BilgiYonetimSistemi.DAL.Context db)
+        protected override void Seed(BilgiYonetimSistemi.DAL.Context context)
         {
-            var roleStore = new RoleStore<IdentityRole>(db);
-            var roleManager = new RoleManager<IdentityRole>(roleStore);
-            if (!roleManager.RoleExists("admin"))
-                roleManager.Create(new IdentityRole() { Name = "admin" });
-            if (!roleManager.RoleExists("ogrenci"))
-                roleManager.Create(new IdentityRole() { Name = "ogrenci" });
-            if (!roleManager.RoleExists("ogretmen"))
-                roleManager.Create(new IdentityRole() { Name = "ogretmen" });
+            //  This method will be called after migrating to the latest version.
 
-            var userStore = new UserStore<Kullanici>(db);
-            var userManager = new UserManager<Kullanici>(userStore);
-            //Olusmuyor!!!
-            var adminUser = userManager.FindByName("admin@admin.com");
-            if (adminUser == null)
-            {
-                adminUser = new Kullanici()
-                {
-                    UserName = "admin",
-                    Email = "admin@admin.com"
-                };
-                userManager.Create(adminUser, "123");
-            }
-            if (!userManager.IsInRole(adminUser.Id, "admin"))
-                userManager.AddToRole(adminUser.Id, "admin");
+            //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
+            //  to avoid creating duplicate seed data.
         }
     }
 }

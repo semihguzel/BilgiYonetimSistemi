@@ -5,7 +5,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Delete</h2>
+ 
 <div class="container">
     <div class="row" style="margin-top:50px">
         <div class="panel panel-default ">
@@ -14,7 +14,7 @@
                     <div class="alert alert-danger">
                         <h4>@Model.BolumAdi Bölümünü Silmek İstediğinize Emin Misiniz?</h4>
                         </div>
-                            <h4>Bolum</h4>
+                            <h4>Bölüm</h4>
                             <hr />
                             <dl class="dl-horizontal">
                                 <dt>
@@ -26,13 +26,14 @@
                                 </dd>
 
                                 <dt>
-                                    @Html.DisplayName("Eğitim Dili")
+                                    @Html.DisplayName("Eğitim Dili:")
                                 </dt>
 
                                 <dd>
                                     @Html.DisplayFor(model => model.EgitimDili)
                                 </dd>
-
+                                <br />
+                                <br />
                             </dl>
 
                             @using (Html.BeginForm())
