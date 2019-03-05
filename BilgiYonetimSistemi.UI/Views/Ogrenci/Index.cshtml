@@ -5,36 +5,36 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<h2></h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Yeni Öğrenci Ekle", "Create")
 </p>
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.OgrencininEgitimDuzeyi.EgitimDuzeyTipi)
+          Eğitim Düzeyi
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.OgrencininOgrenimSekli.OgrenimTipi)
+           Öğrenim Şekli
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.OgrenciAdi)
+           Adı
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.OgrenciSoyadi)
+           Soyadı
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.OgrenciNumarasi)
+         Numarası
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.KayitTarihi)
+           Kayıt Tarihi
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.MezuniyetTarihi)
+           Mezuniyet Tarihi
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.BolumID)
+          Bölümü
         </th>
         <th></th>
     </tr>
@@ -65,12 +65,12 @@
         <td>
             @Html.DisplayFor(modelItem => item.BolumID)
         </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.OgrenciID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.OgrenciID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.OgrenciID })
+        <td style="text-align:right">
+            @Html.ActionLink("DÜZENLE", "Edit", new { id = item.OgrenciID }, new { @class = "btn btn-warning" })
+
+            @Html.ActionLink("DETAY", "Details", new { id = item.OgrenciID }, new { @class = "btn btn-primary" })
+            @Html.ActionLink("SİL", "Delete", new { id = item.OgrenciID }, new { @class = "btn btn-danger" })
         </td>
     </tr>
 }
-
 </table>

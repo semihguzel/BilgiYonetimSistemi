@@ -5,14 +5,14 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Details</h2>
+<h2>Öğrenci Bilgileri</h2>
 
 <div>
-    <h4>Ogrenci</h4>
+    <h4>Öğrenci</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.OgrencininEgitimDuzeyi.EgitimDuzeyTipi)
+           <label style="font-weight:bold;">Eğitim Düzeyi:</label>
         </dt>
 
         <dd>
@@ -20,7 +20,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.OgrencininOgrenimSekli.OgrenimTipi)
+            <label style="font-weight:bold;">Öğrenim Şekli:</label>
         </dt>
 
         <dd>
@@ -28,7 +28,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.OgrenciAdi)
+            <label style="font-weight:bold;">Ad:</label>
         </dt>
 
         <dd>
@@ -36,7 +36,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.OgrenciSoyadi)
+            <label style="font-weight:bold;">Soyad:</label>
         </dt>
 
         <dd>
@@ -44,7 +44,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.OgrenciNumarasi)
+            <label style="font-weight:bold;">Öğrenci Numarası:</label>
         </dt>
 
         <dd>
@@ -52,7 +52,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.KayitTarihi)
+            <label style="font-weight:bold;">Kayıt Tarihi:</label>
         </dt>
 
         <dd>
@@ -60,7 +60,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.MezuniyetTarihi)
+            <label style="font-weight:bold;">Mezuniyet Tarihi:</label>
         </dt>
 
         <dd>
@@ -68,7 +68,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.BolumID)
+            <label style="font-weight:bold;">Bölüm:</label>
         </dt>
 
         <dd>
@@ -78,6 +78,6 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.OgrenciID }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Düzenle", "Edit", new { id = Model.OgrenciID }) |
+    @Html.ActionLink("Öğrenci Listesine Dön", "Index")
 </p>

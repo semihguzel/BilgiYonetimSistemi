@@ -23,7 +23,7 @@ namespace BilgiYonetimSistemi.UI.Controllers
         }
 
         // GET: Ogrenci/Details/5
-        public ActionResult Details(int? id)
+        public ActionResult Details(string id)
         {
             if (id == null)
             {
@@ -40,6 +40,7 @@ namespace BilgiYonetimSistemi.UI.Controllers
         // GET: Ogrenci/Create
         public ActionResult Create()
         {
+            ViewBag.BolumID = new SelectList(db.Bolumler, "BolumID", "BolumAdi");
             ViewBag.EgitimDuzeyiID = new SelectList(db.EgitimDuzeyleri, "EgitimDuzeyiID", "EgitimDuzeyTipi");
             ViewBag.OgrenimSekliID = new SelectList(db.OgrenimSekilleri, "OgrenimID", "OgrenimTipi");
             return View();
@@ -59,13 +60,14 @@ namespace BilgiYonetimSistemi.UI.Controllers
                 return RedirectToAction("Index");
             }
 
+            ViewBag.BolumID = new SelectList(db.Bolumler, "BolumID", "BolumAdi",ogrenci.BolumID);
             ViewBag.EgitimDuzeyiID = new SelectList(db.EgitimDuzeyleri, "EgitimDuzeyiID", "EgitimDuzeyTipi", ogrenci.EgitimDuzeyiID);
             ViewBag.OgrenimSekliID = new SelectList(db.OgrenimSekilleri, "OgrenimID", "OgrenimTipi", ogrenci.OgrenimSekliID);
             return View(ogrenci);
         }
 
         // GET: Ogrenci/Edit/5
-        public ActionResult Edit(int? id)
+        public ActionResult Edit(string id)
         {
             if (id == null)
             {
@@ -100,7 +102,7 @@ namespace BilgiYonetimSistemi.UI.Controllers
         }
 
         // GET: Ogrenci/Delete/5
-        public ActionResult Delete(int? id)
+        public ActionResult Delete(string id)
         {
             if (id == null)
             {

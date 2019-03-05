@@ -17,7 +17,7 @@ namespace BilgiYonetimSistemi.DAL
             HasKey(x => x.OgrenciID);
 
             Property(x => x.KayitTarihi).IsRequired().HasColumnType("datetime2");
-            Property(x => x.MezuniyetTarihi).IsRequired().HasColumnType("datetime2");
+            Property(x => x.MezuniyetTarihi).HasColumnType("datetime2");
             Property(x => x.OgrenciAdi).IsRequired().HasColumnType("nvarchar").HasMaxLength(50);
             Property(x => x.OgrenciNumarasi).IsRequired().HasColumnType("nvarchar").HasMaxLength(20);
             Property(x => x.OgrenciSoyadi).IsRequired().HasColumnType("nvarchar").HasMaxLength(20);
