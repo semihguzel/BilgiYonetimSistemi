@@ -16,7 +16,7 @@ namespace BilgiYonetimSistemi.BLL.Repository.Concrete
     {
         public IRepository<Ogrenci> _ogrenciRepository;
         public IUnitOfWork _ogrenciUnitOfWork;
-        private DbContext _dbContext;
+        public DbContext _dbContext;
 
         public OgrenciConcrete()
         {

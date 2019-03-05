@@ -16,7 +16,7 @@ namespace BilgiYonetimSistemi.BLL.Repository.Concrete
     {
         public IRepository<Yonetici> _yoneticiRepository;
         public IUnitOfWork _yoneticiUnitOfWork;
-        private DbContext _dbContext;
+        public DbContext _dbContext;
 
         public YoneticiConcrete()
         {

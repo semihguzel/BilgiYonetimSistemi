@@ -37,7 +37,7 @@ namespace BilgiYonetimSistemi.DAL.Migrations
                     UserName = "admin",
                     Email = "admin@admin.com"
                 };
-                userManager.Create(adminUser, "123");
+                userManager.Create(adminUser, "Admin123.");
             }
             if (!userManager.IsInRole(adminUser.Id, "admin"))
                 userManager.AddToRole(adminUser.Id, "admin");
