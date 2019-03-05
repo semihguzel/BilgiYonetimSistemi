@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using BilgiYonetimSistemi.BLL;
 using BilgiYonetimSistemi.DAL;
 using BilgiYonetimSistemi.DATA;
 
@@ -51,8 +52,7 @@ namespace BilgiYonetimSistemi.UI.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Ogretmenler.Add(ogretmen);
-                db.SaveChanges();
+                KullaniciIslemleri.OgretmenEkle(ogretmen);
                 return RedirectToAction("Index");
             }
 

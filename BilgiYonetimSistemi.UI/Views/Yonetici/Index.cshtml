@@ -1,8 +1,64 @@
-﻿
+﻿@model IEnumerable<BilgiYonetimSistemi.DATA.Entities.Yonetici>
+
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Yönetici</h2>
+<h2>Index</h2>
 
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Kullanici.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TC)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Ad)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Soyad)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.KullaniciAdi)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Sifre)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Kullanici.Email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TC)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Ad)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Soyad)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.KullaniciAdi)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Sifre)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.YoneticiID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.YoneticiID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.YoneticiID })
+        </td>
+    </tr>
+}
+
+</table>
