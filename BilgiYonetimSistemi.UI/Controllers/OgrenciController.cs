@@ -6,8 +6,13 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using BilgiYonetimSistemi.BLL;
+using BilgiYonetimSistemi.BLL.Repository.Concrete;
 using BilgiYonetimSistemi.DAL;
 using BilgiYonetimSistemi.DATA;
+using BilgiYonetimSistemi.DATA.Entities;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace BilgiYonetimSistemi.UI.Controllers
 {
@@ -55,8 +60,7 @@ namespace BilgiYonetimSistemi.UI.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Ogrenciler.Add(ogrenci);
-                db.SaveChanges();
+                KullaniciIslemleri.OgrenciEkle(ogrenci);
                 return RedirectToAction("Index");
             }
 

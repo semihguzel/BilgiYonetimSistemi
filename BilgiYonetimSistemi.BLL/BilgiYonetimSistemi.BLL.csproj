@@ -110,6 +110,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="KullaniciIslemleri.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\Abstract\IBolum.cs" />
     <Compile Include="Repository\Abstract\IBolumDersler.cs" />

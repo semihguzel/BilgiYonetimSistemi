@@ -213,6 +213,7 @@
     <Compile Include="Controllers\OgretmenController.cs" />
     <Compile Include="Controllers\OgretmenlerBolumlerController.cs" />
     <Compile Include="Controllers\OgretmenlerDerslerDonemlerController.cs" />
+    <Compile Include="Controllers\YoneticiController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -333,6 +334,12 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Yonetici\Create.cshtml" />
+    <Content Include="Views\Yonetici\Delete.cshtml" />
+    <Content Include="Views\Yonetici\Details.cshtml" />
+    <Content Include="Views\Yonetici\Edit.cshtml" />
+    <Content Include="Views\Yonetici\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

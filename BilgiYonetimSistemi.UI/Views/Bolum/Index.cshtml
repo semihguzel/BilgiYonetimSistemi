@@ -5,36 +5,55 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.BolumAdi)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.EgitimDili)
-        </th>
-        <th></th>
-    </tr>
+<div class="container">
+    <div class="row" style="margin-top:50px">
+        <div class="panel panel-default ">
+            <div class="col-md-12  ">
+                <div class="panel-body center-block">
+                    <p>
+                        @Html.ActionLink("YENİ KAYIT", "Create", null, new { @class = "btn btn-info " })
+                    </p>
+                    <br />
+                    <table class="table table-striped">
+                        <tr>
+                            <th>
+                                <h4>
+                                    <strong>
+                                        @Html.DisplayName("Bölüm Adı:")
+                                    </strong>
+                                </h4>
+                            </th>
+                            <th>
+                                <h4>
+                                    <strong>
+                                        @Html.DisplayName("Eğitim Dili:")
+                                    </strong>
+                                </h4>
+                              </th>
+                            <th></th>
+                        </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.BolumAdi)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.EgitimDili)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.BolumID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.BolumID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.BolumID })
-        </td>
-    </tr>
-}
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.BolumAdi)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.EgitimDili)
+                                </td>
+                                <td style="text-align:right">
+                                    @Html.ActionLink("DÜZENLE", "Edit", new { id = item.BolumID }, new { @class = "btn btn-warning" })
+                                    @Html.ActionLink("DETAY", "Details", new { id = item.BolumID }, new { @class = "btn btn-primary" })
+                                    @Html.ActionLink("SİL", "Delete", new { id = item.BolumID }, new { @class = "btn btn-danger" })
+                                </td>
+                            </tr>
+                        }
 
-</table>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

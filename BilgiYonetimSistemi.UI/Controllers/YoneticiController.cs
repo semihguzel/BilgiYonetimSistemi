@@ -8,110 +8,111 @@ using System.Web;
 using System.Web.Mvc;
 using BilgiYonetimSistemi.BLL;
 using BilgiYonetimSistemi.DAL;
-using BilgiYonetimSistemi.DATA;
+using BilgiYonetimSistemi.DATA.Entities;
 
 namespace BilgiYonetimSistemi.UI.Controllers
 {
-    public class OgretmenController : Controller
+    public class YoneticiController : Controller
     {
         private Context db = new Context();
 
-        // GET: Ogretmen
+        // GET: Yonetici
         public ActionResult Index()
         {
-            return View(db.Ogretmenler.ToList());
+            var yoneticis = db.Yoneticiler.Include(y => y.Kullanici);
+            return View(yoneticis.ToList());
         }
 
-        // GET: Ogretmen/Details/5
-        public ActionResult Details(int? id)
+        // GET: Yonetici/Details/5
+        public ActionResult Details(string id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Ogretmen ogretmen = db.Ogretmenler.Find(id);
-            if (ogretmen == null)
+            Yonetici yonetici = db.Yoneticiler.Find(id);
+            if (yonetici == null)
             {
                 return HttpNotFound();
             }
-            return View(ogretmen);
+            return View(yonetici);
         }
 
-        // GET: Ogretmen/Create
+        // GET: Yonetici/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Ogretmen/Create
+        // POST: Yonetici/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "OgretmenID,OgretmenAdi,OgretmenSoyadi,Unvan,BaslangicTarihi,AyrilisTarihi,PersonelNumarasi,Sifre")] Ogretmen ogretmen)
+        public ActionResult Create([Bind(Include = "YoneticiID,TC,Ad,Soyad,KullaniciAdi,Sifre")] Yonetici yonetici)
         {
             if (ModelState.IsValid)
             {
-                KullaniciIslemleri.OgretmenEkle(ogretmen);
+                KullaniciIslemleri.YoneticiEkle(yonetici);
                 return RedirectToAction("Index");
             }
 
-            return View(ogretmen);
+            return View(yonetici);
         }
 
-        // GET: Ogretmen/Edit/5
-        public ActionResult Edit(int? id)
+        // GET: Yonetici/Edit/5
+        public ActionResult Edit(string id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Ogretmen ogretmen = db.Ogretmenler.Find(id);
-            if (ogretmen == null)
+            Yonetici yonetici = db.Yoneticiler.Find(id);
+            if (yonetici == null)
             {
                 return HttpNotFound();
             }
-            return View(ogretmen);
+            return View(yonetici);
         }
 
-        // POST: Ogretmen/Edit/5
+        // POST: Yonetici/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "OgretmenID,OgretmenAdi,OgretmenSoyadi,Unvan,BaslangicTarihi,AyrilisTarihi,PersonelNumarasi,Sifre")] Ogretmen ogretmen)
+        public ActionResult Edit([Bind(Include = "YoneticiID,TC,Ad,Soyad,KullaniciAdi,Sifre")] Yonetici yonetici)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(ogretmen).State = EntityState.Modified;
+                db.Entry(yonetici).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(ogretmen);
+            return View(yonetici);
         }
 
-        // GET: Ogretmen/Delete/5
-        public ActionResult Delete(int? id)
+        // GET: Yonetici/Delete/5
+        public ActionResult Delete(string id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Ogretmen ogretmen = db.Ogretmenler.Find(id);
-            if (ogretmen == null)
+            Yonetici yonetici = db.Yoneticiler.Find(id);
+            if (yonetici == null)
             {
                 return HttpNotFound();
             }
-            return View(ogretmen);
+            return View(yonetici);
         }
 
-        // POST: Ogretmen/Delete/5
+        // POST: Yonetici/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public ActionResult DeleteConfirmed(string id)
         {
-            Ogretmen ogretmen = db.Ogretmenler.Find(id);
-            db.Ogretmenler.Remove(ogretmen);
+            Yonetici yonetici = db.Yoneticiler.Find(id);
+            db.Yoneticiler.Remove(yonetici);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
