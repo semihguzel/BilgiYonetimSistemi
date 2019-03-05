@@ -22,7 +22,7 @@
                             @Html.HiddenFor(model => model.BolumID)
 
                             <div class="form-group">
-                                @Html.Label("Bölüm Adı:", htmlAttributes: new { @class = "control-label col-md-2" })
+                                @Html.Label("Bölüm Adı:", htmlAttributes: new { @class = "control-label col-md-2", @style = "font-weight:bold;" })
                                 <div class="col-md-10">
                                     @Html.EditorFor(model => model.BolumAdi, new { htmlAttributes = new { @class = "form-control" } })
                                     @Html.ValidationMessageFor(model => model.BolumAdi, "", new { @class = "text-danger" })
@@ -30,7 +30,7 @@
                             </div>
 
                             <div class="form-group">
-                                @Html.Label("Eğitim Dili:", htmlAttributes: new { @class = "control-label col-md-2" })
+                                @Html.Label("Eğitim Dili:", htmlAttributes: new { @class = "control-label col-md-2", @style = "font-weight:bold;" })
                                 <div class="col-md-10">
                                     @Html.EditorFor(model => model.EgitimDili, new { htmlAttributes = new { @class = "form-control" } })
                                     @Html.ValidationMessageFor(model => model.EgitimDili, "", new { @class = "text-danger" })
