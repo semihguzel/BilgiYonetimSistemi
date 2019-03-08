@@ -14,33 +14,38 @@
                     @using (Html.BeginForm())
                     {
                         @Html.AntiForgeryToken()
-
-                        <div class="form-horizontal">
-                            <h4>Bölüm</h4>
-                            <hr />
-                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                            <div class="form-group">
-                                @Html.Label("Bölüm Adı:", htmlAttributes: new { @class = "control-label col-md-2", @style = "font-weight:bold;" })
-                                <div class="col-md-10">
-                                    @Html.EditorFor(model => model.BolumAdi, new { htmlAttributes = new { @class = "form-control" } })
-                                    @Html.ValidationMessageFor(model => model.BolumAdi, "", new { @class = "text-danger" })
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                @Html.Label("Eğitim Dili:", htmlAttributes: new { @class = "control-label col-md-2", @style = "font-weight:bold;"  })
-                                <div class="col-md-10">
-                                    @Html.EditorFor(model => model.EgitimDili, new { htmlAttributes = new { @class = "form-control" } })
-                                    @Html.ValidationMessageFor(model => model.EgitimDili, "", new { @class = "text-danger" })
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <div class="col-md-offset-2 col-md-10">
-                                    <input type="submit" value="KAYDET" class="btn btn-primary" />
-                                </div>
+                    <div class="form-horizontal">
+                        <h4>Bölüm</h4>
+                        <hr />
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        <div class="form-group">
+                            @Html.Label("Fakülte Adı:", htmlAttributes: new { @class = "control-label col-md-2", @style = "font-weight:bold;" })
+                            <div class="col-md-10">
+                                @Html.DropDownList("FakulteID", null, htmlAttributes: new { @class = "form-control", @name = "fakulteid" })
                             </div>
                         </div>
+                        <div class="form-group">
+                            @Html.Label("Bölüm Adı:", htmlAttributes: new { @class = "control-label col-md-2", @style = "font-weight:bold;" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.BolumAdi, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.BolumAdi, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.Label("Eğitim Dili:", htmlAttributes: new { @class = "control-label col-md-2", @style = "font-weight:bold;" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.EgitimDili, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.EgitimDili, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+                                <input type="submit" value="KAYDET" class="btn btn-primary" />
+                            </div>
+                        </div>
+                    </div>
                     }
 
                     <div>
