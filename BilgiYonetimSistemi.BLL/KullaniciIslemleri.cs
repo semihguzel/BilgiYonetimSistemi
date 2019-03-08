@@ -3,6 +3,7 @@ using BilgiYonetimSistemi.DATA;
 using BilgiYonetimSistemi.DATA.Entities;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using Microsoft.Owin;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,9 +14,12 @@ namespace BilgiYonetimSistemi.BLL
 {
     public static class KullaniciIslemleri
     {
-        public static void OgrenciEkle(Ogrenci ogrenci)
+
+
+        public static void OgrenciEkle(Ogrenci ogrenci, OgrenciBilgileri ogrenciBilgileri)
         {
             OgrenciConcrete ogrenciConcrete = new OgrenciConcrete();
+            OgrenciBilgileriConcrete ogrenciBilgileriConcrete = new OgrenciBilgileriConcrete();
             var userStore = new UserStore<Kullanici>(ogrenciConcrete._dbContext);
             var userManager = new UserManager<Kullanici>(userStore);
             var kullanici = userManager.FindByName((ogrenci.OgrenciAdi.ToLower() + ogrenci.OgrenciSoyadi.ToLower()));
@@ -49,9 +53,13 @@ namespace BilgiYonetimSistemi.BLL
             userManager.AddToRole(kullanici.Id, "ogrenci");
 
             ogrenci.OgrenciID = kullanici.Id;
+            ogrenciBilgileri.OgrenciID = ogrenci.OgrenciID;
             ogrenciConcrete._ogrenciRepository.Insert(ogrenci);
             ogrenciConcrete._ogrenciUnitOfWork.SaveChanges();
             ogrenciConcrete._ogrenciUnitOfWork.Dispose();
+            ogrenciBilgileriConcrete._ogrenciBilgileriRepository.Insert(ogrenciBilgileri);
+            ogrenciBilgileriConcrete._ogrenciBilgileriUnitOfWork.SaveChanges();
+            ogrenciBilgileriConcrete._ogrenciBilgileriUnitOfWork.Dispose();
         }
 
         public static void OgretmenEkle(Ogretmen ogretmen)

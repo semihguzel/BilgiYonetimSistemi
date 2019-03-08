@@ -8,11 +8,10 @@
 <h2>Öğrenci Bilgileri</h2>
 
 <div>
-    <h4>Öğrenci</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-           <label style="font-weight:bold;">Eğitim Düzeyi:</label>
+            <label style="font-weight:bold;">Eğitim Düzeyi:</label>
         </dt>
 
         <dd>
@@ -75,9 +74,61 @@
             @Html.DisplayFor(model => model.BolumID)
         </dd>
 
+        <dt>
+            <label style="font-weight:bold;">Adres:</label>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OgrenciBilgisi.Adres)
+        </dd>
+
+        <dt>
+            <label style="font-weight:bold;">TCNo:</label>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OgrenciBilgisi.TCNo)
+        </dd>
+
+        <dt>
+            <label style="font-weight:bold;">Telefon:</label>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OgrenciBilgisi.Telefon)
+        </dd>
+
+        <dt>
+            <label style="font-weight:bold;">E-posta:</label>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OgrenciBilgisi.OgrenciMail)
+        </dd>
+
+        <dt>
+            <label style="font-weight:bold;">Fotoğraf:</label>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OgrenciBilgisi.Fotograf)
+        </dd>
+
+        <dt>
+            <label style="font-weight:bold;">Mezuniyet Durumu:</label>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OgrenciBilgisi.MezunMu)
+        </dd>
+
+    
+
+
+
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Düzenle", "Edit", new { id = Model.OgrenciID }) |
-    @Html.ActionLink("Öğrenci Listesine Dön", "Index")
+    @Html.ActionLink("Düzenle", "Edit", new { id = Model.OgrenciID }, new {@class = "btn btn-warning" }) 
+    @Html.ActionLink("Öğrenci Listesine Dön", "Index",null,new {@class="btn btn-primary" })
 </p>

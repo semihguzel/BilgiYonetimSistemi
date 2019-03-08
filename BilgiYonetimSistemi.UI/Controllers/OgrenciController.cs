@@ -18,8 +18,12 @@ namespace BilgiYonetimSistemi.UI.Controllers
 {
     public class OgrenciController : Controller
     {
+        OgrenciConcrete ogrenciConcrete;
         private Context db = new Context();
-
+        public OgrenciController()
+        {
+           ogrenciConcrete = new OgrenciConcrete();
+        }
         // GET: Ogrenci
         public ActionResult Index()
         {
@@ -56,11 +60,22 @@ namespace BilgiYonetimSistemi.UI.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "OgrenciID,OgrenciAdi,OgrenciSoyadi,OgrenciNumarasi,KayitTarihi,MezuniyetTarihi,BolumID,OgrenimSekliID,EgitimDuzeyiID")] Ogrenci ogrenci)
+        public ActionResult Create([Bind(Include = "OgrenciID,OgrenciAdi,OgrenciSoyadi,OgrenciNumarasi,KayitTarihi,MezuniyetTarihi,BolumID,OgrenimSekliID,EgitimDuzeyiID")] Ogrenci ogrenci,FormCollection frm)
         {
             if (ModelState.IsValid)
             {
-                KullaniciIslemleri.OgrenciEkle(ogrenci);
+                OgrenciBilgileri ogrenciBilgileri = new OgrenciBilgileri()
+                {
+                    Adres = frm["adres"],
+                    Fotograf = frm["fotograf"],
+                    MezunMu = frm["mezun"] == "on" ? true : false,
+                    OgrenciID = ogrenci.OgrenciID,
+                    OgrenciMail = frm["mail"],
+                    Sifre = frm["sifre"],
+                    TCNo = frm["tc"],
+                    Telefon = frm["telefon"]
+                };
+                KullaniciIslemleri.OgrenciEkle(ogrenci, ogrenciBilgileri);
                 return RedirectToAction("Index");
             }
 
@@ -82,6 +97,7 @@ namespace BilgiYonetimSistemi.UI.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.OgrenciBilgileri = db.OgrenciBilgileri.FirstOrDefault(x => x.OgrenciID == id);
             ViewBag.EgitimDuzeyiID = new SelectList(db.EgitimDuzeyleri, "EgitimDuzeyiID", "EgitimDuzeyTipi", ogrenci.EgitimDuzeyiID);
             ViewBag.OgrenimSekliID = new SelectList(db.OgrenimSekilleri, "OgrenimID", "OgrenimTipi", ogrenci.OgrenimSekliID);
             return View(ogrenci);
@@ -92,11 +108,19 @@ namespace BilgiYonetimSistemi.UI.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "OgrenciID,OgrenciAdi,OgrenciSoyadi,OgrenciNumarasi,KayitTarihi,MezuniyetTarihi,BolumID,OgrenimSekliID,EgitimDuzeyiID")] Ogrenci ogrenci)
+        public ActionResult Edit([Bind(Include = "OgrenciID,OgrenciAdi,OgrenciSoyadi,OgrenciNumarasi,KayitTarihi,MezuniyetTarihi,BolumID,OgrenimSekliID,EgitimDuzeyiID")] Ogrenci ogrenci, FormCollection frm)
         {
             if (ModelState.IsValid)
             {
                 db.Entry(ogrenci).State = EntityState.Modified;
+                var ogrenciBilgileri = db.OgrenciBilgileri.FirstOrDefault(x => x.OgrenciID == ogrenci.OgrenciID);
+                ogrenciBilgileri.Adres = frm["OgrenciBilgisi.Adres"];
+                ogrenciBilgileri.Fotograf = frm["OgrenciBilgisi.Fotograf"];
+                ogrenciBilgileri.MezunMu = frm["OgrenciBilgisi.MezunMu"] == "on" ? true : false;
+                ogrenciBilgileri.OgrenciMail = frm["OgrenciBilgisi.OgrenciMail"];
+                ogrenciBilgileri.TCNo = frm["OgrenciBilgisi.TCNo"];
+                ogrenciBilgileri.Telefon = frm["OgrenciBilgisi.Telefon"];
+
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -123,9 +147,10 @@ namespace BilgiYonetimSistemi.UI.Controllers
         // POST: Ogrenci/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public ActionResult DeleteConfirmed(string id)
         {
             Ogrenci ogrenci = db.Ogrenciler.Find(id);
+            db.OgrenciBilgileri.Remove(db.OgrenciBilgileri.FirstOrDefault(x => x.OgrenciID == ogrenci.OgrenciID));
             db.Ogrenciler.Remove(ogrenci);
             db.SaveChanges();
             return RedirectToAction("Index");

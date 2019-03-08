@@ -7,7 +7,7 @@
 
 <h2>Öğrenci Silme Sayfası</h2>
 
-<h3>Bu öğrenci kaydını silmek istediğinizden emin misiniz?</h3>
+<h3 style="background-color:red;">Bu öğrenci kaydını silmek istediğinizden emin misiniz?</h3>
 <div>
     <h4>Ogrenci</h4>
     <hr />
@@ -76,14 +76,64 @@
             @Html.DisplayFor(model => model.BolumID)
         </dd>
 
+        <dt>
+            <label style="font-weight:bold;">Adres:</label>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OgrenciBilgisi.Adres)
+        </dd>
+
+        <dt>
+            <label style="font-weight:bold;">TCNo:</label>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OgrenciBilgisi.TCNo)
+        </dd>
+
+        <dt>
+            <label style="font-weight:bold;">Telefon:</label>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OgrenciBilgisi.Telefon)
+        </dd>
+
+        <dt>
+            <label style="font-weight:bold;">E-posta:</label>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OgrenciBilgisi.OgrenciMail)
+        </dd>
+
+        <dt>
+            <label style="font-weight:bold;">Fotoğraf:</label>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OgrenciBilgisi.Fotograf)
+        </dd>
+
+        <dt>
+            <label style="font-weight:bold;">Mezuniyet Durumu:</label>
+        </dt>
+     
+        <dd>
+            @{ string MezunMu = Model.OgrenciBilgisi.MezunMu ? "Mezun" : "Mezun Değil"; }
+            <span style="font-weight:bold;">@MezunMu</span>
+        </dd>
+
     </dl>
 
-    @using (Html.BeginForm()) {
+    @using (Html.BeginForm())
+    {
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Listeye Dön", "Index")
+            <input type="submit" value="Delete" class="btn btn-danger" />
+            @Html.ActionLink("Listeye Dön", "Index",null, new { @class= "btn btn-primary"})
         </div>
     }
 </div>

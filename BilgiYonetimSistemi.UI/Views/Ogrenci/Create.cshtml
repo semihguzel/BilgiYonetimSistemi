@@ -12,7 +12,7 @@
     @Html.AntiForgeryToken()
 
     <div class="form-horizontal">
-        
+
         <hr />
         <div class="container">
             <div class="row" style="margin-top:50px">
@@ -84,9 +84,58 @@
                                 </div>
                             </div>
 
+                            @using (Html.BeginForm("Create", "Ogrenci", FormMethod.Post))
+                            {
+
+
+                                <div class="form-group">
+                                    <div class="col-md-10">
+                                        <label>Adres</label>
+                                        <input class="form-control" type="text" name="adres" id="adres" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-10">
+                                        <label>Telefon</label>
+                                        <input class="form-control" type="text" name="telefon" id="telefon" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-10">
+                                        <label>TC Kimlik No</label>
+                                        <input class="form-control" type="text" name="tc" id="tc" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-10">
+                                        <label>EMail</label>
+                                        <input class="form-control" type="text" name="mail" id="mail" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-10">
+                                        <label>Mezun mu?</label>
+                                        <input class="form-control" style="float:left;" type="checkbox" name="mezun" id="mezun" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-10">
+                                        <label>Fotoğraf</label>
+                                        <input class="form-control" type="image" name="fotograf" id="fotograf" />
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="col-md-10">
+                                        <label>Şifre</label>
+                                        <input class="form-control" type="password" name="sifre" id="sifre" />
+                                    </div>
+                                </div>
+
+                            }
                             <div class="form-group">
                                 <div class="col-md-offset-2 col-md-10">
-                                    <input type="submit" value="KAYDET" class="btn btn-primary" />
+                                    <input type="submit" value="KAYDET" class="btn btn-success" />
                                 </div>
                             </div>
                         </div>
@@ -95,9 +144,8 @@
             </div>
         </div>
     </div>
-
 }
 
 <div>
-    @Html.ActionLink("Tüm Öğrencileri Gör", "Index")
+    @Html.ActionLink("Tüm Öğrencileri Gör", "Index",null, new{ @class="btn btn-primary"})
 </div>

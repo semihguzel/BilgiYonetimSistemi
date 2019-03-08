@@ -7,7 +7,7 @@
 
 <h2>Öğrenci Güncelleme Sayfası</h2>
 
-@using (Html.BeginForm())
+@using (Html.BeginForm("Edit","Ogrenci",FormMethod.Post))
 {
     @Html.AntiForgeryToken()
 
@@ -94,9 +94,61 @@
                                 </div>
                             </div>
 
+
+                            <div class="form-group">
+                                <div class="col-md-10">
+                                    <label>Adres:</label>
+                                    @Html.EditorFor(model => model.OgrenciBilgisi.Adres, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.OgrenciBilgisi.Adres, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-md-10">
+                                    <label>Fotoğraf:</label>
+                                    @* fotoğraf nasıl alınacak? *@
+                                    @Html.EditorFor(model => model.OgrenciBilgisi.Fotograf, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.OgrenciBilgisi.Fotograf, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-md-10">
+                                    <label>Mezuniyet Durumu:</label>
+                                    @Html.CheckBoxFor(model => model.OgrenciBilgisi.MezunMu, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.OgrenciBilgisi.MezunMu, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-md-10">
+                                    <label>TC No:</label>
+                                    @Html.TextBoxFor(model => model.OgrenciBilgisi.TCNo, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.OgrenciBilgisi.TCNo, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-md-10">
+                                    <label>Telefon:</label>
+                                    @Html.TextBoxFor(model => model.OgrenciBilgisi.Telefon, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.OgrenciBilgisi.Telefon, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+
+                            <div class="form-group">
+                                <div class="col-md-10">
+                                    <label>E-Posta:</label>
+                                    @Html.TextBoxFor(model => model.OgrenciBilgisi.OgrenciMail, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.OgrenciBilgisi.OgrenciMail, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+
                             <div class="form-group">
                                 <div class="col-md-offset-2 col-md-10">
-                                    <input type="submit" value="Kaydet" class="btn btn-primary" />
+                                    <input type="submit" value="Kaydet" class="btn btn-success" />
                                 </div>
                             </div>
                         </div>
@@ -108,5 +160,5 @@
 }
 
 <div>
-    @Html.ActionLink("Tüm Öğrencileri Gör", "Index")
+    @Html.ActionLink("Tüm Öğrencileri Gör", "Index",null, new {@class="btn btn-primary" })
 </div>

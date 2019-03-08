@@ -24,5 +24,6 @@ namespace BilgiYonetimSistemi.BLL.Repository.Concrete
             _ogretmenBilgileriUnitOfWork = new EFUnitOfWork(_dbContext);
             _ogretmenBilgileriRepository = _ogretmenBilgileriUnitOfWork.GetRepository<OgretmenBilgileri>();
         }
+       
     }
 }
