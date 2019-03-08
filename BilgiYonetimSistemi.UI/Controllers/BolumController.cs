@@ -15,9 +15,13 @@ namespace BilgiYonetimSistemi.UI.Controllers
     public class BolumController : Controller
     {
         BolumConcrete bolumConcrete;
+        FakulteConcrete fakulteConcrete;
+        FakulteBolumlerConcrete fakulteBolumlerConcrete;
         public BolumController()
         {
             bolumConcrete = new BolumConcrete();
+            fakulteBolumlerConcrete = new FakulteBolumlerConcrete();
+            fakulteConcrete = new FakulteConcrete();
         }
 
 
@@ -45,6 +49,7 @@ namespace BilgiYonetimSistemi.UI.Controllers
         // GET: Bolum/Create
         public ActionResult Create()
         {
+            ViewBag.FakulteID = new SelectList(fakulteConcrete._fakulteRepository.GetEntity(), "FakulteID", "FakulteAdi");
             return View();
         }
 
@@ -53,13 +58,21 @@ namespace BilgiYonetimSistemi.UI.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "BolumID,BolumAdi,EgitimDili")] Bolum bolum)
+        public ActionResult Create([Bind(Include = "BolumID,BolumAdi,EgitimDili")] Bolum bolum, FormCollection frm)
         {
             if (ModelState.IsValid)
             {
                 bolumConcrete._bolumRepository.Insert(bolum);
                 bolumConcrete._bolumUnitOfWork.SaveChanges();
                 bolumConcrete._bolumUnitOfWork.Dispose();
+                FakulteBolumler fakulteBolumler = new FakulteBolumler()
+                {
+                    BolumID = bolum.BolumID,
+                    FakulteID = int.Parse(frm["fakulteid"])
+                };
+                fakulteBolumlerConcrete._fakulteBolumlerRepository.Insert(fakulteBolumler);
+                fakulteBolumlerConcrete._fakulteBolumlerUnitOfWork.SaveChanges();
+                fakulteBolumlerConcrete._fakulteBolumlerUnitOfWork.Dispose();
                 return RedirectToAction("Index");
             }
 
@@ -118,7 +131,7 @@ namespace BilgiYonetimSistemi.UI.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            
+
             bolumConcrete._bolumRepository.Delete(id);
             bolumConcrete._bolumUnitOfWork.SaveChanges();
             bolumConcrete._bolumUnitOfWork.Dispose();

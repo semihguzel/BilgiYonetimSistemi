@@ -8,17 +8,25 @@ using System.Web;
 using System.Web.Mvc;
 using BilgiYonetimSistemi.DAL;
 using BilgiYonetimSistemi.DATA;
+using BilgiYonetimSistemi.BLL.Repository.Concrete;
 
 namespace BilgiYonetimSistemi.UI.Controllers
 {
     public class DersController : Controller
     {
-        private Context db = new Context();
-
+        DersConcrete dersConcrete;
+        BolumConcrete bolumConcrete;
+        BolumDerslerConcrete bolumDerslerConcrete;
+        public DersController()
+        {
+            dersConcrete = new DersConcrete();
+            bolumConcrete = new BolumConcrete();
+            bolumDerslerConcrete = new BolumDerslerConcrete();
+        }
         // GET: Ders
         public ActionResult Index()
         {
-            return View(db.Dersler.ToList());
+            return View(dersConcrete._dersRepository.GetAll());
         }
 
         // GET: Ders/Details/5
@@ -28,7 +36,7 @@ namespace BilgiYonetimSistemi.UI.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Ders ders = db.Dersler.Find(id);
+            Ders ders = dersConcrete._dersRepository.GetById(id);
             if (ders == null)
             {
                 return HttpNotFound();
@@ -39,6 +47,7 @@ namespace BilgiYonetimSistemi.UI.Controllers
         // GET: Ders/Create
         public ActionResult Create()
         {
+            ViewBag.BolumID = new SelectList(bolumConcrete._bolumRepository.GetEntity(), "BolumID", "BolumAdi");
             return View();
         }
 
@@ -47,12 +56,22 @@ namespace BilgiYonetimSistemi.UI.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "DersID,DersAdi,DersKredisi,DersKodu")] Ders ders)
+        public ActionResult Create([Bind(Include = "DersID,DersAdi,DersKredisi,DersKodu")] Ders ders, FormCollection frm)
         {
             if (ModelState.IsValid)
             {
-                db.Dersler.Add(ders);
-                db.SaveChanges();
+                dersConcrete._dersRepository.Insert(ders);
+                dersConcrete._derslerUnitOfWork.SaveChanges();
+                dersConcrete._derslerUnitOfWork.Dispose();
+
+                BolumlerDersler bolumlerDersler = new BolumlerDersler()
+                {
+                    BolumID = int.Parse(frm["bolumid"]),
+                    DersID = ders.DersID
+                };
+                bolumDerslerConcrete._bolumDerslerRepository.Insert(bolumlerDersler);
+                bolumDerslerConcrete._bolumDerslerUnitOfWork.SaveChanges();
+                bolumDerslerConcrete._bolumDerslerUnitOfWork.Dispose();
                 return RedirectToAction("Index");
             }
 
@@ -66,7 +85,7 @@ namespace BilgiYonetimSistemi.UI.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Ders ders = db.Dersler.Find(id);
+            Ders ders = dersConcrete._dersRepository.GetById(id);
             if (ders == null)
             {
                 return HttpNotFound();
@@ -83,8 +102,10 @@ namespace BilgiYonetimSistemi.UI.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(ders).State = EntityState.Modified;
-                db.SaveChanges();
+                dersConcrete._dersRepository.Update(ders);
+                dersConcrete._derslerUnitOfWork.SaveChanges();
+                dersConcrete._derslerUnitOfWork.Dispose();
+
                 return RedirectToAction("Index");
             }
             return View(ders);
@@ -97,7 +118,7 @@ namespace BilgiYonetimSistemi.UI.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Ders ders = db.Dersler.Find(id);
+            Ders ders = dersConcrete._dersRepository.GetById(id);
             if (ders == null)
             {
                 return HttpNotFound();
@@ -110,9 +131,9 @@ namespace BilgiYonetimSistemi.UI.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Ders ders = db.Dersler.Find(id);
-            db.Dersler.Remove(ders);
-            db.SaveChanges();
+            dersConcrete._dersRepository.Delete(id);
+            dersConcrete._derslerUnitOfWork.SaveChanges();
+            dersConcrete._derslerUnitOfWork.Dispose();
             return RedirectToAction("Index");
         }
 
@@ -120,7 +141,7 @@ namespace BilgiYonetimSistemi.UI.Controllers
         {
             if (disposing)
             {
-                db.Dispose();
+                dersConcrete._derslerUnitOfWork.Dispose();
             }
             base.Dispose(disposing);
         }
