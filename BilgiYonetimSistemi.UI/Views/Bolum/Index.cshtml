@@ -1,4 +1,4 @@
-﻿@model IEnumerable<BilgiYonetimSistemi.DATA.Bolum>
+﻿@model IEnumerable<BilgiYonetimSistemi.DATA.FakulteBolumler>
 
 @{
     ViewBag.Title = "Index";
@@ -20,6 +20,13 @@
                             <th>
                                 <h4>
                                     <strong>
+                                        @Html.DisplayName("Fakülte Adı:")
+                                    </strong>
+                                </h4>
+                            </th>
+                            <th>
+                                <h4>
+                                    <strong>
                                         @Html.DisplayName("Bölüm Adı:")
                                     </strong>
                                 </h4>
@@ -30,7 +37,7 @@
                                         @Html.DisplayName("Eğitim Dili:")
                                     </strong>
                                 </h4>
-                              </th>
+                            </th>
                             <th></th>
                         </tr>
 
@@ -38,10 +45,13 @@
                         {
                             <tr>
                                 <td>
-                                    @Html.DisplayFor(modelItem => item.BolumAdi)
+                                    @Html.DisplayFor(modelItem => item.BolumunFakultesi.FakulteAdi)
                                 </td>
                                 <td>
-                                    @Html.DisplayFor(modelItem => item.EgitimDili)
+                                    @Html.DisplayFor(modelItem => item.FakulteninBolumu.BolumAdi)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.FakulteninBolumu.EgitimDili)
                                 </td>
                                 <td style="text-align:right">
                                     @Html.ActionLink("DÜZENLE", "Edit", new { id = item.BolumID }, new { @class = "btn btn-warning" })

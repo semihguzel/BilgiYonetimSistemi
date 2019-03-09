@@ -24,5 +24,10 @@ namespace BilgiYonetimSistemi.BLL.Repository.Concrete
             _fakulteUnitOfWork = new EFUnitOfWork(_dbContext);
             _fakulteRepository = _fakulteUnitOfWork.GetRepository<Fakulte>();
         }
+
+        public Fakulte GetByName(string name)
+        {
+            return _fakulteRepository.GetEntity().FirstOrDefault(x => x.FakulteAdi == name);
+        }
     }
 }
