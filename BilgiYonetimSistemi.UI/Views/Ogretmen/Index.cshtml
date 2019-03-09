@@ -5,66 +5,70 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+
 
 <p>
-    @Html.ActionLink("Yeni Öğrenci Ekle", "Create",null, new { @class="btn btn-primary"})
+    @Html.ActionLink("Yeni Öğretmen Ekle", "Create", null, new { @class = "btn btn-primary" })
 </p>
+<h4>
+    Öğretmenin
+</h4>
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.OgretmenAdi)
+            <label style="font-weight:bold">Adı</label>
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.OgretmenSoyadi)
+            <label style="font-weight:bold">Soyadı</label>
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Unvan)
+            <label style="font-weight:bold">Ünvanı</label>
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.BaslangicTarihi)
+            <label style="font-weight:bold">Başlama Tarihi</label>
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.AyrilisTarihi)
+            <label style="font-weight:bold">Ayrılma Tarihi</label>
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.PersonelNumarasi)
+            <label style="font-weight:bold">Personel Numarası</label>
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Sifre)
+            <label style="font-weight:bold">Şifre</label>
         </th>
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.OgretmenAdi)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.OgretmenSoyadi)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Unvan)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.BaslangicTarihi)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.AyrilisTarihi)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PersonelNumarasi)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Sifre)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.OgretmenID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.OgretmenID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.OgretmenID })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.OgretmenAdi)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OgretmenSoyadi)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Unvan)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BaslangicTarihi)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AyrilisTarihi)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PersonelNumarasi)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Sifre)
+            </td>
+            <td>
+                @Html.ActionLink("Güncelle", "Edit", new { id = item.OgretmenID }, new { @class = "btn btn-warning" })
+                @Html.ActionLink("Ayrıntılar", "Details", new { id = item.OgretmenID }, new { @class = "btn btn-primary" })
+                @Html.ActionLink("Sil", "Delete", new { id = item.OgretmenID }, new { @class = "btn btn-danger" })
+            </td>
+        </tr>
+    }
 
 </table>

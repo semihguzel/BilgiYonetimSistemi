@@ -1,6 +1,7 @@
 ﻿using BilgiYonetimSistemi.DATA.Entities;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
@@ -25,6 +26,8 @@ namespace BilgiYonetimSistemi.DATA
         public DateTime AyrilisTarihi { get; set; }
 
         public string PersonelNumarasi { get; set; }
+        [DefaultValue("true")]
+        public bool IsActive { get; set; }
 
         public string Sifre { get; set; }
 

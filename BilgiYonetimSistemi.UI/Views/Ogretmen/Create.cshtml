@@ -7,78 +7,105 @@
 
 <h2>Öğretmen Ekleme Sayfası</h2>
 
-@using (Html.BeginForm())
+@using (Html.BeginForm("Create", "Ogretmen", FormMethod.Post, new { @enctype = "multipart/form-data" }))
 {
-    @Html.AntiForgeryToken()
+@Html.AntiForgeryToken()
 
-    <div class="form-horizontal">
+<div class="form-horizontal">
 
-        <div class="container">
-            <div class="row" style="margin-top:50px">
-                <div class="panel panel-default ">
-                    <div class="col-md-8 col-md-offset-2 ">
-                        <div class="panel-body center-block">
-                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                            <div class="form-group">
-                                <div class="col-md-10">
-                                    <label style="font-weight:bold;">Adı</label>
-                                    @Html.EditorFor(model => model.OgretmenAdi, new { htmlAttributes = new { @class = "form-control" } })
-                                    @Html.ValidationMessageFor(model => model.OgretmenAdi, "", new { @class = "text-danger" })
-                                </div>
+    <div class="container">
+        <div class="row" style="margin-top:50px">
+            <div class="panel panel-default ">
+                <div class="col-md-8 col-md-offset-2 ">
+                    <div class="panel-body center-block">
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        <div class="form-group">
+                            <div class="col-md-10">
+                                <label style="font-weight:bold;">Adı:</label>
+                                @Html.EditorFor(model => model.OgretmenAdi, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.OgretmenAdi, "", new { @class = "text-danger" })
                             </div>
+                        </div>
 
-                            <div class="form-group">
-                                <div class="col-md-10">
-                                    <label style="font-weight:bold;">Soyadı</label>
-                                    @Html.EditorFor(model => model.OgretmenSoyadi, new { htmlAttributes = new { @class = "form-control" } })
-                                    @Html.ValidationMessageFor(model => model.OgretmenSoyadi, "", new { @class = "text-danger" })
-                                </div>
+                        <div class="form-group">
+                            <div class="col-md-10">
+                                <label style="font-weight:bold;">Soyadı:</label>
+                                @Html.EditorFor(model => model.OgretmenSoyadi, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.OgretmenSoyadi, "", new { @class = "text-danger" })
                             </div>
+                        </div>
 
-                            <div class="form-group">
-                                <div class="col-md-10">
-                                    <label style="font-weight:bold;">Ünvan</label>
-                                    @Html.EditorFor(model => model.Unvan, new { htmlAttributes = new { @class = "form-control" } })
-                                    @Html.ValidationMessageFor(model => model.Unvan, "", new { @class = "text-danger" })
-                                </div>
+                        <div class="form-group">
+                            <div class="col-md-10">
+                                <label style="font-weight:bold;">Ünvan:</label>
+                                @Html.EditorFor(model => model.Unvan, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Unvan, "", new { @class = "text-danger" })
                             </div>
+                        </div>
 
-                            <div class="form-group">
-                                <div class="col-md-10">
-                                    <label style="font-weight:bold;">Göreve Başlama Tarihi</label>
-                                    @Html.EditorFor(model => model.BaslangicTarihi, new { htmlAttributes = new { @class = "form-control" } })
-                                    @Html.ValidationMessageFor(model => model.BaslangicTarihi, "", new { @class = "text-danger" })
-                                </div>
+                        <div class="form-group">
+                            <div class="col-md-10">
+                                <label style="font-weight:bold;">Göreve Başlama Tarihi:</label>
+                                <input type="date" name="model.BaslangicTarihi" />
+                                @Html.ValidationMessageFor(model => model.BaslangicTarihi, "", new { @class = "text-danger" })
                             </div>
-                            <div class="form-group">
-                                <div class="col-md-10">
-                                    <label style="font-weight:bold;">Personel Numarası</label>
-                                    @Html.EditorFor(model => model.PersonelNumarasi, new { htmlAttributes = new { @class = "form-control" } })
-                                    @Html.ValidationMessageFor(model => model.PersonelNumarasi, "", new { @class = "text-danger" })
-                                </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-10">
+                                <label style="font-weight:bold;">Personel Numarası:</label>
+                                @Html.EditorFor(model => model.PersonelNumarasi, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.PersonelNumarasi, "", new { @class = "text-danger" })
                             </div>
+                        </div>
 
-                            <div class="form-group">
-                                <div class="col-md-10">
-                                    <label style="font-weight:bold;">Şifre</label>
-                                    @Html.EditorFor(model => model.Sifre, new { htmlAttributes = new { @class = "form-control" } })
-                                    @Html.ValidationMessageFor(model => model.Sifre, "", new { @class = "text-danger" })
-                                </div>
+                        <div class="form-group">
+                            <div class="col-md-10">
+                                <label style="font-weight:bold;">Şifre:</label>
+                                @Html.EditorFor(model => model.Sifre, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Sifre, "", new { @class = "text-danger" })
                             </div>
+                        </div>
 
-                            <div class="form-group">
-                                <div class="col-md-offset-2 col-md-10">
-                                    <input type="submit" value="Ekle" class="btn btn-primary" />
-                                </div>
+
+
+
+                        <div class="form-group">
+                            <div class="col-md-10">
+                                <label style="font-weight:bold;">TCNo:</label>
+                                @Html.TextBoxFor(model => model.OgretmeninBilgisi.TCNo, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.OgretmeninBilgisi.TCNo, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-10">
+                                <label style="font-weight:bold;">E-posta:</label>
+                                @Html.TextBoxFor(model => model.OgretmeninBilgisi.OgretmenMail, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.OgretmeninBilgisi.OgretmenMail, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+
+                        <div class="form-group">
+                            <div class="col-md-10">
+                                <label style="font-weight:bold;">Fotoğraf:</label>
+                               <input type="file" name="file" id="file" />
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+                                <input type="submit" value="Ekle" class="btn btn-success" />
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-
     </div>
+
+</div>
 }
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Listeye Dön", "Index","", new { @class="btn btn-primary"})
 </div>

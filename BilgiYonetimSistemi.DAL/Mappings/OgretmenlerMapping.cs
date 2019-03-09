@@ -22,6 +22,7 @@ namespace BilgiYonetimSistemi.DAL
             Property(x => x.PersonelNumarasi).HasColumnType("nvarchar").HasMaxLength(20).IsRequired();
             Property(x => x.Sifre).HasColumnType("nvarchar").HasMaxLength(20).IsRequired();
             Property(x => x.Unvan).HasColumnType("nvarchar").HasMaxLength(20).IsRequired();
+            Property(x => x.IsActive).IsRequired();
 
             HasRequired(x => x.OgretmeninBilgisi).WithRequiredPrincipal(x => x.BilgininOgretmeni);
 
