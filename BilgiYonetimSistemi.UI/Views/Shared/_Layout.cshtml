@@ -12,7 +12,7 @@
     <meta name="theme-color" content="#313338" />
     <link rel="manifest" href="/manifest.json">
 
-    
+
     <link href="~/lib/css/style.css" rel="stylesheet" />
     <link href="~/lib/css/master_styles.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -62,7 +62,7 @@
     <script src="~/lib/js/jquery-ui.min.js"></script>
     <script src="~/Scripts/bootstrap.min.js"></script>
 
-    
+
     <script src="~/lib/js/jszip.min.js"></script>
     <script src="~/lib/js/kendo.all.min.js"></script>
     <script src="~/lib/js/kendo.aspnetmvc.min.js"></script>
@@ -75,7 +75,7 @@
 
 
 
-  
+
 </head>
 
 <body class=" ">
@@ -258,6 +258,21 @@
         <nav id="page-leftbar" role="navigation">
             <!-- BEGIN SIDEBAR MENU -->
 
+            @{
+                string kullaniciRole = Session["KullaniciRol"].ToString();
+                @if (kullaniciRole == "admin" || kullaniciRole == "developer")
+                {
+                    @Html.Partial("_AdminPartial")
+                }
+                else if (kullaniciRole == "ogrenci")
+                {
+                    @Html.Partial("_OgrenciPartial")
+                }
+                else if (kullaniciRole == "ogretmen")
+                {
+                    @Html.Partial("_OgretmenPartial")
+                }
+            }
 
             <ul class="acc-menu" id="sidebar">
                 <li><a href=@Url.Action("Index", "Yonetici")><i class="fa fa-home"></i>Ana Sayfa</a></li>
@@ -384,21 +399,19 @@
     <!-- Plugin javascript dosyaları Başla -->
     <!-- assets/plugins/ klasöründeki eklentilerin javascript dosyaları burada yüklenecek -->
     <!-- Plugin javascript dosyaları Bit -->
-
-
     @*<script src="~/lib/js/jira.collector.plugin.js"> Geri bildirim kodu
         </script>*@
 
     @*<script type="text/javascript">
-        $(document).ready(function () {
-            var universityId = '1426';
+            $(document).ready(function () {
+                var universityId = '1426';
 
-            $("a.navbar-brand").css("background", 'url("/Content/img/logo_' + universityId + '.png")  no-repeat center center');
-            $("a.navbar-brand").css("background-size", 'auto 20px');
-            //$("div.navbar-header").css("width", '100px');
-            //$("div.navbar-header").css("height", '20px');
-        });
-    </script>*@
+                $("a.navbar-brand").css("background", 'url("/Content/img/logo_' + universityId + '.png")  no-repeat center center');
+                $("a.navbar-brand").css("background-size", 'auto 20px');
+                //$("div.navbar-header").css("width", '100px');
+                //$("div.navbar-header").css("height", '20px');
+            });
+        </script>*@
     @*@Scripts.Render("~/bundles/jquery")
         @Scripts.Render("~/bundles/bootstrap")
         @RenderSection("scripts", required: false)*@

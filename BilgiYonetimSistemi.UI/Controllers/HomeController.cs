@@ -1,4 +1,8 @@
-﻿using System;
+﻿using BilgiYonetimSistemi.DAL;
+using BilgiYonetimSistemi.DATA.Entities;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -26,6 +30,31 @@ namespace BilgiYonetimSistemi.UI.Controllers
         //bakarim sagol
         public ActionResult Index()
         {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult Index(FormCollection frm)
+        {
+            string email = frm["Email"];
+            string sifre = frm["Password"];
+
+            Context db = new Context();
+
+            var userStore = new UserStore<Kullanici>(db);
+            var userManager = new UserManager<Kullanici>(userStore);
+
+            var kullanici = userManager.FindByEmail(email);
+            if (kullanici == null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            else
+            {
+                var roller = userManager.GetRoles(kullanici.Id);
+                Session["KullaniciRol"] = roller.First();
+
+            }
+
             return View();
         }
 
