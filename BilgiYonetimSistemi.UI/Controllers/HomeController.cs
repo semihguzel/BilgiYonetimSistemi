@@ -28,12 +28,12 @@ namespace BilgiYonetimSistemi.UI.Controllers
         //Create Read Update Delete kendin koyarsin tabi ama suan sifirdan elle yazmak en mantiklisi :D
         // RenderBody icine view atiyoruz bu kadar
         //bakarim sagol
-        public ActionResult Index()
+        public ActionResult Login()
         {
             return View();
         }
         [HttpPost]
-        public ActionResult Index(FormCollection frm)
+        public ActionResult Login(FormCollection frm)
         {
             string email = frm["Email"];
             string sifre = frm["Password"];
@@ -46,17 +46,26 @@ namespace BilgiYonetimSistemi.UI.Controllers
             var kullanici = userManager.FindByEmail(email);
             if (kullanici == null)
             {
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Login", "Home");
             }
             else
             {
                 var roller = userManager.GetRoles(kullanici.Id);
                 Session["KullaniciRol"] = roller.First();
-
+                if (Session["KullaniciRol"].ToString() == "admin" || Session["KullaniciRol"].ToString() == "developer")
+                    return RedirectToAction("Index", "Home");
+                //TODO : Ogrenci - Ogretmen kisimlari eklenince onlarin anasayfasina yollanacak
+                else if (Session["KullaniciRol"].ToString() == "ogretmen")
+                    return RedirectToAction("Index", "Home");
+                //TODO : Ogrenci - Ogretmen kisimlari eklenince onlarin anasayfasina yollanacak
+                else
+                    return RedirectToAction("Index", "Home");
             }
-
-            return View();
         }
 
+        public ActionResult Index()
+        {
+            return View();
+        }
     }
 }

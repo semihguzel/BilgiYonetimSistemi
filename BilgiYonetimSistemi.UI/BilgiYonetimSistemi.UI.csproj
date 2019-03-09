@@ -227,7 +227,7 @@
     <Content Include="Views\web.config" />
     <None Include="packages.config" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Home\Login.cshtml" />
     <Content Include="Scripts\jquery-1.9.1.min.map" />
     <Content Include="Views\Fakulte\Create.cshtml" />
     <Content Include="Views\Fakulte\Delete.cshtml" />
@@ -339,6 +339,7 @@
     <Content Include="Views\Shared\_AdminPartial.cshtml" />
     <Content Include="Views\Shared\_OgrenciPartial.cshtml" />
     <Content Include="Views\Shared\_OgretmenPartial.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -260,7 +260,7 @@
 
             @{
                 string kullaniciRole = Session["KullaniciRol"].ToString();
-                @if (kullaniciRole == "admin" || kullaniciRole == "developer")
+                if (kullaniciRole == "admin" || kullaniciRole == "developer")
                 {
                     @Html.Partial("_AdminPartial")
                 }
@@ -274,7 +274,7 @@
                 }
             }
 
-            <ul class="acc-menu" id="sidebar">
+            @*<ul class="acc-menu" id="sidebar">
                 <li><a href=@Url.Action("Index", "Yonetici")><i class="fa fa-home"></i>Ana Sayfa</a></li>
                 <li class="divider"></li>
 
@@ -305,7 +305,7 @@
                 <li>
                     <a href="/tr/AzamiSure"><i class="fa fa-bolt"></i><span>Azami S&#252;re İşlemleri</span> </a>
                 </li>
-            </ul>
+            </ul>*@
 
             <!-- END SIDEBAR MENU -->
         </nav>
