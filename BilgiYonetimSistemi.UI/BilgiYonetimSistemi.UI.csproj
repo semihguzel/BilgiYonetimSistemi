@@ -143,6 +143,7 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Images\fotoğraf.png" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="lib\css\font-awesome.min.css" />
@@ -335,6 +336,9 @@
     <Content Include="Views\Yonetici\Details.cshtml" />
     <Content Include="Views\Yonetici\Edit.cshtml" />
     <Content Include="Views\Yonetici\Index.cshtml" />
+    <Content Include="Views\Shared\_AdminPartial.cshtml" />
+    <Content Include="Views\Shared\_OgrenciPartial.cshtml" />
+    <Content Include="Views\Shared\_OgretmenPartial.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

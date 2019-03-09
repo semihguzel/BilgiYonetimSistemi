@@ -5,15 +5,15 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Delete</h2>
+<h2>Öğretmen Silme Sayfası</h2>
 
-<h3>Are you sure you want to delete this?</h3>
+<h3 style="background-color:red;">Bu öğrenciyi silmek istediğinizden emin misiniz?</h3>
 <div>
-    <h4>Ogretmen</h4>
+    <h4>Öğretmen</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.OgretmenAdi)
+          <label style="font-weight:bold">Adı:</label>
         </dt>
 
         <dd>
@@ -21,7 +21,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.OgretmenSoyadi)
+            <label style="font-weight:bold">Soyadı:</label>
         </dt>
 
         <dd>
@@ -29,7 +29,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Unvan)
+            <label style="font-weight:bold">Ünvanı:</label>
         </dt>
 
         <dd>
@@ -37,7 +37,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.BaslangicTarihi)
+            <label style="font-weight:bold">Başlangıç Tarihi:</label>
         </dt>
 
         <dd>
@@ -45,7 +45,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.AyrilisTarihi)
+            <label style="font-weight:bold">Ayrılış Tarihi:</label>
         </dt>
 
         <dd>
@@ -53,7 +53,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.PersonelNumarasi)
+            <label style="font-weight:bold">Personel Numarası:</label>
         </dt>
 
         <dd>
@@ -61,11 +61,35 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Sifre)
+            <label style="font-weight:bold">Şifresi:</label>
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.Sifre)
+        </dd>
+
+        <dt>
+            <label style="font-weight:bold">Fotoğraf:</label>
+        </dt>
+        @* fotoğraf gelmiyor? bir de siz bakın. *@
+        <dd>
+          <img src="@Url.Content(@Model.OgretmeninBilgisi.Fotograf)" alt="Fotograf" name="Fotograf"/>     
+        </dd>
+
+        <dt>
+            <label style="font-weight:bold">E-posta:</label>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OgretmeninBilgisi.OgretmenMail)
+        </dd>
+
+        <dt>
+            <label style="font-weight:bold">TCNo:</label>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OgretmeninBilgisi.TCNo)
         </dd>
 
     </dl>
@@ -74,8 +98,8 @@
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
+            <input type="submit" value="Delete" class="btn btn-danger" /> 
+            @Html.ActionLink("Öğretmen Listesini Gör", "Index","", new {@class="btn btn-primary" })
         </div>
     }
 </div>

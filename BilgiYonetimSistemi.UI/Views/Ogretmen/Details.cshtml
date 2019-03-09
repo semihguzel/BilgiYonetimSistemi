@@ -5,14 +5,14 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Details</h2>
+<h2>Ayrıntılar</h2>
 
 <div>
-    <h4>Ogretmen</h4>
+    <h4>Öğretmenin</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.OgretmenAdi)
+            <label style="font-weight:bold">Adı:</label>
         </dt>
 
         <dd>
@@ -20,7 +20,8 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.OgretmenSoyadi)
+            <label style="font-weight:bold">Soyadı:</label>
+
         </dt>
 
         <dd>
@@ -28,7 +29,8 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Unvan)
+            <label style="font-weight:bold">Ünvanı:</label>
+
         </dt>
 
         <dd>
@@ -36,7 +38,8 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.BaslangicTarihi)
+            <label style="font-weight:bold">Göreve Başlama Tarihi:</label>
+
         </dt>
 
         <dd>
@@ -44,7 +47,8 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.AyrilisTarihi)
+            <label style="font-weight:bold">Ayrılış Tarihi:</label>
+
         </dt>
 
         <dd>
@@ -52,7 +56,8 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.PersonelNumarasi)
+            <label style="font-weight:bold">Personel Numarası:</label>
+
         </dt>
 
         <dd>
@@ -60,16 +65,42 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Sifre)
+            <label style="font-weight:bold">Şifresi:</label>
+
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.Sifre)
         </dd>
 
+        <dt>
+            <label style="font-weight:bold">E-posta</label>
+
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OgretmeninBilgisi.OgretmenMail)
+        </dd>
+
+        <dt>
+            <label style="font-weight:bold">TCNo</label>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OgretmeninBilgisi.TCNo)
+        </dd>
+        <dt>
+            <label style="font-weight:bold">Fotoğraf</label>
+
+        </dt>
+
+        <dd>
+            <img src="@Url.Content(@Model.OgretmeninBilgisi.Fotograf)" alt="Fotograf" name="Fotograf" />
+        </dd>
     </dl>
 </div>
+<br />
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.OgretmenID }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Düzenle", "Edit", new { id = Model.OgretmenID }, new {@class="btn btn-warning" }) 
+    @Html.ActionLink("Listeye Dön", "Index","",new { @class="btn btn-primary"})
 </p>
