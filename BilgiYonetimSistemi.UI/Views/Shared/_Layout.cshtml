@@ -4,7 +4,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>&#214;ĞRENCİ BİLGİ SİSTEMİ</title>
+    <title>BİLGİ YÖNETİM SİSTEMİ</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Sakarya &#220;niversitesi">
@@ -62,7 +62,7 @@
     <script src="~/lib/js/jquery-ui.min.js"></script>
     <script src="~/Scripts/bootstrap.min.js"></script>
 
-    @* hatirladim ya 1 sn *@
+    
     <script src="~/lib/js/jszip.min.js"></script>
     <script src="~/lib/js/kendo.all.min.js"></script>
     <script src="~/lib/js/kendo.aspnetmvc.min.js"></script>
@@ -81,154 +81,153 @@
 <body class=" ">
 
 
-    <div id="headerbar">
-        <div class="container">
+    @*<div id="headerbar">                  NE İŞE YARADIĞI BİLİN MİYOR :D
+            <div class="container">
 
 
-            <h3 class="service-header">Kişisel Servisler</h3>
-            <div class="row">
+                <h3 class="service-header">Kişisel Servisler</h3>
+                <div class="row">
 
-                <div class="col-xs-6 col-sm-1">
-                    <a href="#" class="shortcut-tiles tiles-info">
-                        <div class="tiles-body">
-                            <div class="pull-left"><i class="fa fa-user"></i></div>
-                        </div>
-                        <div class="tiles-footer">
-                            Personel
-                        </div>
-                    </a>
-                </div>
-                <div class="col-xs-6 col-sm-1">
-                    <a href="#" class="shortcut-tiles tiles-orange">
-                        <div class="tiles-body">
-                            <div class="pull-left"><i class="fa fa-group"></i></div>
-                        </div>
-                        <div class="tiles-footer">
-                            ABİS
-                        </div>
-                    </a>
-                </div>
-                <div class="col-xs-6 col-sm-1">
-                    <a href="#" class="shortcut-tiles tiles-success">
-                        <div class="tiles-body">
-                            <div class="pull-left"><i class="fa fa-briefcase"></i></div>
-                        </div>
-                        <div class="tiles-footer">
-                            AF
-                        </div>
-                    </a>
-                </div>
-                <div class="col-xs-6 col-sm-1">
-                    <a href="#" class="shortcut-tiles tiles-magenta">
-                        <div class="tiles-body">
-                            <div class="pull-left"><i class="fa fa-thumbs-up"></i></div>
-                        </div>
-                        <div class="tiles-footer">
-                            ABP
-                        </div>
-                    </a>
-                </div>
-                <div class="col-xs-6 col-sm-1">
-                    <a href="#" class="shortcut-tiles tiles-indigo">
-                        <div class="tiles-body">
-                            <div class="pull-left"><i class="fa fa-plus-square"></i></div>
-                        </div>
-                        <div class="tiles-footer">
-                            Ekders
-                        </div>
-                    </a>
-                </div>
-                <div class="col-xs-6 col-sm-1">
-                    <a href="#" class="shortcut-tiles tiles-inverse">
-                        <div class="tiles-body">
-                            <div class="pull-left"><i class="fa fa-globe"></i></div>
-                        </div>
-                        <div class="tiles-footer">
-                            WSY
-                        </div>
-                    </a>
+                    <div class="col-xs-6 col-sm-1">
+                        <a href="#" class="shortcut-tiles tiles-info">
+                            <div class="tiles-body">
+                                <div class="pull-left"><i class="fa fa-user"></i></div>
+                            </div>
+                            <div class="tiles-footer">
+                                Personel
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-sm-1">
+                        <a href="#" class="shortcut-tiles tiles-orange">
+                            <div class="tiles-body">
+                                <div class="pull-left"><i class="fa fa-group"></i></div>
+                            </div>
+                            <div class="tiles-footer">
+                                ABİS
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-sm-1">
+                        <a href="#" class="shortcut-tiles tiles-success">
+                            <div class="tiles-body">
+                                <div class="pull-left"><i class="fa fa-briefcase"></i></div>
+                            </div>
+                            <div class="tiles-footer">
+                                AF
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-sm-1">
+                        <a href="#" class="shortcut-tiles tiles-magenta">
+                            <div class="tiles-body">
+                                <div class="pull-left"><i class="fa fa-thumbs-up"></i></div>
+                            </div>
+                            <div class="tiles-footer">
+                                ABP
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-sm-1">
+                        <a href="#" class="shortcut-tiles tiles-indigo">
+                            <div class="tiles-body">
+                                <div class="pull-left"><i class="fa fa-plus-square"></i></div>
+                            </div>
+                            <div class="tiles-footer">
+                                Ekders
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-sm-1">
+                        <a href="#" class="shortcut-tiles tiles-inverse">
+                            <div class="tiles-body">
+                                <div class="pull-left"><i class="fa fa-globe"></i></div>
+                            </div>
+                            <div class="tiles-footer">
+                                WSY
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="col-xs-6 col-sm-1">
+                        <a href="#" class="shortcut-tiles tiles-midnightblue">
+                            <div class="tiles-body">
+                                <div class="pull-left"><i class="fa fa-star-half-o"></i></div>
+                            </div>
+                            <div class="tiles-footer">
+                                PD
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-sm-1">
+                        <a href="#" class="shortcut-tiles tiles-green">
+                            <div class="tiles-body">
+                                <div class="pull-left"><i class="fa fa-tasks"></i></div>
+                            </div>
+                            <div class="tiles-footer">
+                                DPP
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-sm-1">
+                        <a href="#" class="shortcut-tiles tiles-brown">
+                            <div class="tiles-body">
+                                <div class="pull-left"><i class="fa fa-archive"></i></div>
+                            </div>
+                            <div class="tiles-footer">
+                                OGRİS
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-sm-1">
+                        <a href="#" class="shortcut-tiles tiles-primary">
+                            <div class="tiles-body">
+                                <div class="pull-left"><i class="fa fa-bar-chart-o"></i></div>
+                            </div>
+                            <div class="tiles-footer">
+                                DYİ
+                            </div>
+                        </a>
+                    </div>
+
+
+
                 </div>
 
-                <div class="col-xs-6 col-sm-1">
-                    <a href="#" class="shortcut-tiles tiles-midnightblue">
-                        <div class="tiles-body">
-                            <div class="pull-left"><i class="fa fa-star-half-o"></i></div>
-                        </div>
-                        <div class="tiles-footer">
-                            PD
-                        </div>
-                    </a>
+                <h3 class="service-header">Genel Servisler</h3>
+                <div class="row">
+
                 </div>
-                <div class="col-xs-6 col-sm-1">
-                    <a href="#" class="shortcut-tiles tiles-green">
-                        <div class="tiles-body">
-                            <div class="pull-left"><i class="fa fa-tasks"></i></div>
-                        </div>
-                        <div class="tiles-footer">
-                            DPP
-                        </div>
-                    </a>
-                </div>
-                <div class="col-xs-6 col-sm-1">
-                    <a href="#" class="shortcut-tiles tiles-brown">
-                        <div class="tiles-body">
-                            <div class="pull-left"><i class="fa fa-archive"></i></div>
-                        </div>
-                        <div class="tiles-footer">
-                            OGRİS
-                        </div>
-                    </a>
-                </div>
-                <div class="col-xs-6 col-sm-1">
-                    <a href="#" class="shortcut-tiles tiles-primary">
-                        <div class="tiles-body">
-                            <div class="pull-left"><i class="fa fa-bar-chart-o"></i></div>
-                        </div>
-                        <div class="tiles-footer">
-                            DYİ
-                        </div>
-                    </a>
-                </div>
+
+
 
 
 
             </div>
-
-            <h3 class="service-header">Genel Servisler</h3>
-            <div class="row">
-
-            </div>
-
-
-
-
-
-        </div>
-    </div>
+        </div>*@
 
     <header class="navbar navbar-inverse navbar-fixed-top" role="banner">
         <a id="leftmenu-trigger" class="tooltips" data-toggle="tooltip" data-placement="right" title="" data-original-title="Men&#252; A&#231;/Kapat"></a>
 
-        <div class="navbar-header pull-left">
-            <a class="navbar-brand" href="https://sabis.sakarya.edu.tr">Avant</a>
-        </div>
+
         <div class="pull-left logo-yani-yazisi">
-            &#214;ĞRENCİ BİLGİ SİSTEMİ
+            BİLGİ YÖNETİM SİSTEMİ
         </div>
 
         <ul class="nav navbar-nav pull-right toolbar">
             <li class="dropdown">
                 <a href="#" class="dropdown-toggle username" data-toggle="dropdown">
                     <span>
-                        g110100060
+                        g110100060 @*ögrenci numarasi db'den gelecek*@
                         <i class="fa fa-caret-down"></i>
-                    </span><img src="https://fotograf.sabis.sakarya.edu.tr/Fotograf/850428dc117d9b6af917b07af243dbad" alt="Dangerfield" />
+                    </span><img src="https://fotograf.sabis.sakarya.edu.tr/Fotograf/850428dc117d9b6af917b07af243dbad" alt="Dangerfield" /> @*ögrenci resmi db'den gelecek*@
                 </a>
                 <ul class="dropdown-menu userinfo arrow" style="padding:0 15px;">
                     <li class="userlinks">
                         <ul class="dropdown-menu">
                             <li class="text-center">
                                 <a href="https://sabis.sakarya.edu.tr/tr/Hesap/?t=6">
+                                    @*kullanıcı idye göre profil *@
                                     <img src="https://fotograf.sabis.sakarya.edu.tr/Fotograf/850428dc117d9b6af917b07af243dbad" alt="Kullanıcı Resmi" style="padding:0 10px 10px; width:150px; border-radius:20px;" />
                                 </a>
                             </li>
@@ -244,22 +243,9 @@
                 </ul>
             </li>
 
-            <li class="tooltips" data-toggle="tooltip" data-trigger="hover" data-placement="bottom" title="SA&#220; Posta">
-                <a target="_blank" href="http://posta.sakarya.edu.tr/"><i class="fa fa-envelope"></i></a>
-            </li>
-            <li class="dropdown tooltips hidden" data-toggle="tooltip" data-trigger="hover" data-placement="bottom" title="Dil">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-flag"></i></a>
-                <ul class="dropdown-menu language-select arrow">
-                    <li class="languages-link">
-                        <ul class="dropdown-menu">
-                            <li><a href="/?language=tr">Türkçe</a></li>
-                            <li><a href="/?language=en">English</a></li>
-
-                        </ul>
-                    </li>
-                </ul>
-            </li>
-
+            @*<li class="tooltips" data-toggle="tooltip" data-trigger="hover" data-placement="bottom" title="SA&#220; Posta">
+                    <a target="_blank" href="http://posta.sakarya.edu.tr/"><i class="fa fa-envelope"></i></a>
+                </li>*@
         </ul>
 
 
@@ -274,11 +260,11 @@
 
 
             <ul class="acc-menu" id="sidebar">
-                <li><a href="/"><i class="fa fa-home"></i>Ana Sayfa</a></li>
+                <li><a href=@Url.Action("Index", "Yonetici")><i class="fa fa-home"></i>Ana Sayfa</a></li>
                 <li class="divider"></li>
 
                 <li>
-                    <a href="/tr/Ders"><i class="fa fa-book"></i><span>Se&#231;ilen Dersler</span> </a>
+                    <a href=@Url.Action("Index", "Fakulte")><i class="fa fa-book"></i><span>Se&#231;ilen Dersler</span> </a>
                 </li>
                 <li>
                     <a href="/tr/Ders/Program"><i class="fa fa-calendar"></i><span>Ders Programı</span> </a>
@@ -398,13 +384,12 @@
     <!-- Plugin javascript dosyaları Başla -->
     <!-- assets/plugins/ klasöründeki eklentilerin javascript dosyaları burada yüklenecek -->
     <!-- Plugin javascript dosyaları Bit -->
-    
-
-    <script src="~/lib/js/jira.collector.plugin.js"></script>
 
 
+    @*<script src="~/lib/js/jira.collector.plugin.js"> Geri bildirim kodu
+        </script>*@
 
-    <script type="text/javascript">
+    @*<script type="text/javascript">
         $(document).ready(function () {
             var universityId = '1426';
 
@@ -413,9 +398,9 @@
             //$("div.navbar-header").css("width", '100px');
             //$("div.navbar-header").css("height", '20px');
         });
-    </script>
+    </script>*@
     @*@Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)*@
+        @Scripts.Render("~/bundles/bootstrap")
+        @RenderSection("scripts", required: false)*@
 </body>
 </html>

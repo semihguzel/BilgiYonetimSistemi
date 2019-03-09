@@ -8,17 +8,21 @@ using System.Web;
 using System.Web.Mvc;
 using BilgiYonetimSistemi.DAL;
 using BilgiYonetimSistemi.DATA;
+using BilgiYonetimSistemi.BLL.Repository.Concrete;
 
 namespace BilgiYonetimSistemi.UI.Controllers
 {
     public class FakulteController : Controller
-    {
-        private Context db = new Context();
-
+    {        
+        FakulteConcrete fakulteConcrete;
+        public FakulteController()
+        {
+            fakulteConcrete = new FakulteConcrete();
+        }
         // GET: Fakulte
         public ActionResult Index()
         {
-            return View(db.Fakulteler.ToList());
+            return View(fakulteConcrete._fakulteRepository.GetAll());
         }
 
         // GET: Fakulte/Details/5
@@ -28,7 +32,7 @@ namespace BilgiYonetimSistemi.UI.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Fakulte fakulte = db.Fakulteler.Find(id);
+            Fakulte fakulte = fakulteConcrete._fakulteRepository.GetById(id);
             if (fakulte == null)
             {
                 return HttpNotFound();
@@ -51,9 +55,17 @@ namespace BilgiYonetimSistemi.UI.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Fakulteler.Add(fakulte);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                var faculty = fakulteConcrete.GetByName(fakulte.FakulteAdi);
+
+                if (faculty == null)
+                {
+                    fakulteConcrete._fakulteRepository.Insert(fakulte);
+                    fakulteConcrete._fakulteUnitOfWork.SaveChanges();
+                    fakulteConcrete._fakulteUnitOfWork.Dispose();
+                    return RedirectToAction("Index");
+                }
+                else
+                    return RedirectToAction("Index");
             }
 
             return View(fakulte);
@@ -66,7 +78,7 @@ namespace BilgiYonetimSistemi.UI.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Fakulte fakulte = db.Fakulteler.Find(id);
+            Fakulte fakulte = fakulteConcrete._fakulteRepository.GetById(id);
             if (fakulte == null)
             {
                 return HttpNotFound();
@@ -83,8 +95,9 @@ namespace BilgiYonetimSistemi.UI.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(fakulte).State = EntityState.Modified;
-                db.SaveChanges();
+                fakulteConcrete._fakulteRepository.Update(fakulte);
+                fakulteConcrete._fakulteUnitOfWork.SaveChanges();
+                fakulteConcrete._fakulteUnitOfWork.Dispose();                
                 return RedirectToAction("Index");
             }
             return View(fakulte);
@@ -97,7 +110,7 @@ namespace BilgiYonetimSistemi.UI.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Fakulte fakulte = db.Fakulteler.Find(id);
+            Fakulte fakulte =fakulteConcrete._fakulteRepository.GetById(id);
             if (fakulte == null)
             {
                 return HttpNotFound();
@@ -110,9 +123,9 @@ namespace BilgiYonetimSistemi.UI.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Fakulte fakulte = db.Fakulteler.Find(id);
-            db.Fakulteler.Remove(fakulte);
-            db.SaveChanges();
+            fakulteConcrete._fakulteRepository.Delete(id);
+            fakulteConcrete._fakulteUnitOfWork.SaveChanges();
+            fakulteConcrete._fakulteUnitOfWork.Dispose();
             return RedirectToAction("Index");
         }
 
@@ -120,7 +133,7 @@ namespace BilgiYonetimSistemi.UI.Controllers
         {
             if (disposing)
             {
-                db.Dispose();
+               fakulteConcrete._fakulteUnitOfWork.Dispose();
             }
             base.Dispose(disposing);
         }
