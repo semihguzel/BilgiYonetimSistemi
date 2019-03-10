@@ -25,16 +25,9 @@ namespace BilgiYonetimSistemi.BLL.Repository.Concrete
             _bolumRepository = _bolumUnitOfWork.GetRepository<Bolum>();
         }
 
-        public Bolum GetByName(string name)
+        public Bolum GetByNameLanguage(string name, string language)
         {
-            return _bolumRepository.GetEntity().FirstOrDefault(x => x.BolumAdi == name);
+            return _bolumRepository.GetEntity().FirstOrDefault(x => x.BolumAdi == name && x.EgitimDili == language);
         }
-
-        public Bolum GetByLanguage(string language)
-        {
-            return _bolumRepository.GetEntity().FirstOrDefault(x => x.EgitimDili == language);
-        }
-
-        
     }
 }

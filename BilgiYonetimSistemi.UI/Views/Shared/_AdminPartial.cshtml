@@ -10,35 +10,35 @@
 
 
     <ul class="acc-menu" id="sidebar" style="text-align:left;">
-        <li><a href="/"><i class="fa fa-home"></i>Ana Sayfa</a></li>
+        <li><a href=@Url.Action("Index", "Home")><i class="fa fa-home"></i><span>Ana Sayfa</span></a></li>
         <li class="divider"></li>
 
         <li>
-            <a href="/tr/Ders"><span>Fakülte İşlemleri</span> </a>
+            <a href=@Url.Action("Index", "Fakulte")><i class="fa fa-university"></i><span>Fakülte İşlemleri</span></a>
         </li>
         <li>
-            <a href="/tr/Ders/Program"><span>Bölüm İşlemleri</span> </a>
+            <a href=@Url.Action("Index", "Bolum")><i class="fa fa-building"></i><span>Bölüm İşlemleri</span> </a>
         </li>
         <li>
-            <a href="/tr/Ders/Yazilma"><span>Öğrenci İşlemleri</span> </a>
+            <a href=@Url.Action("Index", "Ogrenci")><i class="fa fa-users"></i><span>Öğrenci İşlemleri</span> </a>
         </li>
         <li>
-            <a href="/tr/Danisman"><span>Öğretmen İşlemleri</span> </a>
+            <a href=@Url.Action("Index", "Ogretmen")><i class="fa fa-chalkboard-teacher"></i><span>Öğretmen İşlemleri</span> </a>
         </li>
         <li>
-            <a href="/tr/Transkript"><span>Ders İşlemleri</span> </a>
+            <a href=@Url.Action("Index", "Ders")><i class="fa fa-book"></i><span>Ders İşlemleri</span> </a>
         </li>
         <li>
-            <a href="/tr/Anket/Liste"><span>Dönem İşlemleri</span> </a>
+            <a href=@Url.Action("Index", "Donem")><i class="fa fa-calendar-alt"></i><span>Dönem İşlemleri</span> </a>
         </li>
         <li>
-            <a href="/tr/Home/Basvuru"><span>Yönetici İşlemleri</span> </a>
+            <a href=@Url.Action("Index", "Yonetici")><i class="fa fa-user-edit"></i><span>Yönetici İşlemleri</span> </a>
         </li>
         <li>
-            <a href="/tr/Home/Diger"><span>Öğrenci-Ders Düzenleme</span> </a>
+            <a href=@Url.Action("Index", "")><span>Öğrenci-Ders Düzenleme</span></a> @*Gerekli yönlendirme ve icon eklenecek*@ 
         </li>
         <li>
-            <a href="/tr/AzamiSure"><span>Öğretmen-Ders Düzenleme</span> </a>
+            <a href=@Url.Action("Index", "")><span>Öğretmen-Ders Düzenleme</span> </a> @*Gerekli yönlendirme ve icon eklenecek*@
         </li>
     </ul>
 

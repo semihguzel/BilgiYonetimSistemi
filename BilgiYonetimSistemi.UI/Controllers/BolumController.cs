@@ -62,38 +62,42 @@ namespace BilgiYonetimSistemi.UI.Controllers
         {
             if (ModelState.IsValid)
             {
-                var department = bolumConcrete.GetByName(bolum.BolumAdi);
-                var language = bolumConcrete.GetByLanguage(bolum.EgitimDili);
+                var department = bolumConcrete.GetByNameLanguage(bolum.BolumAdi, bolum.EgitimDili);
 
-                if (department == null || department != null && language == null)
+                if (fakulteBolumlerConcrete.GetByFacultyDepartment(int.Parse(frm["fakulteid"]), bolum) == null)
                 {
-                    bolumConcrete._bolumRepository.Insert(bolum);
-                    bolumConcrete._bolumUnitOfWork.SaveChanges();
-                    bolumConcrete._bolumUnitOfWork.Dispose();
-                    FakulteBolumler fakulteBolumler = new FakulteBolumler()
+                    if (department == null)
                     {
-                        BolumID = bolum.BolumID,
-                        FakulteID = int.Parse(frm["fakulteid"])
-                    };
-                    fakulteBolumlerConcrete._fakulteBolumlerRepository.Insert(fakulteBolumler);
-                    fakulteBolumlerConcrete._fakulteBolumlerUnitOfWork.SaveChanges();
-                    fakulteBolumlerConcrete._fakulteBolumlerUnitOfWork.Dispose();
+                        bolumConcrete._bolumRepository.Insert(bolum);
+                        bolumConcrete._bolumUnitOfWork.SaveChanges();
+                        bolumConcrete._bolumUnitOfWork.Dispose();
+                        FakulteBolumler fakulteBolumler = new FakulteBolumler()
+                        {
+                            BolumID = bolum.BolumID,
+                            FakulteID = int.Parse(frm["fakulteid"])
+                        };
+                        fakulteBolumlerConcrete._fakulteBolumlerRepository.Insert(fakulteBolumler);
+                        fakulteBolumlerConcrete._fakulteBolumlerUnitOfWork.SaveChanges();
+                        fakulteBolumlerConcrete._fakulteBolumlerUnitOfWork.Dispose();
 
-                    return RedirectToAction("Index");
+                        return RedirectToAction("Index");
+                    }
+                    else
+                    {
+                        FakulteBolumler fakulteBolumler = new FakulteBolumler()
+                        {
+                            BolumID = department.BolumID,
+                            FakulteID = int.Parse(frm["fakulteid"])
+                        };
+                        fakulteBolumlerConcrete._fakulteBolumlerRepository.Insert(fakulteBolumler);
+                        fakulteBolumlerConcrete._fakulteBolumlerUnitOfWork.SaveChanges();
+                        fakulteBolumlerConcrete._fakulteBolumlerUnitOfWork.Dispose();
+
+                        return RedirectToAction("Index");
+                    }
                 }
                 else
-                {
-                    FakulteBolumler fakulteBolumler = new FakulteBolumler()
-                    {
-                        BolumID = department.BolumID,
-                        FakulteID = int.Parse(frm["fakulteid"])
-                    };
-                    fakulteBolumlerConcrete._fakulteBolumlerRepository.Insert(fakulteBolumler);
-                    fakulteBolumlerConcrete._fakulteBolumlerUnitOfWork.SaveChanges();
-                    fakulteBolumlerConcrete._fakulteBolumlerUnitOfWork.Dispose();
-
                     return RedirectToAction("Index");
-                }
             }
 
             return View(bolum);

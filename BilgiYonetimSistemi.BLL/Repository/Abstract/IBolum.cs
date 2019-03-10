@@ -9,8 +9,6 @@ namespace BilgiYonetimSistemi.BLL.Repository.Abstract
 {
     public interface IBolum
     {
-        Bolum GetByName(string name);
-
-        Bolum GetByLanguage(string language);
+        Bolum GetByNameLanguage(string name, string language);
     }
 }
