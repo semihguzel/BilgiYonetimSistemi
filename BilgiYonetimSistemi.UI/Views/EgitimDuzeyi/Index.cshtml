@@ -5,30 +5,44 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<div class="container">
+    <div class="row" style="margin-top:50px">
+        <div class="panel panel-default ">
+            <div class="col-md-12  ">
+                <div class="panel-body center-block">
+                    <p>
+                        @Html.ActionLink("YENİ KAYIT", "Create", null, new { @class = "btn btn-info " })
+                    </p>
+                    <br />
+                    <table class="table table-striped">
+                        <tr>
+                            <th>
+                                <h4>
+                                    <strong>
+                                        @Html.DisplayName("Eğitim Düzeyi")
+                                    </strong>
+                                </h4>
+                            </th>
+                            <th></th>
+                        </tr>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.EgitimDuzeyTipi)
-        </th>
-        <th></th>
-    </tr>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.EgitimDuzeyTipi)
+                                </td>
+                                <td style="text-align:right">
+                                    @Html.ActionLink("DÜZENLE", "Edit", new { id = item.EgitimDuzeyiID }, new { @class = "btn btn-warning" })
+                                    @Html.ActionLink("DETAY", "Details", new { id = item.EgitimDuzeyiID }, new { @class = "btn btn-primary" })
+                                    @Html.ActionLink("SİL", "Delete", new { id = item.EgitimDuzeyiID }, new { @class = "btn btn-danger" })
+                                </td>
+                            </tr>
+                        }
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.EgitimDuzeyTipi)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.EgitimDuzeyiID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.EgitimDuzeyiID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.EgitimDuzeyiID })
-        </td>
-    </tr>
-}
-
-</table>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

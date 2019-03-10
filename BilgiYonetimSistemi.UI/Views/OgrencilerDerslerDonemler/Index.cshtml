@@ -5,42 +5,67 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<div class="container">
+    <div class="row" style="margin-top:50px">
+        <div class="panel panel-default ">
+            <div class="col-md-12  ">
+                <div class="panel-body center-block">
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.DersinOgrencisi.OgrenciAdi)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.OgrenciDersinDonemi.DonemYili)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.OgrencininDersi.DersAdi)
-        </th>
-        <th></th>
-    </tr>
+                    <p>
+                        @Html.ActionLink("YENİ KAYIT", "Create", null, new { @class = "btn btn-info " })
+                    </p>
+                    <br />
+                    <table class="table table-striped">
+                        <tr>
+                            <th>
+                                <h4>
+                                    <strong>
+                                        @Html.DisplayName("Öğrenci")
+                                    </strong>
+                                </h4>
+                            </th>
+                            <th>
+                                <h4>
+                                    <strong>
+                                        @Html.DisplayName("Dönem")
+                                    </strong>
+                                </h4>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.DersinOgrencisi.OgrenciAdi)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.OgrenciDersinDonemi.DonemYili)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.OgrencininDersi.DersAdi)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.OgrenciDerslerDonemler }) |
-            @Html.ActionLink("Details", "Details", new { id=item.OgrenciDerslerDonemler }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.OgrenciDerslerDonemler })
-        </td>
-    </tr>
-}
+                            </th>
+                            <th>
+                                <h4>
+                                    <strong>
+                                        @Html.DisplayName("Ders")
+                                    </strong>
+                                </h4>
 
-</table>
+                            </th>
+                            <th></th>
+                        </tr>
+
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.DersinOgrencisi.OgrenciAdi)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.OgrenciDersinDonemi.DonemYili)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.OgrencininDersi.DersAdi)
+                                </td>
+                                <td style="text-align:right">
+                                    @Html.ActionLink("DÜZENLE", "Edit", new { id = item.OgrenciDerslerDonemler }, new { @class = "btn btn-warning" })
+                                    @Html.ActionLink("DETAY", "Details", new { id = item.OgrenciDerslerDonemler }, new { @class = "btn btn-primary" })
+                                    @Html.ActionLink("SİL", "Delete", new { id = item.OgrenciDerslerDonemler }, new { @class = "btn btn-danger" })
+                                </td>
+                            </tr>
+                        }
+
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

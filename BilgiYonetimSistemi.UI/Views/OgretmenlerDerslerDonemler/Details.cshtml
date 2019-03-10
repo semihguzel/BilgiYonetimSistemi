@@ -5,39 +5,51 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Details</h2>
+<div class="container">
+    <div class="row" style="margin-top:50px">
+        <div class="panel panel-default ">
+            <div class="col-md-8 col-md-offset-2 ">
+                <div class="panel-body center-block">
+                    <div>
+                        <h4>Öğretmenin Dönem Dersi</h4>
+                        <hr />
+                        <dl class="dl-horizontal">
+                            <dt>
+                                @Html.DisplayName("Öğretmen:")
+                            </dt>
 
-<div>
-    <h4>OgretmenlerDerslerDonemler</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.DersinOgretmeni.OgretmenAdi)
-        </dt>
+                            <dd>
+                                @Html.DisplayFor(model => model.DersinOgretmeni.OgretmenAdi)
+                            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.DersinOgretmeni.OgretmenAdi)
-        </dd>
+                            <dt>
+                                @Html.DisplayName("Dönem:")
+                            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.OgretmenDersinDonemi.DonemYili)
-        </dt>
+                            <dd>
+                                @Html.DisplayFor(model => model.OgretmenDersinDonemi.DonemYili)
+                            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.OgretmenDersinDonemi.DonemYili)
-        </dd>
+                            <dt>
+                                @Html.DisplayName("Ders:")
+                            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.OgretmeninDersi.DersAdi)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.OgretmeninDersi.DersAdi)
-        </dd>
-
-    </dl>
+                            <dd>
+                                @Html.DisplayFor(model => model.OgretmeninDersi.DersAdi)
+                            </dd>
+                            <br />
+                        </dl>
+                    </div>
+                    <p>
+                        @Html.ActionLink("GÜNCELLE", "Edit", new { id = Model.OgretmenlerDerslerID }, new { @class = "btn btn-primary" }) 
+                        @Html.ActionLink("Listeye Dön", "Index", null, new
+                    {
+                        @class = "btn btn-default  ",
+                        @style = "float:right"
+                    })
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.OgretmenlerDerslerID }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>

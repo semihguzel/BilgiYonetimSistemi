@@ -5,29 +5,47 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
 
+<div class="container">
+    <div class="row" style="margin-top:50px">
+        <div class="panel panel-default ">
+            <div class="col-md-12  ">
+                <div class="panel-body center-block">
 
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.BolumunFakultesi.FakulteAdi)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.FakulteninBolumu.BolumAdi)
-        </th>
-        <th></th>
-    </tr>
+                    <table class="table table-striped">
+                        <tr>
+                            <th>
+                                <h4>
+                                    <strong>
+                                        @Html.DisplayName("Fakülte Adı")
+                                    </strong>
+                                </h4>
+                              </th>
+                            <th>
+                                <h4>
+                                    <strong>
+                                        @Html.DisplayName("Bölüm Adı")
+                                    </strong>
+                                </h4>   
+                            </th>
+                            <th></th>
+                        </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.BolumunFakultesi.FakulteAdi)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.FakulteninBolumu.BolumAdi)
-        </td>
-    </tr>
-}
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.BolumunFakultesi.FakulteAdi)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.FakulteninBolumu.BolumAdi)
+                                </td>
+                            </tr>
+                        }
 
-</table>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

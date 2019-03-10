@@ -5,23 +5,36 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Details</h2>
+<div class="container">
+    <div class="row" style="margin-top:50px">
+        <div class="panel panel-default ">
+            <div class="col-md-8 col-md-offset-2 ">
+                <div class="panel-body center-block">
+                    <div>
+                        <h4>Ögrenim Şekli</h4>
+                        <hr />
+                        <dl class="dl-horizontal">
+                            <dt>
+                                @Html.DisplayName("Öğrenim Şekli:")
+                            </dt>
 
-<div>
-    <h4>OgrenimSekli</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.OgrenimTipi)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.OgrenimTipi)
-        </dd>
-
-    </dl>
+                            <dd>
+                                @Html.DisplayFor(model => model.OgrenimTipi)
+                            </dd>
+                            <br />
+                            <br />
+                        </dl>
+                    </div>
+                    <p>
+                        @Html.ActionLink("GÜNCELLE", "Edit", new { id = Model.OgrenimID } , new { @class = "btn btn-primary" })
+                       @Html.ActionLink("Listeye Dön", "Index", null, new
+                  {
+                      @class = "btn btn-default  ",
+                      @style = "float:right"
+                  })
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.OgrenimID }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
