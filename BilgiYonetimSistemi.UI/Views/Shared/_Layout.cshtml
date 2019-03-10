@@ -260,7 +260,7 @@
 
             @{
                 string kullaniciRole = Session["KullaniciRol"].ToString();
-                if (kullaniciRole == "admin" || kullaniciRole == "developer")
+                if (kullaniciRole == "yonetici" || kullaniciRole == "developer")
                 {
                     @Html.Partial("_AdminPartial")
                 }
@@ -274,40 +274,7 @@
                 }
             }
 
-            @*<ul class="acc-menu" id="sidebar">
-                <li><a href=@Url.Action("Index", "Yonetici")><i class="fa fa-home"></i>Ana Sayfa</a></li>
-                <li class="divider"></li>
-
-                <li>
-                    <a href=@Url.Action("Index", "Fakulte")><i class="fa fa-book"></i><span>Se&#231;ilen Dersler</span> </a>
-                </li>
-                <li>
-                    <a href="/tr/Ders/Program"><i class="fa fa-calendar"></i><span>Ders Programı</span> </a>
-                </li>
-                <li>
-                    <a href="/tr/Ders/Yazilma"><i class="fa fa-pencil-square-o"></i><span>Derse Yazılma</span> </a>
-                </li>
-                <li>
-                    <a href="/tr/Danisman"><i class="fa fa-info"></i><span>Danışmanlık</span> </a>
-                </li>
-                <li>
-                    <a href="/tr/Transkript"><i class="fa fa-tasks"></i><span>Transkript</span> </a>
-                </li>
-                <li>
-                    <a href="/tr/Anket/Liste"><i class="fa fa-bar-chart-o"></i><span>Anketler</span> </a>
-                </li>
-                <li>
-                    <a href="/tr/Home/Basvuru"><i class="fa fa-file-text-o"></i><span>Başvuru İşlemleri</span> </a>
-                </li>
-                <li>
-                    <a href="/tr/Home/Diger"><i class="fa fa-external-link"></i><span>Diğer İşlemler</span> </a>
-                </li>
-                <li>
-                    <a href="/tr/AzamiSure"><i class="fa fa-bolt"></i><span>Azami S&#252;re İşlemleri</span> </a>
-                </li>
-            </ul>*@
-
-            <!-- END SIDEBAR MENU -->
+           
         </nav>
 
         <div id="page-content">

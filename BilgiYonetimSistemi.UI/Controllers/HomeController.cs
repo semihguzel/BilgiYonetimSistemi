@@ -50,6 +50,7 @@ namespace BilgiYonetimSistemi.UI.Controllers
             }
             else
             {
+                
                 var roller = userManager.GetRoles(kullanici.Id);
                 Session["KullaniciRol"] = roller.First();
                 if (Session["KullaniciRol"].ToString() == "admin" || Session["KullaniciRol"].ToString() == "developer")

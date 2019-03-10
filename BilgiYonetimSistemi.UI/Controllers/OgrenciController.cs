@@ -64,6 +64,7 @@ namespace BilgiYonetimSistemi.UI.Controllers
         {
             if (ModelState.IsValid)
             {
+
                 OgrenciBilgileri ogrenciBilgileri = new OgrenciBilgileri()
                 {
                     Adres = frm["adres"],
