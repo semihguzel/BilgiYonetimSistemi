@@ -54,9 +54,9 @@
                                     @Html.DisplayFor(modelItem => item.FakulteninBolumu.EgitimDili)
                                 </td>
                                 <td style="text-align:right">
-                                    @Html.ActionLink("DÜZENLE", "Edit", new { id = item.BolumID }, new { @class = "btn btn-warning" })
-                                    @Html.ActionLink("DETAY", "Details", new { id = item.BolumID }, new { @class = "btn btn-primary" })
-                                    @Html.ActionLink("SİL", "Delete", new { id = item.BolumID }, new { @class = "btn btn-danger" })
+                                    @Html.ActionLink("DÜZENLE", "Edit", new { id = item.FakulteBolumlerID }, new { @class = "btn btn-warning" })
+                                    @Html.ActionLink("DETAY", "Details", new { id = item.FakulteBolumlerID }, new { @class = "btn btn-primary" })
+                                    @Html.ActionLink("SİL", "Delete", new { id = item.FakulteBolumlerID }, new { @class = "btn btn-danger" })
                                 </td>
                             </tr>
                         }

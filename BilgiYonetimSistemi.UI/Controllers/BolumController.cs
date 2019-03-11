@@ -14,6 +14,7 @@ namespace BilgiYonetimSistemi.UI.Controllers
 {
     public class BolumController : Controller
     {
+        Context db = new Context();
         BolumConcrete bolumConcrete;
         FakulteConcrete fakulteConcrete;
         FakulteBolumlerConcrete fakulteBolumlerConcrete;
@@ -110,12 +111,12 @@ namespace BilgiYonetimSistemi.UI.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Bolum bolum = bolumConcrete._bolumRepository.GetById(id);
-            if (bolum == null)
+            FakulteBolumler fakulteBolumler = fakulteBolumlerConcrete._fakulteBolumlerRepository.GetById(id);
+            if (fakulteBolumler == null)
             {
                 return HttpNotFound();
             }
-            return View(bolum);
+            return View(fakulteBolumler);
         }
 
         // POST: Bolum/Edit/5
@@ -123,16 +124,44 @@ namespace BilgiYonetimSistemi.UI.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "BolumID,BolumAdi,EgitimDili")] Bolum bolum)
+        public ActionResult Edit([Bind(Include = "BolumID,FakulteID,FakulteBolumlerID")] FakulteBolumler fakulteBolumler, FormCollection frm)
         {
             if (ModelState.IsValid)
             {
-                bolumConcrete._bolumRepository.Update(bolum);
-                bolumConcrete._bolumUnitOfWork.SaveChanges();
-                bolumConcrete._bolumUnitOfWork.Dispose();
+                string bolumAdi = frm["FakulteninBolumu.BolumAdi"];
+                string egitimDili = frm["FakulteninBolumu.EgitimDili"];
+
+                Bolum bolum = db.Bolumler.FirstOrDefault(x => x.EgitimDili == egitimDili && x.BolumAdi == bolumAdi);
+                if (bolum == null)
+                {
+                    bolum = new Bolum()
+                    {
+                        BolumAdi = frm["FakulteninBolumu.BolumAdi"],
+                        EgitimDili = frm["FakulteninBolumu.EgitimDili"]
+                    };
+                  
+
+
+                    bolumConcrete._bolumRepository.Insert(bolum);
+                    bolumConcrete._bolumUnitOfWork.SaveChanges();
+                    bolumConcrete._bolumUnitOfWork.Dispose();
+                    fakulteBolumler.BolumID = bolum.BolumID;
+                }
+                else
+                {
+                    fakulteBolumler.BolumID = bolum.BolumID;
+                }
+
+                fakulteBolumlerConcrete._fakulteBolumlerRepository.Update(fakulteBolumler);
+                fakulteBolumlerConcrete._fakulteBolumlerUnitOfWork.SaveChanges();
+                fakulteBolumlerConcrete._fakulteBolumlerUnitOfWork.Dispose();
+
+
+
+
                 return RedirectToAction("Index");
             }
-            return View(bolum);
+            return View(fakulteBolumler);
         }
 
         // GET: Bolum/Delete/5
@@ -142,12 +171,12 @@ namespace BilgiYonetimSistemi.UI.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Bolum bolum = bolumConcrete._bolumRepository.GetById(id);
-            if (bolum == null)
+            FakulteBolumler fakulteBolumler = fakulteBolumlerConcrete._fakulteBolumlerRepository.GetById(id);
+            if (fakulteBolumler == null)
             {
                 return HttpNotFound();
             }
-            return View(bolum);
+            return View(fakulteBolumler);
         }
 
         // POST: Bolum/Delete/5
@@ -155,10 +184,10 @@ namespace BilgiYonetimSistemi.UI.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
+            fakulteBolumlerConcrete._fakulteBolumlerRepository.Delete(id);
 
-            bolumConcrete._bolumRepository.Delete(id);
-            bolumConcrete._bolumUnitOfWork.SaveChanges();
-            bolumConcrete._bolumUnitOfWork.Dispose();
+            fakulteBolumlerConcrete._fakulteBolumlerUnitOfWork.SaveChanges();
+            fakulteBolumlerConcrete._fakulteBolumlerUnitOfWork.Dispose();
             return RedirectToAction("Index");
         }
 

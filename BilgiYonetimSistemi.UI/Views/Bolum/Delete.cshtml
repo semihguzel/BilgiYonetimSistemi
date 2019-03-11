@@ -1,57 +1,57 @@
-﻿@model BilgiYonetimSistemi.DATA.Bolum
+﻿@model BilgiYonetimSistemi.DATA.FakulteBolumler
 
 @{
     ViewBag.Title = "Delete";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
- 
+
 <div class="container">
     <div class="row" style="margin-top:50px">
         <div class="panel panel-default ">
             <div class="col-md-8 col-md-offset-2 ">
                 <div class="panel-body center-block">
                     <div class="alert alert-danger">
-                        <h3>@Model.BolumAdi Bölümünü Silmek İstediğinize Emin Misiniz?</h3>
-                        </div>
-                            <h4>Bölüm</h4>
-                            <hr />
-                            <dl class="dl-horizontal">
-                                <dt>
-                                    @Html.DisplayName("Bölüm Adı:")
-                                </dt>
-
-                                <dd>
-                                    @Html.DisplayFor(model => model.BolumAdi)
-                                </dd>
-
-                                <dt>
-                                    @Html.DisplayName("Eğitim Dili:")
-                                </dt>
-
-                                <dd>
-                                    @Html.DisplayFor(model => model.EgitimDili)
-                                </dd>
-                                <br />
-                                <br />
-                            </dl>
-
-                            @using (Html.BeginForm())
-                            {
-                                @Html.AntiForgeryToken()
-
-                                <div class="form-actions no-color">
-                                    <input type="submit" value="SİL" class="btn btn-danger" /> 
-                                    @Html.ActionLink("Listeye Dön", "Index", null, new
-                                {
-                                    @class = "btn btn-default  ",
-                                    @style = "float:right"
-                                })
-                                </div>
-                            }
-                        
+                        <h3>@Model.FakulteninBolumu.BolumAdi Bölümünü Silmek İstediğinize Emin Misiniz?</h3>
                     </div>
+                    <h4>Bölüm</h4>
+                    <hr />
+                    <dl class="dl-horizontal">
+                        <dt>
+                            @Html.DisplayName("Bölüm Adı:")
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.FakulteninBolumu.BolumAdi)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayName("Eğitim Dili:")
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.FakulteninBolumu.EgitimDili)
+                        </dd>
+                        <br />
+                        <br />
+                    </dl>
+
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+
+                        <div class="form-actions no-color">
+                            <input type="submit" value="SİL" class="btn btn-danger" />
+                            @Html.ActionLink("Listeye Dön", "Index", null, new
+                        {
+                            @class = "btn btn-default  ",
+                            @style = "float:right"
+                        })
+                        </div>
+                    }
+
                 </div>
             </div>
         </div>
     </div>
+</div>
