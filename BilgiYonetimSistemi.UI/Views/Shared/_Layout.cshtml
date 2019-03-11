@@ -260,7 +260,7 @@
 
             @{
                 string kullaniciRole = Session["KullaniciRol"].ToString();
-                if (kullaniciRole == "yonetici" || kullaniciRole == "developer")
+                if (kullaniciRole == "admin" || kullaniciRole == "developer")
                 {
                     @Html.Partial("_AdminPartial")
                 }

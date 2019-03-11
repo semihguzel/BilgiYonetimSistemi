@@ -30,6 +30,12 @@ namespace BilgiYonetimSistemi.UI.Controllers
         //bakarim sagol
         public ActionResult Login()
         {
+            HttpCookie cookie = Request.Cookies["loginCookie"];
+            if (cookie != null)
+            {
+                ViewBag.Email = cookie["Email"];
+                ViewBag.Password = cookie["Password"];
+            }
             return View();
         }
         [HttpPost]
@@ -37,6 +43,7 @@ namespace BilgiYonetimSistemi.UI.Controllers
         {
             string email = frm["Email"];
             string sifre = frm["Password"];
+            bool beniHatirla = frm["RememberMe"] == "false" ? false : true;
 
             Context db = new Context();
 
@@ -50,7 +57,15 @@ namespace BilgiYonetimSistemi.UI.Controllers
             }
             else
             {
-                
+                if (beniHatirla)
+                {
+                    HttpCookie cookie = new HttpCookie("loginCookie");
+                    cookie["Email"] = email;
+                    cookie["Password"] = sifre;
+                    cookie.Expires = DateTime.Now.AddYears(1);
+                    Response.Cookies.Add(cookie);
+                }
+
                 var roller = userManager.GetRoles(kullanici.Id);
                 Session["KullaniciRol"] = roller.First();
                 if (Session["KullaniciRol"].ToString() == "admin" || Session["KullaniciRol"].ToString() == "developer")
@@ -59,6 +74,8 @@ namespace BilgiYonetimSistemi.UI.Controllers
                 else if (Session["KullaniciRol"].ToString() == "ogretmen")
                     return RedirectToAction("Index", "Home");
                 //TODO : Ogrenci - Ogretmen kisimlari eklenince onlarin anasayfasina yollanacak
+                else if (Session["KullaniciRol"].ToString() == "ogrenci")
+                    return RedirectToAction("Index", "Home");
                 else
                     return RedirectToAction("Index", "Home");
             }
