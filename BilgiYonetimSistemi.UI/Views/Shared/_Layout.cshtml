@@ -259,16 +259,16 @@
             <!-- BEGIN SIDEBAR MENU -->
 
             @{
-                string kullaniciRole = Session["KullaniciRol"].ToString();
-                if (kullaniciRole == "yonetici" || kullaniciRole == "developer")
+                var kullanici = Session["Kullanici"] as BilgiYonetimSistemi.DATA.Entities.Kullanici;
+                if (kullanici.Roles.First().RoleId == "c780e7d7-2519-4fcb-8534-5f57c1ae223c" || kullanici.Roles.First().RoleId== "1893a7c3-42a6-40b3-8878-bb660a561d07")
                 {
                     @Html.Partial("_AdminPartial")
                 }
-                else if (kullaniciRole == "ogrenci")
+                else if (kullanici.Roles.First().RoleId == "d15bb6b4-ba60-4c76-ab2f-a67d6f0d4763")
                 {
                     @Html.Partial("_OgrenciPartial")
                 }
-                else if (kullaniciRole == "ogretmen")
+                else if (kullanici.Roles.First().RoleId == "fc63936e-a4d6-47a6-84b5-de2b597a5cc0")
                 {
                     @Html.Partial("_OgretmenPartial")
                 }

@@ -25,6 +25,8 @@ namespace BilgiYonetimSistemi.DAL.Migrations
                 roleManager.Create(new IdentityRole() { Name = "ogrenci" });
             if (!roleManager.RoleExists("ogretmen"))
                 roleManager.Create(new IdentityRole() { Name = "ogretmen" });
+            if (!roleManager.RoleExists("developer"))
+                roleManager.Create(new IdentityRole() { Name = "developer" });
 
             var userStore = new UserStore<Kullanici>(db);
             var userManager = new UserManager<Kullanici>(userStore);
@@ -41,6 +43,19 @@ namespace BilgiYonetimSistemi.DAL.Migrations
             }
             if (!userManager.IsInRole(adminUser.Id, "yonetici"))
                 userManager.AddToRole(adminUser.Id, "yonetici");
+
+            var developerUser = userManager.FindByName("developer");
+            if (developerUser == null)
+            {
+                developerUser = new Kullanici()
+                {
+                    UserName = "developer@developer.com",
+                    Email = "developer@developer.com"
+                };
+                userManager.Create(developerUser, "Acer-1");
+            }
+            if (!userManager.IsInRole(developerUser.Id, "developer"))
+                userManager.AddToRole(developerUser.Id, "developer");
         }
     }
 }

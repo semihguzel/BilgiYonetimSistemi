@@ -66,15 +66,16 @@ namespace BilgiYonetimSistemi.UI.Controllers
                     Response.Cookies.Add(cookie);
                 }
 
-                var roller = userManager.GetRoles(kullanici.Id);
-                Session["KullaniciRol"] = roller.First();
-                if (Session["KullaniciRol"].ToString() == "admin" || Session["KullaniciRol"].ToString() == "developer")
+                var rol = userManager.GetRoles(kullanici.Id);
+                Session["Kullanici"] = kullanici;
+                
+                if (rol.First() == "admin" || rol.First() == "developer")
                     return RedirectToAction("Index", "Home");
                 //TODO : Ogrenci - Ogretmen kisimlari eklenince onlarin anasayfasina yollanacak
-                else if (Session["KullaniciRol"].ToString() == "ogretmen")
+                else if (rol.First() == "ogretmen")
                     return RedirectToAction("Index", "Home");
                 //TODO : Ogrenci - Ogretmen kisimlari eklenince onlarin anasayfasina yollanacak
-                else if (Session["KullaniciRol"].ToString() == "ogrenci")
+                else if (rol.First() == "ogrenci")
                     return RedirectToAction("Index", "Home");
                 else
                     return RedirectToAction("Index", "Home");
