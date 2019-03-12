@@ -29,7 +29,7 @@ namespace BilgiYonetimSistemi.DAL.Migrations
             var userStore = new UserStore<Kullanici>(db);
             var userManager = new UserManager<Kullanici>(userStore);
 
-            var adminUser = userManager.FindByName("admin");
+            var adminUser = userManager.FindByName("yonetici");
             if (adminUser == null)
             {
                 adminUser = new Kullanici()
