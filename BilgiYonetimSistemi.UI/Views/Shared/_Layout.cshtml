@@ -33,7 +33,7 @@
 
     <link href="~/lib/css/kendo.silver.mobile.min.css" rel="stylesheet" />
 
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"> 
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css">
 
 
     <link href="https://cdn0.sabis.sakarya.edu.tr/kendo/2016.1.412/styles/kendo.dataviz.min.css" rel="stylesheet" />
@@ -260,21 +260,22 @@
 
             @{
                 var kullanici = Session["Kullanici"] as BilgiYonetimSistemi.DATA.Entities.Kullanici;
-                if (kullanici.Roles.First().RoleId == "c780e7d7-2519-4fcb-8534-5f57c1ae223c" || kullanici.Roles.First().RoleId== "1893a7c3-42a6-40b3-8878-bb660a561d07")
+                if (BilgiYonetimSistemi.BLL.KullaniciIslemleri.RolGecerliMi(kullanici,"yonetici") || BilgiYonetimSistemi.BLL.KullaniciIslemleri.RolGecerliMi(kullanici, "developer"))
                 {
-                    @Html.Partial("_AdminPartial")
+                        @Html.Partial("_AdminPartial")
                 }
-                else if (kullanici.Roles.First().RoleId == "d15bb6b4-ba60-4c76-ab2f-a67d6f0d4763")
+                else if (BilgiYonetimSistemi.BLL.KullaniciIslemleri.RolGecerliMi(kullanici, "ogrenci"))
                 {
-                    @Html.Partial("_OgrenciPartial")
+                        @Html.Partial("_OgrenciPartial")
                 }
-                else if (kullanici.Roles.First().RoleId == "fc63936e-a4d6-47a6-84b5-de2b597a5cc0")
+                else if (BilgiYonetimSistemi.BLL.KullaniciIslemleri.RolGecerliMi(kullanici, "ogretmen"))
                 {
-                    @Html.Partial("_OgretmenPartial")
-                }
+                        @Html.Partial("_OgretmenPartial")
+                    }
+
             }
 
-           
+
         </nav>
 
         <div id="page-content">

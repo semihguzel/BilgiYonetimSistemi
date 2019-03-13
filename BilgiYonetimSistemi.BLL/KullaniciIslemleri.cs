@@ -1,4 +1,5 @@
 ﻿using BilgiYonetimSistemi.BLL.Repository.Concrete;
+using BilgiYonetimSistemi.DAL;
 using BilgiYonetimSistemi.DATA;
 using BilgiYonetimSistemi.DATA.Entities;
 using Microsoft.AspNet.Identity;
@@ -146,6 +147,19 @@ namespace BilgiYonetimSistemi.BLL
 
 
 
+        }
+
+        public static bool RolGecerliMi(Kullanici kullanici, string rolAdi)
+        {
+            Context db = new Context();
+            var roleStore = new RoleStore<IdentityRole>(db);
+            var roleManager = new RoleManager<IdentityRole>(roleStore);
+
+            var role = roleManager.FindByName(rolAdi);
+            if (role != null && kullanici.Roles.First().RoleId == role.Id)
+                return true;
+            else
+                return false;
         }
     }
 }

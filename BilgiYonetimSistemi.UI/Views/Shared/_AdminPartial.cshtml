@@ -32,13 +32,14 @@
             <a href=@Url.Action("Index", "Donem")><i class="fa fa-calendar-alt"></i><span>Dönem İşlemleri</span> </a>
         </li>
         @{
-            var kullanici = Session["Kullanici"] as BilgiYonetimSistemi.DATA.Entities.Kullanici;
-            if (kullanici.Roles.First().RoleId == "1893a7c3-42a6-40b3-8878-bb660a561d07")
-            {
+        var kullanici = Session["Kullanici"] as BilgiYonetimSistemi.DATA.Entities.Kullanici;
+        if (BilgiYonetimSistemi.BLL.KullaniciIslemleri.RolGecerliMi(kullanici,"developer"))
+        {
                 <li>
                     <a href=@Url.Action("Index", "Yonetici")><i class="fa fa-user-edit"></i><span>Yönetici İşlemleri</span> </a>
                 </li>
             }
+
         }
         <li>
             <a href=@Url.Action("Index", "")><span>Öğrenci-Ders Düzenleme</span></a> @*Gerekli yönlendirme ve icon eklenecek*@
