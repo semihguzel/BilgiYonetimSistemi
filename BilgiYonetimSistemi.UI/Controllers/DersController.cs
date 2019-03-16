@@ -47,7 +47,8 @@ namespace BilgiYonetimSistemi.UI.Controllers
         // GET: Ders/Create
         public ActionResult Create()
         {
-            ViewBag.BolumID = new SelectList(bolumConcrete._bolumRepository.GetEntity(), "BolumID", "BolumAdi");
+            List<Bolum> bolumler = bolumConcrete.GetByLanguage("türkçe");
+            ViewBag.BolumID = new SelectList(bolumler, "BolumID", "BolumAdi");
             return View();
         }
 
@@ -56,22 +57,25 @@ namespace BilgiYonetimSistemi.UI.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "DersID,DersAdi,DersKredisi,DersKodu")] Ders ders, FormCollection frm)
+        public ActionResult Create([Bind(Include = "DersID,DersAdi,DersKredisi,DersKodu")] Ders ders, [Bind(Include = "BolumID")] Bolum bolum)
         {
             if (ModelState.IsValid)
             {
                 dersConcrete._dersRepository.Insert(ders);
                 dersConcrete._derslerUnitOfWork.SaveChanges();
                 dersConcrete._derslerUnitOfWork.Dispose();
-
-                BolumlerDersler bolumlerDersler = new BolumlerDersler()
-                {
-                    BolumID = int.Parse(frm["bolumid"]),
-                    DersID = ders.DersID
-                };
-                bolumDerslerConcrete._bolumDerslerRepository.Insert(bolumlerDersler);
-                bolumDerslerConcrete._bolumDerslerUnitOfWork.SaveChanges();
-                bolumDerslerConcrete._bolumDerslerUnitOfWork.Dispose();
+                bolum = bolumConcrete._bolumRepository.GetById(bolum.BolumID);
+                for (int i = 0; i < bolumConcrete.GetByName(bolum.BolumAdi).Count(); i++)
+                {                    
+                    BolumlerDersler bolumlerDersler = new BolumlerDersler()
+                    {
+                        BolumID = bolum.BolumID,
+                        DersID = ders.DersID
+                    };
+                    bolumDerslerConcrete._bolumDerslerRepository.Insert(bolumlerDersler);
+                    bolumDerslerConcrete._bolumDerslerUnitOfWork.SaveChanges();
+                    bolumDerslerConcrete._bolumDerslerUnitOfWork.Dispose();
+                }
                 return RedirectToAction("Index");
             }
 
