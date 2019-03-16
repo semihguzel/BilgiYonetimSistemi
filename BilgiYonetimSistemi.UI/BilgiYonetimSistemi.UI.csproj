@@ -212,6 +212,7 @@
     <Compile Include="Controllers\OgrenimSekliController.cs" />
     <Compile Include="Controllers\OgretmenBilgileriController.cs" />
     <Compile Include="Controllers\OgretmenController.cs" />
+    <Compile Include="Controllers\OgretmenIslemleriController.cs" />
     <Compile Include="Controllers\OgretmenlerBolumlerController.cs" />
     <Compile Include="Controllers\OgretmenlerDerslerDonemlerController.cs" />
     <Compile Include="Controllers\YoneticiController.cs" />
@@ -351,6 +352,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="Content\Images\" />
     <Folder Include="lib\img\" />
+    <Folder Include="Views\OgretmenIslemleri\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BilgiYonetimSistemi.BLL\BilgiYonetimSistemi.BLL.csproj">

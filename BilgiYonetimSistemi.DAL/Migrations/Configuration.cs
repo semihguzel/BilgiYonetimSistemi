@@ -24,6 +24,7 @@ namespace BilgiYonetimSistemi.DAL.Migrations
                 db.Sinavlar.Add(new DATA.Sinav() { SinavTipi = "Vize-1" });
                 db.Sinavlar.Add(new DATA.Sinav() { SinavTipi = "Vize-2" });
                 db.Sinavlar.Add(new DATA.Sinav() { SinavTipi = "Final" });
+                db.Sinavlar.Add(new DATA.Sinav() { SinavTipi = "Büt" });
                 db.SaveChanges();
             }
             //Admin - Developer eklenme kýsmý
