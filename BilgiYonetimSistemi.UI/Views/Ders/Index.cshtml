@@ -9,14 +9,23 @@
 <div class="container">
     <div class="row" style="margin-top:50px">
         <div class="panel panel-default ">
+            <p style="font-size:30px; text-align:center;">DERS İŞLEMLERİ</p>
             <div class="col-md-12  ">
-                <div class="panel-body center-block">
-                    <p>
-                        @Html.ActionLink("YENİ KAYIT", "Create", null, new { @class = "btn btn-info" })
-                    </p>
+                <div class="panel-body center-block">                                          
+                        <p>
+                            @Html.ActionLink("YENİ KAYIT", "Department", null, new { @class = "btn btn-info" })
+                            @Html.ActionLink("BÖLÜM DERS DETAYLARI", "Departments", null, new { @class = "btn btn-primary", @style = "float:right" })
+                        </p>                    
                     <br />
                     <table class="table table-striped">
                         <tr>
+                            <th>
+                                <h4>
+                                    <strong>
+                                        @Html.DisplayName("Ders Kodu")
+                                    </strong>
+                                </h4>
+                            </th>
 
                             <th>
                                 <h4>
@@ -32,13 +41,7 @@
                                     </strong>
                                 </h4>
                             </th>
-                            <th>
-                                <h4>
-                                    <strong>
-                                        @Html.DisplayName("Ders Kodu")
-                                    </strong>
-                                </h4>
-                            </th>
+
                             <th></th>
 
                         </tr>
@@ -47,17 +50,16 @@
                         {
                             <tr>
                                 <td>
+                                    @Html.DisplayFor(modelItem => item.DersKodu)
+                                </td>
+                                <td>
                                     @Html.DisplayFor(modelItem => item.DersAdi)
                                 </td>
                                 <td>
                                     @Html.DisplayFor(modelItem => item.DersKredisi)
                                 </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.DersKodu)
-                                </td>
                                 <td style="text-align:right">
                                     @Html.ActionLink("DÜZENLE", "Edit", new { id = item.DersID }, new { @class = "btn btn-warning" })
-                                    @Html.ActionLink("DETAY", "Details", new { id = item.DersID }, new { @class = "btn btn-primary" })
                                     @Html.ActionLink("SİL", "Delete", new { id = item.DersID }, new { @class = "btn btn-danger" })
                                 </td>
                             </tr>

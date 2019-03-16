@@ -24,5 +24,14 @@ namespace BilgiYonetimSistemi.BLL.Repository.Concrete
             _bolumDerslerUnitOfWork = new EFUnitOfWork(_dbContext);
             _bolumDerslerRepository = _bolumDerslerUnitOfWork.GetRepository<BolumlerDersler>();
         }
+        public BolumlerDersler GetByDepartmentLesson(int bolumId, string ders)
+        {
+            return _bolumDerslerRepository.GetEntity().FirstOrDefault(x => x.BolumID == bolumId && x.BolumunDersi.DersKodu == ders);
+        }
+
+        public List<BolumlerDersler> GetByName(int id)
+        {
+            return _bolumDerslerRepository.GetEntity().Where(x => x.BolumID == id).ToList();
+        }
     }
 }
