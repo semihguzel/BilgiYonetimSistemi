@@ -21,6 +21,8 @@ namespace BilgiYonetimSistemi.BLL
         {
             OgrenciConcrete ogrenciConcrete = new OgrenciConcrete();
             OgrenciBilgileriConcrete ogrenciBilgileriConcrete = new OgrenciBilgileriConcrete();
+            var roleStore = new RoleStore<IdentityRole>(ogrenciConcrete._dbContext);
+            var roleManager = new RoleManager<IdentityRole>(roleStore);
             var userStore = new UserStore<Kullanici>(ogrenciConcrete._dbContext);
             var userManager = new UserManager<Kullanici>(userStore);
             var kullanici = userManager.FindByName((ogrenci.OgrenciAdi.ToLower() + ogrenci.OgrenciSoyadi.ToLower()));
@@ -50,8 +52,9 @@ namespace BilgiYonetimSistemi.BLL
             //Muhammed Talha Balci
             //Mb123717238192739.
             string sifre = ogrenci.OgrenciAdi.Substring(0, 1).ToUpper() + ogrenci.OgrenciAdi.Substring(1) + ogrenci.KayitTarihi.Date.Year + ".";
-            userManager.Create(kullanici, sifre);
-            userManager.AddToRole(kullanici.Id, "ogrenci");
+            var result = userManager.Create(kullanici, sifre);
+            if (result.Succeeded)
+                userManager.AddToRole(kullanici.Id, "ogrenci");
 
             ogrenci.OgrenciID = kullanici.Id;
             ogrenciBilgileri.OgrenciID = ogrenci.OgrenciID;
@@ -66,6 +69,8 @@ namespace BilgiYonetimSistemi.BLL
         public static void OgretmenEkle(Ogretmen ogretmen)
         {
             OgretmenConcrete ogretmenConcrete = new OgretmenConcrete();
+            var roleStore = new RoleStore<IdentityRole>(ogretmenConcrete._dbContext);
+            var roleManager = new RoleManager<IdentityRole>(roleStore);
             var userStore = new UserStore<Kullanici>(ogretmenConcrete._dbContext);
             var userManager = new UserManager<Kullanici>(userStore);
             var kullanici = userManager.FindByName((ogretmen.OgretmenAdi.ToLower() + ogretmen.OgretmenSoyadi.ToLower()));
@@ -95,10 +100,14 @@ namespace BilgiYonetimSistemi.BLL
             //Muhammed Talha Balci
             //Mb123717238192739.
             string sifre = ogretmen.OgretmenAdi.Substring(0, 1).ToUpper() + ogretmen.OgretmenAdi.Substring(1) + ogretmen.BaslangicTarihi.Date.Year + ".";
-            userManager.Create(kullanici, sifre);
-            userManager.AddToRole(kullanici.Id, "ogretmen");
+
+
+            var result = userManager.Create(kullanici, sifre);
+            if (result.Succeeded)
+                userManager.AddToRole(kullanici.Id, "ogretmen");
 
             ogretmen.OgretmenID = kullanici.Id;
+
             ogretmenConcrete._ogretmenRepository.Insert(ogretmen);
             ogretmenConcrete._ogretmenUnitOfWork.SaveChanges();
             ogretmenConcrete._ogretmenUnitOfWork.Dispose();
@@ -108,6 +117,8 @@ namespace BilgiYonetimSistemi.BLL
         {
 
             YoneticiConcrete yoneticiConcrete = new YoneticiConcrete();
+            var roleStore = new RoleStore<IdentityRole>(yoneticiConcrete._dbContext);
+            var roleManager = new RoleManager<IdentityRole>(roleStore);
             var userStore = new UserStore<Kullanici>(yoneticiConcrete._dbContext);
             var userManager = new UserManager<Kullanici>(userStore);
             var kullanici = userManager.FindByName((yonetici.Ad.ToLower() + yonetici.Soyad.ToLower()));
@@ -136,9 +147,10 @@ namespace BilgiYonetimSistemi.BLL
             //Yapicalak: Sifre kisminda TC Ogrenci kismina alinacak, asagidaki ornek gibi sifre girisi yapilacak.
             //Muhammed Talha Balci
             //Mb123717238192739.
-            string sifre = yonetici.Ad.Substring(0, 1).ToUpper() + yonetici.Soyad.Substring(0,1).ToLower() + yonetici.TC + ".";
-            userManager.Create(kullanici, sifre);
-            userManager.AddToRole(kullanici.Id, "yonetici");
+            string sifre = yonetici.Ad.Substring(0, 1).ToUpper() + yonetici.Soyad.Substring(0, 1).ToLower() + yonetici.TC + ".";
+            var result = userManager.Create(kullanici, sifre);
+            if (result.Succeeded)
+                userManager.AddToRole(kullanici.Id, "yonetici");
 
             yonetici.YoneticiID = kullanici.Id;
             yoneticiConcrete._yoneticiRepository.Insert(yonetici);

@@ -17,11 +17,11 @@ namespace BilgiYonetimSistemi.UI.Controllers
     public class OgretmenController : Controller
     {
         private Context db = new Context();
-        
+
         // GET: Ogretmen
         public ActionResult Index()
         {
-            return View(db.Ogretmenler.Where(x=>x.IsActive==true).ToList());
+            return View(db.Ogretmenler.Where(x => x.IsActive == true).ToList());
         }
 
         // GET: Ogretmen/Details/5
@@ -53,14 +53,16 @@ namespace BilgiYonetimSistemi.UI.Controllers
         public ActionResult Create([Bind(Include = "OgretmenID,OgretmenAdi,OgretmenSoyadi,Unvan,BaslangicTarihi,AyrilisTarihi,PersonelNumarasi,Sifre")] Ogretmen ogretmen, FormCollection frm, HttpPostedFileBase file)
         {
             ogretmen.IsActive = true;
+            ogretmen.AyrilisTarihi = DateTime.Now;
+            ogretmen.BaslangicTarihi = DateTime.Now;
             if (ModelState.IsValid)
             {
                 var path = "";
-                if (file!=null)
+                if (file != null)
                 {
-                    if (file.ContentLength>0)
+                    if (file.ContentLength > 0)
                     {
-                        if (Path.GetExtension(file.FileName).ToLower()==".jpg" || Path.GetExtension(file.FileName).ToLower() == ".png" || Path.GetExtension(file.FileName).ToLower() == ".gif" || Path.GetExtension(file.FileName).ToLower() == ".jpeg")
+                        if (Path.GetExtension(file.FileName).ToLower() == ".jpg" || Path.GetExtension(file.FileName).ToLower() == ".png" || Path.GetExtension(file.FileName).ToLower() == ".gif" || Path.GetExtension(file.FileName).ToLower() == ".jpeg")
                         {
                             path = Path.Combine(Server.MapPath("~/Content/Images"), file.FileName);
                             file.SaveAs(path);
@@ -72,7 +74,9 @@ namespace BilgiYonetimSistemi.UI.Controllers
                 OgretmenBilgileri ogretmenBilgileri = new OgretmenBilgileri()
                 {
                     OgretmenMail = frm["OgretmeninBilgisi.OgretmenMail"],
-                    TCNo = frm["OgretmeninBilgisi.TCNo"], Fotograf = path, OgretmenID= ogretmen.OgretmenID
+                    TCNo = frm["OgretmeninBilgisi.TCNo"],
+                    Fotograf = path,
+                    OgretmenID = ogretmen.OgretmenID,
                 };
                 db.OgretmenBilgileri.Add(ogretmenBilgileri);
                 db.SaveChanges();
