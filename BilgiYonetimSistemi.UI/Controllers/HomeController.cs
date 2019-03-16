@@ -51,7 +51,7 @@ namespace BilgiYonetimSistemi.UI.Controllers
             var userManager = new UserManager<Kullanici>(userStore);
 
             var kullanici = userManager.FindByEmail(email);
-            if (kullanici == null)
+            if (kullanici == null || !userManager.CheckPassword(kullanici,sifre))
             {
                 return RedirectToAction("Login", "Home");
             }
