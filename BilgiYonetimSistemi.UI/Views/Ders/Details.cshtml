@@ -1,4 +1,4 @@
-﻿@model BilgiYonetimSistemi.DATA.Ders
+﻿@model IEnumerable<BilgiYonetimSistemi.DATA.BolumlerDersler>
 
 @{
     ViewBag.Title = "Details";
@@ -13,40 +13,58 @@
             <div class="col-md-8 col-md-offset-2 ">
                 <div class="panel-body center-block">
                     <div>
-                        <h4>Ders</h4>
+                        <h4>@ViewBag.Bolum.BolumAdi - @ViewBag.Bolum.EgitimDili Dersleri</h4>
                         <hr />
-                        <dl class="dl-horizontal">
-                            <dt>
-                                @Html.DisplayName("Ders Adı:")
-                            </dt>
+                        <table class="table table-striped">
+                            <tr>
+                                <th>
+                                    <h4>
+                                        <strong>
+                                            @Html.DisplayName("Ders Kodu")
+                                        </strong>
+                                    </h4>
+                                </th>
 
-                            <dd>
-                                @Html.DisplayFor(model => model.DersAdi)
-                            </dd>
+                                <th>
+                                    <h4>
+                                        <strong>
+                                            @Html.DisplayName("Ders Adı")
+                                        </strong>
+                                    </h4>
+                                </th>
+                                <th>
+                                    <h4>
+                                        <strong>
+                                            @Html.DisplayName("Ders Kredisi")
+                                        </strong>
+                                    </h4>
+                                </th>
 
-                            <dt>
-                                @Html.DisplayName("Ders Kredisi:")
-                            </dt>
+                                <th></th>
 
-                            <dd>
-                                @Html.DisplayFor(model => model.DersKredisi)   
-                            </dd>
+                            </tr>
 
-                            <dt>
-                                @Html.DisplayName("Ders Kodu:")
-                            </dt>
+                            @foreach (var item in Model)
+                            {
+                                <tr>                                    
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.BolumunDersi.DersKodu)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.BolumunDersi.DersAdi)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.BolumunDersi.DersKredisi)
+                                    </td>
+                                    
+                                </tr>
+                            }
 
-                            <dd>
-                                @Html.DisplayFor(model => model.DersKodu)
-                            </dd>
-                            <br />
-                            <br />
-
-                        </dl>
+                        </table>
                     </div>
                     <p>
-                        @Html.ActionLink("GÜNCELLE", "Edit", new { id = Model.DersID }, new { @class = "btn btn-primary" })
-                        @Html.ActionLink("Listeye Dön", "Index", null,new { @class = "btn btn-default" , @style = "float:right" })
+                        @Html.ActionLink("DERS EKLE", "Create", new { id = @ViewBag.Bolum.BolumID }, new { @class = "btn btn-info" })
+                        @Html.ActionLink("Listeye Dön", "Departments", null, new { @class = "btn btn-primary", @style = "float:right" })
                     </p>
                 </div>
             </div>

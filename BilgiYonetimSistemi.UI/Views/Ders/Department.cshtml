@@ -1,0 +1,52 @@
+﻿@model IEnumerable<BilgiYonetimSistemi.DATA.Bolum>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="container">
+    <div class="row" style="margin-top:50px">
+        <div class="panel panel-default ">
+            <div class="col-md-12  ">
+                <div class="panel-body center-block">
+                    <table class="table table-striped">
+                        <tr>
+                            <th>
+                                <h4>
+                                    <strong>
+                                        @Html.DisplayName("Bölüm Adı")
+                                    </strong>
+                                </h4>
+                            </th>
+                            <th>
+                                <h4>
+                                    <strong>
+                                        @Html.DisplayName("Eğitim Dili")
+                                    </strong>
+                                </h4>
+                            </th>
+                            <th></th>
+                        </tr>
+
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.BolumAdi)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.EgitimDili)
+                                </td>
+                                <td style="text-align:right">
+                                    @Html.ActionLink("DERS EKLE", "Create", new { id = item.BolumID }, new { @class = "btn btn-info" })
+                                </td>
+                            </tr>
+                        }
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

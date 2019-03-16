@@ -24,5 +24,9 @@ namespace BilgiYonetimSistemi.BLL.Repository.Concrete
             _derslerUnitOfWork = new EFUnitOfWork(_dbContext);
             _dersRepository = _derslerUnitOfWork.GetRepository<Ders>();
         }
+        public Ders GetByLessons(string code)
+        {
+            return _dersRepository.GetEntity().FirstOrDefault(x => x.DersKodu == code);
+        }
     }
 }
