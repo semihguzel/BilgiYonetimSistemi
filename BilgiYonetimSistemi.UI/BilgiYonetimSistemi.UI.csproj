@@ -351,6 +351,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="Content\Images\" />
     <Folder Include="lib\img\" />
+    <Folder Include="Views\OgretmenIslemleri\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BilgiYonetimSistemi.BLL\BilgiYonetimSistemi.BLL.csproj">
