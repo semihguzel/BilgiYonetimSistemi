@@ -8,15 +8,17 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using BilgiYonetimSistemi.BLL;
+using BilgiYonetimSistemi.BLL.Repository.Concrete;
 using BilgiYonetimSistemi.DAL;
 using BilgiYonetimSistemi.DATA;
-
+using BilgiYonetimSistemi.DATA.Entities;
 
 namespace BilgiYonetimSistemi.UI.Controllers
 {
     public class OgretmenController : Controller
     {
         private Context db = new Context();
+        OgretmenConcrete ogretmenConcrete = new OgretmenConcrete();
 
         // GET: Ogretmen
         public ActionResult Index()
@@ -151,5 +153,23 @@ namespace BilgiYonetimSistemi.UI.Controllers
             }
             base.Dispose(disposing);
         }
+
+        public ActionResult OgretmenDersler()
+        {
+            OgretmenlerDerslerDonemlerConcrete oddc = new OgretmenlerDerslerDonemlerConcrete();
+            var kullanici = Session["Kullanici"] as Kullanici;
+
+            var ogretmen = ogretmenConcrete._ogretmenRepository.GetById(kullanici.Id);
+            return View(oddc.OgretmenDersleri(kullanici.Id));
+        }
+
+        public ActionResult OgretmenDersDetay(int id)
+        {
+            OgrencilerDerslerDonemlerConcrete oddc = new OgrencilerDerslerDonemlerConcrete();
+            var temp = oddc.DersOgrencileri(id);
+            return View(oddc.DersOgrencileri(id));
+        }
+
+
     }
 }

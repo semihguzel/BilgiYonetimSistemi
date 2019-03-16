@@ -340,6 +340,8 @@
     <Content Include="Views\Shared\_OgrenciPartial.cshtml" />
     <Content Include="Views\Shared\_OgretmenPartial.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Ogretmen\OgretmenDersler.cshtml" />
+    <Content Include="Views\Ogretmen\OgretmenDersDetay.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

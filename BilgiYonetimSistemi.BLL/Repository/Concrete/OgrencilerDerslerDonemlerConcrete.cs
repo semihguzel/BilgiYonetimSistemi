@@ -1,6 +1,7 @@
 ﻿using BilgiYonetimSistemi.BLL.Repository.Abstract;
 using BilgiYonetimSistemi.DAL;
 using BilgiYonetimSistemi.DATA;
+using BilgiYonetimSistemi.DATA.DTOs;
 using RepositoryPattern.BLL.Repository.Abstract;
 using RepositoryPattern.BLL.Repository.Concrete;
 using System;
@@ -23,6 +24,11 @@ namespace BilgiYonetimSistemi.BLL.Repository.Concrete
             _dbContext = new Context();
             _ogrencilerDerslerDonemlerUnitOfWork = new EFUnitOfWork(_dbContext);
             _ogrencilerDerslerDonemlerRepository = _ogrencilerDerslerDonemlerUnitOfWork.GetRepository<OgrencilerDerslerDonemler>();
+        }
+
+        public IEnumerable<OgrenciDTO> DersOgrencileri(int id)
+        {
+            return _ogrencilerDerslerDonemlerRepository.GetEntity().Where(x => x.DersID == id).Select(x => new OgrenciDTO { OgrenciAdi = x.DersinOgrencisi.OgrenciAdi, OgrenciSoyadi = x.DersinOgrencisi.OgrenciSoyadi, OgrenciID = x.OgrenciID, Notlar = x.OgrenciDerslerDonemlerinNotlari }).ToList();
         }
     }
 }

@@ -16,9 +16,9 @@ namespace BilgiYonetimSistemi.DATA
 
         public int OgrenciDerslerDonemlerID { get; set; }
 
-        public OgrencilerDerslerDonemler NotunOgrenciDersDonemi { get; set; }
+        public virtual OgrencilerDerslerDonemler NotunOgrenciDersDonemi { get; set; }
 
-        public Sinav NotunSinavi { get; set; }
+        public virtual Sinav NotunSinavi { get; set; }
         
     }
 }
