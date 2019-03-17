@@ -39,6 +39,7 @@ namespace BilgiYonetimSistemi.UI.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Ogrenci ogrenci = db.Ogrenciler.Find(id);
+
             if (ogrenci == null)
             {
                 return HttpNotFound();

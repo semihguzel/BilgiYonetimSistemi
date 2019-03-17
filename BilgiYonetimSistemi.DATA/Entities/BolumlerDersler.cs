@@ -17,8 +17,5 @@ namespace BilgiYonetimSistemi.DATA
         public virtual Bolum DersinBolumu { get; set; }
 
         public virtual Ders BolumunDersi { get; set; }
-
-
-
     }
 }

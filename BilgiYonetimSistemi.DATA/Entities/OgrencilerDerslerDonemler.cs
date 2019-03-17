@@ -23,6 +23,5 @@ namespace BilgiYonetimSistemi.DATA
         public  virtual Donem OgrenciDersinDonemi { get; set; }
 
         public virtual List<Not> OgrenciDerslerDonemlerinNotlari { get; set; }
-        
     }
 }

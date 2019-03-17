@@ -1,4 +1,5 @@
-﻿using BilgiYonetimSistemi.DAL;
+﻿using BilgiYonetimSistemi.BLL;
+using BilgiYonetimSistemi.DAL;
 using BilgiYonetimSistemi.DATA.Entities;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
@@ -43,11 +44,11 @@ namespace BilgiYonetimSistemi.UI.Controllers
         [HttpPost]
         public ActionResult Login(FormCollection frm)
         {
+            Context db = new Context();
             string email = frm["Email"];
             string sifre = frm["Password"];
             bool beniHatirla = frm["RememberMe"] == "false" ? false : true;
-
-            Context db = new Context();
+           
 
             var userStore = new UserStore<Kullanici>(db);
             var userManager = new UserManager<Kullanici>(userStore);
