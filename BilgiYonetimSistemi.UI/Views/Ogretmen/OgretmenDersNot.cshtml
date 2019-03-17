@@ -25,23 +25,7 @@
                 </tr>
             </thead>
             <tbody id="notBilgileri">
-                @*@foreach (var item in Model)
-                    {
-                        <tr>
-                            <td name="ogrenciAdi">@item.OgrenciAdi</td>
-                            <td name="ogrenciSoyadi">@item.OgrenciSoyadi</td>
-                            <td name="ogrenciNot">
-                                @{
-                                    if ()
-                                    {
-
-                                    }
-                                }
-                                <input type="range" value=""
-                            </td>
-                        </tr>
-
-                    }*@
+                
             </tbody>
         </table>
         @Html.ActionLink("Listeye Geri Dön", "OgretmenDersler", null, new { @class = "btn btn-primary", @style = "float:left;" })
@@ -76,6 +60,7 @@
                 }
             });
         }
+
         $("#btnKaydet").click(function () {
             ogrenciDersNotlari = [];
             $("#notBilgileri tr").each(function () {
@@ -102,7 +87,7 @@
                     alert("Kayit Basariyla Gerceklestirildi.")
                     OgrenciNotlariGetir();
                 },
-                error: function (xhr) {
+                error: function () {
                     OgrenciNotlariGetir();
                 }
             });

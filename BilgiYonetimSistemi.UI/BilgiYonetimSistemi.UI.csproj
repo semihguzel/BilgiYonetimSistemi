@@ -358,6 +358,7 @@
     <Content Include="Views\Ogretmen\OgretmenDersler.cshtml" />
     <Content Include="Views\Ogretmen\OgretmenDerslerNot.cshtml" />
     <Content Include="Views\Ogretmen\OgretmenDersNot.cshtml" />
+    <Content Include="Views\Home\ChangePassword.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -62,6 +62,27 @@ namespace MVCOrnek12.Identity.Models
         public bool RememberMe { get; set; }
     }
 
+    public class ChangePasswordViewModel1
+    {
+        [Required]
+        [StringLength(100, ErrorMessage = "{0} en az {2} karakter uzunlukta olmali.", MinimumLength = 6)]
+        [DataType(DataType.Password)]
+        [Display(Name = "Eski Sifre")]
+        public string OldPassword { get; set; }
+
+        [Required]
+        [StringLength(100, ErrorMessage = "{0} en az {2} karakter uzunlukta olmali.", MinimumLength = 6)]
+        [DataType(DataType.Password)]
+        [Display(Name = "Yeni Sifre")]
+        public string NewPassword { get; set; }
+
+        [Required]
+        [StringLength(100, ErrorMessage = "{0} en az {2} karakter uzunlukta olmali.", MinimumLength = 6)]
+        [DataType(DataType.Password)]
+        [Display(Name = "Yeni Sifre Onaylama")]
+        public string ConfirmationPassword { get; set; }
+    }
+
     public class RegisterViewModel
     {
         [Required]

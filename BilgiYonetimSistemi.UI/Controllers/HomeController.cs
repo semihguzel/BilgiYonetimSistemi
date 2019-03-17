@@ -2,9 +2,11 @@
 using BilgiYonetimSistemi.DATA.Entities;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using MVCOrnek12.Identity.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 
@@ -51,8 +53,9 @@ namespace BilgiYonetimSistemi.UI.Controllers
             var userManager = new UserManager<Kullanici>(userStore);
 
             var kullanici = userManager.FindByEmail(email);
-            if (kullanici == null || !userManager.CheckPassword(kullanici,sifre))
+            if (kullanici == null || !userManager.CheckPassword(kullanici, sifre))
             {
+
                 return RedirectToAction("Login", "Home");
             }
             else
@@ -68,7 +71,7 @@ namespace BilgiYonetimSistemi.UI.Controllers
 
                 var rol = userManager.GetRoles(kullanici.Id);
                 Session["Kullanici"] = kullanici;
-                
+
                 if (rol.First() == "admin" || rol.First() == "developer")
                     return RedirectToAction("Index", "Home");
                 //TODO : Ogrenci - Ogretmen kisimlari eklenince onlarin anasayfasina yollanacak
@@ -80,6 +83,45 @@ namespace BilgiYonetimSistemi.UI.Controllers
                 else
                     return RedirectToAction("Index", "Home");
             }
+        }
+
+        public ActionResult ChangePassword()
+        {
+
+            return View();
+        }
+        [HttpPost]
+        public async Task<ActionResult> ChangePassword(ChangePasswordViewModel1 model)
+        {
+            if (ModelState.IsValid)
+            {
+                Context db = new Context();
+                var userStore = new UserStore<Kullanici>(db);
+                var userManager = new UserManager<Kullanici>(userStore);
+                var eskiSifre = model.OldPassword;
+                var yeniSifre = model.NewPassword;
+                var sifreDogrulama = model.ConfirmationPassword;
+                var kullanici = Session["Kullanici"] as Kullanici;
+                var result1 = userManager.PasswordHasher.VerifyHashedPassword(kullanici.PasswordHash, eskiSifre);
+                if (eskiSifre == yeniSifre)
+                {
+                    ModelState.AddModelError(string.Empty, "Girilen yeni ve eski sifreler ayni olmamali!");
+                }
+                else if (result1 != PasswordVerificationResult.Success)
+                {
+                    ModelState.AddModelError(string.Empty, "Girilen eski sifre yanlis!");
+                }
+                
+                else if (yeniSifre != sifreDogrulama)
+                    ModelState.AddModelError(string.Empty, "Yeni sifreler uyusmuyor!");
+                else
+                {
+                    var result2 = userManager.ChangePassword(kullanici.Id, eskiSifre, yeniSifre);
+                    if (result2.Succeeded)
+                        Response.Write("<script>alert('Kaydetme islemi basariyla gerceklestirildi')</script>");
+                }
+            }
+            return RedirectToAction("Login","Home");
         }
 
         public ActionResult LogOff()

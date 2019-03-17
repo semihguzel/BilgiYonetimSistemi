@@ -187,7 +187,6 @@ namespace BilgiYonetimSistemi.UI.Controllers
         public string OgrenciDersNotlar(int id, string sinavTipi)
         {
             OgrencilerDerslerDonemlerConcrete oddc = new OgrencilerDerslerDonemlerConcrete();
-            //Vize-1
             IEnumerable<OgrenciDersNotDTO> liste = null;
             if (sinavTipi == "Vize-1")
                 liste = oddc.OgrenciDersVize1(id);
