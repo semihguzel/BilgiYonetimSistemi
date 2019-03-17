@@ -1,0 +1,36 @@
+﻿@model List<BilgiYonetimSistemi.DATA.DTOs.DersDTO>
+@{
+    ViewBag.Title = "OgretmenDersler";
+}
+
+<h2 style="text-align:center">Öğretmen Dersleri</h2>
+
+<div class="panel panel-default">
+    <div class="panel-body">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Ders Adı</th>
+                    <th>Ders İşlemleri</th>
+                </tr>
+            </thead>
+            <tbody>
+                @{
+                    var kullanici = Session["Kullanici"] as BilgiYonetimSistemi.DATA.Entities.Kullanici;
+
+                    foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.DersAdi</td>
+                            <td>@Html.ActionLink("Not Girisi", "OgretmenDersNot", new { id = item.DersID }, new { @class = "btn btn-primary" })</td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+
+

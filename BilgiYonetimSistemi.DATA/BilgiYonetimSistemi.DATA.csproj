@@ -111,6 +111,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DTOs\DersDTO.cs" />
+    <Compile Include="DTOs\OgrenciDersNotDTO.cs" />
     <Compile Include="DTOs\OgrenciDTO.cs" />
     <Compile Include="Entities\Bolum.cs" />
     <Compile Include="Entities\BolumlerDersler.cs" />

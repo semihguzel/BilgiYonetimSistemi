@@ -10,7 +10,7 @@ namespace BilgiYonetimSistemi.DATA
     {
         public int NotID { get; set; }
 
-        public Int16 Puan { get; set; }
+        public Int16? Puan { get; set; }
 
         public int SinavID { get; set; }
 
