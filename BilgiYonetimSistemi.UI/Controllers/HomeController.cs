@@ -82,6 +82,12 @@ namespace BilgiYonetimSistemi.UI.Controllers
             }
         }
 
+        public ActionResult LogOff()
+        {
+            Session["Kullanici"] = null;
+            return RedirectToAction("Login", "Home");
+        }
+
         public ActionResult Index()
         {
             return View();
