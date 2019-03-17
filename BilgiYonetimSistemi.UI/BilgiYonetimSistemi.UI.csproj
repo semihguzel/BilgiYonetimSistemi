@@ -227,6 +227,7 @@
     <Compile Include="Controllers\OgretmenController.cs" />
     <Compile Include="Controllers\OgretmenlerBolumlerController.cs" />
     <Compile Include="Controllers\OgretmenlerDerslerDonemlerController.cs" />
+    <Compile Include="Controllers\TranskriptController.cs" />
     <Compile Include="Controllers\YoneticiController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -358,6 +359,7 @@
     <Content Include="Views\Ogretmen\OgretmenDersler.cshtml" />
     <Content Include="Views\Ogretmen\OgretmenDerslerNot.cshtml" />
     <Content Include="Views\Ogretmen\OgretmenDersNot.cshtml" />
+    <Content Include="Views\Transkript\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

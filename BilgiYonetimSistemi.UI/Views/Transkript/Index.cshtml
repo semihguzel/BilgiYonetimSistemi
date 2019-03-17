@@ -59,16 +59,16 @@
                                             </td>
                                             <td class="text-center">
                                                 @{
-                                                    int birinciVizePuanı = Model.FirstOrDefault(x => x.DersID == bolumders.BolumunDersi.DersID).OgrenciDerslerDonemlerinNotlari.FirstOrDefault(x => x.SinavID == 1).Puan;
+                                                    int? birinciVizePuanı = Model.FirstOrDefault(x => x.DersID == bolumders.BolumunDersi.DersID).OgrenciDerslerDonemlerinNotlari.FirstOrDefault(x => x.SinavID == 1).Puan;
 
-                                                    int ikinciVizePuanı = Model.FirstOrDefault(x => x.DersID == bolumders.BolumunDersi.DersID).OgrenciDerslerDonemlerinNotlari.FirstOrDefault(x => x.SinavID == 2).Puan;
+                                                    int? ikinciVizePuanı = Model.FirstOrDefault(x => x.DersID == bolumders.BolumunDersi.DersID).OgrenciDerslerDonemlerinNotlari.FirstOrDefault(x => x.SinavID == 2).Puan;
 
-                                                    int finalPuanı = Model.FirstOrDefault(x => x.DersID == bolumders.BolumunDersi.DersID).OgrenciDerslerDonemlerinNotlari.FirstOrDefault(x => x.SinavID == 3).Puan;
+                                                    int? finalPuanı = Model.FirstOrDefault(x => x.DersID == bolumders.BolumunDersi.DersID).OgrenciDerslerDonemlerinNotlari.FirstOrDefault(x => x.SinavID == 3).Puan;
 
-                                                    double finalliSonuc = birinciVizePuanı * 0.2 + ikinciVizePuanı * 0.2 + finalPuanı * 0.6;
-                                                    double butunlemePuanı = finalliSonuc;
+                                                    double? finalliSonuc = birinciVizePuanı * 0.2 + ikinciVizePuanı * 0.2 + finalPuanı * 0.6;
+                                                    double? butunlemePuanı = Model.FirstOrDefault(x => x.DersID == bolumders.BolumunDersi.DersID).OgrenciDerslerDonemlerinNotlari.FirstOrDefault(x => x.SinavID == 4).Puan;
 
-                                                    double butluSonuc = birinciVizePuanı * 0.2 + ikinciVizePuanı * 0.2 + butunlemePuanı * 0.6;
+                                                    double? butluSonuc = birinciVizePuanı * 0.2 + ikinciVizePuanı * 0.2 + butunlemePuanı * 0.6;
 
                                                     if (butunlemePuanı == 0)
                                                     {
@@ -188,16 +188,16 @@
                                             </td>
                                             <td class="text-center">
                                                 @{
-                                                    int birinciVizePuanı = Model.FirstOrDefault(x => x.DersID == bolumders.BolumunDersi.DersID).OgrenciDerslerDonemlerinNotlari.FirstOrDefault(x => x.SinavID == 1).Puan;
+                                                    int? birinciVizePuanı = Model.FirstOrDefault(x => x.DersID == bolumders.BolumunDersi.DersID).OgrenciDerslerDonemlerinNotlari.FirstOrDefault(x => x.SinavID == 1).Puan;
 
-                                                    int ikinciVizePuanı = Model.FirstOrDefault(x => x.DersID == bolumders.BolumunDersi.DersID).OgrenciDerslerDonemlerinNotlari.FirstOrDefault(x => x.SinavID == 2).Puan;
+                                                    int? ikinciVizePuanı = Model.FirstOrDefault(x => x.DersID == bolumders.BolumunDersi.DersID).OgrenciDerslerDonemlerinNotlari.FirstOrDefault(x => x.SinavID == 2).Puan;
 
-                                                    int finalPuanı = Model.FirstOrDefault(x => x.DersID == bolumders.BolumunDersi.DersID).OgrenciDerslerDonemlerinNotlari.FirstOrDefault(x => x.SinavID == 3).Puan;
+                                                    int? finalPuanı = Model.FirstOrDefault(x => x.DersID == bolumders.BolumunDersi.DersID).OgrenciDerslerDonemlerinNotlari.FirstOrDefault(x => x.SinavID == 3).Puan;
 
-                                                    double finalliSonuc = birinciVizePuanı * 0.2 + ikinciVizePuanı * 0.2 + finalPuanı * 0.6;
-                                                    double butunlemePuanı = finalliSonuc;
+                                                    double? finalliSonuc = birinciVizePuanı * 0.2 + ikinciVizePuanı * 0.2 + finalPuanı * 0.6;
+                                                    double? butunlemePuanı = Model.FirstOrDefault(x => x.DersID == bolumders.BolumunDersi.DersID).OgrenciDerslerDonemlerinNotlari.FirstOrDefault(x => x.SinavID == 4).Puan;
 
-                                                    double butluSonuc = birinciVizePuanı * 0.2 + ikinciVizePuanı * 0.2 + butunlemePuanı * 0.6;
+                                                    double? butluSonuc = birinciVizePuanı * 0.2 + ikinciVizePuanı * 0.2 + butunlemePuanı * 0.6;
 
                                                     if (butunlemePuanı == 0)
                                                     {
@@ -317,16 +317,16 @@
                                             </td>
                                             <td class="text-center">
                                                 @{
-                                                    int birinciVizePuanı = Model.FirstOrDefault(x => x.DersID == bolumders.BolumunDersi.DersID).OgrenciDerslerDonemlerinNotlari.FirstOrDefault(x => x.SinavID == 1).Puan;
+                                                    int? birinciVizePuanı = Model.FirstOrDefault(x => x.DersID == bolumders.BolumunDersi.DersID).OgrenciDerslerDonemlerinNotlari.FirstOrDefault(x => x.SinavID == 1).Puan;
 
-                                                    int ikinciVizePuanı = Model.FirstOrDefault(x => x.DersID == bolumders.BolumunDersi.DersID).OgrenciDerslerDonemlerinNotlari.FirstOrDefault(x => x.SinavID == 2).Puan;
+                                                    int? ikinciVizePuanı = Model.FirstOrDefault(x => x.DersID == bolumders.BolumunDersi.DersID).OgrenciDerslerDonemlerinNotlari.FirstOrDefault(x => x.SinavID == 2).Puan;
 
-                                                    int finalPuanı = Model.FirstOrDefault(x => x.DersID == bolumders.BolumunDersi.DersID).OgrenciDerslerDonemlerinNotlari.FirstOrDefault(x => x.SinavID == 3).Puan;
+                                                    int? finalPuanı = Model.FirstOrDefault(x => x.DersID == bolumders.BolumunDersi.DersID).OgrenciDerslerDonemlerinNotlari.FirstOrDefault(x => x.SinavID == 3).Puan;
 
-                                                    double finalliSonuc = birinciVizePuanı * 0.2 + ikinciVizePuanı * 0.2 + finalPuanı * 0.6;
-                                                    double butunlemePuanı = finalliSonuc;
+                                                    double? finalliSonuc = birinciVizePuanı * 0.2 + ikinciVizePuanı * 0.2 + finalPuanı * 0.6;
+                                                    double? butunlemePuanı = Model.FirstOrDefault(x => x.DersID == bolumders.BolumunDersi.DersID).OgrenciDerslerDonemlerinNotlari.FirstOrDefault(x => x.SinavID == 4).Puan;
 
-                                                    double butluSonuc = birinciVizePuanı * 0.2 + ikinciVizePuanı * 0.2 + butunlemePuanı * 0.6;
+                                                    double? butluSonuc = birinciVizePuanı * 0.2 + ikinciVizePuanı * 0.2 + butunlemePuanı * 0.6;
 
                                                     if (butunlemePuanı == 0)
                                                     {
@@ -446,16 +446,16 @@
                                             </td>
                                             <td class="text-center">
                                                 @{
-                                                    int birinciVizePuanı = Model.FirstOrDefault(x => x.DersID == bolumders.BolumunDersi.DersID).OgrenciDerslerDonemlerinNotlari.FirstOrDefault(x => x.SinavID == 1).Puan;
+                                                    int? birinciVizePuanı = Model.FirstOrDefault(x => x.DersID == bolumders.BolumunDersi.DersID).OgrenciDerslerDonemlerinNotlari.FirstOrDefault(x => x.SinavID == 1).Puan;
 
-                                                    int ikinciVizePuanı = Model.FirstOrDefault(x => x.DersID == bolumders.BolumunDersi.DersID).OgrenciDerslerDonemlerinNotlari.FirstOrDefault(x => x.SinavID == 2).Puan;
+                                                    int? ikinciVizePuanı = Model.FirstOrDefault(x => x.DersID == bolumders.BolumunDersi.DersID).OgrenciDerslerDonemlerinNotlari.FirstOrDefault(x => x.SinavID == 2).Puan;
 
-                                                    int finalPuanı = Model.FirstOrDefault(x => x.DersID == bolumders.BolumunDersi.DersID).OgrenciDerslerDonemlerinNotlari.FirstOrDefault(x => x.SinavID == 3).Puan;
+                                                    int? finalPuanı = Model.FirstOrDefault(x => x.DersID == bolumders.BolumunDersi.DersID).OgrenciDerslerDonemlerinNotlari.FirstOrDefault(x => x.SinavID == 3).Puan;
 
-                                                    double finalliSonuc = birinciVizePuanı * 0.2 + ikinciVizePuanı * 0.2 + finalPuanı * 0.6;
-                                                    double butunlemePuanı = finalliSonuc;
+                                                    double? finalliSonuc = birinciVizePuanı * 0.2 + ikinciVizePuanı * 0.2 + finalPuanı * 0.6;
+                                                    double? butunlemePuanı = Model.FirstOrDefault(x => x.DersID == bolumders.BolumunDersi.DersID).OgrenciDerslerDonemlerinNotlari.FirstOrDefault(x => x.SinavID == 4).Puan;
 
-                                                    double butluSonuc = birinciVizePuanı * 0.2 + ikinciVizePuanı * 0.2 + butunlemePuanı * 0.6;
+                                                    double? butluSonuc = birinciVizePuanı * 0.2 + ikinciVizePuanı * 0.2 + butunlemePuanı * 0.6;
 
                                                     if (butunlemePuanı == 0)
                                                     {
@@ -575,16 +575,16 @@
                                             </td>
                                             <td class="text-center">
                                                 @{
-                                                    int birinciVizePuanı = Model.FirstOrDefault(x => x.DersID == bolumders.BolumunDersi.DersID).OgrenciDerslerDonemlerinNotlari.FirstOrDefault(x => x.SinavID == 1).Puan;
+                                                    int? birinciVizePuanı = Model.FirstOrDefault(x => x.DersID == bolumders.BolumunDersi.DersID).OgrenciDerslerDonemlerinNotlari.FirstOrDefault(x => x.SinavID == 1).Puan;
 
-                                                    int ikinciVizePuanı = Model.FirstOrDefault(x => x.DersID == bolumders.BolumunDersi.DersID).OgrenciDerslerDonemlerinNotlari.FirstOrDefault(x => x.SinavID == 2).Puan;
+                                                    int? ikinciVizePuanı = Model.FirstOrDefault(x => x.DersID == bolumders.BolumunDersi.DersID).OgrenciDerslerDonemlerinNotlari.FirstOrDefault(x => x.SinavID == 2).Puan;
 
-                                                    int finalPuanı = Model.FirstOrDefault(x => x.DersID == bolumders.BolumunDersi.DersID).OgrenciDerslerDonemlerinNotlari.FirstOrDefault(x => x.SinavID == 3).Puan;
+                                                    int? finalPuanı = Model.FirstOrDefault(x => x.DersID == bolumders.BolumunDersi.DersID).OgrenciDerslerDonemlerinNotlari.FirstOrDefault(x => x.SinavID == 3).Puan;
 
-                                                    double finalliSonuc = birinciVizePuanı * 0.2 + ikinciVizePuanı * 0.2 + finalPuanı * 0.6;
-                                                    double butunlemePuanı = finalliSonuc;
+                                                    double? finalliSonuc = birinciVizePuanı * 0.2 + ikinciVizePuanı * 0.2 + finalPuanı * 0.6;
+                                                    double? butunlemePuanı = Model.FirstOrDefault(x => x.DersID == bolumders.BolumunDersi.DersID).OgrenciDerslerDonemlerinNotlari.FirstOrDefault(x => x.SinavID == 4).Puan;
 
-                                                    double butluSonuc = birinciVizePuanı * 0.2 + ikinciVizePuanı * 0.2 + butunlemePuanı * 0.6;
+                                                    double? butluSonuc = birinciVizePuanı * 0.2 + ikinciVizePuanı * 0.2 + butunlemePuanı * 0.6;
 
                                                     if (butunlemePuanı == 0)
                                                     {
@@ -704,16 +704,16 @@
                                             </td>
                                             <td class="text-center">
                                                 @{
-                                                    int birinciVizePuanı = Model.FirstOrDefault(x => x.DersID == bolumders.BolumunDersi.DersID).OgrenciDerslerDonemlerinNotlari.FirstOrDefault(x => x.SinavID == 1).Puan;
+                                                    int? birinciVizePuanı = Model.FirstOrDefault(x => x.DersID == bolumders.BolumunDersi.DersID).OgrenciDerslerDonemlerinNotlari.FirstOrDefault(x => x.SinavID == 1).Puan;
 
-                                                    int ikinciVizePuanı = Model.FirstOrDefault(x => x.DersID == bolumders.BolumunDersi.DersID).OgrenciDerslerDonemlerinNotlari.FirstOrDefault(x => x.SinavID == 2).Puan;
+                                                    int? ikinciVizePuanı = Model.FirstOrDefault(x => x.DersID == bolumders.BolumunDersi.DersID).OgrenciDerslerDonemlerinNotlari.FirstOrDefault(x => x.SinavID == 2).Puan;
 
-                                                    int finalPuanı = Model.FirstOrDefault(x => x.DersID == bolumders.BolumunDersi.DersID).OgrenciDerslerDonemlerinNotlari.FirstOrDefault(x => x.SinavID == 3).Puan;
+                                                    int? finalPuanı = Model.FirstOrDefault(x => x.DersID == bolumders.BolumunDersi.DersID).OgrenciDerslerDonemlerinNotlari.FirstOrDefault(x => x.SinavID == 3).Puan;
 
-                                                    double finalliSonuc = birinciVizePuanı * 0.2 + ikinciVizePuanı * 0.2 + finalPuanı * 0.6;
-                                                    double butunlemePuanı = finalliSonuc;
+                                                    double? finalliSonuc = birinciVizePuanı * 0.2 + ikinciVizePuanı * 0.2 + finalPuanı * 0.6;
+                                                    double? butunlemePuanı = Model.FirstOrDefault(x => x.DersID == bolumders.BolumunDersi.DersID).OgrenciDerslerDonemlerinNotlari.FirstOrDefault(x => x.SinavID == 4).Puan;
 
-                                                    double butluSonuc = birinciVizePuanı * 0.2 + ikinciVizePuanı * 0.2 + butunlemePuanı * 0.6;
+                                                    double? butluSonuc = birinciVizePuanı * 0.2 + ikinciVizePuanı * 0.2 + butunlemePuanı * 0.6;
 
                                                     if (butunlemePuanı == 0)
                                                     {
@@ -833,16 +833,16 @@
                                             </td>
                                             <td class="text-center">
                                                 @{
-                                                    int birinciVizePuanı = Model.FirstOrDefault(x => x.DersID == bolumders.BolumunDersi.DersID).OgrenciDerslerDonemlerinNotlari.FirstOrDefault(x => x.SinavID == 1).Puan;
+                                                    int? birinciVizePuanı = Model.FirstOrDefault(x => x.DersID == bolumders.BolumunDersi.DersID).OgrenciDerslerDonemlerinNotlari.FirstOrDefault(x => x.SinavID == 1).Puan;
 
-                                                    int ikinciVizePuanı = Model.FirstOrDefault(x => x.DersID == bolumders.BolumunDersi.DersID).OgrenciDerslerDonemlerinNotlari.FirstOrDefault(x => x.SinavID == 2).Puan;
+                                                    int? ikinciVizePuanı = Model.FirstOrDefault(x => x.DersID == bolumders.BolumunDersi.DersID).OgrenciDerslerDonemlerinNotlari.FirstOrDefault(x => x.SinavID == 2).Puan;
 
-                                                    int finalPuanı = Model.FirstOrDefault(x => x.DersID == bolumders.BolumunDersi.DersID).OgrenciDerslerDonemlerinNotlari.FirstOrDefault(x => x.SinavID == 3).Puan;
+                                                    int? finalPuanı = Model.FirstOrDefault(x => x.DersID == bolumders.BolumunDersi.DersID).OgrenciDerslerDonemlerinNotlari.FirstOrDefault(x => x.SinavID == 3).Puan;
 
-                                                    double finalliSonuc = birinciVizePuanı * 0.2 + ikinciVizePuanı * 0.2 + finalPuanı * 0.6;
-                                                    double butunlemePuanı = finalliSonuc;
+                                                    double? finalliSonuc = birinciVizePuanı * 0.2 + ikinciVizePuanı * 0.2 + finalPuanı * 0.6;
+                                                    double? butunlemePuanı = Model.FirstOrDefault(x => x.DersID == bolumders.BolumunDersi.DersID).OgrenciDerslerDonemlerinNotlari.FirstOrDefault(x => x.SinavID == 4).Puan;
 
-                                                    double butluSonuc = birinciVizePuanı * 0.2 + ikinciVizePuanı * 0.2 + butunlemePuanı * 0.6;
+                                                    double? butluSonuc = birinciVizePuanı * 0.2 + ikinciVizePuanı * 0.2 + butunlemePuanı * 0.6;
 
                                                     if (butunlemePuanı == 0)
                                                     {
@@ -962,16 +962,16 @@
                                             </td>
                                             <td class="text-center">
                                                 @{
-                                                    int birinciVizePuanı = Model.FirstOrDefault(x => x.DersID == bolumders.BolumunDersi.DersID).OgrenciDerslerDonemlerinNotlari.FirstOrDefault(x => x.SinavID == 1).Puan;
+                                                    int? birinciVizePuanı = Model.FirstOrDefault(x => x.DersID == bolumders.BolumunDersi.DersID).OgrenciDerslerDonemlerinNotlari.FirstOrDefault(x => x.SinavID == 1).Puan;
 
-                                                    int ikinciVizePuanı = Model.FirstOrDefault(x => x.DersID == bolumders.BolumunDersi.DersID).OgrenciDerslerDonemlerinNotlari.FirstOrDefault(x => x.SinavID == 2).Puan;
+                                                    int? ikinciVizePuanı = Model.FirstOrDefault(x => x.DersID == bolumders.BolumunDersi.DersID).OgrenciDerslerDonemlerinNotlari.FirstOrDefault(x => x.SinavID == 2).Puan;
 
-                                                    int finalPuanı = Model.FirstOrDefault(x => x.DersID == bolumders.BolumunDersi.DersID).OgrenciDerslerDonemlerinNotlari.FirstOrDefault(x => x.SinavID == 3).Puan;
+                                                    int? finalPuanı = Model.FirstOrDefault(x => x.DersID == bolumders.BolumunDersi.DersID).OgrenciDerslerDonemlerinNotlari.FirstOrDefault(x => x.SinavID == 3).Puan;
 
-                                                    double finalliSonuc = birinciVizePuanı * 0.2 + ikinciVizePuanı * 0.2 + finalPuanı * 0.6;
-                                                    double butunlemePuanı = finalliSonuc;
+                                                    double? finalliSonuc = birinciVizePuanı * 0.2 + ikinciVizePuanı * 0.2 + finalPuanı * 0.6;
+                                                    double? butunlemePuanı = Model.FirstOrDefault(x => x.DersID == bolumders.BolumunDersi.DersID).OgrenciDerslerDonemlerinNotlari.FirstOrDefault(x => x.SinavID == 4).Puan;
 
-                                                    double butluSonuc = birinciVizePuanı * 0.2 + ikinciVizePuanı * 0.2 + butunlemePuanı * 0.6;
+                                                    double? butluSonuc = birinciVizePuanı * 0.2 + ikinciVizePuanı * 0.2 + butunlemePuanı * 0.6;
 
                                                     if (butunlemePuanı == 0)
                                                     {

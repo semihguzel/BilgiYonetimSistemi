@@ -173,5 +173,20 @@ namespace BilgiYonetimSistemi.BLL
             else
                 return false;
         }
+        public static int DonemSayisiniVer(List<OgrencilerDerslerDonemler> ogrencilerDerslerDonemler)
+        {
+            int[] donemler = new int[0];
+            for (int i = 0; i < ogrencilerDerslerDonemler.Count; i++)
+            {
+                Array.Resize(ref donemler, donemler.Length + 1);
+                donemler[i] = ogrencilerDerslerDonemler[i].DonemID;
+
+            }
+            if (donemler.Distinct().Count() > 8)
+            {
+                return 8;
+            }
+            return donemler.Distinct().Count();
+        }
     }
 }
