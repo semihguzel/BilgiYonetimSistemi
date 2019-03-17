@@ -30,24 +30,33 @@ namespace BilgiYonetimSistemi.UI.Controllers
         }
 
         // GET: Ders/Details/5
-        public ActionResult Details(int? id)
+        public ActionResult Details(int id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Ders ders = dersConcrete._dersRepository.GetById(id);
-            if (ders == null)
+            List<BolumlerDersler> bolumlerDersler = bolumDerslerConcrete.GetByName(id);
+            if (bolumlerDersler == null)
             {
                 return HttpNotFound();
             }
-            return View(ders);
+            Bolum bolum = bolumConcrete._bolumRepository.GetById(id);
+            ViewBag.Bolum = bolum;
+            return View(bolumlerDersler);
+        }
+
+        public ActionResult Department()
+        {
+            return View(bolumConcrete._bolumRepository.GetAll());
+        }
+
+        public ActionResult Departments()
+        {
+            return View(bolumConcrete._bolumRepository.GetAll());
         }
 
         // GET: Ders/Create
-        public ActionResult Create()
+        public ActionResult Create(int id)
         {
-            ViewBag.BolumID = new SelectList(bolumConcrete._bolumRepository.GetEntity(), "BolumID", "BolumAdi");
+            Bolum bolum = bolumConcrete._bolumRepository.GetById(id);
+            ViewBag.Bolum = bolum;
             return View();
         }
 
@@ -56,23 +65,45 @@ namespace BilgiYonetimSistemi.UI.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "DersID,DersAdi,DersKredisi,DersKodu")] Ders ders, FormCollection frm)
+        public ActionResult Create([Bind(Include = "DersID,DersAdi,DersKredisi,DersKodu")] Ders ders, int id)
         {
             if (ModelState.IsValid)
             {
-                dersConcrete._dersRepository.Insert(ders);
-                dersConcrete._derslerUnitOfWork.SaveChanges();
-                dersConcrete._derslerUnitOfWork.Dispose();
-
-                BolumlerDersler bolumlerDersler = new BolumlerDersler()
+                var lesson = dersConcrete.GetByLessons(ders.DersKodu);
+                if (bolumDerslerConcrete.GetByDepartmentLesson(id, ders.DersKodu) == null)
                 {
-                    BolumID = int.Parse(frm["bolumid"]),
-                    DersID = ders.DersID
-                };
-                bolumDerslerConcrete._bolumDerslerRepository.Insert(bolumlerDersler);
-                bolumDerslerConcrete._bolumDerslerUnitOfWork.SaveChanges();
-                bolumDerslerConcrete._bolumDerslerUnitOfWork.Dispose();
-                return RedirectToAction("Index");
+                    if (lesson == null)
+                    {
+                        dersConcrete._dersRepository.Insert(ders);
+                        dersConcrete._derslerUnitOfWork.SaveChanges();
+                        dersConcrete._derslerUnitOfWork.Dispose();
+                        Bolum bolum = bolumConcrete._bolumRepository.GetById(id);
+
+                        BolumlerDersler bolumlerDersler = new BolumlerDersler()
+                        {
+                            BolumID = bolum.BolumID,
+                            DersID = ders.DersID
+                        };
+                        bolumDerslerConcrete._bolumDerslerRepository.Insert(bolumlerDersler);
+                        bolumDerslerConcrete._bolumDerslerUnitOfWork.SaveChanges();
+                        bolumDerslerConcrete._bolumDerslerUnitOfWork.Dispose();
+                    }
+                    else
+                    {
+                        Bolum bolum = bolumConcrete._bolumRepository.GetById(id);
+                        BolumlerDersler bolumlerDersler = new BolumlerDersler()
+                        {
+                            BolumID = bolum.BolumID,
+                            DersID = lesson.DersID
+                        };
+                        bolumDerslerConcrete._bolumDerslerRepository.Insert(bolumlerDersler);
+                        bolumDerslerConcrete._bolumDerslerUnitOfWork.SaveChanges();
+                        bolumDerslerConcrete._bolumDerslerUnitOfWork.Dispose();
+                    }
+                    return RedirectToAction("Index");
+                }
+                else
+                    return RedirectToAction("Index");
             }
 
             return View(ders);

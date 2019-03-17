@@ -6,22 +6,28 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
+using System.Web.Http.Cors;
 using System.Web.Mvc;
 using BilgiYonetimSistemi.BLL;
+using BilgiYonetimSistemi.BLL.Repository.Concrete;
 using BilgiYonetimSistemi.DAL;
 using BilgiYonetimSistemi.DATA;
-
+using BilgiYonetimSistemi.DATA.DTOs;
+using BilgiYonetimSistemi.DATA.Entities;
+using Newtonsoft.Json;
 
 namespace BilgiYonetimSistemi.UI.Controllers
 {
+    [EnableCors("*", "*", "*")]
     public class OgretmenController : Controller
     {
         private Context db = new Context();
-        
+        OgretmenConcrete ogretmenConcrete = new OgretmenConcrete();
+
         // GET: Ogretmen
         public ActionResult Index()
         {
-            return View(db.Ogretmenler.Where(x=>x.IsActive==true).ToList());
+            return View(db.Ogretmenler.Where(x => x.IsActive == true).ToList());
         }
 
         // GET: Ogretmen/Details/5
@@ -53,14 +59,16 @@ namespace BilgiYonetimSistemi.UI.Controllers
         public ActionResult Create([Bind(Include = "OgretmenID,OgretmenAdi,OgretmenSoyadi,Unvan,BaslangicTarihi,AyrilisTarihi,PersonelNumarasi,Sifre")] Ogretmen ogretmen, FormCollection frm, HttpPostedFileBase file)
         {
             ogretmen.IsActive = true;
+            ogretmen.AyrilisTarihi = DateTime.Now;
+            ogretmen.BaslangicTarihi = DateTime.Now;
             if (ModelState.IsValid)
             {
                 var path = "";
-                if (file!=null)
+                if (file != null)
                 {
-                    if (file.ContentLength>0)
+                    if (file.ContentLength > 0)
                     {
-                        if (Path.GetExtension(file.FileName).ToLower()==".jpg" || Path.GetExtension(file.FileName).ToLower() == ".png" || Path.GetExtension(file.FileName).ToLower() == ".gif" || Path.GetExtension(file.FileName).ToLower() == ".jpeg")
+                        if (Path.GetExtension(file.FileName).ToLower() == ".jpg" || Path.GetExtension(file.FileName).ToLower() == ".png" || Path.GetExtension(file.FileName).ToLower() == ".gif" || Path.GetExtension(file.FileName).ToLower() == ".jpeg")
                         {
                             path = Path.Combine(Server.MapPath("~/Content/Images"), file.FileName);
                             file.SaveAs(path);
@@ -72,7 +80,9 @@ namespace BilgiYonetimSistemi.UI.Controllers
                 OgretmenBilgileri ogretmenBilgileri = new OgretmenBilgileri()
                 {
                     OgretmenMail = frm["OgretmeninBilgisi.OgretmenMail"],
-                    TCNo = frm["OgretmeninBilgisi.TCNo"], Fotograf = path, OgretmenID= ogretmen.OgretmenID
+                    TCNo = frm["OgretmeninBilgisi.TCNo"],
+                    Fotograf = path,
+                    OgretmenID = ogretmen.OgretmenID,
                 };
                 db.OgretmenBilgileri.Add(ogretmenBilgileri);
                 db.SaveChanges();
@@ -147,5 +157,82 @@ namespace BilgiYonetimSistemi.UI.Controllers
             }
             base.Dispose(disposing);
         }
+
+        public ActionResult OgretmenDersler()
+        {
+            OgretmenlerDerslerDonemlerConcrete oddc = new OgretmenlerDerslerDonemlerConcrete();
+            var kullanici = Session["Kullanici"] as Kullanici;
+
+            var ogretmen = ogretmenConcrete._ogretmenRepository.GetById(kullanici.Id);
+            return View(oddc.OgretmenDersleri(kullanici.Id));
+        }
+
+        public ActionResult OgretmenDersDetay(int id)
+        {
+            OgrencilerDerslerDonemlerConcrete oddc = new OgrencilerDerslerDonemlerConcrete();
+            var temp = oddc.DersOgrencileri(id);
+            return View(oddc.DersOgrencileri(id));
+        }
+
+        public ActionResult OgretmenDerslerNot()
+        {
+            OgretmenlerDerslerDonemlerConcrete oddc = new OgretmenlerDerslerDonemlerConcrete();
+            var kullanici = Session["Kullanici"] as Kullanici;
+
+            var ogretmen = ogretmenConcrete._ogretmenRepository.GetById(kullanici.Id);
+            return View(oddc.OgretmenDersleri(kullanici.Id));
+        }
+
+        [HttpGet]
+        public string OgrenciDersNotlar(int id, string sinavTipi)
+        {
+            OgrencilerDerslerDonemlerConcrete oddc = new OgrencilerDerslerDonemlerConcrete();
+            //Vize-1
+            IEnumerable<OgrenciDersNotDTO> liste = null;
+            if (sinavTipi == "Vize-1")
+                liste = oddc.OgrenciDersVize1(id);
+            else if (sinavTipi == "Vize-2")
+                liste = oddc.OgrenciDersVize2(id);
+            else
+                liste = oddc.OgrenciDersFinal(id);
+            string json = JsonConvert.SerializeObject(liste);
+            return json;
+        }
+
+
+        public ActionResult OgretmenDersNot(int id)
+        {
+            ViewData["DersID"] = id;
+
+
+            return View();
+        }
+        [HttpPost]
+        public void OgrenciDerseNotEkle(IEnumerable<OgrenciDersNotDTO> ogrenciDersNot, string sinavTipi)
+        {
+            if (ogrenciDersNot != null)
+            {
+                NotConcrete notConcrete = new NotConcrete();
+                SinavConcrete sinavConcrete = new SinavConcrete();
+                foreach (var item in ogrenciDersNot)
+                {
+                    if (item.AldigiNot != 0)
+                    {
+                        int sinavId = sinavConcrete._sinavRepository.GetEntity().FirstOrDefault(x => x.SinavTipi == sinavTipi).SinavID;
+                        Not not = notConcrete._notRepository.GetEntity().FirstOrDefault(x => x.OgrenciDerslerDonemlerID == item.OgrenciDerslerDonemlerID && x.SinavID == sinavId);
+                        if (not == null)
+                            not = new Not();
+                        not.OgrenciDerslerDonemlerID = item.OgrenciDerslerDonemlerID;
+                        not.Puan = item.AldigiNot;
+                        not.SinavID = sinavId;
+                        if (not.NotID == 0)
+                            notConcrete._notRepository.Insert(not);
+                        notConcrete._notUnitOfWork.SaveChanges();
+                    }
+                }
+                notConcrete._notUnitOfWork.Dispose();
+            }
+        }
+
     }
 }

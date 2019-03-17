@@ -9,6 +9,6 @@ namespace BilgiYonetimSistemi.BLL.Repository.Abstract
 {
     public interface IFakulteBolumler
     {
-        FakulteBolumler GetByFacultyDepartment(int fakulteid, Bolum bolum);
+        FakulteBolumler GetByFacultyDepartment(Fakulte fakulte, Bolum bolum);
     }
 }

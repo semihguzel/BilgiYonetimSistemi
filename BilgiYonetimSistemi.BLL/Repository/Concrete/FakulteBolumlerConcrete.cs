@@ -25,9 +25,9 @@ namespace BilgiYonetimSistemi.BLL.Repository.Concrete
             _fakulteBolumlerRepository = _fakulteBolumlerUnitOfWork.GetRepository<FakulteBolumler>();
         }
 
-        public FakulteBolumler GetByFacultyDepartment(int fakulteid, Bolum bolum)
+        public FakulteBolumler GetByFacultyDepartment(Fakulte fakulte, Bolum bolum)
         {
-            return _fakulteBolumlerRepository.GetEntity().FirstOrDefault(x => x.FakulteID == fakulteid && x.FakulteninBolumu.BolumAdi == bolum.BolumAdi && x.FakulteninBolumu.EgitimDili == bolum.EgitimDili);
+            return _fakulteBolumlerRepository.GetEntity().FirstOrDefault(x => x.BolumunFakultesi.FakulteAdi == fakulte.FakulteAdi && x.FakulteninBolumu.BolumAdi == bolum.BolumAdi && x.FakulteninBolumu.EgitimDili == bolum.EgitimDili);
         }
     }
 }

@@ -1,0 +1,65 @@
+﻿@model IEnumerable<BilgiYonetimSistemi.DATA.DTOs.OgrenciDTO>
+@{
+    ViewBag.Title = "OgretmenDersDetay";
+}
+
+<h2 style="text-align:center">Ogretmen Ders Detay</h2>
+
+
+<div class="panel panel-default">
+    <div class="panel-body">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Öğrenci Adı</th>
+                    <th>Öğrenci Soyadı</th>
+                    <th>Vize - 1</th>
+                    <th>Vize - 2</th>
+                    <th>Final</th>
+                </tr>
+            </thead>
+            <tbody>
+                @{
+                    foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.OgrenciAdi</td>
+                            <td>@item.OgrenciSoyadi</td>
+                            @foreach (var not in item.Notlar)
+                            {
+                                if (item.Notlar.Count == 1 && not.NotunSinavi.SinavTipi == "Final")
+                                {
+                                    <td>-</td>
+                                    <td>-</td>
+                                    <td>@not.Puan</td>
+
+                                }
+                                else if (item.Notlar.Count == 2 && not.NotunSinavi.SinavTipi == "Final")
+                                {
+                                    <td>-</td>
+                                    <td>@not.Puan</td>
+                                }
+                                else if (not.NotunSinavi.SinavTipi == "Vize-1")
+                                {
+                                    <td>@not.Puan</td>
+                                }
+                                else if (not.NotunSinavi.SinavTipi == "Vize-2")
+                                {
+                                    <td>@not.Puan</td>
+                                }
+                                else if (not.NotunSinavi.SinavTipi == "Final")
+                                {
+                                    <td>@not.Puan</td>
+
+                                }
+                            }
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+        @Html.ActionLink("Listeye Geri Dön", "OgretmenDersler", null, new { @class = "btn btn-primary" })
+    </div>
+</div>
+
+
