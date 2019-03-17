@@ -19,6 +19,5 @@ namespace BilgiYonetimSistemi.DATA
         public OgrencilerDerslerDonemler NotunOgrenciDersDonemi { get; set; }
 
         public Sinav NotunSinavi { get; set; }
-        
     }
 }

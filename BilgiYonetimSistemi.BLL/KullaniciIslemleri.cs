@@ -136,7 +136,7 @@ namespace BilgiYonetimSistemi.BLL
             //Yapicalak: Sifre kisminda TC Ogrenci kismina alinacak, asagidaki ornek gibi sifre girisi yapilacak.
             //Muhammed Talha Balci
             //Mb123717238192739.
-            string sifre = yonetici.Ad.Substring(0, 1).ToUpper() + yonetici.Soyad.Substring(0,1).ToLower() + yonetici.TC + ".";
+            string sifre = yonetici.Ad.Substring(0, 1).ToUpper() + yonetici.Soyad.Substring(0, 1).ToLower() + yonetici.TC + ".";
             userManager.Create(kullanici, sifre);
             userManager.AddToRole(kullanici.Id, "yonetici");
 
@@ -160,6 +160,22 @@ namespace BilgiYonetimSistemi.BLL
                 return true;
             else
                 return false;
+        }
+        
+
+        public static int DonemSayisiniVer(List<OgrencilerDerslerDonemler> ogrencilerDerslerDonemler)
+        {
+            int[] donemler = new int[0];
+            for (int i = 0; i < ogrencilerDerslerDonemler.Count; i++)
+            {Array.Resize(ref donemler, donemler.Length + 1);
+                donemler[i] = ogrencilerDerslerDonemler[i].DonemID;
+                
+            }
+            if (donemler.Distinct().Count() >8)
+            {
+                return 8;
+            }
+            return donemler.Distinct().Count();
         }
     }
 }

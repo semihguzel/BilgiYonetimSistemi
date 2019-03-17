@@ -1,0 +1,1129 @@
+﻿@model List<BilgiYonetimSistemi.DATA.OgrencilerDerslerDonemler>
+@{
+    ViewBag.Title = "Index";
+}
+
+<div id="transkriptTasiyici">
+    @{
+        int toplamKrediSayisi = 0;
+        double genelToplamAgirlikli = 0;
+        int donemSonuToplamKredi = 0;
+        double toplamAgirlikli = 0;
+    }
+
+    @for (int i = 1; i < (int)ViewBag.OgrencininDonemSayisi; i++)
+    {
+        donemSonuToplamKredi = 0;
+        toplamAgirlikli = 0;
+        <div class="col-md-6">
+            <div class="panel panel-sky">
+                <div class="panel-heading" style="border-radius: 5px 5px 0 0;  ">
+                    <h5 class="text-center">
+                        @i  .Yarıyıl
+                    </h5>
+                </div>
+                <div class="panel-body" style="padding:0; border:none;">
+                    <table class="table table-striped table-condensed table-bordered" style="background-color: #ffffff; margin-bottom:0;">
+                        <thead>
+                            <tr>
+                                <td>
+                                    <strong>Ders Adı</strong>
+                                </td>
+                                <td class="text-center">
+                                    <strong></strong>
+                                </td>
+                                <td class="text-center">
+                                    <strong>Başarı Notu</strong>
+                                </td>
+                                <td class="text-center">
+                                    <strong>AKTS Kredisi</strong>
+                                </td>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            @if (i == 1)
+                            {
+
+                                foreach (var bolumders in ViewBag.BolumlerDersler as List<BilgiYonetimSistemi.DATA.BolumlerDersler>)
+                                {
+                                    if (bolumders.BolumunDersi.DersKodu.EndsWith("101"))
+                                    {
+                                        donemSonuToplamKredi = donemSonuToplamKredi + bolumders.BolumunDersi.DersKredisi;
+                                        <tr>
+                                            <td>
+                                                @bolumders.BolumunDersi.DersAdi
+                                            </td>
+                                            <td class="text-center">
+                                                <span></span>
+                                            </td>
+                                            <td class="text-center">
+                                                @{
+                                                    int birinciVizePuanı = Model.FirstOrDefault(x => x.DersID == bolumders.BolumunDersi.DersID).OgrenciDerslerDonemlerinNotlari.FirstOrDefault(x => x.SinavID == 1).Puan;
+
+                                                    int ikinciVizePuanı = Model.FirstOrDefault(x => x.DersID == bolumders.BolumunDersi.DersID).OgrenciDerslerDonemlerinNotlari.FirstOrDefault(x => x.SinavID == 2).Puan;
+
+                                                    int finalPuanı = Model.FirstOrDefault(x => x.DersID == bolumders.BolumunDersi.DersID).OgrenciDerslerDonemlerinNotlari.FirstOrDefault(x => x.SinavID == 3).Puan;
+
+                                                    double finalliSonuc = birinciVizePuanı * 0.2 + ikinciVizePuanı * 0.2 + finalPuanı * 0.6;
+                                                    double butunlemePuanı = finalliSonuc;
+
+                                                    double butluSonuc = birinciVizePuanı * 0.2 + ikinciVizePuanı * 0.2 + butunlemePuanı * 0.6;
+
+                                                    if (butunlemePuanı == 0)
+                                                    {
+
+                                                        if (finalliSonuc < 45)
+                                                        {
+                                                            <span>FF</span>
+                                                            toplamAgirlikli += +0 * bolumders.BolumunDersi.DersKredisi;
+                                                        }
+                                                        else if (finalliSonuc >= 45 && finalliSonuc < 50)
+                                                        {
+                                                            <span>DD</span>
+                                                            toplamAgirlikli += +1 * bolumders.BolumunDersi.DersKredisi;
+                                                        }
+                                                        else if (finalliSonuc >= 50 && finalliSonuc < 60)
+                                                        {
+                                                            <span>DC</span>
+                                                            toplamAgirlikli += 1.5 * bolumders.BolumunDersi.DersKredisi;
+                                                        }
+                                                        else if (finalliSonuc >= 60 && finalliSonuc < 70)
+                                                        {
+                                                            <span>CC</span>
+                                                            toplamAgirlikli += 2 * bolumders.BolumunDersi.DersKredisi;
+                                                        }
+                                                        else if (finalliSonuc >= 70 && finalliSonuc < 80)
+                                                        {
+                                                            <span>CB</span>
+                                                            toplamAgirlikli += 2.5 * bolumders.BolumunDersi.DersKredisi;
+                                                        }
+                                                        else if (finalliSonuc >= 80 && finalliSonuc < 85)
+                                                        {
+                                                            <span>BB</span>
+                                                            toplamAgirlikli += 3 * bolumders.BolumunDersi.DersKredisi;
+                                                        }
+                                                        else if (finalliSonuc >= 85 && finalliSonuc < 90)
+                                                        {
+                                                            toplamAgirlikli += 3.5 * bolumders.BolumunDersi.DersKredisi;
+                                                            <span>BA</span>
+                                                        }
+                                                        else if (finalliSonuc >= 90 || butluSonuc >= 90)
+                                                        {
+                                                            <span>AA</span>
+                                                            toplamAgirlikli += 4 * bolumders.BolumunDersi.DersKredisi;
+                                                        }
+                                                    }
+                                                    else
+                                                    {
+                                                        if (butunlemePuanı == 0)
+                                                        {
+                                                            <span>GR</span>
+                                                            toplamAgirlikli += 0 * bolumders.BolumunDersi.DersKredisi;
+                                                        }
+                                                        else if (butluSonuc < 45)
+                                                        {
+                                                            <span>FF</span>
+                                                            toplamAgirlikli += 0 * bolumders.BolumunDersi.DersKredisi;
+                                                        }
+                                                        else if (butluSonuc >= 45 && butluSonuc < 50)
+                                                        {
+                                                            <span>DD</span>
+                                                            toplamAgirlikli += 1 * bolumders.BolumunDersi.DersKredisi;
+                                                        }
+                                                        else if (butluSonuc >= 50 && butluSonuc < 60)
+                                                        {
+                                                            <span>DC</span>
+                                                            toplamAgirlikli += 1.5 * bolumders.BolumunDersi.DersKredisi;
+                                                        }
+                                                        else if (butluSonuc >= 60 && butluSonuc < 70)
+                                                        {
+                                                            <span>CC</span>
+                                                            toplamAgirlikli += 2 * bolumders.BolumunDersi.DersKredisi;
+                                                        }
+                                                        else if (butluSonuc >= 70 && butluSonuc < 80)
+                                                        {
+                                                            <span>CB</span>
+                                                            toplamAgirlikli += 2.5 * bolumders.BolumunDersi.DersKredisi;
+                                                        }
+                                                        else if (butluSonuc >= 80 && butluSonuc < 85)
+                                                        {
+                                                            <span>BB</span>
+                                                            toplamAgirlikli += 3 * bolumders.BolumunDersi.DersKredisi;
+                                                        }
+                                                        else if (butluSonuc >= 85 && butluSonuc < 90)
+                                                        {
+                                                            <span>BA</span>
+                                                            toplamAgirlikli += 3.5 * bolumders.BolumunDersi.DersKredisi;
+                                                        }
+                                                        else if (butluSonuc >= 90)
+                                                        {
+                                                            <span>AA</span>
+                                                            toplamAgirlikli += 4 * bolumders.BolumunDersi.DersKredisi;
+                                                        }
+                                                    }
+                                                }
+                                            </td>
+                                            <td class="text-center">
+                                                @bolumders.BolumunDersi.DersKredisi
+                                            </td>
+                                        </tr>
+                                    }
+                                }
+                            }
+                            else if (i == 2)
+                            {
+
+                                foreach (var bolumders in ViewBag.BolumlerDersler as List<BilgiYonetimSistemi.DATA.BolumlerDersler>)
+                                {
+                                    if (bolumders.BolumunDersi.DersKodu.EndsWith("102"))
+                                    {
+                                        donemSonuToplamKredi = donemSonuToplamKredi + bolumders.BolumunDersi.DersKredisi;
+                                        <tr>
+                                            <td>
+                                                @bolumders.BolumunDersi.DersAdi
+                                            </td>
+                                            <td class="text-center">
+                                                <span></span>
+                                            </td>
+                                            <td class="text-center">
+                                                @{
+                                                    int birinciVizePuanı = Model.FirstOrDefault(x => x.DersID == bolumders.BolumunDersi.DersID).OgrenciDerslerDonemlerinNotlari.FirstOrDefault(x => x.SinavID == 1).Puan;
+
+                                                    int ikinciVizePuanı = Model.FirstOrDefault(x => x.DersID == bolumders.BolumunDersi.DersID).OgrenciDerslerDonemlerinNotlari.FirstOrDefault(x => x.SinavID == 2).Puan;
+
+                                                    int finalPuanı = Model.FirstOrDefault(x => x.DersID == bolumders.BolumunDersi.DersID).OgrenciDerslerDonemlerinNotlari.FirstOrDefault(x => x.SinavID == 3).Puan;
+
+                                                    double finalliSonuc = birinciVizePuanı * 0.2 + ikinciVizePuanı * 0.2 + finalPuanı * 0.6;
+                                                    double butunlemePuanı = finalliSonuc;
+
+                                                    double butluSonuc = birinciVizePuanı * 0.2 + ikinciVizePuanı * 0.2 + butunlemePuanı * 0.6;
+
+                                                    if (butunlemePuanı == 0)
+                                                    {
+
+                                                        if (finalliSonuc < 45)
+                                                        {
+                                                            <span>FF</span>
+                                                            toplamAgirlikli += +0 * bolumders.BolumunDersi.DersKredisi;
+                                                        }
+                                                        else if (finalliSonuc >= 45 && finalliSonuc < 50)
+                                                        {
+                                                            <span>DD</span>
+                                                            toplamAgirlikli += +1 * bolumders.BolumunDersi.DersKredisi;
+                                                        }
+                                                        else if (finalliSonuc >= 50 && finalliSonuc < 60)
+                                                        {
+                                                            <span>DC</span>
+                                                            toplamAgirlikli += 1.5 * bolumders.BolumunDersi.DersKredisi;
+                                                        }
+                                                        else if (finalliSonuc >= 60 && finalliSonuc < 70)
+                                                        {
+                                                            <span>CC</span>
+                                                            toplamAgirlikli += 2 * bolumders.BolumunDersi.DersKredisi;
+                                                        }
+                                                        else if (finalliSonuc >= 70 && finalliSonuc < 80)
+                                                        {
+                                                            <span>CB</span>
+                                                            toplamAgirlikli += 2.5 * bolumders.BolumunDersi.DersKredisi;
+                                                        }
+                                                        else if (finalliSonuc >= 80 && finalliSonuc < 85)
+                                                        {
+                                                            <span>BB</span>
+                                                            toplamAgirlikli += 3 * bolumders.BolumunDersi.DersKredisi;
+                                                        }
+                                                        else if (finalliSonuc >= 85 && finalliSonuc < 90)
+                                                        {
+                                                            toplamAgirlikli += 3.5 * bolumders.BolumunDersi.DersKredisi;
+                                                            <span>BA</span>
+                                                        }
+                                                        else if (finalliSonuc >= 90 || butluSonuc >= 90)
+                                                        {
+                                                            <span>AA</span>
+                                                            toplamAgirlikli += 4 * bolumders.BolumunDersi.DersKredisi;
+                                                        }
+                                                    }
+                                                    else
+                                                    {
+                                                        if (butunlemePuanı == 0)
+                                                        {
+                                                            <span>GR</span>
+                                                            toplamAgirlikli += 0 * bolumders.BolumunDersi.DersKredisi;
+                                                        }
+                                                        else if (butluSonuc < 45)
+                                                        {
+                                                            <span>FF</span>
+                                                            toplamAgirlikli += 0 * bolumders.BolumunDersi.DersKredisi;
+                                                        }
+                                                        else if (butluSonuc >= 45 && butluSonuc < 50)
+                                                        {
+                                                            <span>DD</span>
+                                                            toplamAgirlikli += 1 * bolumders.BolumunDersi.DersKredisi;
+                                                        }
+                                                        else if (butluSonuc >= 50 && butluSonuc < 60)
+                                                        {
+                                                            <span>DC</span>
+                                                            toplamAgirlikli += 1.5 * bolumders.BolumunDersi.DersKredisi;
+                                                        }
+                                                        else if (butluSonuc >= 60 && butluSonuc < 70)
+                                                        {
+                                                            <span>CC</span>
+                                                            toplamAgirlikli += 2 * bolumders.BolumunDersi.DersKredisi;
+                                                        }
+                                                        else if (butluSonuc >= 70 && butluSonuc < 80)
+                                                        {
+                                                            <span>CB</span>
+                                                            toplamAgirlikli += 2.5 * bolumders.BolumunDersi.DersKredisi;
+                                                        }
+                                                        else if (butluSonuc >= 80 && butluSonuc < 85)
+                                                        {
+                                                            <span>BB</span>
+                                                            toplamAgirlikli += 3 * bolumders.BolumunDersi.DersKredisi;
+                                                        }
+                                                        else if (butluSonuc >= 85 && butluSonuc < 90)
+                                                        {
+                                                            <span>BA</span>
+                                                            toplamAgirlikli += 3.5 * bolumders.BolumunDersi.DersKredisi;
+                                                        }
+                                                        else if (butluSonuc >= 90)
+                                                        {
+                                                            <span>AA</span>
+                                                            toplamAgirlikli += 4 * bolumders.BolumunDersi.DersKredisi;
+                                                        }
+                                                    }
+                                                }
+                                            </td>
+                                            <td class="text-center">
+                                                @bolumders.BolumunDersi.DersKredisi
+                                            </td>
+                                        </tr>
+                                    }
+                                }
+                            }
+                            else if (i == 3)
+                            {
+
+                                foreach (var bolumders in ViewBag.BolumlerDersler as List<BilgiYonetimSistemi.DATA.BolumlerDersler>)
+                                {
+                                    if (bolumders.BolumunDersi.DersKodu.EndsWith("201"))
+                                    {
+                                        donemSonuToplamKredi = donemSonuToplamKredi + bolumders.BolumunDersi.DersKredisi;
+                                        <tr>
+                                            <td>
+                                                @bolumders.BolumunDersi.DersAdi
+                                            </td>
+                                            <td class="text-center">
+                                                <span></span>
+                                            </td>
+                                            <td class="text-center">
+                                                @{
+                                                    int birinciVizePuanı = Model.FirstOrDefault(x => x.DersID == bolumders.BolumunDersi.DersID).OgrenciDerslerDonemlerinNotlari.FirstOrDefault(x => x.SinavID == 1).Puan;
+
+                                                    int ikinciVizePuanı = Model.FirstOrDefault(x => x.DersID == bolumders.BolumunDersi.DersID).OgrenciDerslerDonemlerinNotlari.FirstOrDefault(x => x.SinavID == 2).Puan;
+
+                                                    int finalPuanı = Model.FirstOrDefault(x => x.DersID == bolumders.BolumunDersi.DersID).OgrenciDerslerDonemlerinNotlari.FirstOrDefault(x => x.SinavID == 3).Puan;
+
+                                                    double finalliSonuc = birinciVizePuanı * 0.2 + ikinciVizePuanı * 0.2 + finalPuanı * 0.6;
+                                                    double butunlemePuanı = finalliSonuc;
+
+                                                    double butluSonuc = birinciVizePuanı * 0.2 + ikinciVizePuanı * 0.2 + butunlemePuanı * 0.6;
+
+                                                    if (butunlemePuanı == 0)
+                                                    {
+
+                                                        if (finalliSonuc < 45)
+                                                        {
+                                                            <span>FF</span>
+                                                            toplamAgirlikli += +0 * bolumders.BolumunDersi.DersKredisi;
+                                                        }
+                                                        else if (finalliSonuc >= 45 && finalliSonuc < 50)
+                                                        {
+                                                            <span>DD</span>
+                                                            toplamAgirlikli += +1 * bolumders.BolumunDersi.DersKredisi;
+                                                        }
+                                                        else if (finalliSonuc >= 50 && finalliSonuc < 60)
+                                                        {
+                                                            <span>DC</span>
+                                                            toplamAgirlikli += 1.5 * bolumders.BolumunDersi.DersKredisi;
+                                                        }
+                                                        else if (finalliSonuc >= 60 && finalliSonuc < 70)
+                                                        {
+                                                            <span>CC</span>
+                                                            toplamAgirlikli += 2 * bolumders.BolumunDersi.DersKredisi;
+                                                        }
+                                                        else if (finalliSonuc >= 70 && finalliSonuc < 80)
+                                                        {
+                                                            <span>CB</span>
+                                                            toplamAgirlikli += 2.5 * bolumders.BolumunDersi.DersKredisi;
+                                                        }
+                                                        else if (finalliSonuc >= 80 && finalliSonuc < 85)
+                                                        {
+                                                            <span>BB</span>
+                                                            toplamAgirlikli += 3 * bolumders.BolumunDersi.DersKredisi;
+                                                        }
+                                                        else if (finalliSonuc >= 85 && finalliSonuc < 90)
+                                                        {
+                                                            toplamAgirlikli += 3.5 * bolumders.BolumunDersi.DersKredisi;
+                                                            <span>BA</span>
+                                                        }
+                                                        else if (finalliSonuc >= 90 || butluSonuc >= 90)
+                                                        {
+                                                            <span>AA</span>
+                                                            toplamAgirlikli += 4 * bolumders.BolumunDersi.DersKredisi;
+                                                        }
+                                                    }
+                                                    else
+                                                    {
+                                                        if (butunlemePuanı == 0)
+                                                        {
+                                                            <span>GR</span>
+                                                            toplamAgirlikli += 0 * bolumders.BolumunDersi.DersKredisi;
+                                                        }
+                                                        else if (butluSonuc < 45)
+                                                        {
+                                                            <span>FF</span>
+                                                            toplamAgirlikli += 0 * bolumders.BolumunDersi.DersKredisi;
+                                                        }
+                                                        else if (butluSonuc >= 45 && butluSonuc < 50)
+                                                        {
+                                                            <span>DD</span>
+                                                            toplamAgirlikli += 1 * bolumders.BolumunDersi.DersKredisi;
+                                                        }
+                                                        else if (butluSonuc >= 50 && butluSonuc < 60)
+                                                        {
+                                                            <span>DC</span>
+                                                            toplamAgirlikli += 1.5 * bolumders.BolumunDersi.DersKredisi;
+                                                        }
+                                                        else if (butluSonuc >= 60 && butluSonuc < 70)
+                                                        {
+                                                            <span>CC</span>
+                                                            toplamAgirlikli += 2 * bolumders.BolumunDersi.DersKredisi;
+                                                        }
+                                                        else if (butluSonuc >= 70 && butluSonuc < 80)
+                                                        {
+                                                            <span>CB</span>
+                                                            toplamAgirlikli += 2.5 * bolumders.BolumunDersi.DersKredisi;
+                                                        }
+                                                        else if (butluSonuc >= 80 && butluSonuc < 85)
+                                                        {
+                                                            <span>BB</span>
+                                                            toplamAgirlikli += 3 * bolumders.BolumunDersi.DersKredisi;
+                                                        }
+                                                        else if (butluSonuc >= 85 && butluSonuc < 90)
+                                                        {
+                                                            <span>BA</span>
+                                                            toplamAgirlikli += 3.5 * bolumders.BolumunDersi.DersKredisi;
+                                                        }
+                                                        else if (butluSonuc >= 90)
+                                                        {
+                                                            <span>AA</span>
+                                                            toplamAgirlikli += 4 * bolumders.BolumunDersi.DersKredisi;
+                                                        }
+                                                    }
+                                                }
+                                            </td>
+                                            <td class="text-center">
+                                                @bolumders.BolumunDersi.DersKredisi
+                                            </td>
+                                        </tr>
+                                    }
+                                }
+                            }
+                            else if (i == 4)
+                            {
+
+                                foreach (var bolumders in ViewBag.BolumlerDersler as List<BilgiYonetimSistemi.DATA.BolumlerDersler>)
+                                {
+                                    if (bolumders.BolumunDersi.DersKodu.EndsWith("202"))
+                                    {
+                                        donemSonuToplamKredi = donemSonuToplamKredi + bolumders.BolumunDersi.DersKredisi;
+                                        <tr>
+                                            <td>
+                                                @bolumders.BolumunDersi.DersAdi
+                                            </td>
+                                            <td class="text-center">
+                                                <span></span>
+                                            </td>
+                                            <td class="text-center">
+                                                @{
+                                                    int birinciVizePuanı = Model.FirstOrDefault(x => x.DersID == bolumders.BolumunDersi.DersID).OgrenciDerslerDonemlerinNotlari.FirstOrDefault(x => x.SinavID == 1).Puan;
+
+                                                    int ikinciVizePuanı = Model.FirstOrDefault(x => x.DersID == bolumders.BolumunDersi.DersID).OgrenciDerslerDonemlerinNotlari.FirstOrDefault(x => x.SinavID == 2).Puan;
+
+                                                    int finalPuanı = Model.FirstOrDefault(x => x.DersID == bolumders.BolumunDersi.DersID).OgrenciDerslerDonemlerinNotlari.FirstOrDefault(x => x.SinavID == 3).Puan;
+
+                                                    double finalliSonuc = birinciVizePuanı * 0.2 + ikinciVizePuanı * 0.2 + finalPuanı * 0.6;
+                                                    double butunlemePuanı = finalliSonuc;
+
+                                                    double butluSonuc = birinciVizePuanı * 0.2 + ikinciVizePuanı * 0.2 + butunlemePuanı * 0.6;
+
+                                                    if (butunlemePuanı == 0)
+                                                    {
+
+                                                        if (finalliSonuc < 45)
+                                                        {
+                                                            <span>FF</span>
+                                                            toplamAgirlikli += +0 * bolumders.BolumunDersi.DersKredisi;
+                                                        }
+                                                        else if (finalliSonuc >= 45 && finalliSonuc < 50)
+                                                        {
+                                                            <span>DD</span>
+                                                            toplamAgirlikli += +1 * bolumders.BolumunDersi.DersKredisi;
+                                                        }
+                                                        else if (finalliSonuc >= 50 && finalliSonuc < 60)
+                                                        {
+                                                            <span>DC</span>
+                                                            toplamAgirlikli += 1.5 * bolumders.BolumunDersi.DersKredisi;
+                                                        }
+                                                        else if (finalliSonuc >= 60 && finalliSonuc < 70)
+                                                        {
+                                                            <span>CC</span>
+                                                            toplamAgirlikli += 2 * bolumders.BolumunDersi.DersKredisi;
+                                                        }
+                                                        else if (finalliSonuc >= 70 && finalliSonuc < 80)
+                                                        {
+                                                            <span>CB</span>
+                                                            toplamAgirlikli += 2.5 * bolumders.BolumunDersi.DersKredisi;
+                                                        }
+                                                        else if (finalliSonuc >= 80 && finalliSonuc < 85)
+                                                        {
+                                                            <span>BB</span>
+                                                            toplamAgirlikli += 3 * bolumders.BolumunDersi.DersKredisi;
+                                                        }
+                                                        else if (finalliSonuc >= 85 && finalliSonuc < 90)
+                                                        {
+                                                            toplamAgirlikli += 3.5 * bolumders.BolumunDersi.DersKredisi;
+                                                            <span>BA</span>
+                                                        }
+                                                        else if (finalliSonuc >= 90 || butluSonuc >= 90)
+                                                        {
+                                                            <span>AA</span>
+                                                            toplamAgirlikli += 4 * bolumders.BolumunDersi.DersKredisi;
+                                                        }
+                                                    }
+                                                    else
+                                                    {
+                                                        if (butunlemePuanı == 0)
+                                                        {
+                                                            <span>GR</span>
+                                                            toplamAgirlikli += 0 * bolumders.BolumunDersi.DersKredisi;
+                                                        }
+                                                        else if (butluSonuc < 45)
+                                                        {
+                                                            <span>FF</span>
+                                                            toplamAgirlikli += 0 * bolumders.BolumunDersi.DersKredisi;
+                                                        }
+                                                        else if (butluSonuc >= 45 && butluSonuc < 50)
+                                                        {
+                                                            <span>DD</span>
+                                                            toplamAgirlikli += 1 * bolumders.BolumunDersi.DersKredisi;
+                                                        }
+                                                        else if (butluSonuc >= 50 && butluSonuc < 60)
+                                                        {
+                                                            <span>DC</span>
+                                                            toplamAgirlikli += 1.5 * bolumders.BolumunDersi.DersKredisi;
+                                                        }
+                                                        else if (butluSonuc >= 60 && butluSonuc < 70)
+                                                        {
+                                                            <span>CC</span>
+                                                            toplamAgirlikli += 2 * bolumders.BolumunDersi.DersKredisi;
+                                                        }
+                                                        else if (butluSonuc >= 70 && butluSonuc < 80)
+                                                        {
+                                                            <span>CB</span>
+                                                            toplamAgirlikli += 2.5 * bolumders.BolumunDersi.DersKredisi;
+                                                        }
+                                                        else if (butluSonuc >= 80 && butluSonuc < 85)
+                                                        {
+                                                            <span>BB</span>
+                                                            toplamAgirlikli += 3 * bolumders.BolumunDersi.DersKredisi;
+                                                        }
+                                                        else if (butluSonuc >= 85 && butluSonuc < 90)
+                                                        {
+                                                            <span>BA</span>
+                                                            toplamAgirlikli += 3.5 * bolumders.BolumunDersi.DersKredisi;
+                                                        }
+                                                        else if (butluSonuc >= 90)
+                                                        {
+                                                            <span>AA</span>
+                                                            toplamAgirlikli += 4 * bolumders.BolumunDersi.DersKredisi;
+                                                        }
+                                                    }
+                                                }
+                                            </td>
+                                            <td class="text-center">
+                                                @bolumders.BolumunDersi.DersKredisi
+                                            </td>
+                                        </tr>
+                                    }
+                                }
+                            }
+                            else if (i == 5)
+                            {
+
+                                foreach (var bolumders in ViewBag.BolumlerDersler as List<BilgiYonetimSistemi.DATA.BolumlerDersler>)
+                                {
+                                    if (bolumders.BolumunDersi.DersKodu.EndsWith("301"))
+                                    {
+                                        donemSonuToplamKredi = donemSonuToplamKredi + bolumders.BolumunDersi.DersKredisi;
+                                        <tr>
+                                            <td>
+                                                @bolumders.BolumunDersi.DersAdi
+                                            </td>
+                                            <td class="text-center">
+                                                <span></span>
+                                            </td>
+                                            <td class="text-center">
+                                                @{
+                                                    int birinciVizePuanı = Model.FirstOrDefault(x => x.DersID == bolumders.BolumunDersi.DersID).OgrenciDerslerDonemlerinNotlari.FirstOrDefault(x => x.SinavID == 1).Puan;
+
+                                                    int ikinciVizePuanı = Model.FirstOrDefault(x => x.DersID == bolumders.BolumunDersi.DersID).OgrenciDerslerDonemlerinNotlari.FirstOrDefault(x => x.SinavID == 2).Puan;
+
+                                                    int finalPuanı = Model.FirstOrDefault(x => x.DersID == bolumders.BolumunDersi.DersID).OgrenciDerslerDonemlerinNotlari.FirstOrDefault(x => x.SinavID == 3).Puan;
+
+                                                    double finalliSonuc = birinciVizePuanı * 0.2 + ikinciVizePuanı * 0.2 + finalPuanı * 0.6;
+                                                    double butunlemePuanı = finalliSonuc;
+
+                                                    double butluSonuc = birinciVizePuanı * 0.2 + ikinciVizePuanı * 0.2 + butunlemePuanı * 0.6;
+
+                                                    if (butunlemePuanı == 0)
+                                                    {
+
+                                                        if (finalliSonuc < 45)
+                                                        {
+                                                            <span>FF</span>
+                                                            toplamAgirlikli += +0 * bolumders.BolumunDersi.DersKredisi;
+                                                        }
+                                                        else if (finalliSonuc >= 45 && finalliSonuc < 50)
+                                                        {
+                                                            <span>DD</span>
+                                                            toplamAgirlikli += +1 * bolumders.BolumunDersi.DersKredisi;
+                                                        }
+                                                        else if (finalliSonuc >= 50 && finalliSonuc < 60)
+                                                        {
+                                                            <span>DC</span>
+                                                            toplamAgirlikli += 1.5 * bolumders.BolumunDersi.DersKredisi;
+                                                        }
+                                                        else if (finalliSonuc >= 60 && finalliSonuc < 70)
+                                                        {
+                                                            <span>CC</span>
+                                                            toplamAgirlikli += 2 * bolumders.BolumunDersi.DersKredisi;
+                                                        }
+                                                        else if (finalliSonuc >= 70 && finalliSonuc < 80)
+                                                        {
+                                                            <span>CB</span>
+                                                            toplamAgirlikli += 2.5 * bolumders.BolumunDersi.DersKredisi;
+                                                        }
+                                                        else if (finalliSonuc >= 80 && finalliSonuc < 85)
+                                                        {
+                                                            <span>BB</span>
+                                                            toplamAgirlikli += 3 * bolumders.BolumunDersi.DersKredisi;
+                                                        }
+                                                        else if (finalliSonuc >= 85 && finalliSonuc < 90)
+                                                        {
+                                                            toplamAgirlikli += 3.5 * bolumders.BolumunDersi.DersKredisi;
+                                                            <span>BA</span>
+                                                        }
+                                                        else if (finalliSonuc >= 90 || butluSonuc >= 90)
+                                                        {
+                                                            <span>AA</span>
+                                                            toplamAgirlikli += 4 * bolumders.BolumunDersi.DersKredisi;
+                                                        }
+                                                    }
+                                                    else
+                                                    {
+                                                        if (butunlemePuanı == 0)
+                                                        {
+                                                            <span>GR</span>
+                                                            toplamAgirlikli += 0 * bolumders.BolumunDersi.DersKredisi;
+                                                        }
+                                                        else if (butluSonuc < 45)
+                                                        {
+                                                            <span>FF</span>
+                                                            toplamAgirlikli += 0 * bolumders.BolumunDersi.DersKredisi;
+                                                        }
+                                                        else if (butluSonuc >= 45 && butluSonuc < 50)
+                                                        {
+                                                            <span>DD</span>
+                                                            toplamAgirlikli += 1 * bolumders.BolumunDersi.DersKredisi;
+                                                        }
+                                                        else if (butluSonuc >= 50 && butluSonuc < 60)
+                                                        {
+                                                            <span>DC</span>
+                                                            toplamAgirlikli += 1.5 * bolumders.BolumunDersi.DersKredisi;
+                                                        }
+                                                        else if (butluSonuc >= 60 && butluSonuc < 70)
+                                                        {
+                                                            <span>CC</span>
+                                                            toplamAgirlikli += 2 * bolumders.BolumunDersi.DersKredisi;
+                                                        }
+                                                        else if (butluSonuc >= 70 && butluSonuc < 80)
+                                                        {
+                                                            <span>CB</span>
+                                                            toplamAgirlikli += 2.5 * bolumders.BolumunDersi.DersKredisi;
+                                                        }
+                                                        else if (butluSonuc >= 80 && butluSonuc < 85)
+                                                        {
+                                                            <span>BB</span>
+                                                            toplamAgirlikli += 3 * bolumders.BolumunDersi.DersKredisi;
+                                                        }
+                                                        else if (butluSonuc >= 85 && butluSonuc < 90)
+                                                        {
+                                                            <span>BA</span>
+                                                            toplamAgirlikli += 3.5 * bolumders.BolumunDersi.DersKredisi;
+                                                        }
+                                                        else if (butluSonuc >= 90)
+                                                        {
+                                                            <span>AA</span>
+                                                            toplamAgirlikli += 4 * bolumders.BolumunDersi.DersKredisi;
+                                                        }
+                                                    }
+                                                }
+                                            </td>
+                                            <td class="text-center">
+                                                @bolumders.BolumunDersi.DersKredisi
+                                            </td>
+                                        </tr>
+                                    }
+                                }
+                            }
+                            else if (i == 6)
+                            {
+
+                                foreach (var bolumders in ViewBag.BolumlerDersler as List<BilgiYonetimSistemi.DATA.BolumlerDersler>)
+                                {
+                                    if (bolumders.BolumunDersi.DersKodu.EndsWith("302"))
+                                    {
+                                        donemSonuToplamKredi = donemSonuToplamKredi + bolumders.BolumunDersi.DersKredisi;
+                                        <tr>
+                                            <td>
+                                                @bolumders.BolumunDersi.DersAdi
+                                            </td>
+                                            <td class="text-center">
+                                                <span></span>
+                                            </td>
+                                            <td class="text-center">
+                                                @{
+                                                    int birinciVizePuanı = Model.FirstOrDefault(x => x.DersID == bolumders.BolumunDersi.DersID).OgrenciDerslerDonemlerinNotlari.FirstOrDefault(x => x.SinavID == 1).Puan;
+
+                                                    int ikinciVizePuanı = Model.FirstOrDefault(x => x.DersID == bolumders.BolumunDersi.DersID).OgrenciDerslerDonemlerinNotlari.FirstOrDefault(x => x.SinavID == 2).Puan;
+
+                                                    int finalPuanı = Model.FirstOrDefault(x => x.DersID == bolumders.BolumunDersi.DersID).OgrenciDerslerDonemlerinNotlari.FirstOrDefault(x => x.SinavID == 3).Puan;
+
+                                                    double finalliSonuc = birinciVizePuanı * 0.2 + ikinciVizePuanı * 0.2 + finalPuanı * 0.6;
+                                                    double butunlemePuanı = finalliSonuc;
+
+                                                    double butluSonuc = birinciVizePuanı * 0.2 + ikinciVizePuanı * 0.2 + butunlemePuanı * 0.6;
+
+                                                    if (butunlemePuanı == 0)
+                                                    {
+
+                                                        if (finalliSonuc < 45)
+                                                        {
+                                                            <span>FF</span>
+                                                            toplamAgirlikli += +0 * bolumders.BolumunDersi.DersKredisi;
+                                                        }
+                                                        else if (finalliSonuc >= 45 && finalliSonuc < 50)
+                                                        {
+                                                            <span>DD</span>
+                                                            toplamAgirlikli += +1 * bolumders.BolumunDersi.DersKredisi;
+                                                        }
+                                                        else if (finalliSonuc >= 50 && finalliSonuc < 60)
+                                                        {
+                                                            <span>DC</span>
+                                                            toplamAgirlikli += 1.5 * bolumders.BolumunDersi.DersKredisi;
+                                                        }
+                                                        else if (finalliSonuc >= 60 && finalliSonuc < 70)
+                                                        {
+                                                            <span>CC</span>
+                                                            toplamAgirlikli += 2 * bolumders.BolumunDersi.DersKredisi;
+                                                        }
+                                                        else if (finalliSonuc >= 70 && finalliSonuc < 80)
+                                                        {
+                                                            <span>CB</span>
+                                                            toplamAgirlikli += 2.5 * bolumders.BolumunDersi.DersKredisi;
+                                                        }
+                                                        else if (finalliSonuc >= 80 && finalliSonuc < 85)
+                                                        {
+                                                            <span>BB</span>
+                                                            toplamAgirlikli += 3 * bolumders.BolumunDersi.DersKredisi;
+                                                        }
+                                                        else if (finalliSonuc >= 85 && finalliSonuc < 90)
+                                                        {
+                                                            toplamAgirlikli += 3.5 * bolumders.BolumunDersi.DersKredisi;
+                                                            <span>BA</span>
+                                                        }
+                                                        else if (finalliSonuc >= 90 || butluSonuc >= 90)
+                                                        {
+                                                            <span>AA</span>
+                                                            toplamAgirlikli += 4 * bolumders.BolumunDersi.DersKredisi;
+                                                        }
+                                                    }
+                                                    else
+                                                    {
+                                                        if (butunlemePuanı == 0)
+                                                        {
+                                                            <span>GR</span>
+                                                            toplamAgirlikli += 0 * bolumders.BolumunDersi.DersKredisi;
+                                                        }
+                                                        else if (butluSonuc < 45)
+                                                        {
+                                                            <span>FF</span>
+                                                            toplamAgirlikli += 0 * bolumders.BolumunDersi.DersKredisi;
+                                                        }
+                                                        else if (butluSonuc >= 45 && butluSonuc < 50)
+                                                        {
+                                                            <span>DD</span>
+                                                            toplamAgirlikli += 1 * bolumders.BolumunDersi.DersKredisi;
+                                                        }
+                                                        else if (butluSonuc >= 50 && butluSonuc < 60)
+                                                        {
+                                                            <span>DC</span>
+                                                            toplamAgirlikli += 1.5 * bolumders.BolumunDersi.DersKredisi;
+                                                        }
+                                                        else if (butluSonuc >= 60 && butluSonuc < 70)
+                                                        {
+                                                            <span>CC</span>
+                                                            toplamAgirlikli += 2 * bolumders.BolumunDersi.DersKredisi;
+                                                        }
+                                                        else if (butluSonuc >= 70 && butluSonuc < 80)
+                                                        {
+                                                            <span>CB</span>
+                                                            toplamAgirlikli += 2.5 * bolumders.BolumunDersi.DersKredisi;
+                                                        }
+                                                        else if (butluSonuc >= 80 && butluSonuc < 85)
+                                                        {
+                                                            <span>BB</span>
+                                                            toplamAgirlikli += 3 * bolumders.BolumunDersi.DersKredisi;
+                                                        }
+                                                        else if (butluSonuc >= 85 && butluSonuc < 90)
+                                                        {
+                                                            <span>BA</span>
+                                                            toplamAgirlikli += 3.5 * bolumders.BolumunDersi.DersKredisi;
+                                                        }
+                                                        else if (butluSonuc >= 90)
+                                                        {
+                                                            <span>AA</span>
+                                                            toplamAgirlikli += 4 * bolumders.BolumunDersi.DersKredisi;
+                                                        }
+                                                    }
+                                                }
+                                            </td>
+                                            <td class="text-center">
+                                                @bolumders.BolumunDersi.DersKredisi
+                                            </td>
+                                        </tr>
+                                    }
+                                }
+                            }
+                            else if (i == 7)
+                            {
+
+                                foreach (var bolumders in ViewBag.BolumlerDersler as List<BilgiYonetimSistemi.DATA.BolumlerDersler>)
+                                {
+                                    if (bolumders.BolumunDersi.DersKodu.EndsWith("401"))
+                                    {
+                                        donemSonuToplamKredi = donemSonuToplamKredi + bolumders.BolumunDersi.DersKredisi;
+                                        <tr>
+                                            <td>
+                                                @bolumders.BolumunDersi.DersAdi
+                                            </td>
+                                            <td class="text-center">
+                                                <span></span>
+                                            </td>
+                                            <td class="text-center">
+                                                @{
+                                                    int birinciVizePuanı = Model.FirstOrDefault(x => x.DersID == bolumders.BolumunDersi.DersID).OgrenciDerslerDonemlerinNotlari.FirstOrDefault(x => x.SinavID == 1).Puan;
+
+                                                    int ikinciVizePuanı = Model.FirstOrDefault(x => x.DersID == bolumders.BolumunDersi.DersID).OgrenciDerslerDonemlerinNotlari.FirstOrDefault(x => x.SinavID == 2).Puan;
+
+                                                    int finalPuanı = Model.FirstOrDefault(x => x.DersID == bolumders.BolumunDersi.DersID).OgrenciDerslerDonemlerinNotlari.FirstOrDefault(x => x.SinavID == 3).Puan;
+
+                                                    double finalliSonuc = birinciVizePuanı * 0.2 + ikinciVizePuanı * 0.2 + finalPuanı * 0.6;
+                                                    double butunlemePuanı = finalliSonuc;
+
+                                                    double butluSonuc = birinciVizePuanı * 0.2 + ikinciVizePuanı * 0.2 + butunlemePuanı * 0.6;
+
+                                                    if (butunlemePuanı == 0)
+                                                    {
+
+                                                        if (finalliSonuc < 45)
+                                                        {
+                                                            <span>FF</span>
+                                                            toplamAgirlikli += +0 * bolumders.BolumunDersi.DersKredisi;
+                                                        }
+                                                        else if (finalliSonuc >= 45 && finalliSonuc < 50)
+                                                        {
+                                                            <span>DD</span>
+                                                            toplamAgirlikli += +1 * bolumders.BolumunDersi.DersKredisi;
+                                                        }
+                                                        else if (finalliSonuc >= 50 && finalliSonuc < 60)
+                                                        {
+                                                            <span>DC</span>
+                                                            toplamAgirlikli += 1.5 * bolumders.BolumunDersi.DersKredisi;
+                                                        }
+                                                        else if (finalliSonuc >= 60 && finalliSonuc < 70)
+                                                        {
+                                                            <span>CC</span>
+                                                            toplamAgirlikli += 2 * bolumders.BolumunDersi.DersKredisi;
+                                                        }
+                                                        else if (finalliSonuc >= 70 && finalliSonuc < 80)
+                                                        {
+                                                            <span>CB</span>
+                                                            toplamAgirlikli += 2.5 * bolumders.BolumunDersi.DersKredisi;
+                                                        }
+                                                        else if (finalliSonuc >= 80 && finalliSonuc < 85)
+                                                        {
+                                                            <span>BB</span>
+                                                            toplamAgirlikli += 3 * bolumders.BolumunDersi.DersKredisi;
+                                                        }
+                                                        else if (finalliSonuc >= 85 && finalliSonuc < 90)
+                                                        {
+                                                            toplamAgirlikli += 3.5 * bolumders.BolumunDersi.DersKredisi;
+                                                            <span>BA</span>
+                                                        }
+                                                        else if (finalliSonuc >= 90 || butluSonuc >= 90)
+                                                        {
+                                                            <span>AA</span>
+                                                            toplamAgirlikli += 4 * bolumders.BolumunDersi.DersKredisi;
+                                                        }
+                                                    }
+                                                    else
+                                                    {
+                                                        if (butunlemePuanı == 0)
+                                                        {
+                                                            <span>GR</span>
+                                                            toplamAgirlikli += 0 * bolumders.BolumunDersi.DersKredisi;
+                                                        }
+                                                        else if (butluSonuc < 45)
+                                                        {
+                                                            <span>FF</span>
+                                                            toplamAgirlikli += 0 * bolumders.BolumunDersi.DersKredisi;
+                                                        }
+                                                        else if (butluSonuc >= 45 && butluSonuc < 50)
+                                                        {
+                                                            <span>DD</span>
+                                                            toplamAgirlikli += 1 * bolumders.BolumunDersi.DersKredisi;
+                                                        }
+                                                        else if (butluSonuc >= 50 && butluSonuc < 60)
+                                                        {
+                                                            <span>DC</span>
+                                                            toplamAgirlikli += 1.5 * bolumders.BolumunDersi.DersKredisi;
+                                                        }
+                                                        else if (butluSonuc >= 60 && butluSonuc < 70)
+                                                        {
+                                                            <span>CC</span>
+                                                            toplamAgirlikli += 2 * bolumders.BolumunDersi.DersKredisi;
+                                                        }
+                                                        else if (butluSonuc >= 70 && butluSonuc < 80)
+                                                        {
+                                                            <span>CB</span>
+                                                            toplamAgirlikli += 2.5 * bolumders.BolumunDersi.DersKredisi;
+                                                        }
+                                                        else if (butluSonuc >= 80 && butluSonuc < 85)
+                                                        {
+                                                            <span>BB</span>
+                                                            toplamAgirlikli += 3 * bolumders.BolumunDersi.DersKredisi;
+                                                        }
+                                                        else if (butluSonuc >= 85 && butluSonuc < 90)
+                                                        {
+                                                            <span>BA</span>
+                                                            toplamAgirlikli += 3.5 * bolumders.BolumunDersi.DersKredisi;
+                                                        }
+                                                        else if (butluSonuc >= 90)
+                                                        {
+                                                            <span>AA</span>
+                                                            toplamAgirlikli += 4 * bolumders.BolumunDersi.DersKredisi;
+                                                        }
+                                                    }
+                                                }
+                                            </td>
+                                            <td class="text-center">
+                                                @bolumders.BolumunDersi.DersKredisi
+                                            </td>
+                                        </tr>
+                                    }
+                                }
+                            }
+                            else if (i == 8)
+                            {
+
+                                foreach (var bolumders in ViewBag.BolumlerDersler as List<BilgiYonetimSistemi.DATA.BolumlerDersler>)
+                                {
+                                    if (bolumders.BolumunDersi.DersKodu.EndsWith("402"))
+                                    {
+                                        donemSonuToplamKredi = donemSonuToplamKredi + bolumders.BolumunDersi.DersKredisi;
+                                        <tr>
+                                            <td>
+                                                @bolumders.BolumunDersi.DersAdi
+                                            </td>
+                                            <td class="text-center">
+                                                <span></span>
+                                            </td>
+                                            <td class="text-center">
+                                                @{
+                                                    int birinciVizePuanı = Model.FirstOrDefault(x => x.DersID == bolumders.BolumunDersi.DersID).OgrenciDerslerDonemlerinNotlari.FirstOrDefault(x => x.SinavID == 1).Puan;
+
+                                                    int ikinciVizePuanı = Model.FirstOrDefault(x => x.DersID == bolumders.BolumunDersi.DersID).OgrenciDerslerDonemlerinNotlari.FirstOrDefault(x => x.SinavID == 2).Puan;
+
+                                                    int finalPuanı = Model.FirstOrDefault(x => x.DersID == bolumders.BolumunDersi.DersID).OgrenciDerslerDonemlerinNotlari.FirstOrDefault(x => x.SinavID == 3).Puan;
+
+                                                    double finalliSonuc = birinciVizePuanı * 0.2 + ikinciVizePuanı * 0.2 + finalPuanı * 0.6;
+                                                    double butunlemePuanı = finalliSonuc;
+
+                                                    double butluSonuc = birinciVizePuanı * 0.2 + ikinciVizePuanı * 0.2 + butunlemePuanı * 0.6;
+
+                                                    if (butunlemePuanı == 0)
+                                                    {
+
+                                                        if (finalliSonuc < 45)
+                                                        {
+                                                            <span>FF</span>
+                                                            toplamAgirlikli += +0 * bolumders.BolumunDersi.DersKredisi;
+                                                        }
+                                                        else if (finalliSonuc >= 45 && finalliSonuc < 50)
+                                                        {
+                                                            <span>DD</span>
+                                                            toplamAgirlikli += +1 * bolumders.BolumunDersi.DersKredisi;
+                                                        }
+                                                        else if (finalliSonuc >= 50 && finalliSonuc < 60)
+                                                        {
+                                                            <span>DC</span>
+                                                            toplamAgirlikli += 1.5 * bolumders.BolumunDersi.DersKredisi;
+                                                        }
+                                                        else if (finalliSonuc >= 60 && finalliSonuc < 70)
+                                                        {
+                                                            <span>CC</span>
+                                                            toplamAgirlikli += 2 * bolumders.BolumunDersi.DersKredisi;
+                                                        }
+                                                        else if (finalliSonuc >= 70 && finalliSonuc < 80)
+                                                        {
+                                                            <span>CB</span>
+                                                            toplamAgirlikli += 2.5 * bolumders.BolumunDersi.DersKredisi;
+                                                        }
+                                                        else if (finalliSonuc >= 80 && finalliSonuc < 85)
+                                                        {
+                                                            <span>BB</span>
+                                                            toplamAgirlikli += 3 * bolumders.BolumunDersi.DersKredisi;
+                                                        }
+                                                        else if (finalliSonuc >= 85 && finalliSonuc < 90)
+                                                        {
+                                                            toplamAgirlikli += 3.5 * bolumders.BolumunDersi.DersKredisi;
+                                                            <span>BA</span>
+                                                        }
+                                                        else if (finalliSonuc >= 90 || butluSonuc >= 90)
+                                                        {
+                                                            <span>AA</span>
+                                                            toplamAgirlikli += 4 * bolumders.BolumunDersi.DersKredisi;
+                                                        }
+                                                    }
+                                                    else
+                                                    {
+                                                        if (butunlemePuanı == 0)
+                                                        {
+                                                            <span>GR</span>
+                                                            toplamAgirlikli += 0 * bolumders.BolumunDersi.DersKredisi;
+                                                        }
+                                                        else if (butluSonuc < 45)
+                                                        {
+                                                            <span>FF</span>
+                                                            toplamAgirlikli += 0 * bolumders.BolumunDersi.DersKredisi;
+                                                        }
+                                                        else if (butluSonuc >= 45 && butluSonuc < 50)
+                                                        {
+                                                            <span>DD</span>
+                                                            toplamAgirlikli += 1 * bolumders.BolumunDersi.DersKredisi;
+                                                        }
+                                                        else if (butluSonuc >= 50 && butluSonuc < 60)
+                                                        {
+                                                            <span>DC</span>
+                                                            toplamAgirlikli += 1.5 * bolumders.BolumunDersi.DersKredisi;
+                                                        }
+                                                        else if (butluSonuc >= 60 && butluSonuc < 70)
+                                                        {
+                                                            <span>CC</span>
+                                                            toplamAgirlikli += 2 * bolumders.BolumunDersi.DersKredisi;
+                                                        }
+                                                        else if (butluSonuc >= 70 && butluSonuc < 80)
+                                                        {
+                                                            <span>CB</span>
+                                                            toplamAgirlikli += 2.5 * bolumders.BolumunDersi.DersKredisi;
+                                                        }
+                                                        else if (butluSonuc >= 80 && butluSonuc < 85)
+                                                        {
+                                                            <span>BB</span>
+                                                            toplamAgirlikli += 3 * bolumders.BolumunDersi.DersKredisi;
+                                                        }
+                                                        else if (butluSonuc >= 85 && butluSonuc < 90)
+                                                        {
+                                                            <span>BA</span>
+                                                            toplamAgirlikli += 3.5 * bolumders.BolumunDersi.DersKredisi;
+                                                        }
+                                                        else if (butluSonuc >= 90)
+                                                        {
+                                                            <span>AA</span>
+                                                            toplamAgirlikli += 4 * bolumders.BolumunDersi.DersKredisi;
+                                                        }
+                                                    }
+                                                }
+                                            </td>
+                                            <td class="text-center">
+                                                @bolumders.BolumunDersi.DersKredisi
+                                            </td>
+                                        </tr>
+                                    }
+                                }
+                            }
+                        </tbody>
+
+                        <tfoot>
+                            @{genelToplamAgirlikli += toplamAgirlikli;
+                                toplamKrediSayisi += donemSonuToplamKredi;
+                                <tr style="background-color:#dddddd !important;">
+                                    <td colspan="2" class="text-right">
+                                        <strong>Toplam AKTS Kredi</strong>
+                                    </td>
+                                    <td class="text-center">
+                                        <strong>Toplam Ağırlıklı</strong>
+                                    </td>
+                                    <td class="text-center">
+                                        <strong>Ortalama</strong>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="background-color:#f9f9f9;">
+                                        Dönem Sonu:
+                                    </td>
+                                    <td class="text-center">
+                                        <strong>@donemSonuToplamKredi</strong>
+                                    </td>
+                                    <td class="text-center">
+                                        <strong>@toplamAgirlikli</strong>
+                                    </td>
+                                    <td class="text-center">
+                                        <strong>@((toplamAgirlikli / donemSonuToplamKredi).ToString("G3"))</strong> 
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="background-color:#f9f9f9;">
+                                        Genel:
+                                    </td>
+                                    <td class="text-center">
+                                        <strong>@toplamKrediSayisi</strong>
+                                    </td>
+                                    <td class="text-center">
+                                        <strong>@genelToplamAgirlikli</strong>
+                                    </td>
+                                    <td class="text-center">
+                                        <strong>@((genelToplamAgirlikli / toplamKrediSayisi).ToString("G3"))</strong>
+                                    </td>
+                                </tr>
+                            }
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+    }
+</div>
