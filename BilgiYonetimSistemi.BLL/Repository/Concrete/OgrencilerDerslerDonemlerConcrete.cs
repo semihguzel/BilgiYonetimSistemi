@@ -32,9 +32,9 @@ namespace BilgiYonetimSistemi.BLL.Repository.Concrete
             return _ogrencilerDerslerDonemlerRepository.GetEntity().Where(x => x.DersID == id && x.DonemID == donemId).Select(x => new OgrenciDTO { OgrenciAdi = x.DersinOgrencisi.OgrenciAdi, OgrenciSoyadi = x.DersinOgrencisi.OgrenciSoyadi, OgrenciID = x.OgrenciID, Notlar = x.OgrenciDerslerDonemlerinNotlari }).ToList();
         }
 
-        public IEnumerable<OgrenciDersNotDTO> OgrenciDersNotEkleme(int id,string sinavTipi)
+        public IEnumerable<OgrenciDersNotDTO> OgrenciDersNotEkleme(int id,string sinavTipi, int donemId)
         {
-            var temp = _ogrencilerDerslerDonemlerRepository.GetEntity().Where(x => x.DersID == id).Select(x => new OgrenciDersNotDTO
+            var temp = _ogrencilerDerslerDonemlerRepository.GetEntity().Where(x => x.DersID == id && x.DonemID == donemId).Select(x => new OgrenciDersNotDTO
             {
                 OgrenciAdi = x.DersinOgrencisi.OgrenciAdi,
                 OgrenciSoyadi = x.DersinOgrencisi.OgrenciSoyadi,

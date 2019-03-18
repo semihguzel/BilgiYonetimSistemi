@@ -11,6 +11,7 @@
             <thead>
                 <tr>
                     <th>Ders Adı</th>
+                    <th>Ders Yili</th>
                     <th>Ders İşlemleri</th>
                 </tr>
             </thead>
@@ -22,7 +23,8 @@
                     {
                         <tr>
                             <td>@item.DersAdi</td>
-                            <td>@Html.ActionLink("Not Girisi", "OgretmenDersNot", new { id = item.DersID }, new { @class = "btn btn-primary" })</td>
+                            <td>@item.DonemYili</td>
+                            <td>@Html.ActionLink("Not Girisi", "OgretmenDersNot", new { id = item.DersID, donemId = item.DonemID }, new { @class = "btn btn-primary" })</td>
                         </tr>
                     }
                 }

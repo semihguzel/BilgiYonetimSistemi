@@ -182,25 +182,26 @@ namespace BilgiYonetimSistemi.UI.Controllers
             var ogretmen = ogretmenConcrete._ogretmenRepository.GetById(kullanici.Id);
             return View(oddc.OgretmenDersleri(kullanici.Id));
         }
+        public ActionResult OgretmenDersNot(int id,int donemId)
+        {
+            ViewData["DersID"] = id;
+            ViewData["DonemID"] = donemId;
+
+            return View();
+        }
 
         [HttpGet]
-        public string OgrenciDersNotlar(int id, string sinavTipi)
+        public string OgrenciDersNotlar(int id, string sinavTipi,int donemId)
         {
             OgrencilerDerslerDonemlerConcrete oddc = new OgrencilerDerslerDonemlerConcrete();
             IEnumerable<OgrenciDersNotDTO> liste = null;
-            liste = oddc.OgrenciDersNotEkleme(id, sinavTipi);
+            liste = oddc.OgrenciDersNotEkleme(id, sinavTipi,donemId);
             string json = JsonConvert.SerializeObject(liste);
             return json;
         }
 
 
-        public ActionResult OgretmenDersNot(int id)
-        {
-            ViewData["DersID"] = id;
-
-
-            return View();
-        }
+        
         [HttpPost]
         public void OgrenciDerseNotEkle(IEnumerable<OgrenciDersNotDTO> ogrenciDersNot, string sinavTipi)
         {

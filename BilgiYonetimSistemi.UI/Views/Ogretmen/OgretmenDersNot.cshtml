@@ -1,5 +1,4 @@
-﻿@model IEnumerable<BilgiYonetimSistemi.DATA.DTOs.OgrenciDTO>
-
+﻿
 @{
     ViewBag.Title = "OgretmenDersNot";
 }
@@ -29,7 +28,7 @@
                 
             </tbody>
         </table>
-        @Html.ActionLink("Listeye Geri Dön", "OgretmenDersler", null, new { @class = "btn btn-primary", @style = "float:left;" })
+        @Html.ActionLink("Listeye Geri Dön", "OgretmenDerslerNot", null, new { @class = "btn btn-primary", @style = "float:left;" })
         <button id="btnKaydet" class="btn btn-success" style="float:right">Kaydet</button>
     </div>
 </div>
@@ -39,6 +38,7 @@
 
 
         var dersId = @ViewData["DersID"];
+        var donemId = @ViewData["DonemID"];
         var secilenTip = "Vize-1";
         $(document).ready(function () {
             $("select#sinavTipleri").change(function () {
@@ -52,7 +52,7 @@
         function OgrenciNotlariGetir() {
             $.ajax({
                 method: "get",
-                url: "http://localhost:53663/Ogretmen/OgrenciDersNotlar/" + dersId + "?sinavTipi=" + secilenTip,
+                url: "http://localhost:53663/Ogretmen/OgrenciDersNotlar/" + dersId + "?sinavTipi=" + secilenTip + "&donemId=" + donemId,
                 dataType: "json"
             }).done(function (data) {
                 $("#notBilgileri").html("");

@@ -11,5 +11,6 @@ namespace BilgiYonetimSistemi.DATA.DTOs
         public int DersID { get; set; }
         public int DonemID { get; set; }
         public string DersAdi { get; set; }
+        public string DonemYili { get; set; }
     }
 }
