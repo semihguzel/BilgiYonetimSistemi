@@ -22,7 +22,7 @@
                     {
                         <tr>
                             <td>@item.DersAdi</td>
-                            <td>@Html.ActionLink("Detay Bilgisi","OgretmenDersDetay",new {id = item.DersID },new {@class = "btn btn-info" })</td>
+                            <td>@Html.ActionLink("Detay Bilgisi","OgretmenDersDetay",new {id = item.DersID, donemId = item.DonemID },new {@class = "btn btn-info" })</td>
                         </tr>
                     }
                 }

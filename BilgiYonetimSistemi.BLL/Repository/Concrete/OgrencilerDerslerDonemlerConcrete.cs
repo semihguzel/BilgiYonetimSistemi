@@ -26,9 +26,10 @@ namespace BilgiYonetimSistemi.BLL.Repository.Concrete
             _ogrencilerDerslerDonemlerRepository = _ogrencilerDerslerDonemlerUnitOfWork.GetRepository<OgrencilerDerslerDonemler>();
         }
 
-        public IEnumerable<OgrenciDTO> DersOgrencileri(int id)
+        public IEnumerable<OgrenciDTO> DersOgrencileri(int id,int donemId)
         {
-            return _ogrencilerDerslerDonemlerRepository.GetEntity().Where(x => x.DersID == id).Select(x => new OgrenciDTO { OgrenciAdi = x.DersinOgrencisi.OgrenciAdi, OgrenciSoyadi = x.DersinOgrencisi.OgrenciSoyadi, OgrenciID = x.OgrenciID, Notlar = x.OgrenciDerslerDonemlerinNotlari }).ToList();
+            //OgrenciDersDoneme göre gelmeli!!!
+            return _ogrencilerDerslerDonemlerRepository.GetEntity().Where(x => x.DersID == id && x.DonemID == donemId).Select(x => new OgrenciDTO { OgrenciAdi = x.DersinOgrencisi.OgrenciAdi, OgrenciSoyadi = x.DersinOgrencisi.OgrenciSoyadi, OgrenciID = x.OgrenciID, Notlar = x.OgrenciDerslerDonemlerinNotlari }).ToList();
         }
 
         public IEnumerable<OgrenciDersNotDTO> OgrenciDersNotEkleme(int id,string sinavTipi)

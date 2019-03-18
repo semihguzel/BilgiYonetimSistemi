@@ -167,11 +167,11 @@ namespace BilgiYonetimSistemi.UI.Controllers
             return View(oddc.OgretmenDersleri(kullanici.Id));
         }
 
-        public ActionResult OgretmenDersDetay(int id)
+        public ActionResult OgretmenDersDetay(int id,int donemId)
         {
             OgrencilerDerslerDonemlerConcrete oddc = new OgrencilerDerslerDonemlerConcrete();
-            var temp = oddc.DersOgrencileri(id);
-            return View(oddc.DersOgrencileri(id));
+            var temp = oddc.DersOgrencileri(id,donemId);
+            return View(oddc.DersOgrencileri(id, donemId));
         }
 
         public ActionResult OgretmenDerslerNot()

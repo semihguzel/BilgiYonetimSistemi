@@ -28,7 +28,7 @@ namespace BilgiYonetimSistemi.BLL.Repository.Concrete
 
         public List<DersDTO> OgretmenDersleri(string ogretmenId)
         {
-            return _ogretmenlerDerslerDonemlerRepository.GetEntity().Where(x => x.OgretmenID == ogretmenId).Select(x => new DersDTO { DersAdi = x.OgretmeninDersi.DersAdi, DersID = x.DersID }).ToList();
+            return _ogretmenlerDerslerDonemlerRepository.GetEntity().Where(x => x.OgretmenID == ogretmenId).Select(x => new DersDTO { DersAdi = x.OgretmeninDersi.DersAdi, DersID = x.DersID, DonemID = x.DonemID }).ToList();
         }
     }
 }
