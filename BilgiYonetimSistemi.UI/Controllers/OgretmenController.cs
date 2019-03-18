@@ -188,12 +188,7 @@ namespace BilgiYonetimSistemi.UI.Controllers
         {
             OgrencilerDerslerDonemlerConcrete oddc = new OgrencilerDerslerDonemlerConcrete();
             IEnumerable<OgrenciDersNotDTO> liste = null;
-            if (sinavTipi == "Vize-1")
-                liste = oddc.OgrenciDersVize1(id);
-            else if (sinavTipi == "Vize-2")
-                liste = oddc.OgrenciDersVize2(id);
-            else
-                liste = oddc.OgrenciDersFinal(id);
+            liste = oddc.OgrenciDersNotEkleme(id, sinavTipi);
             string json = JsonConvert.SerializeObject(liste);
             return json;
         }

@@ -16,44 +16,67 @@
                     <th>Vize - 1</th>
                     <th>Vize - 2</th>
                     <th>Final</th>
+                    <th>Büt</th>
                 </tr>
             </thead>
             <tbody>
                 @{
                     foreach (var item in Model)
                     {
-                        <tr>
-                            <td>@item.OgrenciAdi</td>
-                            <td>@item.OgrenciSoyadi</td>
-                            @foreach (var not in item.Notlar)
-                            {
-                                if (item.Notlar.Count == 1 && not.NotunSinavi.SinavTipi == "Final")
-                                {
-                                    <td>-</td>
-                                    <td>-</td>
-                                    <td>@not.Puan</td>
+                <tr>
+                    <td>@item.OgrenciAdi</td>
+                    <td>@item.OgrenciSoyadi</td>
+                    @foreach (var not in item.Notlar)
+                    {
 
-                                }
-                                else if (item.Notlar.Count == 2 && not.NotunSinavi.SinavTipi == "Final")
-                                {
-                                    <td>-</td>
-                                    <td>@not.Puan</td>
-                                }
-                                else if (not.NotunSinavi.SinavTipi == "Vize-1")
-                                {
-                                    <td>@not.Puan</td>
-                                }
-                                else if (not.NotunSinavi.SinavTipi == "Vize-2")
-                                {
-                                    <td>@not.Puan</td>
-                                }
-                                else if (not.NotunSinavi.SinavTipi == "Final")
-                                {
-                                    <td>@not.Puan</td>
+                        if (item.Notlar.Count == 1 && not.NotunSinavi.SinavTipi == "Büt")
+                        {
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>@not.Puan</td>
+                        }
 
-                                }
-                            }
-                        </tr>
+                        else if (item.Notlar.Count == 2 && not.NotunSinavi.SinavTipi == "Büt")
+                        {
+                            <td>-</td>
+                            <td>-</td>
+                            <td>@not.Puan</td>
+                        }
+
+
+                        else if (item.Notlar.Count == 1 && not.NotunSinavi.SinavTipi == "Final")
+                        {
+                            <td>-</td>
+                            <td>-</td>
+                            <td>@not.Puan</td>
+
+                        }
+                        else if (item.Notlar.Count == 2 && not.NotunSinavi.SinavTipi == "Final")
+                        {
+                            <td>-</td>
+                            <td>@not.Puan</td>
+                        }
+                        else if (not.NotunSinavi.SinavTipi == "Vize-1")
+                        {
+                            <td>@not.Puan</td>
+                        }
+                        else if (not.NotunSinavi.SinavTipi == "Vize-2")
+                        {
+                            <td>@not.Puan</td>
+                        }
+                        else if (not.NotunSinavi.SinavTipi == "Final")
+                        {
+                            <td>@not.Puan</td>
+
+                        }
+                        else if (not.NotunSinavi.SinavTipi == "Büt")
+                        {
+                            <td>@not.Puan</td>
+
+                        }
+                    }
+                </tr>
                     }
                 }
             </tbody>

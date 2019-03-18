@@ -31,7 +31,7 @@ namespace BilgiYonetimSistemi.BLL.Repository.Concrete
             return _ogrencilerDerslerDonemlerRepository.GetEntity().Where(x => x.DersID == id).Select(x => new OgrenciDTO { OgrenciAdi = x.DersinOgrencisi.OgrenciAdi, OgrenciSoyadi = x.DersinOgrencisi.OgrenciSoyadi, OgrenciID = x.OgrenciID, Notlar = x.OgrenciDerslerDonemlerinNotlari }).ToList();
         }
 
-        public IEnumerable<OgrenciDersNotDTO> OgrenciDersVize1(int id)
+        public IEnumerable<OgrenciDersNotDTO> OgrenciDersNotEkleme(int id,string sinavTipi)
         {
             var temp = _ogrencilerDerslerDonemlerRepository.GetEntity().Where(x => x.DersID == id).Select(x => new OgrenciDersNotDTO
             {
@@ -39,33 +39,7 @@ namespace BilgiYonetimSistemi.BLL.Repository.Concrete
                 OgrenciSoyadi = x.DersinOgrencisi.OgrenciSoyadi,
                 OgrenciDerslerDonemlerID = x.OgrenciDerslerDonemler,
                 OgrenciNo = x.DersinOgrencisi.OgrenciNumarasi,
-                AldigiNot = x.OgrenciDerslerDonemlerinNotlari.FirstOrDefault(y => y.NotunSinavi.SinavTipi == "Vize-1").Puan
-            }).ToList();
-            return temp;
-        }
-
-        public IEnumerable<OgrenciDersNotDTO> OgrenciDersVize2(int id)
-        {
-            var temp = _ogrencilerDerslerDonemlerRepository.GetEntity().Where(x => x.DersID == id).Select(x => new OgrenciDersNotDTO
-            {
-                OgrenciAdi = x.DersinOgrencisi.OgrenciAdi,
-                OgrenciSoyadi = x.DersinOgrencisi.OgrenciSoyadi,
-                OgrenciDerslerDonemlerID = x.OgrenciDerslerDonemler,
-                OgrenciNo = x.DersinOgrencisi.OgrenciNumarasi,
-                AldigiNot = x.OgrenciDerslerDonemlerinNotlari.FirstOrDefault(y => y.NotunSinavi.SinavTipi == "Vize-2").Puan
-            }).ToList();
-            return temp;
-        }
-
-        public IEnumerable<OgrenciDersNotDTO> OgrenciDersFinal(int id)
-        {
-            var temp = _ogrencilerDerslerDonemlerRepository.GetEntity().Where(x => x.DersID == id).Select(x => new OgrenciDersNotDTO
-            {
-                OgrenciAdi = x.DersinOgrencisi.OgrenciAdi,
-                OgrenciSoyadi = x.DersinOgrencisi.OgrenciSoyadi,
-                OgrenciDerslerDonemlerID = x.OgrenciDerslerDonemler,
-                OgrenciNo = x.DersinOgrencisi.OgrenciNumarasi,
-                AldigiNot = x.OgrenciDerslerDonemlerinNotlari.FirstOrDefault(y => y.NotunSinavi.SinavTipi == "Final").Puan
+                AldigiNot = x.OgrenciDerslerDonemlerinNotlari.FirstOrDefault(y => y.NotunSinavi.SinavTipi == sinavTipi).Puan
             }).ToList();
             return temp;
         }
