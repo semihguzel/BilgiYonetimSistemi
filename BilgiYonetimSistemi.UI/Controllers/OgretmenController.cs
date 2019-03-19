@@ -30,6 +30,12 @@ namespace BilgiYonetimSistemi.UI.Controllers
             return View(db.Ogretmenler.Where(x => x.IsActive == true).ToList());
         }
 
+        public ActionResult Anasayfa()
+        {
+            var kullanici = Session["Kullanici"] as Kullanici;
+            return View(ogretmenConcrete._ogretmenRepository.GetById(kullanici.Id));
+        }
+
         // GET: Ogretmen/Details/5
         public ActionResult Details(string id)
         {

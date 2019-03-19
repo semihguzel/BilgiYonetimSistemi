@@ -74,13 +74,13 @@ namespace BilgiYonetimSistemi.UI.Controllers
                 Session["Kullanici"] = kullanici;
 
                 if (rol.First() == "admin" || rol.First() == "developer")
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Anasayfa", "Yonetici");
                 //TODO : Ogrenci - Ogretmen kisimlari eklenince onlarin anasayfasina yollanacak
                 else if (rol.First() == "ogretmen")
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Anasayfa", "Ogretmen");
                 //TODO : Ogrenci - Ogretmen kisimlari eklenince onlarin anasayfasina yollanacak
                 else if (rol.First() == "ogrenci")
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Anasayfa", "Ogrenci");
                 else
                     return RedirectToAction("Index", "Home");
             }

@@ -361,6 +361,9 @@
     <Content Include="Views\Ogretmen\OgretmenDersNot.cshtml" />
     <Content Include="Views\Transkript\Index.cshtml" />
     <Content Include="Views\Home\ChangePassword.cshtml" />
+    <Content Include="Views\Ogrenci\Anasayfa.cshtml" />
+    <Content Include="Views\Ogretmen\Anasayfa.cshtml" />
+    <Content Include="Views\Yonetici\Anasayfa.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
