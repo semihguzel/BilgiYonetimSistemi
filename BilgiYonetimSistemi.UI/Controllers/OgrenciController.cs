@@ -35,6 +35,12 @@ namespace BilgiYonetimSistemi.UI.Controllers
             return View(ogrenciConcrete._ogrenciRepository.GetAll());
         }
 
+        public ActionResult Anasayfa()
+        {
+            var kullanici = Session["Kullanici"] as Kullanici;
+            return View(ogrenciConcrete._ogrenciRepository.GetById(kullanici.Id));
+        }
+
         // GET: Ogrenci/Details/5
         public ActionResult Details(string id)
         {

@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using BilgiYonetimSistemi.BLL;
+using BilgiYonetimSistemi.BLL.Repository.Concrete;
 using BilgiYonetimSistemi.DAL;
 using BilgiYonetimSistemi.DATA.Entities;
 
@@ -15,12 +16,19 @@ namespace BilgiYonetimSistemi.UI.Controllers
     public class YoneticiController : Controller
     {
         private Context db = new Context();
+        YoneticiConcrete yoneticiConcrete = new YoneticiConcrete();
 
         // GET: Yonetici
         public ActionResult Index()
         {
             var yoneticis = db.Yoneticiler.Include(y => y.Kullanici);
             return View(yoneticis.ToList());
+        }
+
+        public ActionResult Anasayfa()
+        {
+            var kullanici = Session["Kullanici"] as Kullanici;
+            return View(yoneticiConcrete._yoneticiRepository.GetById(kullanici.Id));
         }
 
         // GET: Yonetici/Details/5
