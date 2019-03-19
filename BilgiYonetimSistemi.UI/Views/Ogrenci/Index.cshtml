@@ -8,69 +8,71 @@
 <h2></h2>
 
 <p>
-    @Html.ActionLink("Yeni Öğrenci Ekle", "Create",null, new { @class="btn btn-primary"})
+    @Html.ActionLink("Yeni Öğrenci Ekle", "Create", null, new { @class = "btn btn-primary" })
 </p>
 <table class="table">
     <tr>
         <th>
-          Eğitim Düzeyi
+            Eğitim Düzeyi
         </th>
         <th>
-           Öğrenim Şekli
+            Öğrenim Şekli
         </th>
         <th>
-           Adı
+            Adı
         </th>
         <th>
-           Soyadı
+            Soyadı
         </th>
         <th>
-         Numarası
+            Numarası
         </th>
         <th>
-           Kayıt Tarihi
+            Kayıt Tarihi
         </th>
         <th>
-           Mezuniyet Tarihi
+            Mezuniyet Tarihi
         </th>
         <th>
-          Bölümü
+            Fakultesi - Bölümü - Eğitim Dili
         </th>
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.OgrencininEgitimDuzeyi.EgitimDuzeyTipi)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.OgrencininOgrenimSekli.OgrenimTipi)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.OgrenciAdi)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.OgrenciSoyadi)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.OgrenciNumarasi)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.KayitTarihi)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.MezuniyetTarihi)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.BolumID)
-        </td>
-        <td style="text-align:right">
-            @Html.ActionLink("DÜZENLE", "Edit", new { id = item.OgrenciID }, new { @class = "btn btn-warning" })
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.OgrencininEgitimDuzeyi.EgitimDuzeyTipi)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OgrencininOgrenimSekli.OgrenimTipi)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OgrenciAdi)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OgrenciSoyadi)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OgrenciNumarasi)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.KayitTarihi)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MezuniyetTarihi)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OgrencininFakulteBolumu.BolumunFakultesi.FakulteAdi) - @Html.DisplayFor(modelItem => item.OgrencininFakulteBolumu.FakulteninBolumu.BolumAdi) - @Html.DisplayFor(modelItem => item.OgrencininFakulteBolumu.FakulteninBolumu.EgitimDili)
+            </td>
 
-            @Html.ActionLink("DETAY", "Details", new { id = item.OgrenciID }, new { @class = "btn btn-primary" })
-            @Html.ActionLink("SİL", "Delete", new { id = item.OgrenciID }, new { @class = "btn btn-danger" })
-        </td>
-    </tr>
-}
+            <td style="text-align:right">
+                @Html.ActionLink("DÜZENLE", "Edit", new { id = item.OgrenciID }, new { @class = "btn btn-warning" })
+
+                @Html.ActionLink("DETAY", "Details", new { id = item.OgrenciID }, new { @class = "btn btn-primary" })
+                @Html.ActionLink("SİL", "Delete", new { id = item.OgrenciID }, new { @class = "btn btn-danger" })
+            </td>
+        </tr>
+    }
 </table>

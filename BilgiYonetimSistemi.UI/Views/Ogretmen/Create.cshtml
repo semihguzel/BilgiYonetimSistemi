@@ -9,103 +9,96 @@
 
 @using (Html.BeginForm("Create", "Ogretmen", FormMethod.Post, new { @enctype = "multipart/form-data" }))
 {
-@Html.AntiForgeryToken()
+    @Html.AntiForgeryToken()
 
-<div class="form-horizontal">
+    <div class="form-horizontal">
 
-    <div class="container">
-        <div class="row" style="margin-top:50px">
-            <div class="panel panel-default ">
-                <div class="col-md-8 col-md-offset-2 ">
-                    <div class="panel-body center-block">
-                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                        <div class="form-group">
-                            <div class="col-md-10">
-                                <label style="font-weight:bold;">Adı:</label>
-                                @Html.EditorFor(model => model.OgretmenAdi, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.OgretmenAdi, "", new { @class = "text-danger" })
+        <div class="container">
+            <div class="row" style="margin-top:50px">
+                <div class="panel panel-default ">
+                    <div class="col-md-8 col-md-offset-2 ">
+                        <div class="panel-body center-block">
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            <div class="form-group">
+                                <div class="col-md-10">
+                                    <label style="font-weight:bold;">Adı:</label>
+                                    @Html.EditorFor(model => model.OgretmenAdi, new { htmlAttributes = new { @class = "form-control", required = "required" } })
+                                    @Html.ValidationMessageFor(model => model.OgretmenAdi, "", new { @class = "text-danger" })
+                                </div>
                             </div>
-                        </div>
 
-                        <div class="form-group">
-                            <div class="col-md-10">
-                                <label style="font-weight:bold;">Soyadı:</label>
-                                @Html.EditorFor(model => model.OgretmenSoyadi, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.OgretmenSoyadi, "", new { @class = "text-danger" })
+                            <div class="form-group">
+                                <div class="col-md-10">
+                                    <label style="font-weight:bold;">Soyadı:</label>
+                                    @Html.EditorFor(model => model.OgretmenSoyadi, new { htmlAttributes = new { @class = "form-control", required = "required" } })
+                                    @Html.ValidationMessageFor(model => model.OgretmenSoyadi, "", new { @class = "text-danger" })
+                                </div>
                             </div>
-                        </div>
 
-                        <div class="form-group">
-                            <div class="col-md-10">
-                                <label style="font-weight:bold;">Ünvan:</label>
-                                @Html.EditorFor(model => model.Unvan, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.Unvan, "", new { @class = "text-danger" })
+                            <div class="form-group">
+                                <div class="col-md-10">
+                                    <label style="font-weight:bold;">Ünvan:</label>
+                                    @Html.DropDownList("unvan", new List<SelectListItem>() { new SelectListItem() { Text = "Profesör", Value = "Profesör" }, new SelectListItem() { Text = "Doçent", Value = "Doçent" }, new SelectListItem() { Text = "Doktor", Value = "Doktor" }, new SelectListItem() { Text = "Öğretim Üyesi", Value = "Öğretim Üyesi" }, new SelectListItem() { Text = "Araştırma Görevlisi", Value = "Araştırma Görevlisi" } }, "Ünvan Seçiniz", new { @class = "form-control", required = "required" })
+                                    @Html.ValidationMessageFor(model => model.Unvan, "", new { @class = "text-danger" })
+                                </div>
                             </div>
-                        </div>
 
-                        <div class="form-group">
-                            <div class="col-md-10">
-                                <label style="font-weight:bold;">Göreve Başlama Tarihi:</label>
-                                <input type="date" name="model.BaslangicTarihi" />
-                                @Html.ValidationMessageFor(model => model.BaslangicTarihi, "", new { @class = "text-danger" })
+                            <div class="form-group">
+                                <div class="col-md-10">
+                                    <label style="font-weight:bold;">Göreve Başlama Tarihi:</label>
+                                    <input class="form-control" type="date" name="baslangicTarihi" required />
+                                    @Html.ValidationMessageFor(model => model.BaslangicTarihi, "", new { @class = "text-danger" })
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-md-10">
-                                <label style="font-weight:bold;">Personel Numarası:</label>
-                                @Html.EditorFor(model => model.PersonelNumarasi, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.PersonelNumarasi, "", new { @class = "text-danger" })
+
+                            <div class="form-group">
+                                <div class="col-md-10">
+                                    <label style="font-weight:bold;">Şifre:</label>
+                                    @Html.EditorFor(model => model.Sifre, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Sifre, "", new { @class = "text-danger" })
+                                </div>
                             </div>
-                        </div>
 
-                        <div class="form-group">
-                            <div class="col-md-10">
-                                <label style="font-weight:bold;">Şifre:</label>
-                                @Html.EditorFor(model => model.Sifre, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.Sifre, "", new { @class = "text-danger" })
+
+
+
+                            <div class="form-group">
+                                <div class="col-md-10">
+                                    <label style="font-weight:bold;">TCNo:</label>
+                                    @Html.TextBoxFor(model => model.OgretmeninBilgisi.TCNo, new { @class = "form-control", required = "required", pattern = "[0-9]{11}", title = "11 hane TC giriniz" })
+                                    @Html.ValidationMessageFor(model => model.OgretmeninBilgisi.TCNo, "", new { @class = "text-danger" })
+                                </div>
                             </div>
-                        </div>
 
-
-
-
-                        <div class="form-group">
-                            <div class="col-md-10">
-                                <label style="font-weight:bold;">TCNo:</label>
-                                @Html.TextBoxFor(model => model.OgretmeninBilgisi.TCNo, new { @class = "form-control" })
-                                @Html.ValidationMessageFor(model => model.OgretmeninBilgisi.TCNo, "", new { @class = "text-danger" })
+                            <div class="form-group">
+                                <div class="col-md-10">
+                                    <label style="font-weight:bold;">E-posta:</label>
+                                    @Html.TextBoxFor(model => model.OgretmeninBilgisi.OgretmenMail, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.OgretmeninBilgisi.OgretmenMail, "", new { @class = "text-danger" })
+                                </div>
                             </div>
-                        </div>
 
-                        <div class="form-group">
-                            <div class="col-md-10">
-                                <label style="font-weight:bold;">E-posta:</label>
-                                @Html.TextBoxFor(model => model.OgretmeninBilgisi.OgretmenMail, new { @class = "form-control" })
-                                @Html.ValidationMessageFor(model => model.OgretmeninBilgisi.OgretmenMail, "", new { @class = "text-danger" })
+
+                            <div class="form-group">
+                                <div class="col-md-10">
+                                    <label style="font-weight:bold;">Fotoğraf:</label>
+                                    <input type="file" name="file" id="file" required />
+                                </div>
                             </div>
-                        </div>
 
-
-                        <div class="form-group">
-                            <div class="col-md-10">
-                                <label style="font-weight:bold;">Fotoğraf:</label>
-                               <input type="file" name="file" id="file" />
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-md-offset-2 col-md-10">
-                                <input type="submit" value="Ekle" class="btn btn-success" />
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-10">
+                                    <input type="submit" value="Ekle" class="btn btn-success" />
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
 
-</div>
+    </div>
 }
 <div>
-    @Html.ActionLink("Listeye Dön", "Index","", new { @class="btn btn-primary"})
+    @Html.ActionLink("Listeye Dön", "Index", "", new { @class = "btn btn-primary" })
 </div>

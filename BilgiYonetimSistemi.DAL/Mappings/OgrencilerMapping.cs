@@ -28,6 +28,7 @@ namespace BilgiYonetimSistemi.DAL
 
             HasRequired(x => x.OgrenciBilgisi).WithRequiredPrincipal(x => x.BilgininOgrencisi);
 
+            HasRequired(x => x.OgrencininFakulteBolumu).WithMany(x => x.Ogrenciler).HasForeignKey(x => x.FakulteBolumlerID);
         }
     }
 }

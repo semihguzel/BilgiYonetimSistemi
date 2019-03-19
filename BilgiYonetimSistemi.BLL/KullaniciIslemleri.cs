@@ -66,9 +66,10 @@ namespace BilgiYonetimSistemi.BLL
             ogrenciBilgileriConcrete._ogrenciBilgileriUnitOfWork.Dispose();
         }
 
-        public static void OgretmenEkle(Ogretmen ogretmen)
+        public static void OgretmenEkle(Ogretmen ogretmen,OgretmenBilgileri ogretmenBilgileri)
         {
             OgretmenConcrete ogretmenConcrete = new OgretmenConcrete();
+            OgretmenBilgileriConcrete ogretmenBilgileriConcrete = new OgretmenBilgileriConcrete();
             var roleStore = new RoleStore<IdentityRole>(ogretmenConcrete._dbContext);
             var roleManager = new RoleManager<IdentityRole>(roleStore);
             var userStore = new UserStore<Kullanici>(ogretmenConcrete._dbContext);
@@ -107,10 +108,13 @@ namespace BilgiYonetimSistemi.BLL
                 userManager.AddToRole(kullanici.Id, "ogretmen");
 
             ogretmen.OgretmenID = kullanici.Id;
-
+            ogretmenBilgileri.OgretmenID = ogretmen.OgretmenID;
             ogretmenConcrete._ogretmenRepository.Insert(ogretmen);
             ogretmenConcrete._ogretmenUnitOfWork.SaveChanges();
             ogretmenConcrete._ogretmenUnitOfWork.Dispose();
+            ogretmenBilgileriConcrete._ogretmenBilgileriRepository.Insert(ogretmenBilgileri);
+            ogretmenBilgileriConcrete._ogretmenBilgileriUnitOfWork.SaveChanges();
+            ogretmenBilgileriConcrete._ogretmenBilgileriUnitOfWork.Dispose();
         }
 
         public static void YoneticiEkle(Yonetici yonetici)

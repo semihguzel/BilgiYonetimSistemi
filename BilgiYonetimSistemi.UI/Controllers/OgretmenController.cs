@@ -60,32 +60,33 @@ namespace BilgiYonetimSistemi.UI.Controllers
         {
             ogretmen.IsActive = true;
             ogretmen.AyrilisTarihi = DateTime.Now;
-            ogretmen.BaslangicTarihi = DateTime.Now;
+            ogretmen.BaslangicTarihi = DateTime.Parse(frm["baslangicTarihi"]);
+            ogretmen.Unvan = frm["unvan"];
             if (ModelState.IsValid)
             {
-                var path = "";
+                string ad = "";
                 if (file != null)
                 {
                     if (file.ContentLength > 0)
                     {
                         if (Path.GetExtension(file.FileName).ToLower() == ".jpg" || Path.GetExtension(file.FileName).ToLower() == ".png" || Path.GetExtension(file.FileName).ToLower() == ".gif" || Path.GetExtension(file.FileName).ToLower() == ".jpeg")
                         {
-                            path = Path.Combine(Server.MapPath("~/Content/Images"), file.FileName);
+                            ad = Guid.NewGuid() + System.IO.Path.GetExtension(file.FileName);
+                            var path = Path.Combine(Server.MapPath("~/images"), ad);
                             file.SaveAs(path);
                         }
                     }
                 }
-
-                KullaniciIslemleri.OgretmenEkle(ogretmen);
+                
+                ogretmen.PersonelNumarasi = "120" + ogretmenConcrete._ogretmenRepository.GetAll().Count();
                 OgretmenBilgileri ogretmenBilgileri = new OgretmenBilgileri()
                 {
                     OgretmenMail = frm["OgretmeninBilgisi.OgretmenMail"],
                     TCNo = frm["OgretmeninBilgisi.TCNo"],
-                    Fotograf = path,
+                    Fotograf = ad,
                     OgretmenID = ogretmen.OgretmenID,
                 };
-                db.OgretmenBilgileri.Add(ogretmenBilgileri);
-                db.SaveChanges();
+                KullaniciIslemleri.OgretmenEkle(ogretmen, ogretmenBilgileri);
                 return RedirectToAction("Index");
             }
 

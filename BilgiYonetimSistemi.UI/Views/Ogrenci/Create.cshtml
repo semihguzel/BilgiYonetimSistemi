@@ -7,7 +7,7 @@
 
 <h2>Öğrenci Ekleme Sayfası</h2>
 
-@using (Html.BeginForm())
+@using (Html.BeginForm("Create", "Ogrenci", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
 
@@ -21,8 +21,15 @@
                         <div class="panel-body center-block">
 
                             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                            <div class="form-group">
 
+                            <div class="form-group">
+                                <div class="col-md-10">
+                                    <label>TC Kimlik No:</label>
+                                    <input class="form-control" type="text" name="tc" id="tc" />
+                                </div>
+                            </div>
+
+                            <div class="form-group">
                                 <div class="col-md-10">
                                     <label>Öğrencinin Adı:</label>
                                     @Html.EditorFor(model => model.OgrenciAdi, new { htmlAttributes = new { @class = "form-control" } })
@@ -31,7 +38,6 @@
                             </div>
 
                             <div class="form-group">
-
                                 <div class="col-md-10">
                                     <label>Soyadı:</label>
                                     @Html.EditorFor(model => model.OgrenciSoyadi, new { htmlAttributes = new { @class = "form-control" } })
@@ -40,34 +46,26 @@
                             </div>
 
                             <div class="form-group">
-
-                                <div class="col-md-10">
-                                    <label>Numarası:</label>
-                                    @Html.EditorFor(model => model.OgrenciNumarasi, new { htmlAttributes = new { @class = "form-control" } })
-                                    @Html.ValidationMessageFor(model => model.OgrenciNumarasi, "", new { @class = "text-danger" })
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-
                                 <div class="col-md-10">
                                     <label>Kayıt Tarihi:</label>
-                                    @Html.EditorFor(model => model.KayitTarihi, new { htmlAttributes = new { @class = "form-control" } })
+                                    <input class="form-control" type="date" name="kayitTarihi" />
                                     @Html.ValidationMessageFor(model => model.KayitTarihi, "", new { @class = "text-danger" })
                                 </div>
                             </div>
 
                             <div class="form-group">
-
                                 <div class="col-md-10">
                                     <label>Bölümü:</label>
-                                    @Html.DropDownList("BolumID", null, htmlAttributes: new { @class = "form-control" })
-                                    @Html.ValidationMessageFor(model => model.BolumID, "", new { @class = "text-danger" })
+                                    <select name="bolumId" class="form-control">
+                                        @foreach (var item in ViewBag.Bolum as IEnumerable<BilgiYonetimSistemi.DATA.FakulteBolumler>)
+                                        {
+                                            <option value="@item.FakulteBolumlerID">@item.BolumunFakultesi.FakulteAdi - @item.FakulteninBolumu.BolumAdi - @item.FakulteninBolumu.EgitimDili </option>
+                                        }
+                                    </select>
                                 </div>
                             </div>
 
                             <div class="form-group">
-
                                 <div class="col-md-10">
                                     <label>Öğrenim Şekli:</label>
                                     @Html.DropDownList("OgrenimSekliID", null, htmlAttributes: new { @class = "form-control" })
@@ -76,7 +74,6 @@
                             </div>
 
                             <div class="form-group">
-
                                 <div class="col-md-10">
                                     <label>Eğitim Düzeyi:</label>
                                     @Html.DropDownList("EgitimDuzeyiID", null, htmlAttributes: new { @class = "form-control" })
@@ -84,55 +81,31 @@
                                 </div>
                             </div>
 
-                            @using (Html.BeginForm("Create", "Ogrenci", FormMethod.Post))
-                            {
 
 
-                                <div class="form-group">
-                                    <div class="col-md-10">
-                                        <label>Adres</label>
-                                        <input class="form-control" type="text" name="adres" id="adres" />
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="col-md-10">
-                                        <label>Telefon</label>
-                                        <input class="form-control" type="text" name="telefon" id="telefon" />
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="col-md-10">
-                                        <label>TC Kimlik No</label>
-                                        <input class="form-control" type="text" name="tc" id="tc" />
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="col-md-10">
-                                        <label>EMail</label>
-                                        <input class="form-control" type="text" name="mail" id="mail" />
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="col-md-10">
-                                        <label>Mezun mu?</label>
-                                        <input class="form-control" style="float:left;" type="checkbox" name="mezun" id="mezun" />
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="col-md-10">
-                                        <label>Fotoğraf</label>
-                                        <input class="form-control" type="image" name="fotograf" id="fotograf" />
-                                    </div>
-                                </div>
 
-                                <div class="form-group">
-                                    <div class="col-md-10">
-                                        <label>Şifre</label>
-                                        <input class="form-control" type="password" name="sifre" id="sifre" />
-                                    </div>
+                            <div class="form-group">
+                                <div class="col-md-10">
+                                    <label>Adres</label>
+                                    <input class="form-control" type="text" name="adres" id="adres" />
                                 </div>
+                            </div>
 
-                            }
+                            <div class="form-group">
+                                <div class="col-md-10">
+                                    <label>Telefon</label>
+                                    <input class="form-control" type="text" name="telefon" id="telefon" />
+                                </div>
+                            </div>
+
+
+                            <div class="form-group">
+                                <div class="col-md-10">
+                                    <label style="font-weight:bold;">Fotoğraf:</label>
+                                    <input type="file" name="file" id="file" />
+                                </div>
+                            </div>
+
                             <div class="form-group">
                                 <div class="col-md-offset-2 col-md-10">
                                     <input type="submit" value="KAYDET" class="btn btn-success" />
@@ -147,5 +120,5 @@
 }
 
 <div>
-    @Html.ActionLink("Tüm Öğrencileri Gör", "Index",null, new{ @class="btn btn-primary"})
+    @Html.ActionLink("Tüm Öğrencileri Gör", "Index", null, new { @class = "btn btn-primary" })
 </div>

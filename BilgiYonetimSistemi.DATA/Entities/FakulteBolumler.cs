@@ -17,5 +17,7 @@ namespace BilgiYonetimSistemi.DATA
         public virtual Fakulte BolumunFakultesi { get; set; }
 
         public virtual Bolum FakulteninBolumu { get; set; }
+
+        public virtual List<Ogrenci> Ogrenciler { get; set; }
     }
 }

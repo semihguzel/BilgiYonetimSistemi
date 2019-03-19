@@ -79,132 +79,7 @@
 </head>
 
 <body class=" ">
-
-
-    @*<div id="headerbar">                  NE İŞE YARADIĞI BİLİN MİYOR :D
-            <div class="container">
-
-
-                <h3 class="service-header">Kişisel Servisler</h3>
-                <div class="row">
-
-                    <div class="col-xs-6 col-sm-1">
-                        <a href="#" class="shortcut-tiles tiles-info">
-                            <div class="tiles-body">
-                                <div class="pull-left"><i class="fa fa-user"></i></div>
-                            </div>
-                            <div class="tiles-footer">
-                                Personel
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-xs-6 col-sm-1">
-                        <a href="#" class="shortcut-tiles tiles-orange">
-                            <div class="tiles-body">
-                                <div class="pull-left"><i class="fa fa-group"></i></div>
-                            </div>
-                            <div class="tiles-footer">
-                                ABİS
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-xs-6 col-sm-1">
-                        <a href="#" class="shortcut-tiles tiles-success">
-                            <div class="tiles-body">
-                                <div class="pull-left"><i class="fa fa-briefcase"></i></div>
-                            </div>
-                            <div class="tiles-footer">
-                                AF
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-xs-6 col-sm-1">
-                        <a href="#" class="shortcut-tiles tiles-magenta">
-                            <div class="tiles-body">
-                                <div class="pull-left"><i class="fa fa-thumbs-up"></i></div>
-                            </div>
-                            <div class="tiles-footer">
-                                ABP
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-xs-6 col-sm-1">
-                        <a href="#" class="shortcut-tiles tiles-indigo">
-                            <div class="tiles-body">
-                                <div class="pull-left"><i class="fa fa-plus-square"></i></div>
-                            </div>
-                            <div class="tiles-footer">
-                                Ekders
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-xs-6 col-sm-1">
-                        <a href="#" class="shortcut-tiles tiles-inverse">
-                            <div class="tiles-body">
-                                <div class="pull-left"><i class="fa fa-globe"></i></div>
-                            </div>
-                            <div class="tiles-footer">
-                                WSY
-                            </div>
-                        </a>
-                    </div>
-
-                    <div class="col-xs-6 col-sm-1">
-                        <a href="#" class="shortcut-tiles tiles-midnightblue">
-                            <div class="tiles-body">
-                                <div class="pull-left"><i class="fa fa-star-half-o"></i></div>
-                            </div>
-                            <div class="tiles-footer">
-                                PD
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-xs-6 col-sm-1">
-                        <a href="#" class="shortcut-tiles tiles-green">
-                            <div class="tiles-body">
-                                <div class="pull-left"><i class="fa fa-tasks"></i></div>
-                            </div>
-                            <div class="tiles-footer">
-                                DPP
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-xs-6 col-sm-1">
-                        <a href="#" class="shortcut-tiles tiles-brown">
-                            <div class="tiles-body">
-                                <div class="pull-left"><i class="fa fa-archive"></i></div>
-                            </div>
-                            <div class="tiles-footer">
-                                OGRİS
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-xs-6 col-sm-1">
-                        <a href="#" class="shortcut-tiles tiles-primary">
-                            <div class="tiles-body">
-                                <div class="pull-left"><i class="fa fa-bar-chart-o"></i></div>
-                            </div>
-                            <div class="tiles-footer">
-                                DYİ
-                            </div>
-                        </a>
-                    </div>
-
-
-
-                </div>
-
-                <h3 class="service-header">Genel Servisler</h3>
-                <div class="row">
-
-                </div>
-
-
-
-
-
-            </div>
-        </div>*@
+           
 
     <header class="navbar navbar-inverse navbar-fixed-top" role="banner">
         <a id="leftmenu-trigger" class="tooltips" data-toggle="tooltip" data-placement="right" title="" data-original-title="Men&#252; A&#231;/Kapat"></a>
@@ -213,14 +88,39 @@
         <div class="pull-left logo-yani-yazisi">
             BİLGİ YÖNETİM SİSTEMİ
         </div>
+        @{
+            var kullanici = Session["Kullanici"] as BilgiYonetimSistemi.DATA.Entities.Kullanici;
+            var kullanıcıAdı=""; var resim = ""; var partial = "";
+            if (BilgiYonetimSistemi.BLL.KullaniciIslemleri.RolGecerliMi(kullanici, "yonetici") || BilgiYonetimSistemi.BLL.KullaniciIslemleri.RolGecerliMi(kullanici, "developer"))
+            {
+                kullanıcıAdı = kullanici.UserName;
+                if (kullanici.Yonetici == null)
+                { resim = "admin.png"; }
+                else
+                { resim = kullanici.Yonetici.Sifre; }
+                partial = "_AdminPartial";
+            }
+            else if (BilgiYonetimSistemi.BLL.KullaniciIslemleri.RolGecerliMi(kullanici, "ogrenci"))
+            {
+                kullanıcıAdı = kullanici.UserName;
+                resim = kullanici.Ogrenci.OgrenciBilgisi.Fotograf;
+                partial = "_OgrenciPartial";
 
+            }
+            else if (BilgiYonetimSistemi.BLL.KullaniciIslemleri.RolGecerliMi(kullanici, "ogretmen"))
+            {
+                kullanıcıAdı = kullanici.UserName;
+                resim = kullanici.Ogretmen.OgretmeninBilgisi.Fotograf;
+                partial = "_OgretmenPartial";
+            }
+        }
         <ul class="nav navbar-nav pull-right toolbar">
             <li class="dropdown">
                 <a href="#" class="dropdown-toggle username" data-toggle="dropdown">
                     <span>
-                        g110100060 @*ögrenci numarasi db'den gelecek*@
+                        @kullanıcıAdı 
                         <i class="fa fa-caret-down"></i>
-                    </span><img src="https://fotograf.sabis.sakarya.edu.tr/Fotograf/850428dc117d9b6af917b07af243dbad" alt="Dangerfield" /> @*ögrenci resmi db'den gelecek*@
+                    </span><img src="~/images/@resim" alt="Dangerfield" style="height:2%;"/> 
                 </a>
                 <ul class="dropdown-menu userinfo arrow" style="padding:0 15px;">
                     <li class="userlinks">
@@ -228,7 +128,7 @@
                             <li class="text-center">
                                 <a href="https://sabis.sakarya.edu.tr/tr/Hesap/?t=6">
                                     @*kullanıcı idye göre profil *@
-                                    <img src="https://fotograf.sabis.sakarya.edu.tr/Fotograf/850428dc117d9b6af917b07af243dbad" alt="Kullanıcı Resmi" style="padding:0 10px 10px; width:150px; border-radius:20px;" />
+                                    <img src="~/images/@resim" alt="Kullanıcı Resmi" style="padding:0 10px 10px; width:150px; border-radius:20px;" />
                                 </a>
                             </li>
                             <li class="divider"></li>
@@ -242,10 +142,7 @@
                     </li>
                 </ul>
             </li>
-
-            @*<li class="tooltips" data-toggle="tooltip" data-trigger="hover" data-placement="bottom" title="SA&#220; Posta">
-                    <a target="_blank" href="http://posta.sakarya.edu.tr/"><i class="fa fa-envelope"></i></a>
-                </li>*@
+            
         </ul>
 
 
@@ -256,26 +153,8 @@
         <!-- Menu Partial Buraya Gelecek -->
         <!-- BEGIN SIDEBAR -->
         <nav id="page-leftbar" role="navigation">
-            <!-- BEGIN SIDEBAR MENU -->
-
-            @{
-                var kullanici = Session["Kullanici"] as BilgiYonetimSistemi.DATA.Entities.Kullanici;
-                if (BilgiYonetimSistemi.BLL.KullaniciIslemleri.RolGecerliMi(kullanici,"yonetici") || BilgiYonetimSistemi.BLL.KullaniciIslemleri.RolGecerliMi(kullanici, "developer"))
-                {
-                        @Html.Partial("_AdminPartial")
-                }
-                else if (BilgiYonetimSistemi.BLL.KullaniciIslemleri.RolGecerliMi(kullanici, "ogrenci"))
-                {
-                        @Html.Partial("_OgrenciPartial")
-                }
-                else if (BilgiYonetimSistemi.BLL.KullaniciIslemleri.RolGecerliMi(kullanici, "ogretmen"))
-                {
-                        @Html.Partial("_OgretmenPartial")
-                    }
-
-            }
-
-
+            
+            @Html.Partial(partial)
         </nav>
 
         <div id="page-content">

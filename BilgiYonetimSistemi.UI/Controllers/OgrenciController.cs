@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -19,16 +20,19 @@ namespace BilgiYonetimSistemi.UI.Controllers
     public class OgrenciController : Controller
     {
         OgrenciConcrete ogrenciConcrete;
+        OgrenciBilgileriConcrete ogrenciBilgileriConcrete;
+        FakulteBolumlerConcrete fakulteBolumlerConcrete;
         private Context db = new Context();
         public OgrenciController()
         {
-           ogrenciConcrete = new OgrenciConcrete();
+            ogrenciConcrete = new OgrenciConcrete();
+            ogrenciBilgileriConcrete = new OgrenciBilgileriConcrete();
+            fakulteBolumlerConcrete = new FakulteBolumlerConcrete();
         }
         // GET: Ogrenci
         public ActionResult Index()
         {
-            var ogrenciler = db.Ogrenciler.Include(o => o.OgrencininEgitimDuzeyi).Include(o => o.OgrencininOgrenimSekli);
-            return View(ogrenciler.ToList());
+            return View(ogrenciConcrete._ogrenciRepository.GetAll());
         }
 
         // GET: Ogrenci/Details/5
@@ -38,8 +42,7 @@ namespace BilgiYonetimSistemi.UI.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Ogrenci ogrenci = db.Ogrenciler.Find(id);
-
+            Ogrenci ogrenci = ogrenciConcrete._ogrenciRepository.GetById(id);
             if (ogrenci == null)
             {
                 return HttpNotFound();
@@ -50,7 +53,7 @@ namespace BilgiYonetimSistemi.UI.Controllers
         // GET: Ogrenci/Create
         public ActionResult Create()
         {
-            ViewBag.BolumID = new SelectList(db.Bolumler, "BolumID", "BolumAdi");
+            ViewBag.Bolum = fakulteBolumlerConcrete._fakulteBolumlerRepository.GetAll();
             ViewBag.EgitimDuzeyiID = new SelectList(db.EgitimDuzeyleri, "EgitimDuzeyiID", "EgitimDuzeyTipi");
             ViewBag.OgrenimSekliID = new SelectList(db.OgrenimSekilleri, "OgrenimID", "OgrenimTipi");
             return View();
@@ -61,29 +64,46 @@ namespace BilgiYonetimSistemi.UI.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "OgrenciID,OgrenciAdi,OgrenciSoyadi,OgrenciNumarasi,KayitTarihi,MezuniyetTarihi,BolumID,OgrenimSekliID,EgitimDuzeyiID")] Ogrenci ogrenci,FormCollection frm)
+        public ActionResult Create([Bind(Include = "OgrenciID,OgrenciAdi,OgrenciSoyadi,OgrenciNumarasi,KayitTarihi,MezuniyetTarihi,FakulteBolumlerID,OgrencininFakulteBolumu,OgrenimSekliID,EgitimDuzeyiID")] Ogrenci ogrenci, FormCollection frm, HttpPostedFileBase file)
         {
             if (ModelState.IsValid)
             {
+                string ad = "";
+                if (file != null)
+                {
+                    if (file.ContentLength > 0)
+                    {
+                        if (Path.GetExtension(file.FileName).ToLower() == ".jpg" || Path.GetExtension(file.FileName).ToLower() == ".png" || Path.GetExtension(file.FileName).ToLower() == ".gif" || Path.GetExtension(file.FileName).ToLower() == ".jpeg")
+                        {
+                            ad = Guid.NewGuid() + System.IO.Path.GetExtension(file.FileName);
+                            var path = Path.Combine(Server.MapPath("~/images"), ad);
+                            file.SaveAs(path);
+                        }
+                    }
+                }
 
+
+                ogrenci.KayitTarihi = DateTime.Parse(frm["kayitTarihi"]);
+                ogrenci.FakulteBolumlerID = int.Parse(frm["bolumId"]);
+                int sayi = ogrenciConcrete._ogrenciRepository.GetEntity().Where(x => x.FakulteBolumlerID == ogrenci.FakulteBolumlerID).Count() + 1;
+                FakulteBolumler fakulteBolumler = fakulteBolumlerConcrete._fakulteBolumlerRepository.GetById(int.Parse(frm["bolumId"]));
+                ogrenci.OgrenciNumarasi = ogrenci.KayitTarihi.Year.ToString() + ogrenci.EgitimDuzeyiID + ogrenci.OgrenimSekliID + fakulteBolumler.FakulteID + fakulteBolumler.BolumID + sayi;
                 OgrenciBilgileri ogrenciBilgileri = new OgrenciBilgileri()
                 {
                     Adres = frm["adres"],
-                    Fotograf = frm["fotograf"],
-                    MezunMu = frm["mezun"] == "on" ? true : false,
+                    Fotograf = ad,
                     OgrenciID = ogrenci.OgrenciID,
-                    OgrenciMail = frm["mail"],
-                    Sifre = frm["sifre"],
                     TCNo = frm["tc"],
                     Telefon = frm["telefon"]
                 };
                 KullaniciIslemleri.OgrenciEkle(ogrenci, ogrenciBilgileri);
+
                 return RedirectToAction("Index");
             }
 
-            ViewBag.BolumID = new SelectList(db.Bolumler, "BolumID", "BolumAdi",ogrenci.BolumID);
-            ViewBag.EgitimDuzeyiID = new SelectList(db.EgitimDuzeyleri, "EgitimDuzeyiID", "EgitimDuzeyTipi", ogrenci.EgitimDuzeyiID);
-            ViewBag.OgrenimSekliID = new SelectList(db.OgrenimSekilleri, "OgrenimID", "OgrenimTipi", ogrenci.OgrenimSekliID);
+            //ViewBag.BolumID = new SelectList(db.Bolumler, "BolumID", "BolumAdi", ogrenci.BolumID);
+            //ViewBag.EgitimDuzeyiID = new SelectList(db.EgitimDuzeyleri, "EgitimDuzeyiID", "EgitimDuzeyTipi", ogrenci.EgitimDuzeyiID);
+            //ViewBag.OgrenimSekliID = new SelectList(db.OgrenimSekilleri, "OgrenimID", "OgrenimTipi", ogrenci.OgrenimSekliID);
             return View(ogrenci);
         }
 
@@ -94,12 +114,12 @@ namespace BilgiYonetimSistemi.UI.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Ogrenci ogrenci = db.Ogrenciler.Find(id);
+            Ogrenci ogrenci = ogrenciConcrete._ogrenciRepository.GetById(id);
             if (ogrenci == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.OgrenciBilgileri = db.OgrenciBilgileri.FirstOrDefault(x => x.OgrenciID == id);
+            ViewBag.OgrenciBilgileri = ogrenciBilgileriConcrete._ogrenciBilgileriRepository.GetEntity().FirstOrDefault(x => x.OgrenciID == id);
             ViewBag.EgitimDuzeyiID = new SelectList(db.EgitimDuzeyleri, "EgitimDuzeyiID", "EgitimDuzeyTipi", ogrenci.EgitimDuzeyiID);
             ViewBag.OgrenimSekliID = new SelectList(db.OgrenimSekilleri, "OgrenimID", "OgrenimTipi", ogrenci.OgrenimSekliID);
             return View(ogrenci);
@@ -115,7 +135,7 @@ namespace BilgiYonetimSistemi.UI.Controllers
             if (ModelState.IsValid)
             {
                 db.Entry(ogrenci).State = EntityState.Modified;
-                var ogrenciBilgileri = db.OgrenciBilgileri.FirstOrDefault(x => x.OgrenciID == ogrenci.OgrenciID);
+                var ogrenciBilgileri = ogrenciBilgileriConcrete._ogrenciBilgileriRepository.GetEntity().FirstOrDefault(x => x.OgrenciID == ogrenci.OgrenciID);
                 ogrenciBilgileri.Adres = frm["OgrenciBilgisi.Adres"];
                 ogrenciBilgileri.Fotograf = frm["OgrenciBilgisi.Fotograf"];
                 ogrenciBilgileri.MezunMu = frm["OgrenciBilgisi.MezunMu"] == "on" ? true : false;
@@ -126,8 +146,8 @@ namespace BilgiYonetimSistemi.UI.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.EgitimDuzeyiID = new SelectList(db.EgitimDuzeyleri, "EgitimDuzeyiID", "EgitimDuzeyTipi", ogrenci.EgitimDuzeyiID);
-            ViewBag.OgrenimSekliID = new SelectList(db.OgrenimSekilleri, "OgrenimID", "OgrenimTipi", ogrenci.OgrenimSekliID);
+            //ViewBag.EgitimDuzeyiID = new SelectList(db.EgitimDuzeyleri, "EgitimDuzeyiID", "EgitimDuzeyTipi", ogrenci.EgitimDuzeyiID);
+            //ViewBag.OgrenimSekliID = new SelectList(db.OgrenimSekilleri, "OgrenimID", "OgrenimTipi", ogrenci.OgrenimSekliID);
             return View(ogrenci);
         }
 

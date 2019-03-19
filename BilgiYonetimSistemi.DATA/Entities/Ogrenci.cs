@@ -23,13 +23,13 @@ namespace BilgiYonetimSistemi.DATA
 
         public DateTime MezuniyetTarihi { get; set; }
 
-        public int BolumID { get; set; }
+        public int FakulteBolumlerID { get; set; }
 
         public virtual OgrenciBilgileri OgrenciBilgisi { get; set; }
 
         public virtual List<OgrencilerDerslerDonemler> OgrencininDersleri { get; set; } //öğrenci ders ilişkisi kuruldu.
 
-        public virtual List<OgrencilerBolumler> OgrencininBolumleri { get; set; } //öğrenci bölüm ilişkisi kuruldu.
+        public virtual FakulteBolumler OgrencininFakulteBolumu { get; set; } //öğrenci bölüm ilişkisi kuruldu.
 
         public int OgrenimSekliID { get; set; }
         public virtual OgrenimSekli OgrencininOgrenimSekli { get; set; }
