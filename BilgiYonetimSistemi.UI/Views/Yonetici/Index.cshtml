@@ -8,7 +8,7 @@
 <h2>Index</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-info" })
 </p>
 <table class="table">
     <tr>
@@ -28,7 +28,7 @@
             @Html.DisplayNameFor(model => model.KullaniciAdi)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Sifre)
+           @Html.DisplayNameFor(model => model.Sifre)
         </th>
         <th></th>
     </tr>
@@ -51,12 +51,12 @@
             @Html.DisplayFor(modelItem => item.KullaniciAdi)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Sifre)
+            <img src="~/images/@Html.DisplayFor(modelItem => item.Sifre)" width="50"/>
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.YoneticiID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.YoneticiID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.YoneticiID })
+            @Html.ActionLink("Edit", "Edit", new { id=item.YoneticiID }, new { @class = "btn btn-warning" }) 
+            @Html.ActionLink("Details", "Details", new { id=item.YoneticiID }, new { @class = "btn btn-primary" }) 
+            @Html.ActionLink("Delete", "Delete", new { id=item.YoneticiID }, new { @class = "btn btn-danger" })
         </td>
     </tr>
 }

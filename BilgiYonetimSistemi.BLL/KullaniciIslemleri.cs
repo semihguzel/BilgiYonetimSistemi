@@ -55,7 +55,7 @@ namespace BilgiYonetimSistemi.BLL
             var result = userManager.Create(kullanici, sifre);
             if (result.Succeeded)
                 userManager.AddToRole(kullanici.Id, "ogrenci");
-
+            ogrenci.OgrenciBilgisi.OgrenciMail = kullanici.Email;
             ogrenci.OgrenciID = kullanici.Id;
             ogrenciBilgileri.OgrenciID = ogrenci.OgrenciID;
             ogrenciConcrete._ogrenciRepository.Insert(ogrenci);
@@ -106,7 +106,7 @@ namespace BilgiYonetimSistemi.BLL
             var result = userManager.Create(kullanici, sifre);
             if (result.Succeeded)
                 userManager.AddToRole(kullanici.Id, "ogretmen");
-
+            ogretmen.OgretmeninBilgisi.OgretmenMail = kullanici.Email;
             ogretmen.OgretmenID = kullanici.Id;
             ogretmenBilgileri.OgretmenID = ogretmen.OgretmenID;
             ogretmenConcrete._ogretmenRepository.Insert(ogretmen);
@@ -155,7 +155,7 @@ namespace BilgiYonetimSistemi.BLL
             var result = userManager.Create(kullanici, sifre);
             if (result.Succeeded)
                 userManager.AddToRole(kullanici.Id, "yonetici");
-
+            yonetici.KullaniciAdi = kullanici.UserName;
             yonetici.YoneticiID = kullanici.Id;
             yoneticiConcrete._yoneticiRepository.Insert(yonetici);
             yoneticiConcrete._yoneticiUnitOfWork.SaveChanges();

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -57,10 +58,24 @@ namespace BilgiYonetimSistemi.UI.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "YoneticiID,TC,Ad,Soyad,KullaniciAdi,Sifre")] Yonetici yonetici)
+        public ActionResult Create([Bind(Include = "YoneticiID,TC,Ad,Soyad,KullaniciAdi,Sifre")] Yonetici yonetici, HttpPostedFileBase file)
         {
             if (ModelState.IsValid)
             {
+                string ad = "";
+                if (file != null)
+                {
+                    if (file.ContentLength > 0)
+                    {
+                        if (Path.GetExtension(file.FileName).ToLower() == ".jpg" || Path.GetExtension(file.FileName).ToLower() == ".png" || Path.GetExtension(file.FileName).ToLower() == ".gif" || Path.GetExtension(file.FileName).ToLower() == ".jpeg")
+                        {
+                            ad = Guid.NewGuid() + Path.GetExtension(file.FileName);
+                            var path = Path.Combine(Server.MapPath("~/images"), ad);
+                            file.SaveAs(path);
+                        }
+                    }
+                }
+                yonetici.Fotograf = ad;
                 KullaniciIslemleri.YoneticiEkle(yonetici);
                 return RedirectToAction("Index");
             }

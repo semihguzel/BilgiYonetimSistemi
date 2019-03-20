@@ -71,6 +71,22 @@ namespace BilgiYonetimSistemi.DAL.Migrations
             }
             if (!userManager.IsInRole(developerUser.Id, "developer"))
                 userManager.AddToRole(developerUser.Id, "developer");
+            //Egitim Duzey Tipi
+            if (db.EgitimDuzeyleri.ToList().Count == 0)
+            {
+                db.EgitimDuzeyleri.Add(new DATA.EgitimDuzeyi() { EgitimDuzeyTipi = "Lisans" });                
+                db.EgitimDuzeyleri.Add(new DATA.EgitimDuzeyi() { EgitimDuzeyTipi = "Ön Lisans" });                
+                db.EgitimDuzeyleri.Add(new DATA.EgitimDuzeyi() { EgitimDuzeyTipi = "Yüksek Lisans" });
+                db.SaveChanges();
+            }
+            //Egitim Duzey Tipi
+            if (db.OgrenimSekilleri.ToList().Count == 0)
+            {
+                db.OgrenimSekilleri.Add(new DATA.OgrenimSekli() { OgrenimTipi = "Örgün Öðretim" });
+                db.OgrenimSekilleri.Add(new DATA.OgrenimSekli() { OgrenimTipi = "Ýkinci Öðretim" });
+                db.OgrenimSekilleri.Add(new DATA.OgrenimSekli() { OgrenimTipi = "Uzaktan Eðitim" });
+                db.SaveChanges();
+            }
         }
     }
 }

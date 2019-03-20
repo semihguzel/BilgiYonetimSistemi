@@ -15,7 +15,7 @@ namespace BilgiYonetimSistemi.DATA.Entities
         public string Ad { get; set; }
         public string Soyad { get; set; }
         public string KullaniciAdi { get; set; }
-        public string Sifre { get; set; }
+        public string Fotograf { get; set; }
 
         public virtual Kullanici Kullanici { get; set; }
     }

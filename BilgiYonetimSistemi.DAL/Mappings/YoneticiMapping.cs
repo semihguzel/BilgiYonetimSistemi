@@ -14,7 +14,7 @@ namespace BilgiYonetimSistemi.DAL.Mappings
         {
             HasKey(x => x.YoneticiID);
             Property(x => x.KullaniciAdi).HasMaxLength(40);
-            Property(x => x.Sifre).HasMaxLength(40);
+            Property(x => x.Fotograf).HasMaxLength(100);
             Property(x => x.Ad).HasMaxLength(40);
             Property(x => x.Soyad).HasMaxLength(40);
             Property(x => x.TC).HasMaxLength(11);
