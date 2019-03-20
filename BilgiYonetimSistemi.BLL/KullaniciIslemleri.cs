@@ -192,5 +192,23 @@ namespace BilgiYonetimSistemi.BLL
             }
             return donemler.Distinct().Count();
         }
+
+        public static int DonemBulma(Ogrenci ogrenci)
+        {
+            int donem;
+            DateTime bTarih = ogrenci.KayitTarihi;
+            DateTime kTarih = DateTime.Now;
+            var dateSpan = ((kTarih.Year - bTarih.Year) * 12) + kTarih.Month - bTarih.Month;
+            donem = (dateSpan / 6) + 1;
+            return donem;
+
+        }
+
+        public static string DersKoduBul(string sinifDonem)
+        {
+            string sinif = sinifDonem.Substring(0, 1);
+            string donem = sinifDonem.Substring(8, 1);
+            return sinif + "0" + donem;
+        }
     }
 }

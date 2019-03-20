@@ -1,0 +1,78 @@
+﻿
+@{
+    ViewBag.Title = "DerslerinListesi";
+}
+
+
+@{ BilgiYonetimSistemi.DATA.Ogrenci ogr = ViewBag.Ogrenci as BilgiYonetimSistemi.DATA.Ogrenci;}
+@{ int donemSayisi = BilgiYonetimSistemi.BLL.KullaniciIslemleri.DonemBulma(ogr);
+    string yil, donem;}
+<span>
+    Dönem Seçiniz:
+    <select id="donemTipi" name="donemTipleri" class="form-control">
+        @{
+            for (int i = 1; i <= donemSayisi; i++)
+            {
+                yil = ((i % 2 == 0) ? (i / 2) : (i / 2 + 1)).ToString();
+                donem = ((i % 2 == 1) ? "1" : "2").ToString();
+                <option value="@i" style="text-align:center">@yil Sınıf-@donem Dönem</option>
+            }
+        }
+    </select>
+    <br />
+    <br />
+</span>
+<div class="panel panel-default">
+    <div class="panel-body">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Ders Adı</th>
+                    <th>Ders Kredisi</th>
+                    <th>Ders Kodu</th>
+                    <th>Vize-1</th>
+                    <th>Vize-2</th>
+                    <th>Final</th>
+                    <th>Bütünleme</th>
+                </tr>
+            </thead>
+            <tbody id="dersBilgileri"></tbody>
+        </table>
+    </div>
+</div>
+
+<script>
+    var secilenSinifDonem = "1 Sınıf-1 Donem";
+    $(document).ready(function () {
+        $("select#donemTipi").change(function () {
+            secilenSinifDonem = $(this).children("option:selected").text();
+            OgrenciDersleriGetir();
+        });
+        OgrenciDersleriGetir();
+    });
+
+    function OgrenciDersleriGetir() {
+        $.ajax({
+            method: "get",
+            url: "http://localhost:53663/OgrenciDersIslemler/DerslerinListesiGetir/?SinifDonem=" + secilenSinifDonem,
+            dataType: "json"
+
+        }).done(function (data) {
+            $("#dersBilgileri").html("");
+            for (var key in data) {
+                //alert(data.key[0].Puan);
+                if (data[key].Vize1 == null)
+                    data[key].Vize1 = '-';
+                if (data[key].Vize2 == null)
+                    data[key].Vize2 = '-';
+                if (data[key].Final == null)
+                    data[key].Final = '-';
+                if (data[key].But == null)
+                    data[key].But = '-';
+                $("#dersBilgileri").append("<tr><td hidden name='DersId'>" + data[key].DersID + "<td name='dersAdi'>" + data[key].DersAdi + "</td><td name='dersKredisi'>" + data[key].DersKredisi + "</td><td name='dersKodu'>" + data[key].DersKodu + "</td><td name='vize1'>" + data[key].Vize1 + "</td><td name='vize2'>" + data[key].Vize2 + "</td><td name='final'>" + data[key].Final + "</td><td name='but'>" + data[key].But + "</td></tr>");
+
+            }
+        });
+    }
+
+</script>

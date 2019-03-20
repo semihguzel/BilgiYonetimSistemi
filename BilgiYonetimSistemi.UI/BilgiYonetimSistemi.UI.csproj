@@ -220,6 +220,7 @@
     <Compile Include="Controllers\NotController.cs" />
     <Compile Include="Controllers\OgrenciBilgileriController.cs" />
     <Compile Include="Controllers\OgrenciController.cs" />
+    <Compile Include="Controllers\OgrenciDersIslemlerController.cs" />
     <Compile Include="Controllers\OgrencilerBolumlerController.cs" />
     <Compile Include="Controllers\OgrencilerDerslerDonemlerController.cs" />
     <Compile Include="Controllers\OgrenimSekliController.cs" />
@@ -364,6 +365,8 @@
     <Content Include="Views\Ogrenci\Anasayfa.cshtml" />
     <Content Include="Views\Ogretmen\Anasayfa.cshtml" />
     <Content Include="Views\Yonetici\Anasayfa.cshtml" />
+    <Content Include="Views\OgrenciDersIslemler\DersSecme.cshtml" />
+    <Content Include="Views\OgrenciDersIslemler\DerslerinListesi.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
