@@ -15,7 +15,7 @@ namespace BilgiYonetimSistemi.DAL
         {
             HasKey(x => x.NotID);
 
-            Property(x => x.Puan).IsRequired();
+            Property(x => x.Puan);
 
             HasRequired(x => x.NotunOgrenciDersDonemi).WithMany(x => x.OgrenciDerslerDonemlerinNotlari).HasForeignKey(x => x.OgrenciDerslerDonemlerID);
 

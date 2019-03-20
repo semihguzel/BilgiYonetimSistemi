@@ -55,9 +55,9 @@ namespace BilgiYonetimSistemi.BLL
             var result = userManager.Create(kullanici, sifre);
             if (result.Succeeded)
                 userManager.AddToRole(kullanici.Id, "ogrenci");
-            ogrenci.OgrenciBilgisi.OgrenciMail = kullanici.Email;
             ogrenci.OgrenciID = kullanici.Id;
             ogrenciBilgileri.OgrenciID = ogrenci.OgrenciID;
+            ogrenciBilgileri.OgrenciMail = kullanici.Email;
             ogrenciConcrete._ogrenciRepository.Insert(ogrenci);
             ogrenciConcrete._ogrenciUnitOfWork.SaveChanges();
             ogrenciConcrete._ogrenciUnitOfWork.Dispose();
@@ -106,9 +106,9 @@ namespace BilgiYonetimSistemi.BLL
             var result = userManager.Create(kullanici, sifre);
             if (result.Succeeded)
                 userManager.AddToRole(kullanici.Id, "ogretmen");
-            ogretmen.OgretmeninBilgisi.OgretmenMail = kullanici.Email;
             ogretmen.OgretmenID = kullanici.Id;
             ogretmenBilgileri.OgretmenID = ogretmen.OgretmenID;
+            ogretmenBilgileri.OgretmenMail = kullanici.Email;
             ogretmenConcrete._ogretmenRepository.Insert(ogretmen);
             ogretmenConcrete._ogretmenUnitOfWork.SaveChanges();
             ogretmenConcrete._ogretmenUnitOfWork.Dispose();

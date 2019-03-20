@@ -51,10 +51,12 @@ namespace BilgiYonetimSistemi.UI.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "OgretmenlerDerslerID,OgretmenID,DersID,DonemID")] OgretmenlerDerslerDonemler ogretmenlerDerslerDonemler)
+        public ActionResult Create([Bind(Include = "OgretmenlerDerslerID,DersID,DonemID")] OgretmenlerDerslerDonemler ogretmenlerDerslerDonemler)
         {
+            var kullanici = Session["Kullanici"] as DATA.Entities.Kullanici;
             if (ModelState.IsValid)
             {
+                ogretmenlerDerslerDonemler.OgretmenID = kullanici.Id;
                 db.OgretmenlerDersler.Add(ogretmenlerDerslerDonemler);
                 db.SaveChanges();
                 return RedirectToAction("Index");

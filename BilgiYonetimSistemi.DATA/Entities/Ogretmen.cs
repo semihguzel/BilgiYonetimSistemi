@@ -12,7 +12,7 @@ namespace BilgiYonetimSistemi.DATA
 
   public  class Ogretmen
     {
-        [ForeignKey("Kullanici")]
+           [ForeignKey("Kullanici")]
         public string OgretmenID { get; set; }
 
         public string OgretmenAdi { get; set; }
