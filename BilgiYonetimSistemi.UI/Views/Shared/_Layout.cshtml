@@ -97,7 +97,7 @@
                 if (kullanici.Yonetici == null)
                 { resim = "admin.png"; }
                 else
-                { resim = kullanici.Yonetici.Sifre; }
+                { resim = kullanici.Yonetici.Fotograf; }
                 partial = "_AdminPartial";
             }
             else if (BilgiYonetimSistemi.BLL.KullaniciIslemleri.RolGecerliMi(kullanici, "ogrenci"))
@@ -243,22 +243,7 @@
     <script src="~/lib/js/parsley.min.js"></script>
 
 
-    <!-- Plugin javascript dosyaları Başla -->
-    <!-- assets/plugins/ klasöründeki eklentilerin javascript dosyaları burada yüklenecek -->
-    <!-- Plugin javascript dosyaları Bit -->
-    @*<script src="~/lib/js/jira.collector.plugin.js"> Geri bildirim kodu
-        </script>*@
-
-    @*<script type="text/javascript">
-            $(document).ready(function () {
-                var universityId = '1426';
-
-                $("a.navbar-brand").css("background", 'url("/Content/img/logo_' + universityId + '.png")  no-repeat center center');
-                $("a.navbar-brand").css("background-size", 'auto 20px');
-                //$("div.navbar-header").css("width", '100px');
-                //$("div.navbar-header").css("height", '20px');
-            });
-        </script>*@
+    
     @*@Scripts.Render("~/bundles/jquery")
         @Scripts.Render("~/bundles/bootstrap")
         @RenderSection("scripts", required: false)*@
