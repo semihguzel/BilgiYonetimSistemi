@@ -11,6 +11,14 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
+            <label style="font-weight:bold;">Fotoğraf:</label>
+        </dt>
+
+        <dd>
+            <img src="~/images/@Html.DisplayFor(model => model.OgrenciBilgisi.Fotograf)" style="padding:0 10px 10px; width:70px; border-radius:20px;" />
+        </dd>
+
+        <dt>
             <label style="font-weight:bold;">Eğitim Düzeyi:</label>
         </dt>
 
@@ -24,6 +32,14 @@
 
         <dd>
             @Html.DisplayFor(model => model.OgrencininOgrenimSekli.OgrenimTipi)
+        </dd>
+
+        <dt>
+            <label style="font-weight:bold;">TCNo:</label>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OgrenciBilgisi.TCNo)
         </dd>
 
         <dt>
@@ -71,7 +87,7 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.FakulteBolumlerID)
+            @Html.DisplayFor(model => model.OgrencininFakulteBolumu.FakulteninBolumu.BolumAdi)
         </dd>
 
         <dt>
@@ -80,14 +96,6 @@
 
         <dd>
             @Html.DisplayFor(model => model.OgrenciBilgisi.Adres)
-        </dd>
-
-        <dt>
-            <label style="font-weight:bold;">TCNo:</label>
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.OgrenciBilgisi.TCNo)
         </dd>
 
         <dt>
@@ -104,14 +112,6 @@
 
         <dd>
             @Html.DisplayFor(model => model.OgrenciBilgisi.OgrenciMail)
-        </dd>
-
-        <dt>
-            <label style="font-weight:bold;">Fotoğraf:</label>
-        </dt>
-
-        <dd>
-            <img src="~/images/@Html.DisplayFor(model => model.OgrenciBilgisi.Fotograf)" style="padding:0 10px 10px; width:70px; border-radius:20px;" />
         </dd>
 
         <dt>
