@@ -6,13 +6,20 @@
     <ul class="acc-menu" id="sidebar" style="text-align:left;">
         <li><a href="@Url.Action("Anasayfa", "Ogrenci")"><i class="fa fa-home"></i><span>Ana Sayfa</span></a></li>
         <li class="divider"></li>
-
-        <li>
-            <a href="@Url.Action("DerslerinListesi", "OgrenciDersIslemler")"><i class="fa fa-book-reader"></i> <span>Seçilen Dersler</span> </a>
-        </li>
-        <li>
-            <a href="@Url.Action("DersSecme", "OgrenciDersIslemler")"><i class="fa fa-pencil-square-o"></i> <span>Ders Seçme Sayfası</span> </a>
-        </li>
+        @{
+            var ogrenciConcrete = new BilgiYonetimSistemi.BLL.Repository.Concrete.OgrenciConcrete();
+            var kullanici = Session["Kullanici"] as BilgiYonetimSistemi.DATA.Entities.Kullanici;
+            var ogrenci = ogrenciConcrete._ogrenciRepository.GetById(kullanici.Id);
+            if (!ogrenci.OgrenciBilgisi.MezunMu)
+            {
+                <li>
+                    <a href="@Url.Action("DerslerinListesi", "OgrenciDersIslemler")"><i class="fa fa-book-reader"></i> <span>Seçilen Dersler</span> </a>
+                </li>
+                <li>
+                    <a href="@Url.Action("DersSecme", "OgrenciDersIslemler")"><i class="fa fa-pencil-square-o"></i> <span>Ders Seçme Sayfası</span> </a>
+                </li>
+            }
+        }
         <li>
             <a href=@Url.Action("Index", "Transkript")><i class="fa fa-tasks"></i> <span>Transkript</span> </a>
         </li>

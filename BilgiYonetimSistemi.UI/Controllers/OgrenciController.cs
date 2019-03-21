@@ -122,7 +122,7 @@ namespace BilgiYonetimSistemi.UI.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.OgrenciBilgileri = ogrenciBilgileriConcrete._ogrenciBilgileriRepository.GetEntity().FirstOrDefault(x => x.OgrenciID == id);
+            ViewBag.OgrenciBilgileri = ogrenciBilgileriConcrete._ogrenciBilgileriRepository.GetById(id);
             ViewBag.EgitimDuzeyiID = new SelectList(db.EgitimDuzeyleri, "EgitimDuzeyiID", "EgitimDuzeyTipi", ogrenci.EgitimDuzeyiID);
             ViewBag.OgrenimSekliID = new SelectList(db.OgrenimSekilleri, "OgrenimID", "OgrenimTipi", ogrenci.OgrenimSekliID);
             return View(ogrenci);
@@ -133,11 +133,10 @@ namespace BilgiYonetimSistemi.UI.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "OgrenciID,OgrenciAdi,OgrenciSoyadi,OgrenciNumarasi,KayitTarihi,MezuniyetTarihi,BolumID,OgrenimSekliID,EgitimDuzeyiID")] Ogrenci ogrenci, FormCollection frm)
+        public ActionResult Edit([Bind(Include = "OgrenciID,OgrenciAdi,OgrenciSoyadi,OgrenciNumarasi,KayitTarihi,MezuniyetTarihi,FakulteBolumlerID,OgrenimSekliID,EgitimDuzeyiID")] Ogrenci ogrenci, FormCollection frm)
         {
             if (ModelState.IsValid)
             {
-                
                 var ogrenciBilgileri = ogrenciBilgileriConcrete._ogrenciBilgileriRepository.GetEntity().FirstOrDefault(x => x.OgrenciID == ogrenci.OgrenciID);
                 ogrenciBilgileri.Adres = frm["OgrenciBilgisi.Adres"];
                 ogrenciBilgileri.Fotograf = frm["OgrenciBilgisi.Fotograf"];
