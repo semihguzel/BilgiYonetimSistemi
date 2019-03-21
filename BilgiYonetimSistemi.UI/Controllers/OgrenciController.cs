@@ -100,7 +100,8 @@ namespace BilgiYonetimSistemi.UI.Controllers
                     Fotograf = ad,
                     OgrenciID = ogrenci.OgrenciID,
                     TCNo = frm["tc"],
-                    Telefon = frm["telefon"]
+                    Telefon = frm["telefon"],
+                    MezunMu = false
                 };
                 KullaniciIslemleri.OgrenciEkle(ogrenci, ogrenciBilgileri);
 
