@@ -32,9 +32,11 @@ namespace BilgiYonetimSistemi.DATA
         public virtual FakulteBolumler OgrencininFakulteBolumu { get; set; } //öğrenci bölüm ilişkisi kuruldu.
 
         public int OgrenimSekliID { get; set; }
+
         public virtual OgrenimSekli OgrencininOgrenimSekli { get; set; }
 
         public int EgitimDuzeyiID { get; set; }
+
         public virtual EgitimDuzeyi OgrencininEgitimDuzeyi { get; set; }
 
         public virtual Kullanici Kullanici { get; set; }

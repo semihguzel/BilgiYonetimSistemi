@@ -48,7 +48,7 @@
                             <div class="form-group">
                                 <div class="col-md-10">
                                     <label>Kayıt Tarihi:</label>
-                                    <input class="form-control" type="date" name="kayitTarihi" />
+                                    <input class="form-control" type="date" id="KayitTarihi" name="kayitTarihi" />
                                     @Html.ValidationMessageFor(model => model.KayitTarihi, "", new { @class = "text-danger" })
                                 </div>
                             </div>
@@ -56,7 +56,7 @@
                             <div class="form-group">
                                 <div class="col-md-10">
                                     <label>Bölümü:</label>
-                                    <select name="bolumId" class="form-control">
+                                    <select name="bolumId" id="FakulteBolumlerID" class="form-control">
                                         @foreach (var item in ViewBag.Bolum as IEnumerable<BilgiYonetimSistemi.DATA.FakulteBolumler>)
                                         {
                                             <option value="@item.FakulteBolumlerID">@item.BolumunFakultesi.FakulteAdi - @item.FakulteninBolumu.BolumAdi - @item.FakulteninBolumu.EgitimDili </option>

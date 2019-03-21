@@ -17,9 +17,7 @@ namespace BilgiYonetimSistemi.DATA
         public virtual List<BolumlerDersler> bolumdersdonemleri { get; set; } // bölüm ders ilişkisi kuruldu.
 
         public virtual List<FakulteBolumler> BolumunFakulteleri { get; set; } //bölüm fakülte ilişkisi kuruldu.
-
-        public virtual List<OgrencilerBolumler> BolumunOgrencileri { get; set; } // bölüm ögrenci ilişkisi kuruldu.
-
+        
         public virtual List<OgretmenlerBolumler> BolumunOgretmenleri { get; set; } //bölüm öğretmen ilişkisi kuruldu.
 
     }

@@ -221,7 +221,6 @@
     <Compile Include="Controllers\OgrenciBilgileriController.cs" />
     <Compile Include="Controllers\OgrenciController.cs" />
     <Compile Include="Controllers\OgrenciDersIslemlerController.cs" />
-    <Compile Include="Controllers\OgrencilerBolumlerController.cs" />
     <Compile Include="Controllers\OgrencilerDerslerDonemlerController.cs" />
     <Compile Include="Controllers\OgrenimSekliController.cs" />
     <Compile Include="Controllers\OgretmenBilgileriController.cs" />
@@ -300,11 +299,6 @@
     <Content Include="Views\OgrencilerDerslerDonemler\Edit.cshtml" />
     <Content Include="Views\OgrencilerDerslerDonemler\Index.cshtml" />
     <Content Include="Views\FakulteBolumler\Index.cshtml" />
-    <Content Include="Views\OgrencilerBolumler\Create.cshtml" />
-    <Content Include="Views\OgrencilerBolumler\Delete.cshtml" />
-    <Content Include="Views\OgrencilerBolumler\Details.cshtml" />
-    <Content Include="Views\OgrencilerBolumler\Edit.cshtml" />
-    <Content Include="Views\OgrencilerBolumler\Index.cshtml" />
     <Content Include="Views\OgretmenlerBolumler\Create.cshtml" />
     <Content Include="Views\OgretmenlerBolumler\Delete.cshtml" />
     <Content Include="Views\OgretmenlerBolumler\Details.cshtml" />

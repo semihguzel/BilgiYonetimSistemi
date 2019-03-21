@@ -120,7 +120,6 @@
     <Compile Include="Mappings\FakulteMapping.cs" />
     <Compile Include="Mappings\NotlarMapping.cs" />
     <Compile Include="Mappings\OgrenciBilgileriMapping.cs" />
-    <Compile Include="Mappings\OgrencilerBolumlerMapping.cs" />
     <Compile Include="Mappings\OgrencilerDerslerDonemlerMapping.cs" />
     <Compile Include="Mappings\OgrencilerMapping.cs" />
     <Compile Include="Mappings\OgrenimSekliMapping.cs" />

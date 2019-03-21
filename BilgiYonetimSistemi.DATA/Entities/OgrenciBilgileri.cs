@@ -21,9 +21,7 @@ namespace BilgiYonetimSistemi.DATA
         [DefaultValue(false)]
         public bool MezunMu { get; set; }
         public string Fotograf { get; set; }
-
-        public string Sifre { get; set; }
-
+        
         public virtual Ogrenci BilgininOgrencisi { get; set; }
     }
 }

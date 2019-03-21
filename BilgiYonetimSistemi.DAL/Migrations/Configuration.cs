@@ -9,6 +9,8 @@ namespace BilgiYonetimSistemi.DAL.Migrations
     using System.Data.Entity.Migrations;
     using System.Linq;
 
+
+
     internal sealed class Configuration : DbMigrationsConfiguration<BilgiYonetimSistemi.DAL.Context>
     {
         public Configuration()
@@ -74,8 +76,8 @@ namespace BilgiYonetimSistemi.DAL.Migrations
             //Egitim Duzey Tipi
             if (db.EgitimDuzeyleri.ToList().Count == 0)
             {
-                db.EgitimDuzeyleri.Add(new DATA.EgitimDuzeyi() { EgitimDuzeyTipi = "Lisans" });                
-                db.EgitimDuzeyleri.Add(new DATA.EgitimDuzeyi() { EgitimDuzeyTipi = "Ön Lisans" });                
+                db.EgitimDuzeyleri.Add(new DATA.EgitimDuzeyi() { EgitimDuzeyTipi = "Lisans" });
+                db.EgitimDuzeyleri.Add(new DATA.EgitimDuzeyi() { EgitimDuzeyTipi = "Ön Lisans" });
                 db.EgitimDuzeyleri.Add(new DATA.EgitimDuzeyi() { EgitimDuzeyTipi = "Yüksek Lisans" });
                 db.SaveChanges();
             }
@@ -89,4 +91,6 @@ namespace BilgiYonetimSistemi.DAL.Migrations
             }
         }
     }
+
 }
+
