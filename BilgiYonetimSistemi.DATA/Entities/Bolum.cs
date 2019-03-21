@@ -14,7 +14,7 @@ namespace BilgiYonetimSistemi.DATA
 
         public string EgitimDili { get; set; }
 
-        public virtual List<BolumlerDersler> BolumDersleri { get; set; } // bölüm ders ilişkisi kuruldu.
+        public virtual List<BolumlerDersler> bolumdersdonemleri { get; set; } // bölüm ders ilişkisi kuruldu.
 
         public virtual List<FakulteBolumler> BolumunFakulteleri { get; set; } //bölüm fakülte ilişkisi kuruldu.
 

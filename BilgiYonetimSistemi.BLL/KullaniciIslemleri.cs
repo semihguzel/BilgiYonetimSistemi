@@ -66,7 +66,7 @@ namespace BilgiYonetimSistemi.BLL
             ogrenciBilgileriConcrete._ogrenciBilgileriUnitOfWork.Dispose();
         }
 
-        public static void OgretmenEkle(Ogretmen ogretmen,OgretmenBilgileri ogretmenBilgileri)
+        public static void OgretmenEkle(Ogretmen ogretmen, OgretmenBilgileri ogretmenBilgileri)
         {
             OgretmenConcrete ogretmenConcrete = new OgretmenConcrete();
             OgretmenBilgileriConcrete ogretmenBilgileriConcrete = new OgretmenBilgileriConcrete();
@@ -191,6 +191,124 @@ namespace BilgiYonetimSistemi.BLL
                 return 8;
             }
             return donemler.Distinct().Count();
+        }
+
+        public static string HarfNotuGetir(OgrencilerDerslerDonemler ogrencilerDerslerDonemler, ref double toplamAgirlikli)
+        {
+
+            int? birinciVizePuani = ogrencilerDerslerDonemler.OgrenciDerslerDonemlerinNotlari.FirstOrDefault(x => x.SinavID == 1).Puan;
+            int? ikinciVizePuani = ogrencilerDerslerDonemler.OgrenciDerslerDonemlerinNotlari.FirstOrDefault(x => x.SinavID == 2).Puan;
+            int? finalPuani = ogrencilerDerslerDonemler.OgrenciDerslerDonemlerinNotlari.FirstOrDefault(x => x.SinavID == 3).Puan;
+            double? butunlemePuani;
+
+            double? finalliSonuc = birinciVizePuani * 0.2 + ikinciVizePuani * 0.2 + finalPuani * 0.6;
+
+
+            if (ogrencilerDerslerDonemler.OgrenciDerslerDonemlerinNotlari.Count<4)
+            {
+                butunlemePuani = 0;
+            }
+            else
+            {
+                butunlemePuani = ogrencilerDerslerDonemler.OgrenciDerslerDonemlerinNotlari.FirstOrDefault(x => x.SinavID == 4).Puan;
+            }
+
+
+            double? butluSonuc = birinciVizePuani * 0.2 + ikinciVizePuani * 0.2 + butunlemePuani * 0.6;
+
+            if (butunlemePuani == 0)
+            {
+                if (finalPuani == 0)
+                {
+                    toplamAgirlikli += 0 * ogrencilerDerslerDonemler.OgrencininDersi.DersKredisi;
+                    return "GR";
+                }
+                else if (finalliSonuc < 45)
+                {
+                    toplamAgirlikli += 0 * ogrencilerDerslerDonemler.OgrencininDersi.DersKredisi;
+                    return "FF";
+                }
+                else if (finalliSonuc >= 45 && finalliSonuc < 50)
+                {
+                    toplamAgirlikli += 1 * ogrencilerDerslerDonemler.OgrencininDersi.DersKredisi;
+                    return "DD";
+                }
+                else if (finalliSonuc >= 50 && finalliSonuc < 60)
+                {
+                    toplamAgirlikli += 1.5 * ogrencilerDerslerDonemler.OgrencininDersi.DersKredisi;
+                    return "DC";
+                }
+                else if (finalliSonuc >= 60 && finalliSonuc < 70)
+                {
+                    toplamAgirlikli += 2 * ogrencilerDerslerDonemler.OgrencininDersi.DersKredisi;
+                    return "CC";
+                }
+                else if (finalliSonuc >= 70 && finalliSonuc < 80)
+                {
+                    toplamAgirlikli += 2.5 * ogrencilerDerslerDonemler.OgrencininDersi.DersKredisi;
+                    return "CB";
+                }
+                else if (finalliSonuc >= 80 && finalliSonuc < 85)
+                {
+                    toplamAgirlikli += 3 * ogrencilerDerslerDonemler.OgrencininDersi.DersKredisi;
+                    return "BB";
+                }
+                else if (finalliSonuc >= 85 && finalliSonuc < 90)
+                {
+                    toplamAgirlikli += 3.5 * ogrencilerDerslerDonemler.OgrencininDersi.DersKredisi;
+                    return "BA";
+                }
+                else if (finalliSonuc >= 90)
+                {
+                    toplamAgirlikli += 4 * ogrencilerDerslerDonemler.OgrencininDersi.DersKredisi;
+                    return "AA";
+                }
+                return "AA";
+            }
+            else
+            {
+                if (butluSonuc < 45)
+                {
+                    toplamAgirlikli += 0 * ogrencilerDerslerDonemler.OgrencininDersi.DersKredisi;
+                    return "FF";
+                }
+                else if (butluSonuc >= 45 && butluSonuc < 50)
+                {
+                    toplamAgirlikli += 1 * ogrencilerDerslerDonemler.OgrencininDersi.DersKredisi;
+                    return "DD";
+                }
+                else if (butluSonuc >= 50 && butluSonuc < 60)
+                {
+                    toplamAgirlikli += 1.5 * ogrencilerDerslerDonemler.OgrencininDersi.DersKredisi;
+                    return "DC";
+                }
+                else if (butluSonuc >= 60 && butluSonuc < 70)
+                {
+                    toplamAgirlikli += 2 * ogrencilerDerslerDonemler.OgrencininDersi.DersKredisi;
+                    return "CC";
+                }
+                else if (butluSonuc >= 70 && butluSonuc < 80)
+                {
+                    toplamAgirlikli += 2.5 * ogrencilerDerslerDonemler.OgrencininDersi.DersKredisi;
+                    return "CB";
+                }
+                else if (butluSonuc >= 80 && butluSonuc < 85)
+                {
+                    toplamAgirlikli += 3 * ogrencilerDerslerDonemler.OgrencininDersi.DersKredisi;
+                    return "BB";
+                }
+                else if (butluSonuc >= 85 && butluSonuc < 90)
+                {
+                    toplamAgirlikli += 3.5 * ogrencilerDerslerDonemler.OgrencininDersi.DersKredisi;
+                    return "BA";
+                }
+                else if (butluSonuc >= 90)
+                {
+                    toplamAgirlikli += 4 * ogrencilerDerslerDonemler.OgrencininDersi.DersKredisi;
+                    return "AA";
+                }
+                return "AA";
+            }
         }
     }
 }

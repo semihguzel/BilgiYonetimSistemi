@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace BilgiYonetimSistemi.BLL.Repository.Abstract
 {
-    public interface IBolumDersler
+    public interface Ibolumdersdonemler
     {
         List<BolumlerDersler> GetByName(int id);
         BolumlerDersler GetByDepartmentLesson(int bolumId, string ders);

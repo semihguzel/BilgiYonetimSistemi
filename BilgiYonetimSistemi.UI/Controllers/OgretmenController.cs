@@ -65,7 +65,6 @@ namespace BilgiYonetimSistemi.UI.Controllers
         public ActionResult Create([Bind(Include = "OgretmenID,OgretmenAdi,OgretmenSoyadi,Unvan,BaslangicTarihi,AyrilisTarihi,PersonelNumarasi,Sifre")] Ogretmen ogretmen, FormCollection frm, HttpPostedFileBase file)
         {
             ogretmen.IsActive = true;
-            ogretmen.AyrilisTarihi = DateTime.Now;
             ogretmen.BaslangicTarihi = DateTime.Parse(frm["baslangicTarihi"]);
             ogretmen.Unvan = frm["unvan"];
             if (ModelState.IsValid)

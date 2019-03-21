@@ -23,7 +23,7 @@ namespace BilgiYonetimSistemi.DATA
 
         public DateTime BaslangicTarihi { get; set; }
 
-        public DateTime AyrilisTarihi { get; set; }
+        public DateTime? AyrilisTarihi { get; set; }
 
         public string PersonelNumarasi { get; set; }
         [DefaultValue("true")]

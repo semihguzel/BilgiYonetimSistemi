@@ -18,9 +18,9 @@ namespace BilgiYonetimSistemi.DAL
             Property(x => x.OgretmenAdi).HasColumnType("nvarchar").HasMaxLength(20).IsRequired();
             Property(x => x.OgretmenSoyadi).HasColumnType("nvarchar").HasMaxLength(20).IsRequired();
             Property(x => x.AyrilisTarihi).HasColumnType("datetime2");
-            Property(x => x.BaslangicTarihi).HasColumnType("datetime2");
+            Property(x => x.BaslangicTarihi).HasColumnType("datetime2").IsRequired();
             Property(x => x.PersonelNumarasi).HasColumnType("nvarchar").HasMaxLength(20).IsRequired();
-            Property(x => x.Sifre).HasColumnType("nvarchar").HasMaxLength(20).IsRequired();
+            Property(x => x.Sifre).HasColumnType("nvarchar").HasMaxLength(20);
             Property(x => x.Unvan).HasColumnType("nvarchar").HasMaxLength(20).IsRequired();
             Property(x => x.IsActive).IsRequired();
 

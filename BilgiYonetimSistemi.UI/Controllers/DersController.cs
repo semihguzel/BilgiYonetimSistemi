@@ -16,12 +16,12 @@ namespace BilgiYonetimSistemi.UI.Controllers
     {
         DersConcrete dersConcrete;
         BolumConcrete bolumConcrete;
-        BolumDerslerConcrete bolumDerslerConcrete;
+        bolumdersdonemlerConcrete bolumdersdonemlerConcrete;
         public DersController()
         {
             dersConcrete = new DersConcrete();
             bolumConcrete = new BolumConcrete();
-            bolumDerslerConcrete = new BolumDerslerConcrete();
+            bolumdersdonemlerConcrete = new bolumdersdonemlerConcrete();
         }
         // GET: Ders
         public ActionResult Index()
@@ -32,7 +32,7 @@ namespace BilgiYonetimSistemi.UI.Controllers
         // GET: Ders/Details/5
         public ActionResult Details(int id)
         {
-            List<BolumlerDersler> bolumlerDersler = bolumDerslerConcrete.GetByName(id);
+            List<BolumlerDersler> bolumlerDersler = bolumdersdonemlerConcrete.GetByName(id);
             if (bolumlerDersler == null)
             {
                 return HttpNotFound();
@@ -70,7 +70,7 @@ namespace BilgiYonetimSistemi.UI.Controllers
             if (ModelState.IsValid)
             {
                 var lesson = dersConcrete.GetByLessons(ders.DersKodu);
-                if (bolumDerslerConcrete.GetByDepartmentLesson(id, ders.DersKodu) == null)
+                if (bolumdersdonemlerConcrete.GetByDepartmentLesson(id, ders.DersKodu) == null)
                 {
                     if (lesson == null)
                     {
@@ -84,9 +84,9 @@ namespace BilgiYonetimSistemi.UI.Controllers
                             BolumID = bolum.BolumID,
                             DersID = ders.DersID
                         };
-                        bolumDerslerConcrete._bolumDerslerRepository.Insert(bolumlerDersler);
-                        bolumDerslerConcrete._bolumDerslerUnitOfWork.SaveChanges();
-                        bolumDerslerConcrete._bolumDerslerUnitOfWork.Dispose();
+                        bolumdersdonemlerConcrete._bolumdersdonemlerRepository.Insert(bolumlerDersler);
+                        bolumdersdonemlerConcrete._bolumdersdonemlerUnitOfWork.SaveChanges();
+                        bolumdersdonemlerConcrete._bolumdersdonemlerUnitOfWork.Dispose();
                     }
                     else
                     {
@@ -96,9 +96,9 @@ namespace BilgiYonetimSistemi.UI.Controllers
                             BolumID = bolum.BolumID,
                             DersID = lesson.DersID
                         };
-                        bolumDerslerConcrete._bolumDerslerRepository.Insert(bolumlerDersler);
-                        bolumDerslerConcrete._bolumDerslerUnitOfWork.SaveChanges();
-                        bolumDerslerConcrete._bolumDerslerUnitOfWork.Dispose();
+                        bolumdersdonemlerConcrete._bolumdersdonemlerRepository.Insert(bolumlerDersler);
+                        bolumdersdonemlerConcrete._bolumdersdonemlerUnitOfWork.SaveChanges();
+                        bolumdersdonemlerConcrete._bolumdersdonemlerUnitOfWork.Dispose();
                     }
                     return RedirectToAction("Index");
                 }

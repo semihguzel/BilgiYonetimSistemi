@@ -12,26 +12,26 @@ using System.Threading.Tasks;
 
 namespace BilgiYonetimSistemi.BLL.Repository.Concrete
 {
-    public class BolumDerslerConcrete : IBolumDersler
+    public class bolumdersdonemlerConcrete : Ibolumdersdonemler
     {
-        public IRepository<BolumlerDersler> _bolumDerslerRepository;
-        public IUnitOfWork _bolumDerslerUnitOfWork;
+        public IRepository<BolumlerDersler> _bolumdersdonemlerRepository;
+        public IUnitOfWork _bolumdersdonemlerUnitOfWork;
         private DbContext _dbContext;
 
-        public BolumDerslerConcrete()
+        public bolumdersdonemlerConcrete()
         {
             _dbContext = new Context();
-            _bolumDerslerUnitOfWork = new EFUnitOfWork(_dbContext);
-            _bolumDerslerRepository = _bolumDerslerUnitOfWork.GetRepository<BolumlerDersler>();
+            _bolumdersdonemlerUnitOfWork = new EFUnitOfWork(_dbContext);
+            _bolumdersdonemlerRepository = _bolumdersdonemlerUnitOfWork.GetRepository<BolumlerDersler>();
         }
         public BolumlerDersler GetByDepartmentLesson(int bolumId, string ders)
         {
-            return _bolumDerslerRepository.GetEntity().FirstOrDefault(x => x.BolumID == bolumId && x.BolumunDersi.DersKodu == ders);
+            return _bolumdersdonemlerRepository.GetEntity().FirstOrDefault(x => x.BolumID == bolumId && x.BolumunDersi.DersKodu == ders);
         }
 
         public List<BolumlerDersler> GetByName(int id)
         {
-            return _bolumDerslerRepository.GetEntity().Where(x => x.BolumID == id).ToList();
+            return _bolumdersdonemlerRepository.GetEntity().Where(x => x.BolumID == id).ToList();
         }
     }
 }

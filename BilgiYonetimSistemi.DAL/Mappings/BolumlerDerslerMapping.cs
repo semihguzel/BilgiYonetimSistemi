@@ -16,7 +16,7 @@ namespace BilgiYonetimSistemi.DAL
             HasKey(x => x.BolumlerDerslerID);
 
             HasRequired(x => x.BolumunDersi).WithMany(x => x.DersinBolumleri).HasForeignKey(x => x.DersID); 
-            HasRequired(x => x.DersinBolumu).WithMany(x => x.BolumDersleri).HasForeignKey(x => x.BolumID); 
+            HasRequired(x => x.DersinBolumu).WithMany(x => x.bolumdersdonemleri).HasForeignKey(x => x.BolumID); 
 
             //çoka çok bağlandı ve bolumlerderslerID primary key olarak atandı.
         }
