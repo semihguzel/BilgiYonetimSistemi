@@ -82,7 +82,7 @@ namespace BilgiYonetimSistemi.UI.Controllers
                 else if (rol.First() == "ogrenci")
                     return RedirectToAction("Anasayfa", "Ogrenci");
                 else
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Anasayfa", "Yonetici");
             }
         }
 

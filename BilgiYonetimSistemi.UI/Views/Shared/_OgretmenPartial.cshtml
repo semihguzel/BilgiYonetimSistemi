@@ -1,26 +1,20 @@
-﻿<ul class="acc-menu" id="sidebar">
-    <li>
-        <a href="/tr/AzamiSure"><i class="fa fa-bolt"></i><span>Ogretmen</span> </a>
-    </li>
-</ul>
-
-
+﻿
 <nav id="page-leftbar" role="navigation">
     <!-- BEGIN SIDEBAR MENU -->
 
 
     <ul class="acc-menu" id="sidebar" style="text-align:left;">
-        <li><a href="/"><i class="fa fa-home"></i>Ana Sayfa</a></li>
+        <li><a href="@Url.Action("Anasayfa","Ogretmen")"><i class="fa fa-home"></i><span>Ana Sayfa</span></a></li>
         <li class="divider"></li>
 
         <li>
-            <a href="@Url.Action("OgretmenDersler","Ogretmen")"><span>Dersler-Sınavlar</span> </a>
+            <a href="@Url.Action("OgretmenDersler","Ogretmen")"><i class="fa fa-list-alt"></i><span>Dersler-Sınavlar</span> </a>
         </li>
         <li>
-            <a href="@Url.Action("Index","OgretmenlerDerslerDonemler")"><span>Ders Seçimi</span> </a>
+            <a href="@Url.Action("Index","OgretmenlerDerslerDonemler")"><i class="fa fa-chalkboard"></i><span>Ders Seçimi</span> </a>
         </li>
         <li>
-            <a href="@Url.Action("OgretmenDerslerNot","Ogretmen")"><span>Not İşlemleri</span> </a>
+            <a href="@Url.Action("OgretmenDerslerNot","Ogretmen")"><i class="fa fa-file-alt"></i><span>Not İşlemleri</span> </a>
         </li>
 
     </ul>
