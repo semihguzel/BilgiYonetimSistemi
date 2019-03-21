@@ -122,7 +122,6 @@
     <Compile Include="Repository\Abstract\INot.cs" />
     <Compile Include="Repository\Abstract\IOgrenci.cs" />
     <Compile Include="Repository\Abstract\IOgrenciBilgileri.cs" />
-    <Compile Include="Repository\Abstract\IOgrencilerBolumler.cs" />
     <Compile Include="Repository\Abstract\IOgrencilerDerslerDonemler.cs" />
     <Compile Include="Repository\Abstract\IOgrenimSekli.cs" />
     <Compile Include="Repository\Abstract\IOgretmen.cs" />
@@ -145,7 +144,6 @@
     <Compile Include="Repository\Concrete\NotConcrete.cs" />
     <Compile Include="Repository\Concrete\OgrenciBilgileriConcrete.cs" />
     <Compile Include="Repository\Concrete\OgrenciConcrete.cs" />
-    <Compile Include="Repository\Concrete\OgrencilerBolumlerConcrete.cs" />
     <Compile Include="Repository\Concrete\OgrencilerDerslerDonemlerConcrete.cs" />
     <Compile Include="Repository\Concrete\OgrenimSekliConcrete.cs" />
     <Compile Include="Repository\Concrete\OgretmenBilgileriConcrete.cs" />

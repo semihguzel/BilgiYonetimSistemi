@@ -61,24 +61,6 @@
                             <div class="form-group">
 
                                 <div class="col-md-10">
-                                    <label>Kayıt Tarihi:</label>
-                                    @Html.EditorFor(model => model.KayitTarihi, new { htmlAttributes = new { @class = "form-control" } })
-                                    @Html.ValidationMessageFor(model => model.KayitTarihi, "", new { @class = "text-danger" })
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-
-                                <div class="col-md-10">
-                                    <label>Mezuniyet Tarihi:</label>
-                                    @Html.EditorFor(model => model.MezuniyetTarihi, new { htmlAttributes = new { @class = "form-control" } })
-                                    @Html.ValidationMessageFor(model => model.MezuniyetTarihi, "", new { @class = "text-danger" })
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-
-                                <div class="col-md-10">
                                     <label>Öğrenim Şekli:</label>
                                     @Html.DropDownList("OgrenimSekliID", null, htmlAttributes: new { @class = "form-control" })
                                     @Html.ValidationMessageFor(model => model.OgrenimSekliID, "", new { @class = "text-danger" })
@@ -93,7 +75,6 @@
                                 </div>
                             </div>
 
-
                             <div class="form-group">
                                 <div class="col-md-10">
                                     <label>Adres:</label>
@@ -101,17 +82,6 @@
                                     @Html.ValidationMessageFor(model => model.OgrenciBilgisi.Adres, "", new { @class = "text-danger" })
                                 </div>
                             </div>
-
-                            <div class="form-group">
-                                <div class="col-md-10">
-                                    <label>Mezuniyet Durumu:</label>
-                                    @Html.CheckBoxFor(model => model.OgrenciBilgisi.MezunMu, new { htmlAttributes = new { @class = "form-control" } })
-                                    @Html.ValidationMessageFor(model => model.OgrenciBilgisi.MezunMu, "", new { @class = "text-danger" })
-                                </div>
-                            </div>
-
-
-
                             <div class="form-group">
                                 <div class="col-md-10">
                                     <label>Telefon:</label>

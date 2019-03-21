@@ -100,7 +100,7 @@ namespace BilgiYonetimSistemi.UI.Controllers
                     Fotograf = ad,
                     OgrenciID = ogrenci.OgrenciID,
                     TCNo = frm["tc"],
-                    Telefon = frm["telefon"]
+                    Telefon = frm["telefon"], MezunMu=false
                 };
                 KullaniciIslemleri.OgrenciEkle(ogrenci, ogrenciBilgileri);
 
@@ -133,7 +133,7 @@ namespace BilgiYonetimSistemi.UI.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "OgrenciID,OgrenciAdi,OgrenciSoyadi,OgrenciNumarasi,KayitTarihi,MezuniyetTarihi,BolumID,OgrenimSekliID,EgitimDuzeyiID")] Ogrenci ogrenci, FormCollection frm)
+        public ActionResult Edit([Bind(Include = "OgrenciID,OgrenciAdi,OgrenciSoyadi,OgrenciNumarasi,KayitTarihi,MezuniyetTarihi,OgrenimSekliID,EgitimDuzeyiID")] Ogrenci ogrenci, FormCollection frm)
         {
             if (ModelState.IsValid)
             {

@@ -126,7 +126,6 @@
     <Compile Include="Entities\Not.cs" />
     <Compile Include="Entities\Ogrenci.cs" />
     <Compile Include="Entities\OgrenciBilgileri.cs" />
-    <Compile Include="Entities\OgrencilerBolumler.cs" />
     <Compile Include="Entities\OgrencilerDerslerDonemler.cs" />
     <Compile Include="Entities\OgrenimSekli.cs" />
     <Compile Include="Entities\Ogretmen.cs" />

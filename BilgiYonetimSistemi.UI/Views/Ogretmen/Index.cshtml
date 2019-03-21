@@ -5,8 +5,6 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-
-
 <p>
     @Html.ActionLink("Yeni Öğretmen Ekle", "Create", null, new { @class = "btn btn-primary" })
 </p>
@@ -32,7 +30,7 @@
         </th>
         <th>
             <label style="font-weight:bold">Personel Numarası</label>
-        </th>        
+        </th>
         <th></th>
     </tr>
 
@@ -52,11 +50,22 @@
                 @Html.DisplayFor(modelItem => item.BaslangicTarihi)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.AyrilisTarihi)
+                @{var a = item.AyrilisTarihi;}
+                
+                <span>
+                    @if(a==null)
+                    {
+                        <span>Devam ediyor.</span>
+                    }
+                    else
+                    {
+                          <span>@a</span>
+                    }
+                </span>
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.PersonelNumarasi)
-            </td>            
+            </td>
             <td>
                 @Html.ActionLink("Güncelle", "Edit", new { id = item.OgretmenID }, new { @class = "btn btn-warning" })
                 @Html.ActionLink("Ayrıntılar", "Details", new { id = item.OgretmenID }, new { @class = "btn btn-primary" })

@@ -33,7 +33,6 @@ namespace BilgiYonetimSistemi.DAL
         public DbSet<Not> Notlar { get; set; }
         public DbSet<Ogrenci> Ogrenciler { get; set; }
         public DbSet<OgrenciBilgileri> OgrenciBilgileri { get; set; }
-        public DbSet<OgrencilerBolumler> OgrencilerBolumler { get; set; }
         public DbSet<OgrencilerDerslerDonemler> OgrencilerDersler { get; set; }
         public DbSet<OgrenimSekli> OgrenimSekilleri { get; set; }
         public DbSet<Ogretmen> Ogretmenler { get; set; }
@@ -54,7 +53,6 @@ namespace BilgiYonetimSistemi.DAL
             modelBuilder.Configurations.Add(new FakulteMapping());
             modelBuilder.Configurations.Add(new NotlarMapping());
             modelBuilder.Configurations.Add(new OgrenciBilgileriMapping());
-            modelBuilder.Configurations.Add(new OgrencilerBolumlerMapping());
             modelBuilder.Configurations.Add(new OgrencilerDerslerDonemlerMapping());
             modelBuilder.Configurations.Add(new OgrencilerMapping());
             modelBuilder.Configurations.Add(new OgrenimSekliMapping());
