@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,7 +18,7 @@ namespace BilgiYonetimSistemi.DATA
         public string TCNo { get; set; }
 
         public string OgrenciMail { get; set; }
-
+        [DefaultValue(false)]
         public bool MezunMu { get; set; }
         public string Fotograf { get; set; }
 

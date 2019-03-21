@@ -17,7 +17,7 @@ namespace BilgiYonetimSistemi.DAL
             Property(x => x.TCNo).HasColumnType("nvarchar").HasMaxLength(11).IsRequired();
             Property(x => x.Adres).HasColumnType("nvarchar").HasMaxLength(200);
             Property(x => x.Fotograf).HasColumnType("nvarchar");
-            Property(x => x.OgrenciMail).HasColumnType("nvarchar").HasMaxLength(20);
+            Property(x => x.OgrenciMail).HasColumnType("nvarchar").HasMaxLength(50);
             Property(x => x.Sifre).HasColumnType("nvarchar").HasMaxLength(20);
             Property(x => x.Telefon).HasColumnType("nvarchar").HasMaxLength(20);
             Property(x => x.MezunMu).IsRequired();
