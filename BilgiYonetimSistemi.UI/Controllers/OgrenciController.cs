@@ -81,7 +81,7 @@ namespace BilgiYonetimSistemi.UI.Controllers
                     {
                         if (Path.GetExtension(file.FileName).ToLower() == ".jpg" || Path.GetExtension(file.FileName).ToLower() == ".png" || Path.GetExtension(file.FileName).ToLower() == ".gif" || Path.GetExtension(file.FileName).ToLower() == ".jpeg")
                         {
-                            ad = Guid.NewGuid() + System.IO.Path.GetExtension(file.FileName);
+                            ad = Guid.NewGuid() + Path.GetExtension(file.FileName);
                             var path = Path.Combine(Server.MapPath("~/images"), ad);
                             file.SaveAs(path);
                         }
@@ -106,10 +106,7 @@ namespace BilgiYonetimSistemi.UI.Controllers
 
                 return RedirectToAction("Index");
             }
-
-            //ViewBag.BolumID = new SelectList(db.Bolumler, "BolumID", "BolumAdi", ogrenci.BolumID);
-            //ViewBag.EgitimDuzeyiID = new SelectList(db.EgitimDuzeyleri, "EgitimDuzeyiID", "EgitimDuzeyTipi", ogrenci.EgitimDuzeyiID);
-            //ViewBag.OgrenimSekliID = new SelectList(db.OgrenimSekilleri, "OgrenimID", "OgrenimTipi", ogrenci.OgrenimSekliID);
+            
             return View(ogrenci);
         }
 
@@ -140,7 +137,7 @@ namespace BilgiYonetimSistemi.UI.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(ogrenci).State = EntityState.Modified;
+                
                 var ogrenciBilgileri = ogrenciBilgileriConcrete._ogrenciBilgileriRepository.GetEntity().FirstOrDefault(x => x.OgrenciID == ogrenci.OgrenciID);
                 ogrenciBilgileri.Adres = frm["OgrenciBilgisi.Adres"];
                 ogrenciBilgileri.Fotograf = frm["OgrenciBilgisi.Fotograf"];
@@ -149,11 +146,15 @@ namespace BilgiYonetimSistemi.UI.Controllers
                 ogrenciBilgileri.TCNo = frm["OgrenciBilgisi.TCNo"];
                 ogrenciBilgileri.Telefon = frm["OgrenciBilgisi.Telefon"];
 
-                db.SaveChanges();
+                ogrenciConcrete._ogrenciRepository.Update(ogrenci);                
+                ogrenciConcrete._ogrenciUnitOfWork.SaveChanges();
+                ogrenciConcrete._ogrenciUnitOfWork.Dispose();
+                ogrenciBilgileriConcrete._ogrenciBilgileriRepository.Update(ogrenciBilgileri);
+                ogrenciBilgileriConcrete._ogrenciBilgileriUnitOfWork.SaveChanges();
+                ogrenciBilgileriConcrete._ogrenciBilgileriUnitOfWork.Dispose();
                 return RedirectToAction("Index");
             }
-            //ViewBag.EgitimDuzeyiID = new SelectList(db.EgitimDuzeyleri, "EgitimDuzeyiID", "EgitimDuzeyTipi", ogrenci.EgitimDuzeyiID);
-            //ViewBag.OgrenimSekliID = new SelectList(db.OgrenimSekilleri, "OgrenimID", "OgrenimTipi", ogrenci.OgrenimSekliID);
+            
             return View(ogrenci);
         }
 
@@ -164,7 +165,7 @@ namespace BilgiYonetimSistemi.UI.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Ogrenci ogrenci = db.Ogrenciler.Find(id);
+            Ogrenci ogrenci = ogrenciConcrete._ogrenciRepository.GetById(id);
             if (ogrenci == null)
             {
                 return HttpNotFound();
@@ -176,11 +177,17 @@ namespace BilgiYonetimSistemi.UI.Controllers
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(string id)
-        {
-            Ogrenci ogrenci = db.Ogrenciler.Find(id);
-            db.OgrenciBilgileri.Remove(db.OgrenciBilgileri.FirstOrDefault(x => x.OgrenciID == ogrenci.OgrenciID));
-            db.Ogrenciler.Remove(ogrenci);
-            db.SaveChanges();
+        {            
+            Ogrenci ogrenci = ogrenciConcrete._ogrenciRepository.GetById(id);
+            OgrenciBilgileri ogrenciBilgileri = ogrenciBilgileriConcrete._ogrenciBilgileriRepository.GetById(id);
+            ogrenci.MezuniyetTarihi = DateTime.Now;
+            ogrenciBilgileri.MezunMu = true;
+            ogrenciConcrete._ogrenciRepository.Update(ogrenci);
+            ogrenciConcrete._ogrenciUnitOfWork.SaveChanges();
+            ogrenciConcrete._ogrenciUnitOfWork.Dispose();
+            ogrenciBilgileriConcrete._ogrenciBilgileriRepository.Update(ogrenciBilgileri);
+            ogrenciBilgileriConcrete._ogrenciBilgileriUnitOfWork.SaveChanges();
+            ogrenciBilgileriConcrete._ogrenciBilgileriUnitOfWork.Dispose();
             return RedirectToAction("Index");
         }
 

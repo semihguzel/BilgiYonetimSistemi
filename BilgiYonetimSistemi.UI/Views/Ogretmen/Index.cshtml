@@ -32,10 +32,7 @@
         </th>
         <th>
             <label style="font-weight:bold">Personel Numarası</label>
-        </th>
-        <th>
-            <label style="font-weight:bold">Şifre</label>
-        </th>
+        </th>        
         <th></th>
     </tr>
 
@@ -59,10 +56,7 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.PersonelNumarasi)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Sifre)
-            </td>
+            </td>            
             <td>
                 @Html.ActionLink("Güncelle", "Edit", new { id = item.OgretmenID }, new { @class = "btn btn-warning" })
                 @Html.ActionLink("Ayrıntılar", "Details", new { id = item.OgretmenID }, new { @class = "btn btn-primary" })

@@ -27,7 +27,7 @@ namespace BilgiYonetimSistemi.UI.Controllers
         // GET: Ogretmen
         public ActionResult Index()
         {
-            return View(db.Ogretmenler.Where(x => x.IsActive == true).ToList());
+            return View(ogretmenConcrete._ogretmenRepository.GetEntity().Where(x => x.IsActive == true).ToList());
         }
 
         public ActionResult Anasayfa()
@@ -43,7 +43,7 @@ namespace BilgiYonetimSistemi.UI.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Ogretmen ogretmen = db.Ogretmenler.Find(id);
+            Ogretmen ogretmen = ogretmenConcrete._ogretmenRepository.GetById(id);
             if (ogretmen == null)
             {
                 return HttpNotFound();
@@ -76,7 +76,7 @@ namespace BilgiYonetimSistemi.UI.Controllers
                     {
                         if (Path.GetExtension(file.FileName).ToLower() == ".jpg" || Path.GetExtension(file.FileName).ToLower() == ".png" || Path.GetExtension(file.FileName).ToLower() == ".gif" || Path.GetExtension(file.FileName).ToLower() == ".jpeg")
                         {
-                            ad = Guid.NewGuid() + System.IO.Path.GetExtension(file.FileName);
+                            ad = Guid.NewGuid() + Path.GetExtension(file.FileName);
                             var path = Path.Combine(Server.MapPath("~/images"), ad);
                             file.SaveAs(path);
                         }
@@ -85,11 +85,9 @@ namespace BilgiYonetimSistemi.UI.Controllers
                 
                 ogretmen.PersonelNumarasi = "120" + ogretmenConcrete._ogretmenRepository.GetAll().Count();
                 OgretmenBilgileri ogretmenBilgileri = new OgretmenBilgileri()
-                {
-                    OgretmenMail = frm["OgretmeninBilgisi.OgretmenMail"],
+                {                    
                     TCNo = frm["OgretmeninBilgisi.TCNo"],
-                    Fotograf = ad,
-                    OgretmenID = ogretmen.OgretmenID,
+                    Fotograf = ad,                    
                 };
                 KullaniciIslemleri.OgretmenEkle(ogretmen, ogretmenBilgileri);
                 return RedirectToAction("Index");
@@ -105,7 +103,7 @@ namespace BilgiYonetimSistemi.UI.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Ogretmen ogretmen = db.Ogretmenler.Find(id);
+            Ogretmen ogretmen = ogretmenConcrete._ogretmenRepository.GetById(id);
             if (ogretmen == null)
             {
                 return HttpNotFound();
@@ -136,7 +134,7 @@ namespace BilgiYonetimSistemi.UI.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Ogretmen ogretmen = db.Ogretmenler.Find(id);
+            Ogretmen ogretmen = ogretmenConcrete._ogretmenRepository.GetById(id);
             if (ogretmen == null)
             {
                 return HttpNotFound();
