@@ -30,11 +30,11 @@ namespace BilgiYonetimSistemi.UI.Controllers
 
             OgrencilerDerslerDonemlerConcrete oddc = new OgrencilerDerslerDonemlerConcrete();
 
-            BolumDerslerConcrete bdc = new BolumDerslerConcrete();
+            bolumdersdonemlerConcrete bdc = new bolumdersdonemlerConcrete();
 
             DersConcrete dc = new DersConcrete();
 
-            var tumDersler = bdc._bolumDerslerRepository.GetEntity().Where(x => x.BolumID == ogrenci.OgrencininFakulteBolumu.BolumID).Select(x => x.DersID).ToList();
+            var tumDersler = bdc._bolumdersdonemlerRepository.GetEntity().Where(x => x.BolumID == ogrenci.OgrencininFakulteBolumu.BolumID).Select(x => x.DersID).ToList();
 
             var ogrencininDersleri = oddc._ogrencilerDerslerDonemlerRepository.GetEntity().Where(x => x.OgrenciID == ogrenci.OgrenciID).Select(x => x.DersID).ToList();
 
