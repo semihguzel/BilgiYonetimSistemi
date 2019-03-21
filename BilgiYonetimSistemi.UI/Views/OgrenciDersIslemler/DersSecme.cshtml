@@ -1,0 +1,133 @@
+﻿@model  IEnumerable<BilgiYonetimSistemi.DATA.DTOs.DersBilgiDTO>
+@{
+    ViewBag.Title = "DersSecme";
+}
+
+@{var kullanici = Session["Kullanici"] as BilgiYonetimSistemi.DATA.Entities.Kullanici;
+    var ogrConcrete = new BilgiYonetimSistemi.BLL.Repository.Concrete.OgrenciConcrete();
+    var ogr = ogrConcrete._ogrenciRepository.GetById(kullanici.Id);
+}
+@{ int donem = BilgiYonetimSistemi.BLL.KullaniciIslemleri.DonemBulma(ogr);
+    int yil = (donem % 2 == 0) ? donem / 2 : donem / 2 + 1;
+}
+<form action="" id="theForm">
+    <table border='1' class="table" style="border-radius: 5px 5px 0 0;">
+
+        <thead class="panel panel-heading table" style="border-radius: 1em; border: #66CCFF; padding-left:25px">
+            <tr>
+                <th>Ders Seç</th>
+                <th>Ders Adı</th>
+                <th>Kredisi</th>
+                <th>Kodu</th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                int toplamKredi = Convert.ToInt32(ViewBag.ToplamKredi);
+                foreach (var item in Model)
+                {
+                    <tr role="row" class="even">
+                        @if (int.Parse(item.DersKodu.Substring(3, 1)) <= yil && ((donem % 2 == 0) ? (int.Parse(item.DersKodu.Substring(item.DersKodu.Length - 1, 1)) % 2 == 0) : (int.Parse(item.DersKodu.Substring(item.DersKodu.Length - 1, 1)) % 2 == 1)))
+                        {
+                            <td><input id="course_@item.DersID" data-id="@item.DersID" type="checkbox" value="@item.DersKredisi" name="course_@item.DersID" onclick="CalculateCourseCredit()" /></td>
+                            <td id="tdDersAdi" data-id="@item.DersAdi" value="@item.DersAdi">@item.DersAdi </td>
+                            <td id="tdDersKredisi" data-id="@item.DersKredisi" value="@item.DersAdi">@item.DersKredisi</td>
+                            <td id="tdDersKodu" data-id="@item.DersKodu" value="@item.DersAdi">@item.DersKodu</td>
+                        }
+                    </tr>
+                }
+            }
+        </tbody>
+        <tr>
+            <td colspan="4">
+                <label>
+                    Toplam
+                    <input value="@toplamKredi" readonly="readonly" type="text" id="total" />
+                    kredi
+                </label>
+                <span id="uyari"></span>
+            </td>
+        </tr>
+    </table>
+    <input class="btn btn-warning" type="button" value="KAYDET" id="dersSecimiTamamla" />
+</form>
+
+<script>
+    var selected = [];
+    $(document).ready(function () {
+        $("#dersSecimiTamamla").click(dersSecimleriniKaydet);
+
+    });
+
+    var secilenler = [];
+
+    function CalculateCourseCredit() {
+        var input = $("#course").val();
+        var total = $("#total").val();
+        $('input[id*="course"]').each(function () {
+            if ((this).checked) {
+                if (!secilenler.includes(this.name)) {
+                    secilenler.unshift(this.name);
+                    total = parseInt(total) + parseInt(this.value);
+                    if (total > 40)
+                    {
+                        $("#uyari").html("UYARI!  40 krediyi geçemezsiniz");
+                        $("#uyari").css("color", "red");
+                        $("#dersSecimiTamamla").attr("disabled", true);
+                    }
+               else {
+                        $("#uyari").html("");
+                        $("#dersSecimiTamamla").attr("disabled", false);
+                    }
+                }
+            }
+            else {
+                if (secilenler.includes(this.name)) {
+                    $("#uyari").html("");
+                    $("#dersSecimiTamamla").attr("disabled", false);
+                    total = parseInt(total) - parseInt(this.value);
+                    secilenler.splice(secilenler.indexOf(this.name), 1);
+                }
+            }
+
+        });
+
+        document.getElementById("total").setAttribute("value", total);
+   }
+
+
+
+    var selected = [];
+    var id;
+    var dersAdi, dersKredisi, dersKodu;
+    function dersSecimleriniKaydet() {
+
+        $("input[type=checkbox]:checked").each(function () {
+            id = $(this).attr("data-id");
+            var $row = $(this).closest('tr');
+            dersAdi = $row.find("td:eq(1)").text(); // get current row 1st TD value
+            dersKredisi = $row.find("td:eq(2)").text(); // get current row 2nd TD
+            dersKodu = $row.find("td:eq(3)").text(); // get current row 3rd TD
+
+
+            var ders = {
+                DersID: id,
+                DersAdi: dersAdi.toString(),
+                DersKredisi: dersKredisi,
+                DersKodu: dersKodu
+            }
+            selected.push(ders);
+        });
+
+
+        $.ajax({
+            type: "post",
+            url: "@Url.Action("DersSecme", "OgrenciDersIslemler")",
+            dataType: "JSON",
+            data: { dersler: selected }
+
+        });
+        window.location.reload(true);
+
+    }
+</script>

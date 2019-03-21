@@ -28,7 +28,6 @@ namespace BilgiYonetimSistemi.BLL.Repository.Concrete
 
         public IEnumerable<OgrenciDTO> DersOgrencileri(int id,int donemId)
         {
-            //OgrenciDersDoneme göre gelmeli!!!
             return _ogrencilerDerslerDonemlerRepository.GetEntity().Where(x => x.DersID == id && x.DonemID == donemId).Select(x => new OgrenciDTO { OgrenciAdi = x.DersinOgrencisi.OgrenciAdi, OgrenciSoyadi = x.DersinOgrencisi.OgrenciSoyadi, OgrenciID = x.OgrenciID, Notlar = x.OgrenciDerslerDonemlerinNotlari }).ToList();
         }
 

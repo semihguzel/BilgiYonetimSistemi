@@ -5,10 +5,10 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+
 
 <p>
-    @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-info" })
+    @Html.ActionLink("YENİ KAYIT", "Create", null, new { @class = "btn btn-info" })
 </p>
 <table class="table">
     <tr>
@@ -27,9 +27,7 @@
         <th>
             @Html.DisplayNameFor(model => model.KullaniciAdi)
         </th>
-        <th>
-           @Html.DisplayNameFor(model => model.Sifre)
-        </th>
+       
         <th></th>
     </tr>
 
@@ -50,13 +48,11 @@
         <td>
             @Html.DisplayFor(modelItem => item.KullaniciAdi)
         </td>
+       
         <td>
-            <img src="~/images/@Html.DisplayFor(modelItem => item.Sifre)" width="50"/>
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.YoneticiID }, new { @class = "btn btn-warning" }) 
-            @Html.ActionLink("Details", "Details", new { id=item.YoneticiID }, new { @class = "btn btn-primary" }) 
-            @Html.ActionLink("Delete", "Delete", new { id=item.YoneticiID }, new { @class = "btn btn-danger" })
+            @Html.ActionLink("DÜZENLE", "Edit", new { id=item.YoneticiID }, new { @class = "btn btn-warning" }) 
+            @Html.ActionLink("DETAY", "Details", new { id=item.YoneticiID }, new { @class = "btn btn-primary" }) 
+            @Html.ActionLink("SİL", "Delete", new { id=item.YoneticiID }, new { @class = "btn btn-danger" })
         </td>
     </tr>
 }
