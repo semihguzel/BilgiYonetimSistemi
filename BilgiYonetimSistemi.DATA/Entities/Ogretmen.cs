@@ -28,9 +28,7 @@ namespace BilgiYonetimSistemi.DATA
         public string PersonelNumarasi { get; set; }
         [DefaultValue("true")]
         public bool IsActive { get; set; }
-
-        public string Sifre { get; set; }
-
+        
         public virtual List<OgretmenlerDerslerDonemler> OgretmeninDersleri { get; set; } //öğretmen ders ilişkisi kuruldu.
 
         public virtual List<OgretmenlerBolumler> OgretmeninBolumleri { get; set; } //öğretmen bölüm ilişkisi kuruldu.

@@ -114,7 +114,7 @@ namespace BilgiYonetimSistemi.UI.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "OgretmenID,OgretmenAdi,OgretmenSoyadi,Unvan,BaslangicTarihi,AyrilisTarihi,PersonelNumarasi,Sifre")] Ogretmen ogretmen)
+        public ActionResult Edit([Bind(Include = "OgretmenID,OgretmenAdi,OgretmenSoyadi,Unvan,PersonelNumarasi,IsActive")] Ogretmen ogretmen)
         {
             if (ModelState.IsValid)
             {
