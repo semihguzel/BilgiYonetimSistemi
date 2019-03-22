@@ -1,0 +1,50 @@
+﻿@model BilgiYonetimSistemi.DATA.Donem
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <div class="row" style="margin-top:50px">
+        <div class="panel panel-default ">
+            <div class="col-md-8 col-md-offset-2 ">
+                <div class="panel-body center-block">
+                    <div class="alert alert-danger">
+                        <h3>@Model.DonemYili Dönem Yılını Silmek İstediğinize Emin Misiniz?</h3>
+                    </div>
+                    <div>
+                        <h4>Dönem</h4>
+                        <hr />
+                        <dl class="dl-horizontal">
+                            <dt>
+                                @Html.DisplayName("Dönem Yılı:")
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.DonemYili)
+                            </dd>
+                            <br />
+                            <br />
+                        </dl>
+
+                        @using (Html.BeginForm())
+                        {
+                            @Html.AntiForgeryToken()
+
+                            <div class="form-actions no-color">
+                                <input type="submit" value="SİL" class="btn btn-danger" />
+                                @Html.ActionLink("Listeye Dön", "Index", null, new
+                               {
+                                   @class = "btn btn-default  ",
+                                   @style = "float:right"
+                               })
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

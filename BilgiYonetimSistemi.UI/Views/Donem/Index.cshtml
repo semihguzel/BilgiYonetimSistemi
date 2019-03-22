@@ -1,0 +1,49 @@
+﻿@model IEnumerable<BilgiYonetimSistemi.DATA.Donem>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <div class="row" style="margin-top:50px">
+        <div class="panel panel-default ">
+            <div class="col-md-12  ">
+                <div class="panel-body center-block">
+
+                    <p>
+                        @Html.ActionLink("YENİ KAYIT", "Create", null, new { @class = "btn btn-info " })
+                    </p>
+                    <br />
+                    <table class="table table-striped">
+                        <tr>
+                            <th>
+                                <h4>
+                                    <strong>
+                                        @Html.DisplayName("Dönem Yılı")
+                                    </strong>
+                                </h4>     
+                            </th>
+                            <th></th>
+                        </tr>
+
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.DonemYili)
+                                </td>
+                                <td style="text-align:right">
+                                    @Html.ActionLink("DÜZENLE", "Edit", new { id = item.DonemID }, new { @class = "btn btn-warning" }) 
+                                    @Html.ActionLink("DETAY", "Details", new { id = item.DonemID }, new { @class = "btn btn-primary" }) 
+                                    @Html.ActionLink("SİL", "Delete", new { id = item.DonemID }, new { @class = "btn btn-danger" })
+                                </td>
+                            </tr>
+                        }
+
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

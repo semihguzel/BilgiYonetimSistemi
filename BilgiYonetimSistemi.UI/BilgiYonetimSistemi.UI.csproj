@@ -211,6 +211,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BolumController.cs" />
     <Compile Include="Controllers\DersController.cs" />
+    <Compile Include="Controllers\DonemController.cs" />
     <Compile Include="Controllers\EgitimDuzeyiController.cs" />
     <Compile Include="Controllers\FakulteBolumlerController.cs" />
     <Compile Include="Controllers\FakulteController.cs" />
@@ -257,6 +258,11 @@
     <Content Include="Views\Ders\Details.cshtml" />
     <Content Include="Views\Ders\Edit.cshtml" />
     <Content Include="Views\Ders\Index.cshtml" />
+    <Content Include="Views\Donem\Create.cshtml" />
+    <Content Include="Views\Donem\Delete.cshtml" />
+    <Content Include="Views\Donem\Details.cshtml" />
+    <Content Include="Views\Donem\Edit.cshtml" />
+    <Content Include="Views\Donem\Index.cshtml" />
     <Content Include="Views\EgitimDuzeyi\Create.cshtml" />
     <Content Include="Views\EgitimDuzeyi\Delete.cshtml" />
     <Content Include="Views\EgitimDuzeyi\Details.cshtml" />

@@ -89,16 +89,6 @@ namespace BilgiYonetimSistemi.DAL.Migrations
                 db.OgrenimSekilleri.Add(new DATA.OgrenimSekli() { OgrenimTipi = "Uzaktan Eðitim" });
                 db.SaveChanges();
             }
-            if(db.Donemler.ToList().Count==0)
-            {
-                db.Donemler.Add(new DATA.Donem() { DonemYili = "2019" });
-                db.Donemler.Add(new DATA.Donem() { DonemYili = "2020" });
-                db.Donemler.Add(new DATA.Donem() { DonemYili = "2021" });
-                db.Donemler.Add(new DATA.Donem() { DonemYili = "2022" });
-                db.Donemler.Add(new DATA.Donem() { DonemYili = "2023" });
-                db.Donemler.Add(new DATA.Donem() { DonemYili = "2024" });
-                db.Donemler.Add(new DATA.Donem() { DonemYili = "2025" });
-            }
         }
     }
 

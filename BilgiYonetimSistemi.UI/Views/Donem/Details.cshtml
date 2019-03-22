@@ -1,0 +1,40 @@
+﻿@model BilgiYonetimSistemi.DATA.Donem
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <div class="row" style="margin-top:50px">
+        <div class="panel panel-default ">
+            <div class="col-md-8 col-md-offset-2 ">
+                <div class="panel-body center-block">
+
+                    <div>
+                        <h4>Dönem</h4>
+                        <hr />
+                        <dl class="dl-horizontal">
+                            <dt>
+                                @Html.DisplayName("Dönem Yılı:")
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.DonemYili)
+                            </dd>
+                            <br />
+                        </dl>
+                    </div>
+                    <p>
+                        @Html.ActionLink("GÜNCELLE", "Edit", new { id = Model.DonemID }, new { @class = "btn btn-primary" }) 
+                        @Html.ActionLink("Listeye Dön", "Index", null, new
+                    {
+                        @class = "btn btn-default  ",
+                        @style = "float:right"
+                    })
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -13,7 +13,7 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            <label style="font-weight:bold">Adı:</label>
+          <label style="font-weight:bold">Adı:</label>
         </dt>
 
         <dd>
@@ -61,13 +61,21 @@
         </dd>
 
         <dt>
-            <label style="font-weight:bold">Fotoğraf:</label>
+            <label style="font-weight:bold">Şifresi:</label>
         </dt>
 
         <dd>
-            <img src="~/images/@Html.DisplayFor(model => model.OgretmeninBilgisi.Fotograf)" style="padding:0 10px 10px; width:70px; border-radius:20px;" />
+            @Html.DisplayFor(model => model.Sifre)
         </dd>
-       
+
+        <dt>
+            <label style="font-weight:bold">Fotoğraf:</label>
+        </dt>
+        @* fotoğraf gelmiyor? bir de siz bakın. *@
+        <dd>
+          <img src="@Url.Content(@Model.OgretmeninBilgisi.Fotograf)" alt="Fotograf" name="Fotograf"/>     
+        </dd>
+
         <dt>
             <label style="font-weight:bold">E-posta:</label>
         </dt>
