@@ -52,7 +52,8 @@ namespace BilgiYonetimSistemi.UI.Controllers
                 ogrencininAlmadigiDersler.Add(ogrencininAlamadigiDers);
             }
             int toplamKredi = 0;
-            if (oddc._ogrencilerDerslerDonemlerRepository.GetAll().Count != 0)
+            int toplamDersSayisi = oddc._ogrencilerDerslerDonemlerRepository.GetEntity().Where(x => x.OgrenciID == ogrenci.OgrenciID).Count();
+            if (oddc._ogrencilerDerslerDonemlerRepository.GetAll().Count != 0 && oddc._ogrencilerDerslerDonemlerRepository.GetEntity().Where(x => x.OgrenciID == ogrenci.OgrenciID && x.NotGirildiMi == true).Count() != toplamDersSayisi)
             {
                 toplamKredi = oddc._ogrencilerDerslerDonemlerRepository.GetEntity().Where(x => x.OgrenciID == ogrenci.OgrenciID && x.NotGirildiMi == false).Sum(x => x.OgrencininDersi.DersKredisi);
             }
