@@ -51,7 +51,11 @@ namespace BilgiYonetimSistemi.UI.Controllers
                 }).FirstOrDefault();
                 ogrencininAlmadigiDersler.Add(ogrencininAlamadigiDers);
             }
-            var toplamKredi = oddc._ogrencilerDerslerDonemlerRepository.GetEntity().Where(x => x.OgrenciID == ogrenci.OgrenciID && x.NotGirildiMi == false).Sum(x => x.OgrencininDersi.DersKredisi);
+            int toplamKredi = 0;
+            if (oddc._ogrencilerDerslerDonemlerRepository.GetAll().Count != 0)
+            {
+                toplamKredi = oddc._ogrencilerDerslerDonemlerRepository.GetEntity().Where(x => x.OgrenciID == ogrenci.OgrenciID && x.NotGirildiMi == false).Sum(x => x.OgrencininDersi.DersKredisi);
+            }
             foreach (var item in ogrencininDersleri)
             {
                 var ogrencininAldigiDers = dc._dersRepository.GetEntity().Where(x => x.DersID == item).Select(x => new DersBilgiDTO
@@ -61,7 +65,6 @@ namespace BilgiYonetimSistemi.UI.Controllers
                     DersKodu = x.DersKodu,
                     DersKredisi = x.DersKredisi
                 }).FirstOrDefault();
-                //toplamKredi += ogrencininAldigiDers.DersKredisi;
             }
             ViewBag.ToplamKredi = toplamKredi;
             return View(ogrencininAlmadigiDersler);
