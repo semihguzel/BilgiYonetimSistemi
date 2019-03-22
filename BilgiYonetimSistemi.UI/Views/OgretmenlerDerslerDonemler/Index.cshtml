@@ -52,11 +52,17 @@
                                 <td>
                                     @Html.DisplayFor(modelItem => item.OgretmeninDersi.DersAdi)
                                 </td>
-                                <td style="text-align:right">
-                                    @Html.ActionLink("DÜZENLE", "Edit", new { id = item.OgretmenlerDerslerID }, new { @class = "btn btn-warning" })  
-                                    @Html.ActionLink("DETAY", "Details", new { id = item.OgretmenlerDerslerID }, new { @class = "btn btn-primary" }) 
-                                    @Html.ActionLink("SİL", "Delete", new { id = item.OgretmenlerDerslerID }, new { @class = "btn btn-danger" })
-                                </td>
+
+                                @{var kullanici = Session["Kullanici"] as BilgiYonetimSistemi.DATA.Entities.Kullanici;
+                                    if (!BilgiYonetimSistemi.BLL.KullaniciIslemleri.RolGecerliMi(kullanici, "ogretmen"))
+                                    {
+                                        <td style="text-align:right">
+                                            @Html.ActionLink("DÜZENLE", "Edit", new { id = item.OgretmenlerDerslerID }, new { @class = "btn btn-warning" })
+                                            @Html.ActionLink("DETAY", "Details", new { id = item.OgretmenlerDerslerID }, new { @class = "btn btn-primary" })
+                                            @Html.ActionLink("SİL", "Delete", new { id = item.OgretmenlerDerslerID }, new { @class = "btn btn-danger" })
+                                        </td>
+                                    }
+                                }
                             </tr>
                         }
 

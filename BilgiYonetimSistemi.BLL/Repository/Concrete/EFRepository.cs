@@ -30,7 +30,7 @@ namespace RepositoryPattern.BLL.Repository.Concrete
         public void Delete(int id)
         {
             _dbSet.Remove(GetById(id));
-        }
+        }               
 
         public IQueryable<T> GetEntity()
         {
