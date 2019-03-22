@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using BilgiYonetimSistemi.BLL.Repository.Concrete;
 using BilgiYonetimSistemi.DAL;
 using BilgiYonetimSistemi.DATA;
 
@@ -40,8 +41,8 @@ namespace BilgiYonetimSistemi.UI.Controllers
         // GET: OgretmenlerDerslerDonemler/Create
         public ActionResult Create()
         {
-            
-            
+
+
             ViewBag.OgretmenID = new SelectList(db.Ogretmenler, "OgretmenID", "OgretmenAdi");
             ViewBag.DonemID = new SelectList(db.Donemler, "DonemID", "DonemYili");
             ViewBag.DersID = new SelectList(db.Dersler, "DersID", "DersAdi");
@@ -55,14 +56,18 @@ namespace BilgiYonetimSistemi.UI.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "OgretmenlerDerslerID,OgretmenID,DersID")] OgretmenlerDerslerDonemler ogretmenlerDerslerDonemler)
         {
+            OgretmenlerDerslerDonemlerConcrete oddc = new OgretmenlerDerslerDonemlerConcrete();
             var kullanici = Session["Kullanici"] as DATA.Entities.Kullanici;
             ogretmenlerDerslerDonemler.DonemID = db.Donemler.FirstOrDefault(x => x.DonemYili == DateTime.Now.Year.ToString()).DonemID;
             if (ModelState.IsValid)
             {
                 if (BilgiYonetimSistemi.BLL.KullaniciIslemleri.RolGecerliMi(kullanici, "ogretmen"))
                     ogretmenlerDerslerDonemler.OgretmenID = kullanici.Id;
-                db.OgretmenlerDersler.Add(ogretmenlerDerslerDonemler);
-                db.SaveChanges();
+                if (oddc._ogretmenlerDerslerDonemlerRepository.GetEntity().FirstOrDefault(x => x.OgretmenID == ogretmenlerDerslerDonemler.OgretmenID) == null)
+                {
+                    db.OgretmenlerDersler.Add(ogretmenlerDerslerDonemler);
+                    db.SaveChanges();
+                }
                 return RedirectToAction("Index");
             }
 
