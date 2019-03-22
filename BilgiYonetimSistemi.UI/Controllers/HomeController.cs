@@ -94,6 +94,10 @@ namespace BilgiYonetimSistemi.UI.Controllers
         [HttpPost]
         public async Task<ActionResult> ChangePassword(ChangePasswordViewModel1 model)
         {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
             if (ModelState.IsValid)
             {
                 Context db = new Context();
@@ -111,13 +115,18 @@ namespace BilgiYonetimSistemi.UI.Controllers
                 else if (result1 != PasswordVerificationResult.Success)
                 {
                     ModelState.AddModelError(string.Empty, "Girilen eski sifre yanlis!");
+                    return View(model);
+
                 }
-                
+
                 else if (yeniSifre != sifreDogrulama)
+                {
                     ModelState.AddModelError(string.Empty, "Yeni sifreler uyusmuyor!");
+                    return View(model);
+                }
                 else
                 {
-                    var result2 = userManager.ChangePassword(kullanici.Id, eskiSifre, yeniSifre);
+                    var result2 = await userManager.ChangePasswordAsync(kullanici.Id, eskiSifre, yeniSifre);
                     if (result2.Succeeded)
                         Response.Write("<script>alert('Kaydetme islemi basariyla gerceklestirildi')</script>");
                 }
