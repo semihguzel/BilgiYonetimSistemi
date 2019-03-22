@@ -63,7 +63,7 @@ namespace BilgiYonetimSistemi.UI.Controllers
             {
                 if (BilgiYonetimSistemi.BLL.KullaniciIslemleri.RolGecerliMi(kullanici, "ogretmen"))
                     ogretmenlerDerslerDonemler.OgretmenID = kullanici.Id;
-                if (oddc._ogretmenlerDerslerDonemlerRepository.GetEntity().FirstOrDefault(x => x.OgretmenID == ogretmenlerDerslerDonemler.OgretmenID) == null)
+                if (oddc._ogretmenlerDerslerDonemlerRepository.GetEntity().FirstOrDefault(x => x.OgretmenID == ogretmenlerDerslerDonemler.OgretmenID && x.DersID == ogretmenlerDerslerDonemler.DersID && x.DonemID == ogretmenlerDerslerDonemler.DonemID) == null)
                 {
                     db.OgretmenlerDersler.Add(ogretmenlerDerslerDonemler);
                     db.SaveChanges();
