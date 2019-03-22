@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,6 +16,8 @@ namespace BilgiYonetimSistemi.DATA
         public int DersID { get; set; }
 
         public int DonemID{ get; set; }
+        [DefaultValue(false)]
+        public bool NotGirildiMi { get; set; }
 
         public virtual Ogrenci DersinOgrencisi { get; set; }
 

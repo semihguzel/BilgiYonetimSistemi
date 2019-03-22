@@ -6,7 +6,6 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
-using System.Web.Http.Cors;
 using System.Web.Mvc;
 using BilgiYonetimSistemi.BLL;
 using BilgiYonetimSistemi.BLL.Repository.Concrete;
@@ -18,7 +17,6 @@ using Newtonsoft.Json;
 
 namespace BilgiYonetimSistemi.UI.Controllers
 {
-    [EnableCors("*", "*", "*")]
     public class OgretmenController : Controller
     {
         private Context db = new Context();
@@ -213,10 +211,14 @@ namespace BilgiYonetimSistemi.UI.Controllers
             {
                 NotConcrete notConcrete = new NotConcrete();
                 SinavConcrete sinavConcrete = new SinavConcrete();
+                OgrencilerDerslerDonemlerConcrete oddc = new OgrencilerDerslerDonemlerConcrete();
                 foreach (var item in ogrenciDersNot)
                 {
                     if (item.AldigiNot != 0)
                     {
+                        var ogrenciDersDonem = oddc._ogrencilerDerslerDonemlerRepository.GetById(item.OgrenciDerslerDonemlerID);
+                        ogrenciDersDonem.NotGirildiMi = true;
+                        oddc._ogrencilerDerslerDonemlerUnitOfWork.SaveChanges();
                         int sinavId = sinavConcrete._sinavRepository.GetEntity().FirstOrDefault(x => x.SinavTipi == sinavTipi).SinavID;
                         Not not = notConcrete._notRepository.GetEntity().FirstOrDefault(x => x.OgrenciDerslerDonemlerID == item.OgrenciDerslerDonemlerID && x.SinavID == sinavId);
                         if (not == null)
