@@ -212,7 +212,7 @@ namespace BilgiYonetimSistemi.BLL
         }
         public static string HarfNotuGetir(OgrencilerDerslerDonemler ogrencilerDerslerDonemler, ref double toplamAgirlikli)
         {
-            if (ogrencilerDerslerDonemler.OgrenciDerslerDonemlerinNotlari.Count < 4)
+            if (ogrencilerDerslerDonemler.OgrenciDerslerDonemlerinNotlari.Count < 3)
             {
                 return "*";
             }
