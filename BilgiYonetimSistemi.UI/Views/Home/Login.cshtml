@@ -11,25 +11,19 @@
     <title>BYS - Bilgi Yönetim Sistemi</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Sakarya Üniversitesi">
-    <meta name="author" content="Sakarya Üniversitesi">
+    <meta name="description" content="Bilge Adam">
+    <meta name="author" content="Bilge Adam">
 
 
     <link href="~/lib/css/styles.css" rel="stylesheet" />
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css">
 
 
 
     <link href="/Content/css/fonts.css" rel="stylesheet" />
-    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries. Placeholdr.js enables the placeholder attribute -->
-    <!--[if lt IE 9]>
-        <link rel='stylesheet' type='text/css' href='https://cdn0.sabis.sakarya.edu.tr/sabismaster/assets/css/ie8.css'>
-        <script type="text/javascript" src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-        <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/respond.js/1.1.0/respond.min.js"></script>
-        <script src='https://cdn0.sabis.sakarya.edu.tr/sabismaster/assets/plugins/charts-flot/excanvas.min.js'></script>
-    <![endif]-->
-    <link rel='stylesheet' type='text/css' href='https://cdn0.sabis.sakarya.edu.tr/sabismaster/assets/plugins/pines-notify/jquery.pnotify.default.css'>
+    
+    
     <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
 </head>
@@ -39,7 +33,7 @@
         @using (Html.BeginForm("Login", "Home", FormMethod.Post))
         {
             @Html.AntiForgeryToken()
-            <a href="/tr/Login"><img src="~/images/kapi5.png" alt="Logo" class="brand" style="width:227px;" /></a>
+            <img src="~/images/kapi5.png" alt="Logo" class="brand" style="width:227px;" />
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
             <!--Hata Basla-->
             <!--Hata Bit-->

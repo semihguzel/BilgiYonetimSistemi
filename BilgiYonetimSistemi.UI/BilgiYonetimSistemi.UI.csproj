@@ -366,7 +366,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Content\Images\" />
     <Folder Include="lib\img\" />
     <Folder Include="Views\OgretmenIslemleri\" />
   </ItemGroup>

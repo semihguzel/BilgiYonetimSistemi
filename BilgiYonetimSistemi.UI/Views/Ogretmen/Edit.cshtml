@@ -22,10 +22,10 @@
                 <hr />
                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                 @Html.HiddenFor(model => model.OgretmenID)
-
+                @Html.HiddenFor(model => model.PersonelNumarasi)
                 <div class="form-group">
                     <div class="col-md-10">
-                        <label style="font-weight:bold">TCNo</label>
+                        <label style="font-weight:bold">TC</label>
                         @Html.EditorFor(model => model.OgretmeninBilgisi.TCNo, new { htmlAttributes = new { @class = "form-control" } })
                         @Html.ValidationMessageFor(model => model.OgretmeninBilgisi.TCNo, "", new { @class = "text-danger" })
                     </div>
@@ -50,10 +50,8 @@
 
                 <div class="form-group">
                     <div class="col-md-10">
-                        <label style="font-weight:bold">
-                            Ünvanı
-                        </label>
-                        @Html.EditorFor(model => model.Unvan, new { htmlAttributes = new { @class = "form-control" } })
+                        <label style="font-weight:bold;">Ünvan:</label>
+                        @Html.DropDownList("unvan", new List<SelectListItem>() { new SelectListItem() { Text = "Profesör", Value = "Profesör" }, new SelectListItem() { Text = "Doçent", Value = "Doçent" }, new SelectListItem() { Text = "Doktor", Value = "Doktor" }, new SelectListItem() { Text = "Öğretim Üyesi", Value = "Öğretim Üyesi" }, new SelectListItem() { Text = "Araştırma Görevlisi", Value = "Araştırma Görevlisi" } }, "Ünvan Seçiniz", new { @class = "form-control", required = "required" })
                         @Html.ValidationMessageFor(model => model.Unvan, "", new { @class = "text-danger" })
                     </div>
                 </div>
@@ -61,33 +59,11 @@
                 <div class="form-group">
                     <div class="col-md-10">
                         <label style="font-weight:bold">Göreve Başlama Tarihi</label>
-                        <input type="date" name="model.BaslangicTarihi" />
+                        <input type="date" name="BaslangicTarihi" class="form-control"/>
                         @Html.ValidationMessageFor(model => model.BaslangicTarihi, "", new { @class = "text-danger" })
                     </div>
                 </div>
-
-                <div class="form-group">
-                    <div class="col-md-10">
-                        <label style="font-weight:bold">Görevden Ayrılış Tarihi</label>
-                        <input type="date" name="model.AyrilisTarihi" />
-                        @Html.ValidationMessageFor(model => model.AyrilisTarihi, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <div class="col-md-10">
-                        <label style="font-weight:bold">Personel Numarası</label>
-                        @Html.EditorFor(model => model.PersonelNumarasi, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.PersonelNumarasi, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <div class="col-md-10">
-                        <label style="font-weight:bold">Fotoğraf</label>
-                        <img src="@Url.Content(@Model.OgretmeninBilgisi.Fotograf)" alt="Fotograf" name="Fotograf" />
-                    </div>
-                </div>
+                                
                 <div class="form-group">
                     <div class="col-md-offset-2 col-md-10">
                         <input type="submit" value="Kaydet" class="btn btn-success" />

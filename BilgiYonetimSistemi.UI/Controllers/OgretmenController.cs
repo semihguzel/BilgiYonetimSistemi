@@ -21,11 +21,11 @@ namespace BilgiYonetimSistemi.UI.Controllers
     {
         private Context db = new Context();
         OgretmenConcrete ogretmenConcrete = new OgretmenConcrete();
-
+        OgretmenBilgileriConcrete ogretmenBilgileriConcrete = new OgretmenBilgileriConcrete();
         // GET: Ogretmen
         public ActionResult Index()
         {
-            return View(ogretmenConcrete._ogretmenRepository.GetEntity().Where(x => x.IsActive == true).ToList());
+            return View(ogretmenConcrete._ogretmenRepository.GetAll());
         }
 
         public ActionResult Anasayfa()
@@ -114,12 +114,17 @@ namespace BilgiYonetimSistemi.UI.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "OgretmenID,OgretmenAdi,OgretmenSoyadi,Unvan,BaslangicTarihi,AyrilisTarihi,PersonelNumarasi,Sifre")] Ogretmen ogretmen)
+        public ActionResult Edit([Bind(Include = "OgretmenID,OgretmenAdi,OgretmenSoyadi,Unvan,BaslangicTarihi,AyrilisTarihi,PersonelNumarasi")] Ogretmen ogretmen, FormCollection frm)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(ogretmen).State = EntityState.Modified;
-                db.SaveChanges();
+                ogretmenConcrete._ogretmenRepository.Update(ogretmen);                
+                ogretmenConcrete._ogretmenUnitOfWork.SaveChanges();
+                OgretmenBilgileri ogretmenBilgileri = ogretmenBilgileriConcrete._ogretmenBilgileriRepository.GetById(ogretmen.OgretmenID);
+                ogretmenBilgileri.TCNo = frm["OgretmeninBilgisi.TCNo"];
+                ogretmenBilgileriConcrete._ogretmenBilgileriRepository.Update(ogretmenBilgileri);
+                ogretmenBilgileriConcrete._ogretmenBilgileriUnitOfWork.SaveChanges();
+                ogretmenBilgileriConcrete._ogretmenBilgileriUnitOfWork.Dispose();
                 return RedirectToAction("Index");
             }
             return View(ogretmen);
@@ -145,9 +150,12 @@ namespace BilgiYonetimSistemi.UI.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(string id)
         {
-            Ogretmen ogretmen = db.Ogretmenler.Find(id);
+            Ogretmen ogretmen = ogretmenConcrete._ogretmenRepository.GetById(id);          
             ogretmen.IsActive = false;
-            db.SaveChanges();
+            ogretmen.AyrilisTarihi = DateTime.Now;
+            ogretmenConcrete._ogretmenRepository.Update(ogretmen);
+            ogretmenConcrete._ogretmenUnitOfWork.SaveChanges();
+            ogretmenConcrete._ogretmenUnitOfWork.Dispose();
             return RedirectToAction("Index");
         }
 

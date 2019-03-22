@@ -60,10 +60,10 @@ namespace BilgiYonetimSistemi.UI.Controllers
 
                 if (rol.First() == "admin" || rol.First() == "developer")
                     return RedirectToAction("Anasayfa", "Yonetici");
-                //TODO : Ogrenci - Ogretmen kisimlari eklenince onlarin anasayfasina yollanacak
+                
                 else if (rol.First() == "ogretmen")
                     return RedirectToAction("Anasayfa", "Ogretmen");
-                //TODO : Ogrenci - Ogretmen kisimlari eklenince onlarin anasayfasina yollanacak
+                
                 else if (rol.First() == "ogrenci")
                     return RedirectToAction("Anasayfa", "Ogrenci");
                 else
