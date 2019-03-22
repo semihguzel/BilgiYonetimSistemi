@@ -53,9 +53,10 @@ namespace BilgiYonetimSistemi.UI.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "OgretmenlerDerslerID,OgretmenID,DersID,DonemID")] OgretmenlerDerslerDonemler ogretmenlerDerslerDonemler)
+        public ActionResult Create([Bind(Include = "OgretmenlerDerslerID,OgretmenID,DersID")] OgretmenlerDerslerDonemler ogretmenlerDerslerDonemler)
         {
             var kullanici = Session["Kullanici"] as DATA.Entities.Kullanici;
+            ogretmenlerDerslerDonemler.DonemID = db.Donemler.FirstOrDefault(x => x.DonemYili == DateTime.Now.Year.ToString()).DonemID;
             if (ModelState.IsValid)
             {
                 if (BilgiYonetimSistemi.BLL.KullaniciIslemleri.RolGecerliMi(kullanici, "ogretmen"))
