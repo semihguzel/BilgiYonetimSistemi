@@ -212,8 +212,11 @@ namespace BilgiYonetimSistemi.BLL
         }
         public static string HarfNotuGetir(OgrencilerDerslerDonemler ogrencilerDerslerDonemler, ref double toplamAgirlikli)
         {
-
-            int? birinciVizePuani = ogrencilerDerslerDonemler.OgrenciDerslerDonemlerinNotlari.FirstOrDefault(x => x.SinavID == 1).Puan;
+            if (ogrencilerDerslerDonemler.OgrenciDerslerDonemlerinNotlari.Count < 4)
+            {
+                return "*";
+            }
+                int? birinciVizePuani = ogrencilerDerslerDonemler.OgrenciDerslerDonemlerinNotlari.FirstOrDefault(x => x.SinavID == 1).Puan;
             int? ikinciVizePuani = ogrencilerDerslerDonemler.OgrenciDerslerDonemlerinNotlari.FirstOrDefault(x => x.SinavID == 2).Puan;
             int? finalPuani = ogrencilerDerslerDonemler.OgrenciDerslerDonemlerinNotlari.FirstOrDefault(x => x.SinavID == 3).Puan;
             double? butunlemePuani;
