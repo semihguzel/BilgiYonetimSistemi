@@ -13,7 +13,6 @@ namespace BilgiYonetimSistemi.DAL
         public DonemlerMapping()
         {
             HasKey(x => x.DonemID);
-            Property(x => x.GuzMu);
             Property(x => x.DonemYili).HasColumnType("nvarchar").HasMaxLength(4);
         }
     }
