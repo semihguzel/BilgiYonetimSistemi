@@ -22,8 +22,7 @@ namespace BilgiYonetimSistemi.UI.Controllers
         // GET: Yonetici
         public ActionResult Index()
         {
-            var yoneticis = db.Yoneticiler.Include(y => y.Kullanici);
-            return View(yoneticis.ToList());
+            return View(yoneticiConcrete._yoneticiRepository.GetAll());
         }
 
         public ActionResult Anasayfa()
@@ -39,7 +38,7 @@ namespace BilgiYonetimSistemi.UI.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Yonetici yonetici = db.Yoneticiler.Find(id);
+            Yonetici yonetici = yoneticiConcrete._yoneticiRepository.GetById(id);
             if (yonetici == null)
             {
                 return HttpNotFound();
@@ -90,7 +89,7 @@ namespace BilgiYonetimSistemi.UI.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Yonetici yonetici = db.Yoneticiler.Find(id);
+            Yonetici yonetici = yoneticiConcrete._yoneticiRepository.GetById(id);
             if (yonetici == null)
             {
                 return HttpNotFound();
@@ -107,8 +106,9 @@ namespace BilgiYonetimSistemi.UI.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(yonetici).State = EntityState.Modified;
-                db.SaveChanges();
+                yoneticiConcrete._yoneticiRepository.Update(yonetici);
+                yoneticiConcrete._yoneticiUnitOfWork.SaveChanges();
+                yoneticiConcrete._yoneticiUnitOfWork.Dispose();
                 return RedirectToAction("Index");
             }
             return View(yonetici);
@@ -121,7 +121,7 @@ namespace BilgiYonetimSistemi.UI.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Yonetici yonetici = db.Yoneticiler.Find(id);
+            Yonetici yonetici = yoneticiConcrete._yoneticiRepository.GetById(id);
             if (yonetici == null)
             {
                 return HttpNotFound();
@@ -134,9 +134,10 @@ namespace BilgiYonetimSistemi.UI.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(string id)
         {
-            Yonetici yonetici = db.Yoneticiler.Find(id);
-            db.Yoneticiler.Remove(yonetici);
-            db.SaveChanges();
+            Yonetici yonetici = yoneticiConcrete._yoneticiRepository.GetById(id);
+            yoneticiConcrete._yoneticiRepository.Delete(yonetici);
+            yoneticiConcrete._yoneticiUnitOfWork.SaveChanges();
+            yoneticiConcrete._yoneticiUnitOfWork.Dispose();
             return RedirectToAction("Index");
         }
 

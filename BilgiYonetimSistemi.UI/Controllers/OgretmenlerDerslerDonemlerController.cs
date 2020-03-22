@@ -40,6 +40,8 @@ namespace BilgiYonetimSistemi.UI.Controllers
         // GET: OgretmenlerDerslerDonemler/Create
         public ActionResult Create()
         {
+            
+            
             ViewBag.OgretmenID = new SelectList(db.Ogretmenler, "OgretmenID", "OgretmenAdi");
             ViewBag.DonemID = new SelectList(db.Donemler, "DonemID", "DonemYili");
             ViewBag.DersID = new SelectList(db.Dersler, "DersID", "DersAdi");
@@ -51,13 +53,13 @@ namespace BilgiYonetimSistemi.UI.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "OgretmenlerDerslerID,DersID")] OgretmenlerDerslerDonemler ogretmenlerDerslerDonemler)
-        { 
-            ogretmenlerDerslerDonemler.DonemID = db.Donemler.FirstOrDefault(x => x.DonemYili == DateTime.Now.Year.ToString() ).DonemID;
+        public ActionResult Create([Bind(Include = "OgretmenlerDerslerID,OgretmenID,DersID,DonemID")] OgretmenlerDerslerDonemler ogretmenlerDerslerDonemler)
+        {
             var kullanici = Session["Kullanici"] as DATA.Entities.Kullanici;
             if (ModelState.IsValid)
             {
-                ogretmenlerDerslerDonemler.OgretmenID = kullanici.Id;
+                if (BilgiYonetimSistemi.BLL.KullaniciIslemleri.RolGecerliMi(kullanici, "ogretmen"))
+                    ogretmenlerDerslerDonemler.OgretmenID = kullanici.Id;
                 db.OgretmenlerDersler.Add(ogretmenlerDerslerDonemler);
                 db.SaveChanges();
                 return RedirectToAction("Index");

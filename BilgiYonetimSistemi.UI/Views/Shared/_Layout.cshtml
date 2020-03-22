@@ -15,7 +15,7 @@
 
     <link href="~/lib/css/style.css" rel="stylesheet" />
     <link href="~/lib/css/master_styles.css" rel="stylesheet" />
-    
+
     <style>
         #atlwdg-trigger {
             margin-right: 60px;
@@ -42,20 +42,6 @@
     <link href="~/lib/css/google_font.css" rel="stylesheet" />
     <link href="~/lib/css/jquery.pnotify.default.css" rel="stylesheet" />
     <link href="~/lib/css/jqueryui.min.css" rel="stylesheet" />
-    @*<link href="~/lib/css/font-awesome.min.css" rel="stylesheet" />*@
-
-    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries. Placeholdr.js enables the placeholder attribute -->
-    <!--[if lt IE 9]>
-        <link rel='stylesheet' type='text/css' href='https://cdn0.sabis.sakarya.edu.tr/ogr//assets/css/ie8.css'>
-        <script type="text/javascript" src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-        <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/respond.js/1.1.0/respond.min.js"></script>
-        <script src='https://cdn0.sabis.sakarya.edu.tr/ogr//assets/plugins/charts-flot/excanvas.min.js'></script>
-    <![endif]-->
-    <!-- The following CSS are included as plugins and can be removed if unused-->
-    <!-- Plugin Css dosyaları Başla -->
-    <!-- assets/plugins/ klasöründeki eklentilerin css dosyaları burada yüklenecek -->
-    <!-- Plugin Css dosyaları Bit -->
-
 
 
     <script src="~/lib/js/jquery.min.js"></script>
@@ -79,7 +65,7 @@
 </head>
 
 <body class=" ">
-           
+
 
     <header class="navbar navbar-inverse navbar-fixed-top" role="banner">
         <a id="leftmenu-trigger" class="tooltips" data-toggle="tooltip" data-placement="right" title="" data-original-title="Men&#252; A&#231;/Kapat"></a>
@@ -90,7 +76,7 @@
         </div>
         @{
             var kullanici = Session["Kullanici"] as BilgiYonetimSistemi.DATA.Entities.Kullanici;
-            var kullanıcıAdı=""; var resim = ""; var partial = "";
+            var kullanıcıAdı = ""; var resim = ""; var partial = "";
             if (BilgiYonetimSistemi.BLL.KullaniciIslemleri.RolGecerliMi(kullanici, "yonetici") || BilgiYonetimSistemi.BLL.KullaniciIslemleri.RolGecerliMi(kullanici, "developer"))
             {
                 kullanıcıAdı = kullanici.UserName;
@@ -118,21 +104,18 @@
             <li class="dropdown">
                 <a href="#" class="dropdown-toggle username" data-toggle="dropdown">
                     <span>
-                        @kullanıcıAdı 
+                        @kullanıcıAdı
                         <i class="fa fa-caret-down"></i>
-                    </span><img src="~/images/@resim" alt="Dangerfield" style="height:2%;"/> 
+                    </span><img src="~/images/@resim" alt="Dangerfield" style="height:2%;" />
                 </a>
                 <ul class="dropdown-menu userinfo arrow" style="padding:0 15px;">
                     <li class="userlinks">
                         <ul class="dropdown-menu">
                             <li class="text-center">
-                                <a href="https://sabis.sakarya.edu.tr/tr/Hesap/?t=6">
-                                    @*kullanıcı idye göre profil *@
-                                    <img src="~/images/@resim" alt="Kullanıcı Resmi" style="padding:0 10px 10px; width:150px; border-radius:20px;" />
-                                </a>
+                                <img src="~/images/@resim" alt="Kullanıcı Resmi" style="padding:0 10px 10px; width:150px; border-radius:20px;" />
                             </li>
                             <li class="divider"></li>
-                            <li><a href="https://sabis.sakarya.edu.tr/tr/Hesap/?t=6">Profil<i class="pull-right fa fa-user"></i></a></li>
+
                             <li><a href="@Url.Action("ChangePassword","Home")">Sifre Degistir<i class="pull-right fa fa-cog"></i></a></li>
 
                             <li class="divider"></li>
@@ -142,7 +125,7 @@
                     </li>
                 </ul>
             </li>
-            
+
         </ul>
 
 
@@ -153,7 +136,7 @@
         <!-- Menu Partial Buraya Gelecek -->
         <!-- BEGIN SIDEBAR -->
         <nav id="page-leftbar" role="navigation">
-            
+
             @Html.Partial(partial)
         </nav>
 
@@ -214,21 +197,14 @@
             <div class="clearfix">
                 <ul class="list-unstyled list-inline">
                     <li>BİLGE ADAM AKADEMİ &copy; 2019</li>
-                    <li>Version: 1.0.0.116 - Dated: 21.3.2019</li>                    
+                    <li>Version: 1.0.0.116 - Dated: 21.3.2019</li>
                     <button class="pull-right btn btn-inverse-alt btn-xs hidden-print" id="back-to-top"><i class="fa fa-arrow-up"></i></button>
                 </ul>
             </div>
         </footer>
 
     </div> <!-- page-container -->
-    <!--
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-    <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
-
-    <script>!window.jQuery && document.write(unescape('%3Cscript src="assets/js/jquery-1.10.2.min.js"%3E%3C/script%3E'))</script>
-    <script type="text/javascript">!window.jQuery.ui && document.write(unescape('%3Cscript src="assets/js/jqueryui-1.10.3.min.js'))</script>
-    -->
-    @* bendekileri kullanalim dur *@
+    
 
     <script src="~/lib/js/master_core.js"></script>
     <script src="~/lib/js/uys.js"></script>
@@ -242,10 +218,8 @@
     <script src="~/lib/js/parsley.min.js"></script>
 
 
+
     
-    @*@Scripts.Render("~/bundles/jquery")
-        @Scripts.Render("~/bundles/bootstrap")
-        @RenderSection("scripts", required: false)*@
     @RenderSection("scripts", required: false)
 </body>
 </html>
